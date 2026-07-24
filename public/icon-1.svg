@@ -1,0 +1,37 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_1_1292)">
+<g clip-path="url(#clip1_1_1292)">
+<g clip-path="url(#clip2_1_1292)">
+<g filter="url(#filter0_i_1_1292)">
+<path d="M32 16C32 7.16344 24.8366 0 16 0C7.16344 0 0 7.16344 0 16C0 24.8366 7.16344 32 16 32C24.8366 32 32 24.8366 32 16Z" fill="url(#paint0_linear_1_1292)"/>
+<path d="M16.0222 10.8145L16.0089 21.1851M10.8142 16.0002H21.1849" stroke="white" stroke-width="1.77778" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<filter id="filter0_i_1_1292" x="0" y="0" width="32" height="33.7778" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="1.77778"/>
+<feGaussianBlur stdDeviation="0.888889"/>
+<feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+<feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.25 0"/>
+<feBlend mode="normal" in2="shape" result="effect1_innerShadow_1_1292"/>
+</filter>
+<linearGradient id="paint0_linear_1_1292" x1="0" y1="0" x2="16" y2="32" gradientUnits="userSpaceOnUse">
+<stop stop-color="#986BE1"/>
+<stop offset="1" stop-color="#7A40D8"/>
+</linearGradient>
+<clipPath id="clip0_1_1292">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+<clipPath id="clip1_1_1292">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+<clipPath id="clip2_1_1292">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>

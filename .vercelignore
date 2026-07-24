@@ -1,0 +1,22 @@
+node_modules
+build
+dist
+.git
+.trae
+.log
+.gitnexus
+.figma
+.vercel
+.env
+.env.*
+!.env.example
+
+# PayPal non configurato in produzione (nessuna env PAYPAL_, nessun riferimento
+# dal frontend). Endpoint esclusi dal deploy per rientrare nel limite di 12
+# Serverless Function del piano Hobby. paypal/_shared.js resta: e' importato dai
+# funnel Stripe e bonifico. Per riattivarli, rimuovi queste righe e configura le
+# env PAYPAL_.
+api/paypal/config.js
+api/paypal/create-order.js
+api/paypal/capture-order.js
+api/paypal/order-details.js

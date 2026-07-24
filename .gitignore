@@ -1,0 +1,14 @@
+.vercel
+.gitnexus
+.DS_Store
+node_modules
+dist
+build
+*.log
+npm-debug.log*
+.env
+.env.local
+.env.*.local
+!.env.example
+!public/tirana/assets/testimonial-*.jpg
+!public/tirana/assets/workshop-builder-pass-whatsapp.jpg

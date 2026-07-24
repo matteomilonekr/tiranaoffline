@@ -1,0 +1,181 @@
+:root {
+  --event-announcement-height: 38px;
+}
+
+html.has-event-chrome body {
+  padding-top: var(--event-announcement-height) !important;
+}
+
+.event-announcement {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1200;
+  min-height: var(--event-announcement-height);
+  border-bottom: 2px solid #000000;
+  background: #FF6B6B;
+  color: #FFFDF5;
+}
+
+.event-announcement__link {
+  display: flex;
+  width: min(1240px, calc(100% - 28px));
+  min-height: var(--event-announcement-height);
+  margin-inline: auto;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: #FFFDF5;
+  font: 800 12px/1 "IBM Plex Mono", ui-monospace, monospace;
+  letter-spacing: .07em;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.event-announcement__icon {
+  flex: 0 0 auto;
+  font-size: 16px;
+  line-height: 1;
+}
+
+.event-announcement__message {
+  min-width: 0;
+}
+
+.event-announcement__cta {
+  flex: 0 0 auto;
+  padding-left: 12px;
+  border-left: 1px solid rgba(255, 253, 245, .5);
+  font-weight: 900;
+}
+
+html.has-event-chrome .island-nav {
+  top: calc(22px + var(--event-announcement-height)) !important;
+}
+
+html.has-event-chrome .skip-link {
+  top: calc(10px + var(--event-announcement-height)) !important;
+}
+
+.event-whatsapp {
+  position: fixed;
+  right: max(22px, env(safe-area-inset-right));
+  bottom: max(22px, env(safe-area-inset-bottom));
+  z-index: 1190;
+  display: grid;
+  width: 60px;
+  height: 60px;
+  place-items: center;
+  border: 2px solid #FFD93D;
+  border-radius: 50%;
+  background: #000000;
+  color: #FFFDF5;
+  box-shadow: 0 18px 46px rgba(0, 0, 0, .38), 0 0 0 5px rgba(255, 217, 61, .1);
+  text-decoration: none;
+  transition: color 180ms ease, background-color 180ms ease, box-shadow 180ms ease, transform 300ms cubic-bezier(.22, 1, .36, 1);
+}
+
+.event-whatsapp::before {
+  position: absolute;
+  inset: -8px;
+  border: 1px solid rgba(255, 217, 61, .28);
+  border-radius: inherit;
+  content: "";
+  animation: event-whatsapp-pulse 2.4s ease-out infinite;
+}
+
+.event-whatsapp svg {
+  width: 28px;
+  height: 28px;
+}
+
+.event-whatsapp__tooltip {
+  position: absolute;
+  right: calc(100% + 12px);
+  padding: 10px 12px;
+  border: 1px solid #000000;
+  border-radius: 10px;
+  background: #FFD93D;
+  color: #000000;
+  font: 800 9px/1 "IBM Plex Mono", ui-monospace, monospace;
+  letter-spacing: .06em;
+  opacity: 0;
+  pointer-events: none;
+  text-transform: uppercase;
+  transform: translateX(8px);
+  transition: opacity 180ms ease, transform 220ms ease;
+  white-space: nowrap;
+}
+
+.event-whatsapp:hover,
+.event-whatsapp:focus-visible {
+  background: #FFD93D;
+  color: #000000;
+  box-shadow: 0 20px 52px rgba(0, 0, 0, .42), 0 0 0 7px rgba(255, 217, 61, .14);
+  transform: translateY(-3px) rotate(-2deg);
+}
+
+.event-whatsapp:hover .event-whatsapp__tooltip,
+.event-whatsapp:focus-visible .event-whatsapp__tooltip {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+@keyframes event-whatsapp-pulse {
+  0% { opacity: .8; transform: scale(.86); }
+  70%, 100% { opacity: 0; transform: scale(1.18); }
+}
+
+@media (max-width: 767px) {
+  :root {
+    --event-announcement-height: 42px;
+  }
+
+  .event-announcement__link {
+    width: calc(100% - 18px);
+    gap: 8px;
+    font-size: clamp(10px, 2.75vw, 11px);
+    letter-spacing: .045em;
+  }
+
+  .event-announcement__cta {
+    display: none;
+  }
+
+  html.has-event-chrome .island-nav {
+    top: calc(14px + var(--event-announcement-height)) !important;
+  }
+
+  .event-whatsapp {
+    right: max(14px, env(safe-area-inset-right));
+    bottom: max(14px, env(safe-area-inset-bottom));
+    width: 54px;
+    height: 54px;
+  }
+
+  .event-whatsapp__tooltip {
+    display: none;
+  }
+}
+
+@media print {
+  html.has-event-chrome body {
+    padding-top: 0 !important;
+  }
+
+  .event-announcement,
+  .event-whatsapp {
+    display: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .event-whatsapp,
+  .event-whatsapp::before,
+  .event-whatsapp__tooltip {
+    animation: none !important;
+    transition: none !important;
+  }
+}

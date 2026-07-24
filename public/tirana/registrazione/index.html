@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#fffdf5">
+  <meta name="description" content="Registrati per accedere ai ticket di Scalers AI Bootcamp Offline Mode a Tirana.">
+  <title>Registrazione ticket | Tirana Offline</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@600;700&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/tirana/assets/funnel.css">
+</head>
+<body>
+  <header class="funnel-shell funnel-nav">
+    <a class="funnel-brand" href="/" aria-label="Torna alla home">
+      <span class="funnel-brand-mark">+</span>
+      <span>SCALERS / OFFLINE MODE</span>
+    </a>
+    <span class="funnel-step">01 / Registrazione</span>
+  </header>
+
+  <main class="funnel-shell funnel-main">
+    <div class="funnel-layout">
+      <section class="funnel-copy" aria-labelledby="registration-title">
+        <span class="funnel-kicker">Prima di vedere i pass</span>
+        <h1 id="registration-title">Dimmi chi sei.<span>Poi scegli il ticket.</span></h1>
+        <p class="funnel-lead">Il form ci serve per collegare la tua richiesta al ticket corretto e assisterti fino alla conferma del bonifico.</p>
+        <ul class="funnel-points">
+          <li>Accesso immediato ai ticket Solo, Agency e Company.</li>
+          <li>Biglietto collegato a un ID univoco.</li>
+          <li>Nessun pagamento online, il solo metodo è il bonifico bancario.</li>
+        </ul>
+      </section>
+
+      <section class="funnel-card" aria-labelledby="form-title">
+        <h2 id="form-title">Sblocca i ticket</h2>
+        <p class="funnel-card-intro">Compila i dati essenziali. Ti portiamo subito alla pagina con tutti i pass.</p>
+        <form id="registration-form" novalidate>
+          <div class="form-grid">
+            <div class="form-field full">
+              <label for="name">Nome e cognome <span>*</span></label>
+              <input id="name" name="name" type="text" autocomplete="name" minlength="2" maxlength="100" required>
+            </div>
+            <div class="form-field">
+              <label for="email">Email <span>*</span></label>
+              <input id="email" name="email" type="email" autocomplete="email" maxlength="254" required>
+            </div>
+            <div class="form-field">
+              <label for="phone">Telefono <span>*</span></label>
+              <input id="phone" name="phone" type="tel" autocomplete="tel" maxlength="40" required>
+            </div>
+            <div class="form-field full">
+              <label for="plan">Quale percorso ti interessa? <span>*</span></label>
+              <select id="plan" name="plan" required>
+                <option value="">Seleziona il profilo</option>
+                <option value="solo">AI Solo, lavoro come professionista</option>
+                <option value="agency">AI Agency, gestisco un’agenzia</option>
+                <option value="company">AI Company, sono founder o azienda</option>
+                <option value="undecided">Non lo so ancora, voglio confrontarli</option>
+              </select>
+            </div>
+            <div class="form-field full">
+              <label for="referral">Come ci hai conosciuti?</label>
+              <input id="referral" name="referral" type="text" maxlength="160" placeholder="Skool, social, passaparola, altro">
+            </div>
+            <div class="form-trap" aria-hidden="true">
+              <label for="website">Sito web</label>
+              <input id="website" name="website" type="text" tabindex="-1" autocomplete="off">
+            </div>
+          </div>
+
+          <label class="consent">
+            <input name="privacy" type="checkbox" required>
+            <span>Ho letto la <a href="/privacy" target="_blank" rel="noopener">Privacy Policy</a> e chiedo di accedere ai ticket dell’evento. I dati saranno usati per gestire la richiesta, l’eventuale acquisto del biglietto e l’assistenza collegata.</span>
+          </label>
+
+          <button class="funnel-button" type="submit">
+            <span data-button-label>Continua ai ticket</span>
+            <span aria-hidden="true">↗</span>
+          </button>
+          <p class="form-status" id="form-status" aria-live="polite"></p>
+        </form>
+        <div class="trust-line"><span>Connessione protetta</span><span>Nessun addebito in questa pagina</span></div>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    (() => {
+      const form = document.getElementById('registration-form');
+      const status = document.getElementById('form-status');
+      const button = form.querySelector('button[type="submit"]');
+      const buttonLabel = form.querySelector('[data-button-label]');
+      const params = new URLSearchParams(window.location.search);
+      const segment = params.get('segment');
+      const next = params.get('next');
+      const allowedSegments = new Set(['solo', 'agency', 'company']);
+      const allowedNext = /^\/(offerta|checkout)(?:[/?]|$)/;
+
+      const destinationFor = (selectedPlan = segment) => {
+        if (next && allowedNext.test(next)) return next;
+        if (allowedSegments.has(selectedPlan)) return `/offerta?segment=${encodeURIComponent(selectedPlan)}`;
+        return '/offerta';
+      };
+
+      if (allowedSegments.has(segment)) document.getElementById('plan').value = segment;
+
+      fetch('/api/registration-session', {
+        headers: { Accept: 'application/json' },
+        credentials: 'same-origin',
+        cache: 'no-store'
+      })
+        .then((response) => response.ok ? response.json() : null)
+        .then((session) => {
+          if (session?.authenticated) window.location.replace(destinationFor());
+        })
+        .catch(() => {});
+
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        status.textContent = '';
+        status.dataset.state = '';
+        if (!form.reportValidity()) return;
+
+        const values = new FormData(form);
+        const payload = {
+          name: String(values.get('name') || '').trim(),
+          email: String(values.get('email') || '').trim(),
+          phone: String(values.get('phone') || '').trim(),
+          plan: String(values.get('plan') || '').trim(),
+          referral: String(values.get('referral') || '').trim(),
+          website: String(values.get('website') || ''),
+          source: 'ticket-gate'
+        };
+
+        button.disabled = true;
+        buttonLabel.textContent = 'Registrazione in corso…';
+        try {
+          const response = await fetch('/api/registrations', {
+            method: 'POST',
+            credentials: 'same-origin',
+            headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+            body: JSON.stringify(payload)
+          });
+          const result = await response.json().catch(() => null);
+          if (!response.ok || !result?.ok) throw new Error(result?.error?.message || 'Non è stato possibile completare la registrazione.');
+
+          sessionStorage.setItem('tiranaBuyer', JSON.stringify({
+            name: payload.name,
+            email: payload.email,
+            phone: payload.phone,
+            referral: payload.referral
+          }));
+          status.dataset.state = 'success';
+          status.textContent = 'Registrazione completata. Apertura ticket…';
+
+          window.location.assign(destinationFor(payload.plan));
+        } catch (error) {
+          status.dataset.state = 'error';
+          status.textContent = error.message || 'Si è verificato un errore. Riprova.';
+          button.disabled = false;
+          buttonLabel.textContent = 'Continua ai ticket';
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

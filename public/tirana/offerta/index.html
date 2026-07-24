@@ -1,0 +1,1607 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#050507">
+  <meta name="description" content="Scegli il Workshop Pass per assessment e roadmap oppure il Builder Pass per costruire Solo OS, Agency OS o Company OS a Tirana.">
+  <meta property="og:title" content="Ticket Scalers AI Bootcamp Offline Mode | Tirana">
+  <meta property="og:description" content="150 posti totali. Solo 60 proseguono nel Live Building per costruire Solo OS, Agency OS o Company OS.">
+  <meta property="og:type" content="website">
+  <title>Ticket Scalers AI Bootcamp Offline Mode | Tirana</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23050507'/%3E%3Ccircle cx='32' cy='32' r='14' fill='%238b5cf6'/%3E%3Ccircle cx='32' cy='32' r='6' fill='white'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&amp;family=Instrument+Sans:wdth,wght@75..100,400..700&amp;family=Syne:wght@500;600;700;800&amp;display=swap" rel="stylesheet">
+  <script>document.documentElement.classList.add('js');</script>
+  <script src="/tirana/assets/analytics.js" data-analytics-context="offer"></script>
+  <style>
+    :root {
+      --ink: #050507;
+      --panel: #100d17;
+      --paper: #f8f6ff;
+      --muted: #aaa4b7;
+      --violet: #9b6cff;
+      --violet-hot: #7c3cff;
+      --lilac: #d8c9ff;
+      --hairline: rgba(216, 201, 255, .16);
+      --hairline-strong: rgba(216, 201, 255, .34);
+      --ease-heavy: cubic-bezier(.22, 1, .36, 1);
+      --ease-spring: cubic-bezier(.34, 1.56, .64, 1);
+      --page: min(1320px, calc(100vw - 48px));
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--ink);
+      color-scheme: dark;
+    }
+
+    body {
+      margin: 0;
+      overflow-x: hidden;
+      background:
+        radial-gradient(circle at 82% 8%, rgba(124, 60, 255, .26), transparent 28rem),
+        radial-gradient(circle at 4% 48%, rgba(100, 43, 205, .13), transparent 34rem),
+        var(--ink);
+      color: var(--paper);
+      font-family: "Instrument Sans", sans-serif;
+      font-variation-settings: "wdth" 92;
+      text-rendering: optimizeLegibility;
+    }
+
+    body::before {
+      position: fixed;
+      inset: 0;
+      z-index: 15;
+      pointer-events: none;
+      content: "";
+      opacity: .052;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.85'/%3E%3C/svg%3E");
+    }
+
+    ::selection { color: var(--ink); background: var(--violet); }
+    a { color: inherit; text-decoration: none; }
+    button { color: inherit; font: inherit; }
+    :focus-visible { outline: 2px solid var(--lilac); outline-offset: 5px; }
+    [hidden] { display: none !important; }
+
+    .page-shell { width: var(--page); margin-inline: auto; }
+
+    .island-nav {
+      position: fixed;
+      top: 22px;
+      left: 50%;
+      z-index: 30;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: min(1120px, calc(100vw - 32px));
+      min-height: 68px;
+      padding: 7px 8px 7px 20px;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 999px;
+      background: rgba(7,6,10,.78);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.09), 0 18px 80px rgba(0,0,0,.24);
+      backdrop-filter: blur(20px) saturate(150%);
+      transform: translateX(-50%);
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+    }
+
+    .brand-copy { display: flex; min-width: 0; flex-direction: column; gap: 4px; }
+    .brand-copy strong { color: #fff; font: 700 18px/.95 "Syne", sans-serif; letter-spacing: -.035em; }
+    .brand-copy small { color: var(--lilac); font: 600 8px/1 "IBM Plex Mono", monospace; letter-spacing: .1em; text-transform: uppercase; }
+
+    .brand-mark {
+      position: relative;
+      width: 31px;
+      height: 31px;
+      border-radius: 50%;
+      background: conic-gradient(from 210deg, #fff, var(--violet), #2f0b68, #fff);
+      box-shadow: inset 0 0 0 6px #0a080d, 0 0 24px rgba(155,108,255,.34);
+    }
+
+    .nav-date {
+      color: #aca6b5;
+      font: 500 9px/1 "IBM Plex Mono", monospace;
+      letter-spacing: .11em;
+      text-transform: uppercase;
+    }
+
+    .back-link,
+    .primary-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px;
+      min-height: 48px;
+      padding: 7px 8px 7px 20px;
+      border-radius: 999px;
+      background: var(--paper);
+      color: var(--ink);
+      font: 600 11px/1 "IBM Plex Mono", monospace;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.9), 0 12px 40px rgba(96,49,188,.18);
+      transition: transform 650ms var(--ease-heavy), background-color 650ms var(--ease-heavy);
+    }
+
+    .back-link:hover,
+    .primary-cta:hover { background: var(--lilac); transform: translateY(-2px); }
+    .back-link:active,
+    .primary-cta:active { transform: scale(.98); }
+
+    .button-icon {
+      display: grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--ink);
+      color: white;
+      font-size: 17px;
+      transition: transform 650ms var(--ease-spring);
+    }
+
+    .back-link:hover .button-icon { transform: translate(-3px, -1px); }
+    .primary-cta:hover .button-icon { transform: translate(3px, -2px) rotate(5deg); }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      border: 1px solid var(--hairline);
+      border-radius: 999px;
+      background: rgba(155,108,255,.07);
+      color: var(--lilac);
+      font: 500 9px/1 "IBM Plex Mono", monospace;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--violet);
+      box-shadow: 0 0 16px rgba(155,108,255,.7);
+      content: "";
+    }
+
+    .offer-hero {
+      position: relative;
+      display: grid;
+      align-items: end;
+      min-height: 84dvh;
+      padding: 148px 0 90px;
+      overflow: hidden;
+      border-bottom: 1px solid var(--hairline);
+    }
+
+    .offer-hero::before {
+      position: absolute;
+      top: 3%;
+      right: -10%;
+      width: min(70vw, 960px);
+      aspect-ratio: 1;
+      border: 1px solid rgba(155,108,255,.15);
+      border-radius: 50%;
+      box-shadow: inset 0 0 160px rgba(124,60,255,.12), 0 0 150px rgba(124,60,255,.08);
+      content: "";
+      animation: orbit 10s var(--ease-heavy) infinite alternate;
+    }
+
+    @keyframes orbit {
+      from { opacity: .65; transform: rotate(-4deg) scale(.96); }
+      to { opacity: 1; transform: rotate(5deg) scale(1.04); }
+    }
+
+    .offer-hero-grid {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(340px, .6fr);
+      gap: clamp(44px, 6vw, 88px);
+      align-items: end;
+    }
+
+    .offer-hero-grid > * { min-width: 0; }
+
+    h1 {
+      max-width: 100%;
+      margin: 28px 0 0;
+      font: 700 clamp(62px, 8vw, 124px)/.78 "Syne", sans-serif;
+      letter-spacing: -.085em;
+      text-transform: uppercase;
+    }
+
+    .gradient-word {
+      color: transparent;
+      background: linear-gradient(115deg, #fff 4%, #d8c8ff 34%, #945bff 72%, #fff 108%);
+      background-clip: text;
+      -webkit-background-clip: text;
+    }
+
+    .hero-side {
+      padding-top: 26px;
+      border-top: 1px solid var(--hairline-strong);
+    }
+
+    .hero-side p {
+      margin: 0;
+      color: #c2bcc9;
+      font-size: clamp(18px, 1.5vw, 22px);
+      line-height: 1.55;
+    }
+
+    .hero-facts {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-top: 32px;
+    }
+
+    .hero-fact {
+      padding: 18px;
+      border: 1px solid var(--hairline);
+      border-radius: 18px;
+      background: rgba(255,255,255,.025);
+    }
+
+    .hero-fact strong { display: block; margin-bottom: 8px; color: var(--lilac); font: 650 22px/1 "Syne", sans-serif; }
+    .hero-fact span { color: var(--muted); font: 500 8px/1.35 "IBM Plex Mono", monospace; letter-spacing: .08em; text-transform: uppercase; }
+
+    .offers-section { padding: clamp(100px, 10vw, 160px) 0; }
+
+    .offer-intro {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(260px, 400px);
+      gap: 50px;
+      align-items: end;
+      margin-bottom: 52px;
+    }
+
+    .offer-intro > * { min-width: 0; }
+
+    .offer-intro h2 {
+      margin: 22px 0 0;
+      font: 650 clamp(48px, 7vw, 100px)/.86 "Syne", sans-serif;
+      letter-spacing: -.07em;
+      text-transform: uppercase;
+    }
+
+    .offer-intro p { margin: 0; color: var(--muted); font-size: 18px; line-height: 1.55; }
+
+    .segment-shell {
+      position: relative;
+      z-index: 6;
+      margin-bottom: 14px;
+      padding: 7px;
+      border: 2px solid #fff;
+      border-radius: 999px;
+      background: var(--paper);
+      box-shadow: 0 20px 54px rgba(0,0,0,.46), 0 0 0 1px rgba(216,201,255,.42), inset 0 1px 0 #fff;
+      backdrop-filter: blur(18px) saturate(140%);
+    }
+
+    .segment-tabs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+
+    .segment-tab {
+      min-height: 58px;
+      padding: 10px 18px;
+      border: 1px solid rgba(5,5,7,.11);
+      border-radius: 999px;
+      background: #ece9f2;
+      color: #17131d;
+      font: 700 12px/1 "IBM Plex Mono", monospace;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: color 600ms var(--ease-heavy), background-color 600ms var(--ease-heavy), border-color 600ms var(--ease-heavy), transform 600ms var(--ease-heavy);
+    }
+
+    .segment-tab:hover { color: #000; border-color: rgba(5,5,7,.28); background: #ded9e8; }
+    .segment-tab[aria-selected="true"] { color: #fff; border-color: rgba(216,201,255,.8); background: linear-gradient(115deg, #0b0810, #742ee8); box-shadow: inset 0 1px 0 rgba(255,255,255,.28), 0 8px 28px rgba(91,35,190,.42); }
+    .segment-tab:focus-visible { outline: 3px solid var(--violet-hot); outline-offset: 3px; }
+    .segment-tab:active { transform: scale(.985); }
+    .segment-tab strong { display: block; font: 700 13px/1 "Syne", sans-serif; letter-spacing: -.02em; }
+    .segment-tab small { display: block; margin-top: 6px; font: 600 7px/1 "IBM Plex Mono", monospace; letter-spacing: .09em; opacity: .62; }
+
+    .segment-panel { animation: panel-in 800ms var(--ease-heavy) both; }
+    @keyframes panel-in { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+
+    .pricing-clock {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 28px;
+      align-items: center;
+      margin-bottom: 0;
+      padding: 18px 20px;
+      border: 1px solid rgba(216,201,255,.28);
+      border-radius: 20px;
+      background: linear-gradient(120deg, rgba(124,60,255,.18), rgba(10,8,14,.96) 44%);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.08);
+    }
+
+    .pricing-clock-copy small { display: block; margin-bottom: 10px; color: var(--violet); font: 600 8px/1 "IBM Plex Mono", monospace; letter-spacing: .11em; text-transform: uppercase; }
+    .pricing-clock-copy strong { display: block; font: 650 clamp(18px, 2vw, 28px)/1 "Syne", sans-serif; letter-spacing: -.035em; text-transform: uppercase; }
+    .pricing-clock-copy span { display: block; margin-top: 9px; color: #aaa4b2; font-size: 13px; line-height: 1.4; }
+    .countdown-grid { display: grid; grid-template-columns: repeat(4, minmax(58px, 1fr)); gap: 7px; }
+    .countdown-unit { min-width: 58px; padding: 10px 8px; border: 1px solid var(--hairline); border-radius: 14px; background: rgba(255,255,255,.035); text-align: center; }
+    .countdown-unit strong { display: block; color: #fff; font: 650 20px/1 "Syne", sans-serif; font-variant-numeric: tabular-nums; }
+    .countdown-unit span { display: block; margin-top: 7px; color: #817a89; font: 600 7px/1 "IBM Plex Mono", monospace; letter-spacing: .08em; text-transform: uppercase; }
+
+    .capacity-map {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(320px, .8fr);
+      gap: 32px;
+      align-items: center;
+      margin: 18px 0 0;
+      padding: 30px;
+      border: 1px solid var(--hairline);
+      border-radius: 28px;
+      background:
+        radial-gradient(circle at 86% 20%, rgba(155,108,255,.18), transparent 27%),
+        rgba(255,255,255,.025);
+    }
+
+    .capacity-map-copy small { display: block; margin-bottom: 12px; color: var(--violet); font: 600 8px/1 "IBM Plex Mono", monospace; letter-spacing: .12em; text-transform: uppercase; }
+    .capacity-map-copy strong { display: block; max-width: 690px; font: 650 clamp(27px, 3.1vw, 44px)/.95 "Syne", sans-serif; letter-spacing: -.045em; text-transform: uppercase; }
+    .capacity-map-copy p { max-width: 700px; margin: 16px 0 0; color: #aaa4b2; font-size: 14px; line-height: 1.55; }
+
+    .capacity-scale {
+      padding: 18px;
+      border: 1px solid rgba(216,201,255,.2);
+      border-radius: 22px;
+      background: rgba(4,3,7,.5);
+    }
+
+    .capacity-scale-head { display: flex; justify-content: space-between; gap: 18px; align-items: baseline; }
+    .capacity-scale-head span { color: #a49dad; font: 600 8px/1 "IBM Plex Mono", monospace; letter-spacing: .1em; text-transform: uppercase; }
+    .capacity-scale-head strong { color: #fff; font: 650 42px/1 "Syne", sans-serif; letter-spacing: -.06em; }
+    .capacity-track { position: relative; height: 56px; margin-top: 15px; overflow: hidden; border: 1px solid var(--hairline); border-radius: 16px; background: rgba(255,255,255,.045); }
+    .capacity-track::before { position: absolute; inset: 0; background: repeating-linear-gradient(90deg, transparent 0 19px, rgba(255,255,255,.055) 20px); content: ""; }
+    .capacity-track-builder { position: relative; display: flex; width: 40%; height: 100%; padding: 0 14px; align-items: center; justify-content: center; border-right: 1px solid rgba(255,255,255,.32); background: linear-gradient(115deg, #6124cc, #9b6cff); color: #fff; font: 650 9px/1.15 "IBM Plex Mono", monospace; letter-spacing: .08em; text-align: center; text-transform: uppercase; }
+    .capacity-scale-note { display: flex; justify-content: space-between; gap: 16px; margin-top: 12px; color: #8f8998; font: 500 8px/1.35 "IBM Plex Mono", monospace; letter-spacing: .07em; text-transform: uppercase; }
+
+    .panel-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 32px;
+      align-items: end;
+      margin: 38px 0 24px;
+    }
+
+    .panel-head h3 { margin: 0; font: 650 clamp(38px, 5vw, 68px)/.9 "Syne", sans-serif; letter-spacing: -.06em; text-transform: uppercase; }
+    .panel-head p { max-width: 470px; margin: 0; color: var(--muted); font-size: 16px; line-height: 1.55; text-align: right; }
+
+    .offer-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+    .offer-grid.single { grid-template-columns: minmax(0, 1fr); max-width: 980px; margin-inline: auto; }
+
+    .bezel {
+      display: flex;
+      min-width: 0;
+      padding: 7px;
+      border: 1px solid var(--hairline);
+      border-radius: 36px;
+      background: rgba(255,255,255,.025);
+      transition: transform 850ms var(--ease-heavy), border-color 850ms var(--ease-heavy);
+    }
+
+    .bezel:hover { border-color: var(--hairline-strong); transform: translateY(-7px); }
+
+    .offer-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+      min-height: 0;
+      padding: clamp(30px, 4vw, 52px);
+      overflow: hidden;
+      border-radius: 29px;
+      background: linear-gradient(150deg, rgba(25,20,35,.99), rgba(8,7,11,.99));
+      box-shadow: inset 0 1px 1px rgba(255,255,255,.09);
+    }
+
+    .bezel.builder { border-color: rgba(155,108,255,.38); }
+    .bezel.builder .offer-card {
+      background:
+        radial-gradient(circle at 82% 8%, rgba(255,255,255,.2), transparent 12%),
+        linear-gradient(145deg, #5b24c4, #1b0c32 65%, #09070d);
+    }
+
+    .offer-card::after {
+      position: absolute;
+      right: -34%;
+      bottom: -40%;
+      width: 540px;
+      aspect-ratio: 1;
+      border: 1px solid rgba(155,108,255,.14);
+      border-radius: 50%;
+      content: "";
+    }
+
+    .bezel.builder .offer-card::after { border-color: rgba(255,255,255,.17); box-shadow: inset 0 0 120px rgba(155,108,255,.15); }
+
+    .card-top {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: flex-start;
+    }
+
+    .tier-name { font: 600 10px/1 "IBM Plex Mono", monospace; letter-spacing: .12em; text-transform: uppercase; }
+    .tier-name span { display: block; margin-top: 9px; color: var(--muted); font-size: 8px; }
+
+    .plan-badge {
+      display: inline-flex;
+      width: max-content;
+      margin-bottom: 15px;
+      padding: 7px 10px;
+      border: 1px solid rgba(155,108,255,.34);
+      border-radius: 999px;
+      color: var(--lilac);
+      background: rgba(124,60,255,.1);
+      font: 600 8px/1 "IBM Plex Mono", monospace;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .bezel.builder .plan-badge { color: #fff; border-color: rgba(255,255,255,.34); background: rgba(255,255,255,.1); }
+
+    .plan-fit {
+      position: relative;
+      z-index: 2;
+      margin: 24px 0 0;
+      color: #d7d0de;
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    .remaining {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 11px;
+      border: 1px solid var(--hairline);
+      border-radius: 999px;
+      color: #d0cad7;
+      font: 500 8px/1 "IBM Plex Mono", monospace;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .remaining::before { width: 6px; height: 6px; border-radius: 50%; background: #4fd45f; box-shadow: 0 0 12px rgba(79,212,95,.5); content: ""; }
+    .bezel.builder .remaining::before { background: #d8c9ff; box-shadow: 0 0 14px rgba(216,201,255,.6); }
+
+    .capacity-meter {
+      --capacity-level: 100%;
+      position: relative;
+      z-index: 2;
+      display: grid;
+      gap: 10px;
+      margin-top: 20px;
+      padding: 14px 15px;
+      border: 1px solid rgba(216,201,255,.17);
+      border-radius: 16px;
+      background: rgba(5,4,8,.3);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.035);
+    }
+
+    .capacity-meter-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      color: #aaa3b3;
+      font: 600 8px/1.2 "IBM Plex Mono", monospace;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+    }
+
+    .capacity-meter-head strong { color: #eee9f5; font-weight: 600; text-align: right; }
+    .capacity-meter-track { height: 8px; overflow: hidden; border: 1px solid rgba(255,255,255,.07); border-radius: 999px; background: rgba(0,0,0,.38); }
+    .capacity-meter-fill {
+      display: block;
+      width: var(--capacity-level);
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, #7140ff, #b48aff 72%, #efe8ff);
+      box-shadow: 0 0 18px rgba(155,108,255,.42);
+      transition: width 1100ms var(--ease-heavy), background 500ms ease, opacity 500ms ease;
+    }
+
+    .capacity-meter.is-pending .capacity-meter-fill {
+      opacity: .38;
+      background: repeating-linear-gradient(120deg, rgba(216,201,255,.52) 0 9px, rgba(216,201,255,.16) 9px 18px);
+      box-shadow: none;
+    }
+
+    .capacity-meter.is-low .capacity-meter-fill { background: linear-gradient(90deg, #ff6b6b, #ffad8a); box-shadow: 0 0 18px rgba(255,107,107,.36); }
+    .bezel.builder .capacity-meter { border-color: rgba(255,255,255,.22); background: rgba(10,4,20,.27); }
+    .bezel.builder .capacity-meter-head { color: rgba(255,255,255,.62); }
+
+    .access-strip {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 34px;
+      padding: 8px;
+      border: 1px solid var(--hairline);
+      border-radius: 22px;
+      background: rgba(255,255,255,.035);
+    }
+
+    .access-strip.is-three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+    .access-metric {
+      min-width: 0;
+      padding: 15px 16px;
+      border-radius: 16px;
+      background: rgba(4,3,7,.42);
+    }
+
+    .access-metric span { display: block; color: #928b9c; font: 600 8px/1 "IBM Plex Mono", monospace; letter-spacing: .1em; text-transform: uppercase; }
+    .access-metric strong { display: block; margin-top: 9px; color: #fff; font: 650 17px/1.05 "Syne", sans-serif; letter-spacing: -.025em; }
+    .bezel.builder .access-strip { border-color: rgba(255,255,255,.24); background: rgba(255,255,255,.08); }
+    .bezel.builder .access-metric { background: rgba(15,5,30,.34); }
+
+    .build-stack {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: minmax(0, .9fr) minmax(0, 1.2fr);
+      gap: 14px;
+      margin-top: 10px;
+      padding: 15px 16px;
+      border: 1px solid rgba(255,255,255,.22);
+      border-radius: 18px;
+      background: rgba(12,5,23,.32);
+    }
+
+    .build-stack span { color: rgba(255,255,255,.72); font: 600 8px/1.35 "IBM Plex Mono", monospace; letter-spacing: .09em; text-transform: uppercase; }
+    .build-stack strong { color: #fff; font: 650 14px/1.25 "Syne", sans-serif; letter-spacing: -.02em; text-align: right; }
+
+    .price-block { position: relative; z-index: 2; margin: 34px 0 28px; }
+    .full-price {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      width: max-content;
+      margin-bottom: 20px;
+      padding: 12px 16px 11px;
+      border: 1px solid rgba(216,201,255,.62);
+      border-radius: 999px;
+      background: linear-gradient(135deg, rgba(155,108,255,.2), rgba(12,5,23,.42));
+      color: var(--lilac);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 12px 30px rgba(76,29,149,.16);
+      font: 700 11px/1 "IBM Plex Mono", monospace;
+      letter-spacing: .11em;
+      text-transform: uppercase;
+    }
+    .full-price s {
+      color: #fff;
+      font: 750 28px/.9 "Syne", sans-serif;
+      letter-spacing: -.035em;
+      text-decoration-color: #ff7575;
+      text-decoration-thickness: 3px;
+    }
+    .bezel.builder .full-price { border-color: rgba(255,255,255,.55); background: rgba(255,255,255,.13); color: #fff; }
+    .price { font: 700 clamp(64px, 7vw, 106px)/.78 "Syne", sans-serif; letter-spacing: -.085em; }
+    .next-price {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 9px;
+      width: max-content;
+      margin-top: 18px;
+      padding: 10px 13px 9px;
+      border: 1px solid rgba(155,108,255,.34);
+      border-radius: 999px;
+      background: rgba(124,60,255,.1);
+      color: var(--lilac);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.07), 0 10px 34px rgba(76,29,149,.12);
+      font: 600 10px/1 "IBM Plex Mono", monospace;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+    }
+    .bezel.builder .next-price { border-color: rgba(255,255,255,.36); background: rgba(255,255,255,.11); color: #fff; }
+
+    .benefits {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      gap: 13px;
+      margin: 0 0 22px;
+      padding: 0;
+      list-style: none;
+    }
+
+    .benefits li {
+      display: grid;
+      grid-template-columns: 22px minmax(0, 1fr);
+      gap: 11px;
+      color: #cbc5d2;
+      font-size: 15px;
+      line-height: 1.45;
+    }
+
+    .benefits li::before {
+      display: grid;
+      place-items: center;
+      width: 20px;
+      height: 20px;
+      border: 1px solid var(--hairline-strong);
+      border-radius: 50%;
+      color: var(--violet);
+      font: 600 9px/1 "IBM Plex Mono", monospace;
+      content: "✓";
+    }
+
+    .bezel.builder .benefits li::before { color: white; border-color: rgba(255,255,255,.28); }
+
+    .offer-details {
+      position: relative;
+      z-index: 2;
+      margin: 0 0 30px;
+      border-top: 1px solid var(--hairline);
+      border-bottom: 1px solid var(--hairline);
+    }
+
+    .offer-details summary {
+      padding: 15px 0;
+      color: #d4cedb;
+      font: 600 9px/1.3 "IBM Plex Mono", monospace;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .offer-details .benefits { margin: 0; padding: 2px 0 18px; }
+
+    .offer-footer {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      gap: 18px;
+      margin-top: auto;
+      padding-top: 26px;
+      border-top: 1px solid var(--hairline);
+    }
+
+    .deadline { display: flex; align-items: center; gap: 9px; color: #bbb5c4; font: 500 8px/1.4 "IBM Plex Mono", monospace; letter-spacing: .08em; text-transform: uppercase; }
+    .deadline::before { width: 7px; height: 7px; border-radius: 50%; background: #42d257; content: ""; }
+    .offer-footer .primary-cta {
+      width: 100%;
+      min-height: 72px;
+      padding: 10px 10px 10px 28px;
+      font-size: clamp(12px, 1.1vw, 15px);
+      font-weight: 700;
+      letter-spacing: .045em;
+    }
+    .offer-footer .primary-cta .button-icon { width: 44px; height: 44px; font-size: 20px; }
+
+    .promo-note {
+      margin-top: 28px;
+      padding: 20px 22px;
+      border: 1px solid var(--hairline);
+      border-radius: 22px;
+      color: #a9a3b2;
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .promo-note strong { color: var(--paper); }
+
+    .skool-bundle {
+      display: grid;
+      grid-template-columns: minmax(0, .78fr) minmax(0, 1.22fr);
+      gap: 30px;
+      margin-top: 30px;
+      padding: clamp(26px, 4vw, 46px);
+      border: 1px solid rgba(216,201,255,.3);
+      border-radius: 30px;
+      background:
+        radial-gradient(circle at 12% 0%, rgba(155,108,255,.22), transparent 32%),
+        linear-gradient(145deg, rgba(24,18,35,.98), rgba(7,6,10,.98));
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.08);
+    }
+
+    .skool-bundle-copy small { color: var(--violet); font: 600 8px/1 "IBM Plex Mono", monospace; letter-spacing: .12em; text-transform: uppercase; }
+    .skool-bundle-copy h3 { max-width: 520px; margin: 18px 0 0; font: 650 clamp(31px, 4vw, 54px)/.92 "Syne", sans-serif; letter-spacing: -.055em; text-transform: uppercase; }
+    .skool-bundle-copy p { max-width: 500px; margin: 18px 0 0; color: #aaa4b2; font-size: 15px; line-height: 1.55; }
+    .skool-bundle-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; align-content: start; }
+    .skool-bundle-item { min-height: 96px; padding: 18px; border: 1px solid var(--hairline); border-radius: 18px; background: rgba(255,255,255,.035); }
+    .skool-bundle-item strong { display: block; color: #f2eef6; font: 650 15px/1.15 "Syne", sans-serif; letter-spacing: -.025em; }
+    .skool-bundle-item span { display: block; margin-top: 8px; color: #938c9c; font-size: 12px; line-height: 1.4; }
+    .skool-bundle-item.featured { border-color: rgba(155,108,255,.5); background: rgba(124,60,255,.13); }
+
+    .results-section {
+      margin-top: clamp(88px, 10vw, 142px);
+      padding-top: clamp(72px, 8vw, 112px);
+      border-top: 1px solid var(--hairline);
+    }
+
+    .results-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(260px, 420px);
+      gap: 46px;
+      align-items: end;
+      margin-bottom: 42px;
+    }
+
+    .results-head h2 { margin: 22px 0 0; font: 650 clamp(44px, 6vw, 82px)/.88 "Syne", sans-serif; letter-spacing: -.065em; text-transform: uppercase; }
+    .results-head p { margin: 0; color: var(--muted); font-size: 17px; line-height: 1.55; }
+    .results-video-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+    .results-video-card { overflow: hidden; border: 1px solid var(--hairline); border-radius: 28px; background: linear-gradient(145deg, rgba(25,20,35,.99), rgba(8,7,11,.99)); box-shadow: inset 0 1px 0 rgba(255,255,255,.08); }
+    .results-frame { aspect-ratio: 16 / 9; overflow: hidden; border-bottom: 1px solid var(--hairline); background: #09070d; }
+    .results-frame iframe { display: block; width: 100%; height: 100%; border: 0; }
+    .video-facade { position: relative; display: block; width: 100%; height: 100%; padding: 0; overflow: hidden; border: 0; background: #09070d; color: #fff; cursor: pointer; }
+    .video-facade img { display: block; width: 100%; height: 100%; object-fit: cover; filter: saturate(.72) brightness(.72) contrast(1.08); transform: scale(1.01); transition: filter 500ms var(--ease-heavy), transform 700ms var(--ease-heavy); }
+    .video-facade::after { position: absolute; inset: 0; background: linear-gradient(180deg, transparent 42%, rgba(5,3,9,.78)); content: ""; }
+    .video-facade:hover img { filter: saturate(.94) brightness(.84) contrast(1.04); transform: scale(1.035); }
+    .video-play { position: absolute; top: 50%; left: 50%; z-index: 2; display: grid; width: 68px; height: 68px; place-items: center; border-radius: 50%; background: var(--paper); color: var(--ink); box-shadow: 0 18px 48px rgba(0,0,0,.36); transform: translate(-50%, -50%); transition: transform 420ms var(--ease-spring), background-color 420ms var(--ease-heavy); }
+    .video-play::before { width: 0; height: 0; margin-left: 5px; border-top: 8px solid transparent; border-bottom: 8px solid transparent; border-left: 13px solid currentColor; content: ""; }
+    .video-facade:hover .video-play { background: var(--lilac); transform: translate(-50%, -50%) scale(1.08); }
+    .video-facade-label { position: absolute; right: 22px; bottom: 18px; left: 22px; z-index: 2; color: #fff; font: 600 8px/1 "IBM Plex Mono", monospace; letter-spacing: .1em; text-align: left; text-transform: uppercase; }
+    .results-video-copy { padding: 28px; }
+    .results-video-copy small { color: var(--violet); font: 600 9px/1 "IBM Plex Mono", monospace; letter-spacing: .1em; text-transform: uppercase; }
+    .results-metric { margin: 35px 0 12px; color: transparent; font: 700 clamp(48px, 5.6vw, 80px)/.8 "Syne", sans-serif; letter-spacing: -.075em; background: linear-gradient(120deg, #fff, #a56eff); background-clip: text; -webkit-background-clip: text; }
+    .results-video-copy h3 { margin: 0 0 10px; font: 650 clamp(22px, 2.3vw, 31px)/1 "Syne", sans-serif; letter-spacing: -.04em; text-transform: uppercase; }
+    .results-video-copy p { margin: 0; color: var(--muted); font-size: 15px; line-height: 1.5; }
+    .results-review-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 16px; }
+    .results-review { display: flex; min-height: 190px; padding: 24px; flex-direction: column; border: 1px solid var(--hairline); border-radius: 22px; background: linear-gradient(145deg, rgba(21,16,30,.92), rgba(10,8,14,.94)); box-shadow: inset 0 1px 0 rgba(255,255,255,.045); transition: border-color 420ms var(--ease-heavy), transform 420ms var(--ease-heavy); }
+    .results-review:hover { border-color: rgba(155,108,255,.42); transform: translateY(-3px); }
+    .results-review-author { display: flex; align-items: center; gap: 13px; }
+    .results-review-avatar { width: 56px; height: 56px; flex: 0 0 56px; border: 1px solid rgba(216,201,255,.28); border-radius: 50%; object-fit: cover; background: #15111d; box-shadow: 0 10px 28px rgba(0,0,0,.3); }
+    .results-review-avatar.nicola { object-position: 50% 30%; }
+    .results-review-author small { display: block; color: var(--paper); font: 650 10px/1.2 "IBM Plex Mono", monospace; letter-spacing: .075em; text-transform: uppercase; }
+    .results-review-role { display: block; margin-top: 6px; color: #827a8b; font: 500 7px/1.35 "IBM Plex Mono", monospace; letter-spacing: .055em; text-transform: uppercase; }
+    .results-review blockquote { margin: 24px 0 0; color: #ded8e4; font-size: 16px; line-height: 1.48; }
+    .results-source { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 24px; margin-top: 22px; color: #827a8b; font: 500 8px/1.5 "IBM Plex Mono", monospace; letter-spacing: .06em; text-transform: uppercase; }
+
+    .footer { padding: 42px 0 34px; border-top: 1px solid var(--hairline); }
+    .footer-inner { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; color: #77717f; font: 500 8px/1.5 "IBM Plex Mono", monospace; letter-spacing: .08em; text-transform: uppercase; }
+    .footer-company { display: grid; gap: 4px; text-align: left; }
+    .footer-company strong { color: #f7f3fb; font-size: 11px; letter-spacing: .1em; }
+    .footer-company span { color: #918a98; letter-spacing: .04em; text-transform: none; }
+    .footer-legal { display: flex; flex-wrap: wrap; gap: 8px 18px; }
+    .footer a { color: var(--muted); text-decoration: underline; text-underline-offset: 3px; }
+    .footer a:hover { color: var(--lilac); }
+
+    .js .reveal { opacity: 0; transform: translateY(48px); filter: blur(7px); }
+    .js .reveal.visible { opacity: 1; transform: translateY(0); filter: blur(0); transition: opacity 1000ms var(--ease-heavy), transform 1000ms var(--ease-heavy), filter 1000ms var(--ease-heavy); }
+
+    @media (max-width: 1180px) {
+      .offer-hero-grid { grid-template-columns: 1fr; gap: 56px; }
+    }
+
+    @media (max-width: 900px) {
+      .offer-intro { grid-template-columns: 1fr; }
+      .offer-grid { grid-template-columns: 1fr; }
+      .offer-card { min-height: 0; }
+      .panel-head { align-items: flex-start; flex-direction: column; }
+      .panel-head p { text-align: left; }
+      .pricing-clock { grid-template-columns: 1fr; }
+      .capacity-map { grid-template-columns: 1fr; }
+      .countdown-grid { width: 100%; }
+      .results-head { grid-template-columns: 1fr; }
+      .results-video-grid, .results-review-grid { grid-template-columns: 1fr; }
+      .skool-bundle { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 767px) {
+      :root { --page: calc(100% - 32px); }
+      .island-nav { top: 14px; min-height: 64px; padding-left: 16px; }
+      .brand { min-width: 0; gap: 8px; }
+      .brand-mark { flex: 0 0 28px; width: 28px; height: 28px; }
+      .brand-copy { max-width: 220px; }
+      .brand-copy strong { font-size: 14px; }
+      .brand-copy small { font-size: 7px; letter-spacing: .07em; }
+      .nav-date { display: none; }
+      .back-link { width: 48px; min-width: 48px; min-height: 48px; padding: 7px; }
+      .back-link > span:first-child { display: none; }
+      .button-icon { width: 34px; height: 34px; }
+      .offer-hero { min-height: 86dvh; padding: 120px 0 72px; }
+      h1 { font-size: clamp(48px, 15.5vw, 64px); line-height: .82; letter-spacing: -.075em; overflow-wrap: anywhere; }
+      .offer-hero-grid { gap: 48px; }
+      .offers-section { padding: 94px 0; }
+      .offer-intro h2 { font-size: clamp(38px, 10.8vw, 48px); overflow-wrap: normal; word-break: normal; }
+      .segment-shell { border-radius: 24px; }
+      .segment-tabs { gap: 4px; }
+      .segment-tab { min-height: 56px; padding: 9px 6px; font-size: 9px; letter-spacing: .06em; }
+      .segment-tab strong { font-size: 11px; }
+      .segment-tab small { font-size: 6px; }
+      .pricing-clock { padding: 20px; border-radius: 22px; }
+      .capacity-map { gap: 24px; padding: 22px; border-radius: 22px; }
+      .capacity-map-copy strong { font-size: 29px; }
+      .capacity-track-builder { padding-inline: 8px; font-size: 7px; }
+      .capacity-scale-note { align-items: flex-start; flex-direction: column; }
+      .countdown-grid { gap: 5px; }
+      .countdown-unit { min-width: 0; padding: 11px 5px; border-radius: 13px; }
+      .countdown-unit strong { font-size: 20px; }
+      .panel-head { margin-top: 42px; }
+      .bezel { border-radius: 29px; }
+      .offer-card { min-height: 0; padding: 28px; border-radius: 23px; }
+      .access-strip { margin-top: 28px; }
+      .access-strip.is-three { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .access-strip.is-three .access-metric.skool { grid-column: 1 / -1; }
+      .access-metric { padding: 13px 12px; }
+      .access-metric strong { font-size: 15px; }
+      .build-stack { grid-template-columns: 1fr; }
+      .build-stack strong { text-align: left; }
+      .price { font-size: 66px; }
+      .full-price { padding: 11px 14px 10px; font-size: 10px; }
+      .full-price s { font-size: 24px; }
+      .offer-footer .primary-cta { min-height: 66px; padding-left: 20px; font-size: 12px; }
+      .offer-footer .primary-cta .button-icon { width: 38px; height: 38px; font-size: 18px; }
+      .skool-bundle-grid { grid-template-columns: 1fr; }
+      .results-section { margin-top: 76px; padding-top: 72px; }
+      .results-video-copy { padding: 24px; }
+      .results-review { min-height: 0; }
+      .results-source { align-items: flex-start; flex-direction: column; }
+      .footer-inner { flex-direction: column; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+      .js .reveal { opacity: 1; transform: none; filter: none; }
+    }
+  </style>
+  <link rel="stylesheet" href="/tirana/assets/event-chrome.css">
+  <script defer src="/tirana/assets/event-chrome.js"></script>
+</head>
+<body>
+  <header class="island-nav" aria-label="Navigazione offerta">
+    <a class="brand" href="/" aria-label="SCALERS offline-mode, torna alla landing">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-copy"><strong>SCALERS offline-mode</strong><small>Evento Tirana / 4-5 settembre</small></span>
+    </a>
+    <span class="nav-date">Tirana / 4 + 5 settembre 2026</span>
+    <a class="back-link" href="/">
+      <span>Torna all’evento</span><span class="button-icon" aria-hidden="true">←</span>
+    </a>
+  </header>
+
+  <main>
+    <section class="offer-hero">
+      <div class="page-shell offer-hero-grid">
+        <div class="reveal">
+          <span class="eyebrow">Tre profili / due pass</span>
+          <h1>Scegli come<br><span class="gradient-word">costruire.</span></h1>
+        </div>
+        <div class="hero-side reveal">
+          <p>Scegli Solo, Agency o Company. Il Workshop Pass apre le mattine, il Builder Pass il Live Building. Agency Mid include 1 Builder Pass, Company Mid ne include 3.</p>
+          <div class="hero-facts">
+            <div class="hero-fact"><strong>150 posti</strong><span>Capienza iniziale complessiva</span></div>
+            <div class="hero-fact"><strong>60 Builder</strong><span>Posti per il Live Building</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="offers-section" id="piani">
+      <div class="page-shell">
+        <div class="offer-intro reveal">
+          <div>
+            <span class="eyebrow">Scegli il tuo profilo</span>
+            <h2>Per chi stai<br><span class="gradient-word">costruendo?</span></h2>
+          </div>
+          <p>Seleziona Solo, Agency o Company. Vedrai soltanto i due pass disponibili per il tuo profilo, con accessi, Scalers+ e prezzo confrontabili a colpo d’occhio.</p>
+        </div>
+
+        <div class="segment-shell reveal">
+          <div class="segment-tabs" role="tablist" aria-label="Seleziona il profilo">
+            <button class="segment-tab" id="tab-solo" type="button" role="tab" aria-selected="true" aria-controls="panel-solo" data-segment="solo"><strong>Solo</strong><small>Solo OS</small></button>
+            <button class="segment-tab" id="tab-agency" type="button" role="tab" aria-selected="false" aria-controls="panel-agency" data-segment="agency"><strong>Agency</strong><small>AI Agency OS</small></button>
+            <button class="segment-tab" id="tab-company" type="button" role="tab" aria-selected="false" aria-controls="panel-company" data-segment="company"><strong>Company</strong><small>AI Company OS</small></button>
+          </div>
+        </div>
+
+        <div class="pricing-clock reveal" id="pricing-clock" aria-live="off">
+          <div class="pricing-clock-copy">
+            <small data-pricing-kicker>Mid Ticket / finestra 1 di 6</small>
+            <strong data-pricing-title>Il prossimo aumento scatta il 31 luglio alle 23:59</strong>
+            <span data-pricing-note>Mid e Full aumentano per slot o data. Qui vedi sempre il prezzo attuale e il prossimo.</span>
+          </div>
+          <div class="countdown-grid" role="timer" aria-label="Tempo rimanente al prossimo aumento">
+            <div class="countdown-unit"><strong data-countdown="days">00</strong><span>Giorni</span></div>
+            <div class="countdown-unit"><strong data-countdown="hours">00</strong><span>Ore</span></div>
+            <div class="countdown-unit"><strong data-countdown="minutes">00</strong><span>Minuti</span></div>
+            <div class="countdown-unit"><strong data-countdown="seconds">00</strong><span>Secondi</span></div>
+          </div>
+        </div>
+
+        <section class="segment-panel" id="panel-solo" role="tabpanel" aria-labelledby="tab-solo" data-panel="solo">
+          <div class="panel-head">
+            <h3>Percorso Solo</h3>
+            <p>Per il professionista che vuole definire la roadmap oppure costruire l’AI Solo OS dal vivo sul proprio caso reale.</p>
+          </div>
+          <div class="offer-grid">
+            <article class="bezel">
+              <div class="offer-card" data-price-plan="solo-mid">
+                <span class="plan-badge">Mid Ticket</span>
+                <div class="card-top">
+                  <div class="tier-name">Workshop Pass<span>Solo / due mattine</span></div>
+                  <span class="remaining" data-capacity-label="total">Posti disponibili / 150</span>
+                </div>
+                <div class="capacity-meter is-pending" data-capacity-meter="total" role="progressbar" aria-label="Posti complessivi disponibili per questo piano" aria-valuemin="0" aria-valuemax="150" aria-valuetext="Disponibilità aggiornata nel checkout">
+                  <div class="capacity-meter-head"><span>Disponibilità piano</span><strong data-capacity-value>Capienza 150 posti</strong></div>
+                  <div class="capacity-meter-track" aria-hidden="true"><span class="capacity-meter-fill"></span></div>
+                </div>
+                <p class="plan-fit">Per fare chiarezza, vedere lo stack al lavoro e definire priorità e roadmap operativa.</p>
+                <div class="access-strip is-three" aria-label="Accessi inclusi">
+                  <div class="access-metric"><span>Mattine</span><strong>1 persona</strong></div>
+                  <div class="access-metric"><span>Live Building</span><strong>Non incluso</strong></div>
+                  <div class="access-metric skool"><span>Scalers+</span><strong>1 account · 1 mese</strong></div>
+                </div>
+                <div class="build-stack"><span>Output</span><strong>Assessment + roadmap operativa</strong></div>
+                <div class="price-block">
+                  <div class="full-price"><span>Full Price</span><s data-plan-full-price>€ 297</s></div>
+                  <div class="price" data-plan-price>€ 97</div>
+                  <div class="next-price" data-plan-next-price>Prossimo prezzo € 137</div>
+                </div>
+                <ul class="benefits">
+                  <li>Accesso alle due mattine del 4 e 5 settembre</li>
+                  <li>Corso completo Claude Code 2.0 nella Skool, 14 ore</li>
+                  <li>Accesso ai 7 Live Workshop, valore €700</li>
+                  <li>Assessment, mappa delle priorità e roadmap operativa</li>
+                  <li>1 mese nella community Scalers+</li>
+                </ul>
+                <details class="offer-details">
+                  <summary>Vedi tutti i dettagli</summary>
+                  <ul class="benefits">
+                    <li>Materiali, template e registrazioni operative</li>
+                    <li>Mappa iniziale del collo di bottiglia e priorità di implementazione</li>
+                  </ul>
+                </details>
+                <div class="offer-footer">
+                  <div class="deadline" data-plan-deadline>Founder Price fino al 31 luglio, 23:59</div>
+                  <a class="primary-cta" href="/checkout?plan=solo-mid">Scegli Workshop Pass <span class="button-icon" aria-hidden="true">↗</span></a>
+                </div>
+              </div>
+            </article>
+
+            <article class="bezel builder">
+              <div class="offer-card" data-price-plan="solo-full">
+                <span class="plan-badge">Full Ticket</span>
+                <div class="card-top">
+                  <div class="tier-name">Builder Pass + Solo OS<span>Solo / due giorni completi</span></div>
+                  <span class="remaining" data-capacity-label="builder">Quota Builder / 60</span>
+                </div>
+                <div class="capacity-meter is-pending" data-capacity-meter="builder" role="progressbar" aria-label="Posti Builder disponibili per questo piano" aria-valuemin="0" aria-valuemax="60" aria-valuetext="Disponibilità aggiornata nel checkout">
+                  <div class="capacity-meter-head"><span>Disponibilità Builder condivisa</span><strong data-capacity-value>Capienza 60 posti</strong></div>
+                  <div class="capacity-meter-track" aria-hidden="true"><span class="capacity-meter-fill"></span></div>
+                </div>
+                <p class="plan-fit">Per uscire dall’evento con il tuo sistema operativo AI costruito, testato e pronto da iterare.</p>
+                <div class="access-strip is-three" aria-label="Accessi inclusi">
+                  <div class="access-metric"><span>Mattine</span><strong>1 persona</strong></div>
+                  <div class="access-metric"><span>Live Building</span><strong>1 persona</strong></div>
+                  <div class="access-metric skool"><span>Scalers+</span><strong>1 account · 3 mesi</strong></div>
+                </div>
+                <div class="build-stack"><span>Output</span><strong>Il tuo sistema operativo AI / AI Solo OS</strong></div>
+                <div class="price-block">
+                  <div class="full-price"><span>Full Price</span><s data-plan-full-price>€ 897</s></div>
+                  <div class="price" data-plan-price>€ 397</div>
+                  <div class="next-price" data-plan-next-price>Prossimo prezzo € 497</div>
+                </div>
+                <ul class="benefits">
+                  <li>Call di onboarding prima dell’evento</li>
+                  <li>Accesso ai due pomeriggi di Live Building</li>
+                  <li>3 mesi nella Skool di Scalers+</li>
+                  <li>Vault Standard con agenti, creative, scraper e MCP</li>
+                  <li>Claude Code IDE + CLI, Codex Desktop + CLI e Hermes Agent dal vivo nelle sessioni pomeridiane</li>
+                  <li>Mentore e supporto dedicato al tavolo</li>
+                </ul>
+                <details class="offer-details">
+                  <summary>Cosa trovi dentro Scalers+</summary>
+                  <ul class="benefits">
+                    <li>Vault Standard</li>
+                    <li>WhatsApp Agent</li>
+                    <li>AI Creatives per creare creative infinite con Claude</li>
+                    <li>MCP Meta Agent con 260M di Ads</li>
+                    <li>Social Scraper OS V2</li>
+                    <li>MCP Meta Ads + Google Ads</li>
+                    <li>Accesso LinkedIn Vault</li>
+                    <li>MCP Meta Agent OS, colleghi Claude a 100M di Ads</li>
+                  </ul>
+                </details>
+                <details class="offer-details">
+                  <summary>Vedi tutti i dettagli dell’evento</summary>
+                  <ul class="benefits">
+                    <li>Intake operativo completato durante la call</li>
+                    <li>Architettura, memoria, workflow e controlli collegati</li>
+                    <li>Checklist e piano di implementazione a 30 giorni</li>
+                  </ul>
+                </details>
+                <div class="offer-footer">
+                  <div class="deadline" data-plan-deadline>Founder Price fino al 31 luglio, 23:59</div>
+                  <a class="primary-cta" href="/checkout?plan=solo-full">Scegli Builder Pass <span class="button-icon" aria-hidden="true">↗</span></a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="segment-panel" id="panel-agency" role="tabpanel" aria-labelledby="tab-agency" data-panel="agency" hidden>
+          <div class="panel-head">
+            <h3>AI Agency OS</h3>
+            <p>Per portare il team, comprimere acquisizione e delivery e costruire un sistema trasferibile all’agenzia.</p>
+          </div>
+          <div class="offer-grid">
+            <article class="bezel">
+              <div class="offer-card" data-price-plan="agency-mid">
+                <span class="plan-badge">Mid Ticket · 1 Builder Pass</span>
+                <div class="card-top">
+                  <div class="tier-name">Workshop Pass + Agency OS<span>3 alle mattine / 1 al tavolo</span></div>
+                  <span class="remaining" data-capacity-label="builder">Quota Builder / 60</span>
+                </div>
+                <div class="capacity-meter is-pending" data-capacity-meter="builder" role="progressbar" aria-label="Posti Builder disponibili per questo piano" aria-valuemin="0" aria-valuemax="60" aria-valuetext="Disponibilità aggiornata nel checkout">
+                  <div class="capacity-meter-head"><span>Disponibilità Builder condivisa</span><strong data-capacity-value>Capienza 60 posti</strong></div>
+                  <div class="capacity-meter-track" aria-hidden="true"><span class="capacity-meter-fill"></span></div>
+                </div>
+                <p class="plan-fit">Per allineare tre persone del team e far proseguire una di loro al tavolo, così la roadmap diventa il primo workflow dell’Agency OS.</p>
+                <div class="access-strip is-three" aria-label="Accessi inclusi">
+                  <div class="access-metric"><span>Mattine</span><strong>3 persone</strong></div>
+                  <div class="access-metric"><span>Live Building</span><strong>1 persona</strong></div>
+                  <div class="access-metric skool"><span>Scalers+</span><strong>3 account · 3 mesi</strong></div>
+                </div>
+                <div class="build-stack"><span>Output</span><strong>Roadmap + primo workflow AI Agency OS</strong></div>
+                <div class="price-block">
+                  <div class="full-price"><span>Full Price</span><s data-plan-full-price>€ 1.097</s></div>
+                  <div class="price" data-plan-price>€ 597</div>
+                  <div class="next-price" data-plan-next-price>Prossimo prezzo € 697</div>
+                </div>
+                <ul class="benefits">
+                  <li>3 persone alle due mattine</li>
+                  <li>1 delle 3 persone ai due pomeriggi di Live Building</li>
+                  <li>Claude Code IDE + CLI, Codex Desktop + CLI e Hermes Agent dal vivo</li>
+                  <li>1 call di onboarding prima dell’evento</li>
+                  <li>3 account Scalers+ per 3 mesi</li>
+                  <li>Primo workflow Agency OS con supporto dedicato al tavolo</li>
+                </ul>
+                <details class="offer-details">
+                  <summary>Vedi tutti i dettagli</summary>
+                  <ul class="benefits">
+                    <li>Corso completo Claude Code 2.0 per il team</li>
+                    <li>Accesso ai 7 Live Workshop, valore €700</li>
+                    <li>Materiali, template e registrazioni per l’Agency OS</li>
+                    <li>Mappa iniziale di acquisizione, delivery e reporting</li>
+                  </ul>
+                </details>
+                <div class="offer-footer">
+                  <div class="deadline" data-plan-deadline>Founder Price fino al 31 luglio, 23:59</div>
+                  <a class="primary-cta" href="/checkout?plan=agency-mid">Scegli Mid + 1 Builder <span class="button-icon" aria-hidden="true">↗</span></a>
+                </div>
+              </div>
+            </article>
+
+            <article class="bezel builder">
+              <div class="offer-card" data-price-plan="agency-full">
+                <span class="plan-badge">Full Ticket</span>
+                <div class="card-top">
+                  <div class="tier-name">Builder Pass + Agency OS<span>Team / due giorni completi</span></div>
+                  <span class="remaining" data-capacity-label="builder">Quota Builder / 60</span>
+                </div>
+                <div class="capacity-meter is-pending" data-capacity-meter="builder" role="progressbar" aria-label="Posti Builder disponibili per questo piano" aria-valuemin="0" aria-valuemax="60" aria-valuetext="Disponibilità aggiornata nel checkout">
+                  <div class="capacity-meter-head"><span>Disponibilità Builder condivisa</span><strong data-capacity-value>Capienza 60 posti</strong></div>
+                  <div class="capacity-meter-track" aria-hidden="true"><span class="capacity-meter-fill"></span></div>
+                </div>
+                <p class="plan-fit">Per far costruire alle stesse tre persone un workflow reale, con ruoli, SOP e responsabilità.</p>
+                <div class="access-strip is-three" aria-label="Accessi inclusi">
+                  <div class="access-metric"><span>Mattine</span><strong>3 persone</strong></div>
+                  <div class="access-metric"><span>Live Building</span><strong>3 persone</strong></div>
+                  <div class="access-metric skool"><span>Scalers+</span><strong>3 account · 6 mesi</strong></div>
+                </div>
+                <div class="build-stack"><span>Output</span><strong>AI Agency OS + workflow + SOP</strong></div>
+                <div class="price-block">
+                  <div class="full-price"><span>Full Price</span><s data-plan-full-price>€ 1.997</s></div>
+                  <div class="price" data-plan-price>€ 997</div>
+                  <div class="next-price" data-plan-next-price>Prossimo prezzo € 1.197</div>
+                </div>
+                <ul class="benefits">
+                  <li>Call di onboarding prima dell’evento</li>
+                  <li>3 persone ai due pomeriggi di Live Building</li>
+                  <li>3 account Scalers+ per 6 mesi</li>
+                  <li>Claude Code IDE + CLI, Codex Desktop + CLI e Hermes Agent dal vivo nelle sessioni pomeridiane</li>
+                  <li>Workflow prioritario costruito e testato con un mentore</li>
+                </ul>
+                <details class="offer-details">
+                  <summary>Vedi tutti i dettagli</summary>
+                  <ul class="benefits">
+                    <li>Intake operativo completato durante la call</li>
+                    <li>SOP, ruoli, responsabilità e handoff al team</li>
+                    <li>Call di revisione con il team Scalers+</li>
+                  </ul>
+                </details>
+                <div class="offer-footer">
+                  <div class="deadline" data-plan-deadline>Founder Price fino al 31 luglio, 23:59</div>
+                  <a class="primary-cta" href="/checkout?plan=agency-full">Scegli Builder Agency <span class="button-icon" aria-hidden="true">↗</span></a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="segment-panel" id="panel-company" role="tabpanel" aria-labelledby="tab-company" data-panel="company" hidden>
+          <div class="panel-head">
+            <h3>AI Company OS</h3>
+            <p>Per allineare il team su processi, governance e priorità e trasformare un caso reale in un progetto misurabile.</p>
+          </div>
+          <div class="offer-grid">
+            <article class="bezel">
+              <div class="offer-card" data-price-plan="company-mid">
+                <span class="plan-badge">Mid Ticket · 3 Builder Pass</span>
+                <div class="card-top">
+                  <div class="tier-name">Workshop Pass + Company OS<span>3 mattina / 3 pomeriggio</span></div>
+                  <span class="remaining" data-capacity-label="builder">Quota Builder / 60</span>
+                </div>
+                <div class="capacity-meter is-pending" data-capacity-meter="builder" role="progressbar" aria-label="Posti Builder disponibili per questo piano" aria-valuemin="0" aria-valuemax="60" aria-valuetext="Disponibilità aggiornata nel checkout">
+                  <div class="capacity-meter-head"><span>Disponibilità Builder condivisa</span><strong data-capacity-value>Capienza 60 posti</strong></div>
+                  <div class="capacity-meter-track" aria-hidden="true"><span class="capacity-meter-fill"></span></div>
+                </div>
+                <p class="plan-fit">Per allineare tre persone sulla roadmap e farle proseguire insieme al tavolo, fino al primo output operativo del Company OS.</p>
+                <div class="access-strip is-three" aria-label="Accessi inclusi">
+                  <div class="access-metric"><span>Mattine</span><strong>3 persone</strong></div>
+                  <div class="access-metric"><span>Live Building</span><strong>3 persone</strong></div>
+                  <div class="access-metric skool"><span>Scalers+</span><strong>3 account · 6 mesi</strong></div>
+                </div>
+                <div class="build-stack"><span>Output</span><strong>Assessment + primo output AI Company OS</strong></div>
+                <div class="price-block">
+                  <div class="full-price"><span>Full Price</span><s data-plan-full-price>€ 1.497</s></div>
+                  <div class="price" data-plan-price>€ 997</div>
+                  <div class="next-price" data-plan-next-price>Prossimo prezzo € 1.097</div>
+                </div>
+                <ul class="benefits">
+                  <li>3 persone alle mattine e ai due pomeriggi</li>
+                  <li>Claude Code IDE + CLI, Codex Desktop + CLI e Hermes Agent dal vivo</li>
+                  <li>1 call di onboarding prima dell’evento</li>
+                  <li>3 account Scalers+ per 6 mesi</li>
+                  <li>Accesso ai 7 Live Workshop, valore €700</li>
+                  <li>Assessment di processi, ruoli e colli di bottiglia</li>
+                </ul>
+                <details class="offer-details">
+                  <summary>Vedi tutti i dettagli</summary>
+                  <ul class="benefits">
+                    <li>Matrice opportunità AI per impatto e fattibilità</li>
+                    <li>Materiali, template e roadmap di priorità</li>
+                  </ul>
+                </details>
+                <div class="offer-footer">
+                  <div class="deadline" data-plan-deadline>Founder Price fino al 31 luglio, 23:59</div>
+                  <a class="primary-cta" href="/checkout?plan=company-mid">Scegli Company Mid <span class="button-icon" aria-hidden="true">↗</span></a>
+                </div>
+              </div>
+            </article>
+
+            <article class="bezel builder">
+              <div class="offer-card" data-price-plan="company-full">
+                <span class="plan-badge">Full Ticket</span>
+                <div class="card-top">
+                  <div class="tier-name">Builder Pass + Company OS<span>Team / due giorni completi</span></div>
+                  <span class="remaining" data-capacity-label="builder">Quota Builder / 60</span>
+                </div>
+                <div class="capacity-meter is-pending" data-capacity-meter="builder" role="progressbar" aria-label="Posti Builder disponibili per questo piano" aria-valuemin="0" aria-valuemax="60" aria-valuetext="Disponibilità aggiornata nel checkout">
+                  <div class="capacity-meter-head"><span>Disponibilità Builder condivisa</span><strong data-capacity-value>Capienza 60 posti</strong></div>
+                  <div class="capacity-meter-track" aria-hidden="true"><span class="capacity-meter-fill"></span></div>
+                </div>
+                <p class="plan-fit">Per costruire con tre persone un progetto pilota governabile, con KPI, ownership e controlli.</p>
+                <div class="access-strip is-three" aria-label="Accessi inclusi">
+                  <div class="access-metric"><span>Mattine</span><strong>3 persone</strong></div>
+                  <div class="access-metric"><span>Live Building</span><strong>3 persone</strong></div>
+                  <div class="access-metric skool"><span>Scalers+</span><strong>3 account · 12 mesi</strong></div>
+                </div>
+                <div class="build-stack"><span>Output</span><strong>AI Company OS + progetto pilota + KPI</strong></div>
+                <div class="price-block">
+                  <div class="full-price"><span>Full Price</span><s data-plan-full-price>€ 3.497</s></div>
+                  <div class="price" data-plan-price>€ 1.997</div>
+                  <div class="next-price" data-plan-next-price>Prossimo prezzo € 2.297</div>
+                </div>
+                <ul class="benefits">
+                  <li>Call di onboarding prima dell’evento</li>
+                  <li>3 persone ai due pomeriggi di Live Building</li>
+                  <li>3 account Scalers+ per 12 mesi</li>
+                  <li>Claude Code IDE + CLI, Codex Desktop + CLI e Hermes Agent dal vivo nelle sessioni pomeridiane</li>
+                  <li>Progetto pilota con mentore senior, KPI e governance</li>
+                </ul>
+                <details class="offer-details">
+                  <summary>Vedi tutti i dettagli</summary>
+                  <ul class="benefits">
+                    <li>Assessment e intake completati durante la call</li>
+                    <li>Ownership, controlli e roadmap a 30 e 90 giorni</li>
+                    <li>Call privata di revisione</li>
+                  </ul>
+                </details>
+                <div class="offer-footer">
+                  <div class="deadline" data-plan-deadline>Founder Price fino al 31 luglio, 23:59</div>
+                  <a class="primary-cta" href="/checkout?plan=company-full">Scegli Builder Company <span class="button-icon" aria-hidden="true">↗</span></a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="skool-bundle reveal" aria-labelledby="skool-bundle-title">
+          <div class="skool-bundle-copy">
+            <small>Incluso in ogni pass / Scalers+</small>
+            <h3 id="skool-bundle-title">Non solo evento. Il sistema continua su Skool.</h3>
+            <p>Solo include 1 mese nel Mid e 3 mesi nel Full. Agency include 3 mesi nel Mid e 6 mesi nel Full. Company include 6 mesi nel Mid e 12 mesi nel Full. Cambia la durata, non la qualità della libreria.</p>
+          </div>
+          <div class="skool-bundle-grid">
+            <div class="skool-bundle-item featured"><strong>Corso Claude Code 2.0</strong><span>14 ore complete, dal setup ai workflow operativi.</span></div>
+            <div class="skool-bundle-item featured"><strong>7 Live Workshop</strong><span>Accesso incluso, valore dichiarato €700.</span></div>
+            <div class="skool-bundle-item"><strong>Social Scraper OS V2</strong><span>Ricerca, raccolta e analisi dei contenuti.</span></div>
+            <div class="skool-bundle-item"><strong>MCP Meta Ads + Google Ads</strong><span>Collega dati advertising e sistemi AI.</span></div>
+            <div class="skool-bundle-item"><strong>LinkedIn Vault</strong><span>Asset, workflow e libreria per il canale.</span></div>
+            <div class="skool-bundle-item"><strong>WhatsApp Agent</strong><span>Automazioni e conversazioni operative.</span></div>
+            <div class="skool-bundle-item"><strong>AI Creatives</strong><span>Creative infinite con Claude.</span></div>
+            <div class="skool-bundle-item"><strong>MCP Meta Agent</strong><span>Dataset operativo basato su 260M di Ads.</span></div>
+          </div>
+        </section>
+
+        <div class="promo-note reveal"><strong>Come vengono conteggiati i posti:</strong> i pass Solo occupano 1 posto totale, Agency e Company ne occupano 3. Solo Mid include soltanto le mattine. Agency Mid consuma 1 slot Builder. Company Mid e i Full team consumano 3 slot Builder. Solo Full consuma 1 slot Builder. I 60 posti Builder sono compresi nei 150 totali.</div>
+
+        <section class="results-section" aria-labelledby="results-title">
+          <div class="results-head reveal">
+            <div>
+              <span class="eyebrow">Prima del ticket / guarda le prove</span>
+              <h2 id="results-title">Persone reali.<br><span class="gradient-word">Risultati reali.</span></h2>
+            </div>
+            <p>I casi arrivano dai percorsi Scalers+. Non sono una promessa sull’evento: sono ciò che queste persone dichiarano di aver costruito applicando i sistemi.</p>
+          </div>
+          <div class="results-video-grid">
+            <article class="results-video-card reveal">
+              <div class="results-frame">
+                <button class="video-facade" type="button" data-testimonial-video="https://www.loom.com/embed/e351d0857ccb4270ad43d6e447505064" data-video-title="Testimonianza di André sul percorso Scalers+" aria-label="Riproduci la testimonianza video di André">
+                  <img src="/tirana/assets/testimonial-andre.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async">
+                  <span class="video-play" aria-hidden="true"></span><span class="video-facade-label">Guarda la testimonianza</span>
+                </button>
+              </div>
+              <div class="results-video-copy">
+                <small>André / Agenzia AI native</small>
+                <div class="results-metric">70K</div>
+                <h3>Fatturati e incassati in due mesi</h3>
+                <p>Il primo cliente è arrivato dopo due sessioni. Nel video racconta il percorso e l’applicazione nella sua agenzia.</p>
+              </div>
+            </article>
+            <article class="results-video-card reveal">
+              <div class="results-frame">
+                <button class="video-facade" type="button" data-testimonial-video="https://www.loom.com/embed/ea08c466f64749a1adae62d5522f2f75" data-video-title="Testimonianza di Claudio Pasinetti sul percorso Scalers+" aria-label="Riproduci la testimonianza video di Claudio Pasinetti">
+                  <img src="/tirana/assets/testimonial-claudio.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async">
+                  <span class="video-play" aria-hidden="true"></span><span class="video-facade-label">Guarda la testimonianza</span>
+                </button>
+              </div>
+              <div class="results-video-copy">
+                <small>Claudio Pasinetti / AI Solo Agency</small>
+                <div class="results-metric">2K→10K</div>
+                <h3>Al mese, con aprile da record</h3>
+                <p>La recensione firmata conferma un mese da 10k e, in quattro mesi, più fatturato dell’intero anno precedente.</p>
+              </div>
+            </article>
+          </div>
+          <div class="results-review-grid" aria-label="Altre recensioni verificate Scalers+">
+            <article class="results-review reveal">
+              <div class="results-review-author">
+                <img class="results-review-avatar nicola" src="/tirana/assets/testimonial-nicola-caporale.jpg" alt="Nicola Caporale" width="110" height="240" loading="lazy" decoding="async">
+                <div><small>Nicola Caporale</small><span class="results-review-role">Membro VIP Scalers+</span></div>
+              </div>
+              <blockquote>“Due call, due contratti confermati.”</blockquote>
+            </article>
+            <article class="results-review reveal">
+              <div class="results-review-author">
+                <img class="results-review-avatar" src="/tirana/assets/testimonial-michele-bet.jpg" alt="Michele Bet" width="240" height="240" loading="lazy" decoding="async">
+                <div><small>Michele Bet</small><span class="results-review-role">Agenzia / percorso di accelerazione</span></div>
+              </div>
+              <blockquote>“Si è già ripagato ampiamente l’investimento.”</blockquote>
+            </article>
+            <article class="results-review reveal">
+              <div class="results-review-author">
+                <img class="results-review-avatar" src="/tirana/assets/testimonial-andrea-michelin.jpg" alt="Andrea Michelin" width="240" height="240" loading="lazy" decoding="async">
+                <div><small>Andrea Michelin</small><span class="results-review-role">Membro Premium Scalers+</span></div>
+              </div>
+              <blockquote>“Quelli che non lo faranno, presto saranno indietro ed esclusi dal mercato.”</blockquote>
+            </article>
+          </div>
+          <div class="results-source reveal">
+            <span>Risultati individuali, non rappresentano una garanzia di risultato.</span>
+          </div>
+        </section>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="page-shell footer-inner">
+      <div class="footer-company">
+        <strong>Scalers SHPK</strong>
+        <span>Rruga e Dibres, Tower Bridge 1, Nr. 22</span>
+        <span>Tirana, Albania</span>
+      </div>
+      <div class="footer-legal">
+        <span>© <span id="year">2026</span> Scalers+. Tutti i diritti riservati.</span>
+        <a href="/privacy">Privacy Policy</a>
+        <a href="/refund-policy">Policy rimborsi</a>
+        <a href="#" data-consent-settings>Preferenze cookie</a>
+      </div>
+      <span>Tirana / 4 + 5 settembre 2026</span>
+    </div>
+  </footer>
+
+  <script>
+    const pad = (value) => String(Math.max(0, value)).padStart(2, '0');
+    const segmentTabs = [...document.querySelectorAll('.segment-tab')];
+    const segmentPanels = [...document.querySelectorAll('.segment-panel')];
+    const segmentLabels = {
+      solo: 'Percorso Solo',
+      agency: 'AI Agency OS',
+      company: 'AI Company OS',
+    };
+    let activeSegment = 'solo';
+    let pricingPlans = [];
+    let pricingInventory = null;
+    let pricingDeadline = new Date('2026-07-31T23:59:59+02:00');
+    let pricingPromise = null;
+    const trackedPlanIds = new Set([
+      'solo-mid',
+      'solo-full',
+      'agency-mid',
+      'agency-full',
+      'company-mid',
+      'company-full',
+    ]);
+
+    function renderPricingClock(plans, inventory, segment = activeSegment) {
+      const kicker = document.querySelector('[data-pricing-kicker]');
+      const title = document.querySelector('[data-pricing-title]');
+      const note = document.querySelector('[data-pricing-note]');
+      const mid = plans.find((plan) => plan.segment === segment && plan.tier === 'mid');
+      const full = plans.find((plan) => plan.segment === segment && plan.tier === 'full');
+      const activePlans = [mid, full].filter(Boolean);
+      const nearest = activePlans
+        .filter((plan) => plan.priceValidUntil)
+        .sort((first, second) => Date.parse(first.priceValidUntil) - Date.parse(second.priceValidUntil))[0] || null;
+      if (kicker) kicker.textContent = mid && full
+        ? `${segmentLabels[segment]} / Mid ${mid.pricingPhase} / Full ${full.pricingPhase}`
+        : `${segmentLabels[segment]} / pricing`;
+      if (title) title.textContent = nearest
+        ? `Il prossimo aumento scatta entro il ${nearest.priceValidUntilLabel}`
+        : 'Final Price attivo fino a esaurimento';
+      if (note) {
+        const nextPrices = [
+          mid?.nextPriceFormatted ? `Workshop Pass: prossimo ${mid.nextPriceFormatted}` : 'Workshop Pass: Final Price',
+          full?.nextPriceFormatted ? `Builder Pass: prossimo ${full.nextPriceFormatted}` : 'Builder Pass: Final Price',
+        ];
+        note.textContent = `${nextPrices.join(' · ')}. Sale alla data indicata, salvo esaurimento.`;
+      }
+      pricingDeadline = nearest ? new Date(nearest.priceValidUntil) : null;
+      renderCountdown();
+    }
+
+    function renderCountdown(now = new Date()) {
+      let remaining = pricingDeadline ? Math.max(0, pricingDeadline.getTime() - now.getTime()) : 0;
+      const days = Math.floor(remaining / 86400000);
+      remaining -= days * 86400000;
+      const hours = Math.floor(remaining / 3600000);
+      remaining -= hours * 3600000;
+      const minutes = Math.floor(remaining / 60000);
+      remaining -= minutes * 60000;
+      const seconds = Math.floor(remaining / 1000);
+      const values = { days, hours, minutes, seconds };
+      Object.entries(values).forEach(([unit, value]) => {
+        const element = document.querySelector(`[data-countdown="${unit}"]`);
+        if (element) element.textContent = pad(value);
+      });
+    }
+
+    function renderPlan(plan, inventory) {
+      const card = document.querySelector(`[data-price-plan="${plan.id}"]`);
+      if (!card) return;
+      const price = card.querySelector('[data-plan-price]');
+      const fullPrice = card.querySelector('[data-plan-full-price]');
+      const nextPrice = card.querySelector('[data-plan-next-price]');
+      const deadline = card.querySelector('[data-plan-deadline]');
+      if (price) price.textContent = plan.priceFormatted;
+      if (fullPrice) fullPrice.textContent = plan.compareAtPriceFormatted;
+      if (nextPrice) nextPrice.textContent = plan.nextPriceFormatted
+        ? `Prossimo prezzo ${plan.nextPriceFormatted}`
+        : 'Final Price attivo';
+      if (!deadline) return;
+      if (!plan.nextPriceFormatted) {
+        deadline.textContent = 'Final Price fino a esaurimento dei posti disponibili';
+        return;
+      }
+      deadline.textContent = `${plan.pricingPhase} Price. Sale a ${plan.nextPriceFormatted} il ${plan.priceValidUntilLabel}, salvo esaurimento.`;
+    }
+
+    function renderCapacity(inventory) {
+      document.querySelectorAll('[data-capacity-meter]').forEach((meter) => {
+        const poolName = meter.dataset.capacityMeter;
+        const pool = inventory?.[poolName];
+        if (!pool || !Number.isFinite(pool.capacity)) return;
+        const value = meter.querySelector('[data-capacity-value]');
+        const hasLiveCount = inventory.configured && Number.isInteger(pool.remaining);
+        meter.setAttribute('aria-valuemax', String(pool.capacity));
+        if (!hasLiveCount) {
+          if (value) value.textContent = `Capienza ${pool.capacity} posti`;
+          return;
+        }
+        const remaining = Math.max(0, Math.min(pool.remaining, pool.capacity));
+        const percentage = pool.capacity > 0 ? (remaining / pool.capacity) * 100 : 0;
+        meter.style.setProperty('--capacity-level', `${percentage}%`);
+        meter.classList.remove('is-pending');
+        meter.classList.toggle('is-low', percentage <= 25);
+        meter.setAttribute('aria-valuenow', String(remaining));
+        meter.setAttribute('aria-valuetext', `${remaining} posti rimasti su ${pool.capacity}`);
+        if (value) value.textContent = `${remaining} su ${pool.capacity} posti rimasti`;
+      });
+      if (!inventory?.configured) return;
+      document.querySelectorAll('[data-capacity-label="total"]').forEach((element) => {
+        element.textContent = `Posti disponibili · ${inventory.total.remaining}/${inventory.total.capacity}`;
+      });
+      document.querySelectorAll('[data-capacity-label="builder"]').forEach((element) => {
+        element.textContent = `${inventory.builder.remaining} posti Builder disponibili`;
+      });
+    }
+
+    function activateSegment(segment, options = {}) {
+      const requested = Object.hasOwn(segmentLabels, segment) ? segment : 'solo';
+      activeSegment = requested;
+      segmentTabs.forEach((tab) => {
+        const selected = tab.dataset.segment === requested;
+        tab.setAttribute('aria-selected', String(selected));
+        tab.tabIndex = selected ? 0 : -1;
+      });
+      segmentPanels.forEach((panel) => {
+        panel.hidden = panel.dataset.panel !== requested;
+      });
+      if (pricingPlans.length) {
+        renderPricingClock(pricingPlans, pricingInventory, requested);
+      }
+      if (options.updateUrl !== false) {
+        const url = new URL(window.location.href);
+        url.searchParams.set('segment', requested);
+        window.history.replaceState({ segment: requested }, '', `${url.pathname}${url.search}${url.hash}`);
+      }
+      if (options.focus) {
+        segmentTabs.find((tab) => tab.dataset.segment === requested)?.focus();
+      }
+    }
+
+    segmentTabs.forEach((tab, index) => {
+      tab.addEventListener('click', () => activateSegment(tab.dataset.segment));
+      tab.addEventListener('keydown', (event) => {
+        let targetIndex = null;
+        if (event.key === 'ArrowRight') targetIndex = (index + 1) % segmentTabs.length;
+        if (event.key === 'ArrowLeft') targetIndex = (index - 1 + segmentTabs.length) % segmentTabs.length;
+        if (event.key === 'Home') targetIndex = 0;
+        if (event.key === 'End') targetIndex = segmentTabs.length - 1;
+        if (targetIndex === null) return;
+        event.preventDefault();
+        activateSegment(segmentTabs[targetIndex].dataset.segment, { focus: true });
+      });
+    });
+
+    window.addEventListener('popstate', () => {
+      activateSegment(new URLSearchParams(window.location.search).get('segment'), { updateUrl: false });
+    });
+
+    async function loadPricing() {
+      try {
+        const response = await fetch('/api/catalog', { headers: { Accept: 'application/json' }, cache: 'no-store' });
+        const payload = await response.json();
+        if (!response.ok || !Array.isArray(payload.plans) || payload.plans.length !== 6) {
+          throw new Error('Configurazione prezzi non disponibile.');
+        }
+        pricingPlans = payload.plans;
+        pricingInventory = payload.inventory;
+        payload.plans.forEach((plan) => renderPlan(plan, payload.inventory));
+        renderPricingClock(payload.plans, payload.inventory, activeSegment);
+        renderCapacity(payload.inventory);
+      } catch (error) {
+        pricingPlans = [];
+        pricingInventory = null;
+        document.documentElement.dataset.pricingSource = 'static-fallback';
+      }
+      renderCountdown();
+    }
+
+    async function resolveTrackingPlan(planId) {
+      const cached = pricingPlans.find((plan) => plan.id === planId);
+      if (cached) return cached;
+      if (pricingPromise) {
+        await Promise.race([
+          pricingPromise,
+          new Promise((resolve) => window.setTimeout(resolve, 900)),
+        ]);
+      }
+      const resolved = pricingPlans.find((plan) => plan.id === planId);
+      if (resolved) return resolved;
+      const controller = new AbortController();
+      const timeout = window.setTimeout(() => controller.abort(), 1200);
+      try {
+        const response = await fetch('/api/catalog?plan=' + encodeURIComponent(planId), {
+          headers: { Accept: 'application/json' },
+          cache: 'no-store',
+          signal: controller.signal,
+        });
+        const payload = await response.json().catch(() => null);
+        return response.ok && payload?.plan ? payload.plan : null;
+      } catch {
+        return null;
+      } finally {
+        window.clearTimeout(timeout);
+      }
+    }
+
+    document.addEventListener('click', async (event) => {
+      if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      if (!(event.target instanceof Element)) return;
+      const cta = event.target.closest('a.primary-cta[href^="/checkout?plan="]');
+      if (!cta || cta.target === '_blank' || cta.hasAttribute('download')) return;
+      const destination = new URL(cta.href, window.location.href);
+      const planId = destination.searchParams.get('plan') || '';
+      if (!trackedPlanIds.has(planId)) return;
+      event.preventDefault();
+      if (cta.dataset.analyticsBusy === 'true') return;
+      cta.dataset.analyticsBusy = 'true';
+      try {
+        const plan = await resolveTrackingPlan(planId);
+        if (plan && window.TiranaAnalytics) {
+          await window.TiranaAnalytics.trackAddToCart(plan);
+        }
+      } finally {
+        window.location.assign(destination.href);
+      }
+    });
+
+    activateSegment(new URLSearchParams(window.location.search).get('segment'), { updateUrl: false });
+    pricingPromise = loadPricing();
+    window.setInterval(() => renderCountdown(), 1000);
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      });
+    }, { threshold: .12, rootMargin: '0px 0px -7% 0px' });
+
+    document.querySelectorAll('.reveal').forEach((element) => revealObserver.observe(element));
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+  <script>
+    document.addEventListener('click', (event) => {
+      if (!(event.target instanceof Element)) return;
+      const trigger = event.target.closest('[data-testimonial-video]');
+      if (!trigger) return;
+
+      const source = trigger.getAttribute('data-testimonial-video');
+      if (!source || !source.startsWith('https://www.loom.com/embed/')) return;
+
+      const iframe = document.createElement('iframe');
+      iframe.src = `${source}?autoplay=1`;
+      iframe.title = trigger.getAttribute('data-video-title') || 'Testimonianza video Scalers+';
+      iframe.allow = 'autoplay; fullscreen; picture-in-picture';
+      iframe.allowFullscreen = true;
+      iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+      iframe.tabIndex = 0;
+      trigger.replaceWith(iframe);
+      iframe.focus();
+    });
+  </script>
+</body>
+</html>

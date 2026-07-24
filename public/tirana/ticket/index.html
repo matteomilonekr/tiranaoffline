@@ -1,0 +1,487 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#050507">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Biglietto condivisibile per Scalers AI Bootcamp Offline Mode, Tirana 2026.">
+  <meta property="og:title" content="Ci vediamo a Tirana | AI Bootcamp Offline Mode">
+  <meta property="og:description" content="4 e 5 settembre 2026, Piramide di Tirana. Due giorni, una build-challenge.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://www.tiranaoffline.com/tirana/assets/tiranaoffline-link-preview-v2.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>Il mio biglietto | Scalers AI Bootcamp Offline Mode</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23050507'/%3E%3Ccircle cx='32' cy='32' r='14' fill='%239b6cff'/%3E%3Ccircle cx='32' cy='32' r='6' fill='white'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&amp;family=Instrument+Sans:wdth,wght@75..100,400..800&amp;family=Syne:wght@500;600;700;800&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #050507;
+      --ink-soft: #0b0910;
+      --panel: #100d17;
+      --paper: #f8f6ff;
+      --muted: #aaa4b7;
+      --violet: #9b6cff;
+      --violet-hot: #7c3cff;
+      --lilac: #d8c9ff;
+      --hairline: rgba(216, 201, 255, .16);
+      --ease-heavy: cubic-bezier(.22, 1, .36, 1);
+      --page: min(1120px, calc(100vw - 40px));
+    }
+
+    * { box-sizing: border-box; }
+    html { min-width: 320px; background: var(--ink); color-scheme: dark; }
+    body {
+      min-height: 100dvh;
+      margin: 0;
+      overflow-x: hidden;
+      background:
+        radial-gradient(circle at 78% 6%, rgba(124, 60, 255, .25), transparent 25rem),
+        radial-gradient(circle at 12% 48%, rgba(85, 31, 160, .16), transparent 32rem),
+        var(--ink);
+      color: var(--paper);
+      font-family: "Instrument Sans", sans-serif;
+      font-variation-settings: "wdth" 92;
+      text-rendering: optimizeLegibility;
+    }
+
+    body::before {
+      position: fixed;
+      inset: 0;
+      z-index: 20;
+      pointer-events: none;
+      content: "";
+      opacity: .055;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.85'/%3E%3C/svg%3E");
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button { color: inherit; font: inherit; }
+    [hidden] { display: none !important; }
+    :focus-visible { outline: 2px solid var(--lilac); outline-offset: 5px; }
+
+    .page-nav {
+      position: relative;
+      z-index: 3;
+      display: flex;
+      width: var(--page);
+      min-height: 82px;
+      margin-inline: auto;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      border-bottom: 1px solid var(--hairline);
+    }
+
+    .brand { display: inline-flex; align-items: center; gap: 11px; }
+    .brand-mark {
+      width: 31px;
+      height: 31px;
+      border-radius: 50%;
+      background: conic-gradient(from 210deg, #fff, var(--violet), #2f0b68, #fff);
+      box-shadow: inset 0 0 0 6px #0a080d, 0 0 24px rgba(155,108,255,.34);
+    }
+    .brand-copy { display: flex; flex-direction: column; gap: 4px; }
+    .brand-copy strong { color: #fff; font: 700 18px/.95 "Syne", sans-serif; letter-spacing: -.035em; }
+    .brand-copy small, .nav-label { color: var(--lilac); font: 600 8px/1 "IBM Plex Mono", monospace; letter-spacing: .1em; text-transform: uppercase; }
+
+    main {
+      position: relative;
+      z-index: 2;
+      width: var(--page);
+      margin-inline: auto;
+      padding: clamp(54px, 7vw, 92px) 0 72px;
+    }
+
+    .ticket-intro { max-width: 760px; margin: 0 auto 38px; text-align: center; }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 8px 12px;
+      border: 1px solid var(--hairline);
+      border-radius: 999px;
+      background: rgba(155,108,255,.07);
+      color: var(--lilac);
+      font: 500 9px/1 "IBM Plex Mono", monospace;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+    .eyebrow::before { width: 5px; height: 5px; border-radius: 50%; background: var(--violet); box-shadow: 0 0 14px rgba(155,108,255,.8); content: ""; }
+    h1 { margin: 19px 0 14px; font: 700 clamp(43px, 7vw, 78px)/.88 "Syne", sans-serif; letter-spacing: -.07em; text-transform: uppercase; }
+    h1 span { color: transparent; background: linear-gradient(115deg, #fff 0%, var(--violet) 64%, #fff 125%); background-clip: text; -webkit-background-clip: text; }
+    .ticket-intro p { max-width: 600px; margin: 0 auto; color: var(--muted); font-size: 15px; line-height: 1.55; }
+
+    .ticket-stage { position: relative; display: grid; place-items: center; }
+    .ticket-orbit {
+      position: absolute;
+      width: min(760px, 118vw);
+      aspect-ratio: 1;
+      border: 1px solid rgba(155,108,255,.14);
+      border-radius: 50%;
+      box-shadow: 0 0 0 52px rgba(155,108,255,.025), 0 0 0 112px rgba(155,108,255,.014);
+      pointer-events: none;
+    }
+
+    .pass-shell {
+      position: relative;
+      z-index: 2;
+      width: min(560px, 100%);
+      padding: 8px;
+      border: 1px solid rgba(255,255,255,.22);
+      border-radius: 38px;
+      background: #17141c;
+      box-shadow: 0 52px 150px rgba(0,0,0,.72), 0 0 120px rgba(118,53,244,.3), inset 0 1px 0 rgba(255,255,255,.18);
+      transform: rotate(-.35deg);
+      animation: ticket-in 800ms var(--ease-heavy) both;
+    }
+
+    .pass-core {
+      position: relative;
+      display: flex;
+      aspect-ratio: 4 / 5;
+      min-height: 0;
+      overflow: hidden;
+      padding: clamp(27px, 5vw, 44px);
+      flex-direction: column;
+      border-radius: 30px;
+      background:
+        radial-gradient(circle at 84% 38%, rgba(168,116,255,.62), transparent 38%),
+        linear-gradient(165deg, #fffefa 0%, #faf7ff 51%, #d9c6ff 70%, #8850ee 100%);
+      color: #09070d;
+      isolation: isolate;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.9), inset 0 -1px 0 rgba(43,15,93,.24);
+    }
+
+    .pass-core::before {
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      background-image: linear-gradient(rgba(31,12,62,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(31,12,62,.04) 1px, transparent 1px);
+      background-size: 32px 32px;
+      content: "";
+    }
+
+    .pass-core::after {
+      position: absolute;
+      right: -24%;
+      bottom: -30%;
+      width: 110%;
+      aspect-ratio: 1;
+      z-index: -1;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(92,28,226,.44), rgba(135,77,241,.16) 48%, transparent 70%);
+      content: "";
+    }
+
+    .pass-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; }
+    .pass-logo { font: 800 clamp(22px, 5vw, 35px)/.9 "Syne", sans-serif; letter-spacing: -.065em; text-transform: uppercase; }
+    .pass-date { padding-top: 3px; font: 600 clamp(8px, 1.8vw, 11px)/1.3 "IBM Plex Mono", monospace; letter-spacing: .05em; text-align: right; text-transform: uppercase; }
+    .pass-main { margin-top: auto; }
+    .pass-kicker { display: block; margin-bottom: clamp(15px, 3vw, 22px); font: 600 clamp(8px, 1.8vw, 11px)/1.2 "IBM Plex Mono", monospace; letter-spacing: .12em; text-transform: uppercase; }
+    .pass-title { display: flex; align-items: center; gap: clamp(11px, 2.8vw, 18px); }
+    .pass-ai {
+      display: grid;
+      width: clamp(48px, 11vw, 74px);
+      aspect-ratio: 1;
+      flex: 0 0 auto;
+      place-items: center;
+      border-radius: 9px;
+      background: #09070d;
+      box-shadow: 7px 7px 0 var(--violet-hot);
+      color: #fff;
+      font: 800 clamp(20px, 5.5vw, 36px)/1 "Instrument Sans", sans-serif;
+      letter-spacing: -.06em;
+    }
+    .pass-title strong { font: 800 clamp(29px, 7.2vw, 50px)/.84 "Instrument Sans", sans-serif; font-variation-settings: "wdth" 80, "wght" 800; letter-spacing: -.055em; text-transform: uppercase; white-space: nowrap; }
+    .pass-mode { display: inline-flex; min-height: 33px; margin-top: clamp(17px,3.4vw,25px); align-items: center; gap: 9px; padding: 0 13px; border: 1px solid rgba(9,6,13,.28); border-radius: 999px; background: rgba(255,255,255,.48); font: 600 clamp(8px,1.8vw,11px)/1 "IBM Plex Mono", monospace; letter-spacing: .12em; }
+    .pass-mode::before { width: 8px; height: 8px; border-radius: 50%; background: var(--violet-hot); box-shadow: 0 0 0 5px rgba(124,60,255,.17); content: ""; }
+    .pass-copy { max-width: 470px; margin: clamp(18px,4vw,28px) 0 0; font-size: clamp(13px,2.7vw,18px); font-weight: 650; line-height: 1.35; letter-spacing: -.02em; }
+    .pass-scan { height: clamp(44px,10vw,67px); margin: clamp(22px,4.5vw,34px) 0 clamp(17px,3.5vw,25px); background: repeating-linear-gradient(90deg,#09060d 0 3px,transparent 3px 7px,#09060d 7px 9px,transparent 9px 13px); opacity: .92; }
+    .pass-bottom { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 18px; align-items: center; padding: clamp(17px,3.5vw,25px); border: 1px solid rgba(9,6,13,.19); border-radius: 22px; background: rgba(255,255,255,.72); box-shadow: inset 0 1px 0 rgba(255,255,255,.9); }
+    .ticket-holder { display: block; font: 760 clamp(16px,3.7vw,23px)/1.05 "Syne", sans-serif; letter-spacing: -.04em; text-transform: uppercase; }
+    .ticket-plan { display: block; margin-top: 7px; font: 700 clamp(9px,2vw,12px)/1.25 "IBM Plex Mono", monospace; letter-spacing: .06em; text-transform: uppercase; }
+    .ticket-access, .ticket-state { display: block; margin-top: 6px; color: #251535; font: 600 clamp(7px,1.55vw,9px)/1.35 "IBM Plex Mono", monospace; letter-spacing: .05em; text-transform: uppercase; }
+    .ticket-state { color: #584e63; font-size: clamp(6px,1.35vw,8px); }
+    .pass-year { display: grid; width: clamp(47px,10vw,64px); aspect-ratio: 1; place-items: center; border: 1px solid rgba(9,6,13,.3); border-radius: 50%; font: 650 clamp(10px,2.3vw,14px)/1 "IBM Plex Mono", monospace; }
+
+    .share-panel { position: relative; z-index: 3; max-width: 680px; margin: 29px auto 0; text-align: center; }
+    .share-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+    .share-button {
+      display: inline-flex;
+      min-height: 49px;
+      align-items: center;
+      justify-content: center;
+      padding: 0 19px;
+      border: 1px solid rgba(216,201,255,.28);
+      border-radius: 999px;
+      background: rgba(16,13,23,.86);
+      color: var(--paper);
+      font: 600 9px/1 "IBM Plex Mono", monospace;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: transform 300ms var(--ease-heavy), color 180ms ease, background-color 180ms ease, border-color 180ms ease;
+    }
+    .share-button.primary { border-color: var(--violet); background: var(--violet); color: var(--ink); }
+    .share-button:hover { border-color: var(--violet); background: var(--violet); color: var(--ink); transform: translateY(-2px); }
+    .share-note { margin: 13px 0 0; color: #77717f; font: 500 9px/1.55 "IBM Plex Mono", monospace; }
+    .share-status { min-height: 18px; margin: 10px 0 0; color: var(--lilac); font: 500 9px/1.4 "IBM Plex Mono", monospace; }
+
+    .error-card { max-width: 620px; margin: 40px auto 0; padding: 34px; border: 1px solid var(--hairline); border-radius: 24px; background: var(--panel); text-align: center; }
+    .error-card h2 { margin: 0 0 12px; font: 700 32px/1 "Syne", sans-serif; text-transform: uppercase; }
+    .error-card p { margin: 0 0 22px; color: var(--muted); line-height: 1.55; }
+
+    .site-footer {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      width: var(--page);
+      margin-inline: auto;
+      padding: 24px 0 34px;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px;
+      border-top: 1px solid var(--hairline);
+      color: #77717f;
+      font: 500 9px/1.65 "IBM Plex Mono", monospace;
+    }
+    .site-footer strong { color: var(--paper); }
+    .site-footer a { color: var(--lilac); text-decoration: underline; text-underline-offset: 3px; }
+
+    body.ticket-focus { overflow: hidden; }
+    body.ticket-focus .page-nav, body.ticket-focus .ticket-intro, body.ticket-focus .share-panel, body.ticket-focus .site-footer { display: none; }
+    body.ticket-focus main { display: grid; width: 100vw; height: 100dvh; padding: 12px; place-items: center; }
+    body.ticket-focus .ticket-orbit { display: none; }
+    body.ticket-focus .pass-shell { width: min(600px, calc(100vw - 24px), calc((100dvh - 24px) * .8)); transform: none; }
+
+    @keyframes ticket-in { from { opacity: 0; transform: translateY(26px) rotate(-2deg) scale(.96); } to { opacity: 1; transform: translateY(0) rotate(-.35deg) scale(1); } }
+
+    @media (max-width: 620px) {
+      :root { --page: calc(100% - 20px); }
+      .page-nav { min-height: 72px; }
+      .brand-copy small { display: none; }
+      .nav-label { font-size: 7px; }
+      main { padding-top: 44px; }
+      .ticket-intro { margin-bottom: 28px; }
+      .pass-shell { padding: 7px; border-radius: 27px; transform: none; }
+      .pass-core { padding: clamp(16px,5vw,22px); border-radius: 21px; }
+      .pass-top { gap: 14px; }
+      .pass-logo { font-size: clamp(19px,6vw,24px); }
+      .pass-date, .pass-kicker { font-size: clamp(6px,2vw,8px); }
+      .pass-kicker { margin-bottom: 11px; }
+      .pass-title { gap: 11px; }
+      .pass-ai { width: clamp(39px,12vw,47px); border-radius: 7px; font-size: clamp(18px,5.5vw,22px); box-shadow: 5px 5px 0 var(--violet-hot); }
+      .pass-title strong { font-size: clamp(24px,8.4vw,32px); }
+      .pass-mode { min-height: 26px; margin-top: 11px; padding-inline: 10px; font-size: clamp(6px,2vw,8px); }
+      .pass-copy { margin-top: 12px; font-size: clamp(10px,3.2vw,12px); line-height: 1.28; }
+      .pass-scan { height: clamp(28px,9vw,36px); margin: 14px 0 12px; }
+      .pass-bottom { gap: 9px; padding: clamp(11px,3.6vw,14px); border-radius: 15px; }
+      .ticket-holder { font-size: clamp(13px,4vw,16px); }
+      .ticket-plan { font-size: clamp(7px,2.2vw,9px); }
+      .ticket-access { margin-top: 4px; font-size: clamp(5px,1.8vw,7px); }
+      .ticket-state { margin-top: 4px; font-size: clamp(5px,1.55vw,6px); }
+      .pass-year { width: clamp(35px,11vw,43px); font-size: 9px; }
+      .share-actions { display: grid; grid-template-columns: 1fr 1fr; }
+      .share-button.primary { grid-column: 1 / -1; }
+      .site-footer { align-items: flex-start; flex-direction: column; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="page-nav">
+    <a class="brand" href="/" aria-label="Scalers, torna alla landing dell’evento">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-copy"><strong>scalers.</strong><small>Offline mode / Tirana</small></span>
+    </a>
+    <span class="nav-label">Ticket condivisibile / 2026</span>
+  </header>
+
+  <main>
+    <section class="ticket-intro" id="ticket-intro">
+      <span class="eyebrow">Il mio biglietto / Tirana 2026</span>
+      <h1>Ci vediamo a <span>Tirana.</span></h1>
+      <p>Due giorni offline per costruire un sistema operativo AI da portare davvero nel business.</p>
+    </section>
+
+    <section class="ticket-stage" id="ticket-stage" aria-live="polite">
+      <div class="ticket-orbit" aria-hidden="true"></div>
+      <div class="pass-shell" id="ticket-card">
+        <article class="pass-core" aria-label="Biglietto Scalers AI Bootcamp Offline Mode">
+          <header class="pass-top">
+            <strong class="pass-logo">Scalers+</strong>
+            <span class="pass-date">4 + 5 settembre<br>2026 · Tirana</span>
+          </header>
+
+          <div class="pass-main">
+            <small class="pass-kicker">Due giorni, una build-challenge</small>
+            <div class="pass-title"><span class="pass-ai">AI</span><strong>Bootcamp</strong></div>
+            <span class="pass-mode">offline-mode</span>
+            <p class="pass-copy">AI, ADV, organico, vendita e contenuti dentro un sistema operativo da portare nel tuo business.</p>
+          </div>
+
+          <div class="pass-scan" aria-hidden="true"></div>
+
+          <footer class="pass-bottom">
+            <div>
+              <strong class="ticket-holder" id="ticket-holder">Prepariamo il ticket</strong>
+              <span class="ticket-plan" id="ticket-plan">Tirana Offline Mode</span>
+              <span class="ticket-access" id="ticket-access">4 e 5 settembre 2026</span>
+              <small class="ticket-state">Prenotazione registrata · conferma dopo accredito</small>
+            </div>
+            <span class="pass-year" aria-hidden="true">26</span>
+          </footer>
+        </article>
+      </div>
+    </section>
+
+    <section class="share-panel" id="share-panel" hidden>
+      <div class="share-actions" aria-label="Azioni di condivisione">
+        <button class="share-button primary" id="native-share" type="button">Condividi il biglietto</button>
+        <a class="share-button" id="share-whatsapp" href="#" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        <a class="share-button" id="share-linkedin" href="#" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <button class="share-button" id="focus-ticket" type="button" aria-pressed="false">Solo ticket</button>
+        <a class="share-button" href="/">Scopri l’evento</a>
+      </div>
+      <p class="share-note">Per Instagram: apri “Solo ticket”, fai uno screenshot e pubblicalo nella tua storia.</p>
+      <p class="share-status" id="share-status" aria-live="polite"></p>
+    </section>
+
+    <section class="error-card" id="error-card" hidden>
+      <h2>Ticket non disponibile</h2>
+      <p id="error-message">Il link non è valido oppure è scaduto.</p>
+      <a class="share-button primary" href="/">Vai all’evento</a>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span><strong>Scalers SHPK</strong><br>Rruga e Dibres, Tower Bridge 1, Nr. 22<br>Tirana, Albania</span>
+    <a href="/privacy">Privacy Policy</a>
+  </footer>
+
+  <script>
+    (() => {
+      'use strict';
+
+      const token = new URLSearchParams(window.location.search).get('token') || '';
+      const sharePanel = document.getElementById('share-panel');
+      const shareStatus = document.getElementById('share-status');
+      const focusButton = document.getElementById('focus-ticket');
+      let sharePayload = null;
+
+      const setText = (id, value) => {
+        const element = document.getElementById(id);
+        if (element) element.textContent = value || '';
+      };
+
+      const accessLabel = (plan) => {
+        const participants = Number(plan?.participantCount) || 1;
+        const builderSlots = Number(plan?.builderSlots) || 0;
+        const people = participants === 1 ? '1 partecipante' : String(participants) + ' partecipanti';
+        const access = builderSlots === 0
+          ? 'Workshop Pass'
+          : builderSlots === 1
+            ? '1 posto Live Building'
+            : String(builderSlots) + ' posti Live Building';
+        return people + ' · ' + access;
+      };
+
+      const fail = (message) => {
+        document.getElementById('ticket-intro').hidden = true;
+        document.getElementById('ticket-stage').hidden = true;
+        sharePanel.hidden = true;
+        document.getElementById('error-card').hidden = false;
+        if (message) setText('error-message', message);
+      };
+
+      const configureShare = (displayName, plan) => {
+        const shareUrl = window.location.href;
+        const shareText = displayName + ' ci sarà a Tirana Offline Mode, 4 e 5 settembre 2026. ' + plan.name + '.';
+        sharePayload = {
+          title: 'Il mio biglietto per Tirana Offline Mode',
+          text: shareText,
+          url: shareUrl
+        };
+        document.getElementById('share-whatsapp').href = 'https://wa.me/?text=' + encodeURIComponent(shareText + '\n' + shareUrl);
+        document.getElementById('share-linkedin').href = 'https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(shareUrl);
+        sharePanel.hidden = false;
+      };
+
+      const loadTicket = async () => {
+        if (!token) return fail('Manca il codice del ticket condivisibile.');
+        try {
+          const response = await fetch('/api/shared-ticket?token=' + encodeURIComponent(token), {
+            headers: { Accept: 'application/json' },
+            cache: 'no-store'
+          });
+          const result = await response.json().catch(() => null);
+          if (!response.ok || !result?.displayName || !result?.plan?.name) {
+            throw new Error(result?.error?.message || 'Ticket non disponibile.');
+          }
+
+          setText('ticket-holder', result.displayName);
+          setText('ticket-plan', result.plan.name);
+          setText('ticket-access', accessLabel(result.plan));
+          document.title = result.displayName + ' | Tirana Offline Mode';
+          document.querySelector('.pass-core')?.setAttribute(
+            'aria-label',
+            'Biglietto di ' + result.displayName + ' per ' + result.plan.name
+          );
+          configureShare(result.displayName, result.plan);
+        } catch (error) {
+          fail(error.message || 'Non è stato possibile aprire il ticket.');
+        }
+      };
+
+      document.getElementById('native-share').addEventListener('click', async () => {
+        if (!sharePayload) return;
+        try {
+          if (typeof navigator.share === 'function') {
+            await navigator.share(sharePayload);
+            shareStatus.textContent = 'Biglietto condiviso.';
+            return;
+          }
+          await navigator.clipboard.writeText(sharePayload.url);
+          shareStatus.textContent = 'Link del biglietto copiato.';
+        } catch (error) {
+          if (error?.name !== 'AbortError') {
+            shareStatus.textContent = 'Usa WhatsApp o LinkedIn per condividere il biglietto.';
+          }
+        }
+      });
+
+      focusButton.addEventListener('click', () => {
+        const active = !document.body.classList.contains('ticket-focus');
+        document.body.classList.toggle('ticket-focus', active);
+        focusButton.setAttribute('aria-pressed', String(active));
+      });
+      document.addEventListener('click', (event) => {
+        if (
+          document.body.classList.contains('ticket-focus') &&
+          !event.target.closest('.pass-shell') &&
+          event.target !== focusButton
+        ) {
+          document.body.classList.remove('ticket-focus');
+          focusButton.setAttribute('aria-pressed', 'false');
+          focusButton.focus({ preventScroll: true });
+        }
+      });
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && document.body.classList.contains('ticket-focus')) {
+          document.body.classList.remove('ticket-focus');
+          focusButton.setAttribute('aria-pressed', 'false');
+          focusButton.focus({ preventScroll: true });
+        }
+      });
+
+      loadTicket();
+    })();
+  </script>
+</body>
+</html>

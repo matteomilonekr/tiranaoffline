@@ -1,0 +1,26 @@
+<svg width="46" height="46" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g filter="url(#filter0_i_1_465)">
+<rect width="46" height="46" rx="12" fill="url(#paint0_linear_1_465)"/>
+<path d="M19.75 11.625V12.4375" stroke="white" stroke-width="1.95" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M11.625 19.75H12.4375" stroke="white" stroke-width="1.95" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M23 13.25L23.8125 11.625" stroke="white" stroke-width="1.95" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M13.25 23L11.625 23.8125" stroke="white" stroke-width="1.95" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M26.4883 24.0509C26.2976 23.8613 26.2142 23.5894 26.2641 23.3251C26.3139 23.0607 26.4916 22.8376 26.7386 22.7303L31.4521 20.9211C31.7555 20.7836 31.9429 20.4748 31.9277 20.1422C31.9115 19.8096 31.6948 19.5204 31.3796 19.4131L15.1231 14.1037C14.8349 14.0149 14.5218 14.0929 14.3095 14.3063C14.0961 14.5186 14.0181 14.8317 14.1069 15.1199L19.4131 31.3796C19.5214 31.6949 19.8096 31.9116 20.1421 31.9278C20.4747 31.943 20.7835 31.7545 20.9211 31.4522L22.7313 26.7386C22.8386 26.4916 23.0606 26.314 23.325 26.2641C23.5893 26.2143 23.8612 26.2977 24.0508 26.4884L29.2627 31.6992C29.5791 32.0166 30.0936 32.0166 30.4111 31.6992L31.7002 30.4144C32.0166 30.097 32.0166 29.5824 31.7002 29.265L26.4883 24.0509Z" stroke="white" stroke-width="1.95" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<filter id="filter0_i_1_465" x="0" y="0" width="46" height="48" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="2"/>
+<feGaussianBlur stdDeviation="1"/>
+<feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+<feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.25 0"/>
+<feBlend mode="normal" in2="shape" result="effect1_innerShadow_1_465"/>
+</filter>
+<linearGradient id="paint0_linear_1_465" x1="9.20003" y1="-4.6" x2="36.8" y2="50.6" gradientUnits="userSpaceOnUse">
+<stop stop-color="#976AE0"/>
+<stop offset="1" stop-color="#7A40D8"/>
+</linearGradient>
+</defs>
+</svg>

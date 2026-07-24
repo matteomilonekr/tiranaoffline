@@ -1,0 +1,1768 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#050507">
+  <meta name="description" content="Completa in sicurezza l'acquisto del tuo ticket per Scalers AI Bootcamp Offline Mode a Tirana.">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Checkout sicuro | Scalers AI Bootcamp Offline Mode</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23050507'/%3E%3Ccircle cx='32' cy='32' r='14' fill='%238b5cf6'/%3E%3Ccircle cx='32' cy='32' r='6' fill='white'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&amp;family=Instrument+Sans:wdth,wght@75..100,400..700&amp;family=Syne:wght@500;600;700;800&amp;display=swap" rel="stylesheet">
+  <script src="/tirana/assets/analytics.js" data-analytics-context="checkout"></script>
+  <style>
+    :root {
+      --ink: #050507;
+      --ink-soft: #0b0910;
+      --panel: #100d17;
+      --panel-light: #17121f;
+      --paper: #f8f6ff;
+      --muted: #aaa4b7;
+      --violet: #9b6cff;
+      --violet-hot: #7c3cff;
+      --lilac: #d8c9ff;
+      --green: #5ee6a7;
+      --danger: #ff7979;
+      --hairline: rgba(216, 201, 255, .16);
+      --hairline-strong: rgba(216, 201, 255, .32);
+      --ease-heavy: cubic-bezier(.22, 1, .36, 1);
+      --page: min(1180px, calc(100vw - 40px));
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      min-width: 320px;
+      background: var(--ink);
+      color-scheme: dark;
+    }
+
+    body {
+      min-height: 100dvh;
+      margin: 0;
+      overflow-x: hidden;
+      background:
+        radial-gradient(circle at 82% 10%, rgba(124, 60, 255, .25), transparent 28rem),
+        radial-gradient(circle at 6% 74%, rgba(115, 51, 229, .12), transparent 30rem),
+        var(--ink);
+      color: var(--paper);
+      font-family: "Instrument Sans", sans-serif;
+      font-variation-settings: "wdth" 92;
+      text-rendering: optimizeLegibility;
+    }
+
+    body::before {
+      position: fixed;
+      inset: 0;
+      z-index: 20;
+      pointer-events: none;
+      content: "";
+      opacity: .045;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.85'/%3E%3C/svg%3E");
+    }
+
+    ::selection { color: var(--ink); background: var(--violet); }
+    a { color: inherit; text-decoration: none; }
+    button, input, select { color: inherit; font: inherit; }
+    button { cursor: pointer; }
+    [hidden] { display: none !important; }
+    :focus-visible { outline: 2px solid var(--lilac); outline-offset: 4px; }
+
+    .skip-link {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      z-index: 100;
+      padding: 11px 15px;
+      border-radius: 999px;
+      background: var(--paper);
+      color: var(--ink);
+      font: 600 11px/1 "IBM Plex Mono", monospace;
+      transform: translateY(-160%);
+      transition: transform 180ms ease;
+    }
+
+    .skip-link:focus { transform: translateY(0); }
+
+    .checkout-nav {
+      position: relative;
+      z-index: 10;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      width: var(--page);
+      min-height: 82px;
+      margin-inline: auto;
+      border-bottom: 1px solid var(--hairline);
+    }
+
+    .brand {
+      display: inline-flex;
+      width: max-content;
+      align-items: center;
+      gap: 11px;
+    }
+
+    .brand-mark {
+      position: relative;
+      width: 31px;
+      height: 31px;
+      border-radius: 50%;
+      background: conic-gradient(from 210deg, #fff, var(--violet), #2f0b68, #fff);
+      box-shadow: inset 0 0 0 6px #0a080d, 0 0 24px rgba(155,108,255,.34);
+    }
+
+    .brand-copy { display: flex; flex-direction: column; gap: 4px; }
+    .brand-copy strong { color: #fff; font: 700 18px/.95 "Syne", sans-serif; letter-spacing: -.035em; }
+    .brand-copy small { color: var(--lilac); font: 600 8px/1 "IBM Plex Mono", monospace; letter-spacing: .1em; text-transform: uppercase; }
+
+    .secure-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #beb8c8;
+      font: 500 9px/1 "IBM Plex Mono", monospace;
+      letter-spacing: .11em;
+      text-transform: uppercase;
+    }
+
+    .secure-label svg { width: 14px; color: var(--green); }
+
+    .back-link {
+      display: inline-flex;
+      justify-self: end;
+      align-items: center;
+      gap: 9px;
+      color: #c8c2d1;
+      font: 500 10px/1 "IBM Plex Mono", monospace;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      transition: color 250ms ease, transform 350ms var(--ease-heavy);
+    }
+
+    .back-link:hover { color: #fff; transform: translateX(-3px); }
+
+    .checkout-main {
+      position: relative;
+      z-index: 2;
+      width: var(--page);
+      margin-inline: auto;
+      padding: clamp(54px, 7vw, 92px) 0 80px;
+    }
+
+    .checkout-intro {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(260px, .7fr);
+      gap: 42px;
+      align-items: end;
+      margin-bottom: 48px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      width: max-content;
+      padding: 8px 12px;
+      border: 1px solid var(--hairline);
+      border-radius: 999px;
+      background: rgba(155,108,255,.07);
+      color: var(--lilac);
+      font: 500 9px/1 "IBM Plex Mono", monospace;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--violet);
+      box-shadow: 0 0 16px rgba(155,108,255,.7);
+      content: "";
+    }
+
+    h1 {
+      max-width: 760px;
+      margin: 20px 0 0;
+      font: 700 clamp(48px, 6.6vw, 90px)/.84 "Syne", sans-serif;
+      letter-spacing: -.075em;
+      text-transform: uppercase;
+    }
+
+    .gradient-word {
+      color: transparent;
+      background: linear-gradient(115deg, #fff 3%, #d8c8ff 38%, #945bff 76%, #fff 110%);
+      background-clip: text;
+      -webkit-background-clip: text;
+    }
+
+    .intro-note {
+      padding-top: 22px;
+      border-top: 1px solid var(--hairline-strong);
+    }
+
+    .intro-note p {
+      margin: 0;
+      color: #bbb4c5;
+      font-size: 17px;
+      line-height: 1.52;
+    }
+
+    .intro-note strong { color: #fff; font-weight: 600; }
+
+    .checkout-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.12fr) minmax(330px, .72fr);
+      gap: 22px;
+      align-items: start;
+    }
+
+    .checkout-panel,
+    .summary-card,
+    .state-card {
+      border: 1px solid var(--hairline);
+      background: linear-gradient(145deg, rgba(22,17,31,.96), rgba(9,8,13,.98));
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.045), 0 36px 100px rgba(0,0,0,.22);
+    }
+
+    .checkout-panel {
+      overflow: hidden;
+      border-radius: 28px;
+    }
+
+    .form-section { padding: clamp(26px, 4vw, 42px); }
+    .form-section + .form-section { border-top: 1px solid var(--hairline); }
+
+    .buyer-section {
+      position: relative;
+      color-scheme: dark;
+      background:
+        radial-gradient(circle at 96% 0%, rgba(155,108,255,.18), transparent 32%),
+        linear-gradient(145deg, rgba(22,17,31,.98), rgba(9,8,13,.99));
+      color: var(--paper);
+      box-shadow: inset 0 -1px 0 var(--hairline);
+    }
+
+    .buyer-section::before {
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      height: 5px;
+      background: linear-gradient(90deg, #5f25d4, #9b6cff 58%, #d8c9ff);
+      content: "";
+    }
+
+    .buyer-section .section-kicker { display: flex; align-items: center; gap: 12px; color: var(--lilac); }
+    .buyer-section .section-kicker::after { width: 38px; height: 1px; background: #9b6cff; content: ""; }
+    .buyer-section .section-head h2 { color: #fff; font-size: clamp(34px, 4.2vw, 52px); }
+    .buyer-section .required-note {
+      max-width: 190px;
+      padding: 8px 10px;
+      border: 1px solid var(--hairline-strong);
+      border-radius: 999px;
+      background: rgba(216,201,255,.07);
+      color: #d8d1e1;
+    }
+
+    .buyer-section .field label { color: #fff; font-weight: 600; }
+    .buyer-section .field input,
+    .buyer-section .field select {
+      border-color: rgba(216,201,255,.22);
+      background: rgba(5,5,7,.62);
+      color: #fff;
+      caret-color: var(--violet);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.045);
+    }
+
+    .buyer-section .field input::placeholder { color: rgba(248,246,255,.44); }
+    .buyer-section .field input:hover,
+    .buyer-section .field select:hover { border-color: rgba(216,201,255,.42); background: rgba(13,10,19,.92); }
+    .buyer-section .field input:focus,
+    .buyer-section .field select:focus { border-color: var(--violet); background: #0d0a13; box-shadow: 0 0 0 3px rgba(155,108,255,.18); }
+    .buyer-section .field input:user-invalid,
+    .buyer-section .field select:user-invalid { border-color: #d95f68; }
+    .buyer-section .field select option { background: #100d17; color: #fff; }
+    .buyer-section .field input:-webkit-autofill,
+    .buyer-section .field input:-webkit-autofill:hover,
+    .buyer-section .field input:-webkit-autofill:focus {
+      box-shadow: 0 0 0 1000px #0d0a13 inset;
+      caret-color: #fff;
+      -webkit-text-fill-color: #fff;
+    }
+    .customer-type-field { padding: 0; border: 0; margin: 0; min-inline-size: 0; }
+    .customer-type-field legend { margin-bottom: 10px; color: #fff; font: 600 10px/1 "IBM Plex Mono", monospace; letter-spacing: .055em; }
+    .customer-type-options { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .customer-type-option { position: relative; display: block; cursor: pointer; }
+    .buyer-section .customer-type-option input {
+      position: absolute;
+      width: 1px;
+      min-height: 0;
+      height: 1px;
+      padding: 0;
+      border: 0;
+      margin: -1px;
+      opacity: 0;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+    .customer-type-option span {
+      display: flex;
+      min-height: 72px;
+      flex-direction: column;
+      justify-content: center;
+      gap: 6px;
+      padding: 13px 16px;
+      border: 1px solid rgba(216,201,255,.22);
+      border-radius: 12px;
+      background: rgba(5,5,7,.62);
+      color: #fff;
+      transition: border-color 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+    }
+    .customer-type-option strong { font: 700 14px/1.2 "Syne", sans-serif; }
+    .customer-type-option small { color: #aaa4b3; font-size: 11px; line-height: 1.35; }
+    .customer-type-option:hover span { border-color: rgba(216,201,255,.42); background: rgba(13,10,19,.92); }
+    .customer-type-option input:checked + span { border-color: var(--violet); background: rgba(155,108,255,.15); box-shadow: 0 0 0 3px rgba(155,108,255,.13); }
+    .customer-type-option input:focus-visible + span { outline: 2px solid var(--lilac); outline-offset: 3px; }
+    .buyer-section .privacy-note { color: #b8b1c2; }
+    .buyer-section .privacy-note + .privacy-note { margin-top: 8px; }
+    .buyer-section .privacy-note a { color: var(--lilac); text-decoration-color: rgba(216,201,255,.44); }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      align-items: flex-start;
+      margin-bottom: 28px;
+    }
+
+    .section-kicker {
+      display: block;
+      margin-bottom: 9px;
+      color: var(--violet);
+      font: 600 9px/1 "IBM Plex Mono", monospace;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    h2, h3, p { margin-top: 0; }
+    .section-head h2 { margin-bottom: 0; font: 650 clamp(25px, 3vw, 36px)/1 "Syne", sans-serif; letter-spacing: -.045em; }
+    .required-note { color: #817a8c; font: 500 8px/1.4 "IBM Plex Mono", monospace; letter-spacing: .08em; text-align: right; text-transform: uppercase; }
+
+    .fields-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .field { display: flex; min-width: 0; flex-direction: column; gap: 8px; }
+    .field.full { grid-column: 1 / -1; }
+    .field label,
+    .hosted-field-label { color: #d6d0dd; font: 500 10px/1 "IBM Plex Mono", monospace; letter-spacing: .055em; }
+
+    .field input,
+    .field select {
+      width: 100%;
+      min-height: 54px;
+      padding: 0 16px;
+      border: 1px solid rgba(216,201,255,.18);
+      border-radius: 12px;
+      outline: 0;
+      background: rgba(4,3,6,.64);
+      color: #fff;
+      font-size: 16px;
+      transition: border-color 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+    }
+
+    .field input::placeholder { color: #686270; }
+    .field input:hover,
+    .field select:hover { border-color: rgba(216,201,255,.34); }
+    .field input:focus,
+    .field select:focus { border-color: var(--violet); background: rgba(11,8,16,.88); box-shadow: 0 0 0 3px rgba(155,108,255,.13); }
+    .field input:user-invalid,
+    .field select:user-invalid { border-color: rgba(255,121,121,.7); }
+
+    .privacy-note {
+      margin-top: 20px;
+      color: #aaa4b3;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .privacy-note a {
+      color: var(--lilac);
+      font-weight: 650;
+      text-decoration: underline;
+      text-decoration-color: rgba(216,201,255,.34);
+      text-underline-offset: 3px;
+    }
+
+    .purchase-terms {
+      display: grid;
+      grid-template-columns: 22px minmax(0, 1fr);
+      gap: 12px;
+      align-items: start;
+      margin: 22px 0 0;
+      padding: 16px;
+      border: 1px solid rgba(216,201,255,.22);
+      border-radius: 13px;
+      background: rgba(155,108,255,.07);
+    }
+
+    .purchase-terms:has(input:user-invalid) { border-color: rgba(255,121,121,.72); }
+    .purchase-terms-check { position: relative; width: 22px; height: 22px; margin-top: 1px; }
+    .purchase-terms-check input {
+      position: absolute;
+      z-index: 2;
+      inset: 0;
+      width: 22px;
+      height: 22px;
+      padding: 0;
+      border: 0;
+      margin: 0;
+      appearance: none;
+      opacity: 0;
+      cursor: pointer;
+    }
+    .purchase-terms-box {
+      display: grid;
+      width: 22px;
+      height: 22px;
+      place-items: center;
+      border: 1px solid rgba(216,201,255,.48);
+      border-radius: 6px;
+      background: rgba(5,5,7,.72);
+      color: #050507;
+      transition: border-color 160ms ease, background-color 160ms ease, box-shadow 160ms ease;
+    }
+    .purchase-terms-box svg { width: 15px; height: 15px; opacity: 0; transform: scale(.72); transition: opacity 140ms ease, transform 140ms ease; }
+    .purchase-terms-check input:checked + .purchase-terms-box { border-color: var(--lilac); background: var(--lilac); box-shadow: 0 0 0 3px rgba(155,108,255,.16); }
+    .purchase-terms-check input:checked + .purchase-terms-box svg { opacity: 1; transform: scale(1); }
+    .purchase-terms-check input:focus-visible + .purchase-terms-box { outline: 2px solid #fff; outline-offset: 3px; }
+    .purchase-terms label { color: #ddd7e5; font-size: 13px; line-height: 1.5; }
+    .purchase-terms label strong { color: #fff; }
+    .purchase-terms a { color: var(--lilac); font-weight: 700; text-underline-offset: 3px; }
+    .purchase-terms small { display: block; margin-top: 5px; color: #928b9b; font-size: 11px; line-height: 1.45; }
+
+    .method-tabs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 7px;
+      padding: 6px;
+      border: 1px solid var(--hairline);
+      border-radius: 15px;
+      background: rgba(3,3,5,.5);
+    }
+
+    .method-tab {
+      min-height: 52px;
+      padding: 8px 13px;
+      border: 0;
+      border-radius: 10px;
+      background: transparent;
+      color: #928b9e;
+      font: 600 11px/1 "IBM Plex Mono", monospace;
+      letter-spacing: .04em;
+      transition: color 180ms ease, background-color 220ms ease, box-shadow 220ms ease;
+    }
+
+    .method-tab[aria-selected="true"] {
+      background: var(--paper);
+      color: var(--ink);
+      box-shadow: 0 9px 26px rgba(0,0,0,.25);
+    }
+
+    .method-panel { padding-top: 24px; }
+
+    .payment-note {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 18px;
+      color: #928c9c;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .payment-note svg { flex: 0 0 auto; width: 16px; margin-top: 1px; color: var(--green); }
+
+    .payment-privacy-notice {
+      margin: 13px 2px 0;
+      color: #817a89;
+      font-size: 11px;
+      line-height: 1.5;
+    }
+
+    .payment-privacy-notice a {
+      color: #bbb4c5;
+      text-decoration: underline;
+      text-decoration-color: rgba(216, 201, 255, .28);
+      text-underline-offset: 3px;
+    }
+
+    .card-fields-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .hosted-field { display: flex; min-width: 0; flex-direction: column; gap: 8px; }
+    .hosted-field.number { grid-column: 1 / -1; }
+
+    .hosted-field-shell {
+      position: relative;
+      height: 56px;
+      overflow: hidden;
+      border: 1px solid rgba(216,201,255,.18);
+      border-radius: 12px;
+      background: rgba(4,3,6,.64);
+      transition: border-color 180ms ease, box-shadow 180ms ease;
+    }
+
+    .hosted-field-shell:focus-within { border-color: var(--violet); box-shadow: 0 0 0 3px rgba(155,108,255,.13); }
+    .hosted-field-shell.is-valid { border-color: rgba(94,230,167,.52); }
+    .hosted-field-shell.is-invalid { border-color: rgba(255,121,121,.64); }
+    .hosted-field-shell online-payment-hosted-card-field { width: 100%; height: 54px; }
+
+    .accepted-cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin: 17px 0 20px;
+    }
+
+    .card-chip {
+      display: grid;
+      place-items: center;
+      min-width: 47px;
+      height: 25px;
+      padding: 0 8px;
+      border: 1px solid var(--hairline);
+      border-radius: 6px;
+      background: rgba(255,255,255,.055);
+      color: #b7b1c0;
+      font: 600 8px/1 "IBM Plex Mono", monospace;
+      letter-spacing: .03em;
+    }
+
+    .pay-button {
+      position: relative;
+      display: inline-flex;
+      width: 100%;
+      min-height: 58px;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 18px;
+      border: 0;
+      border-radius: 13px;
+      overflow: hidden;
+      background: var(--paper);
+      color: var(--ink);
+      font: 700 12px/1 "IBM Plex Mono", monospace;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      box-shadow: 0 16px 42px rgba(98,53,180,.22);
+      transition: transform 350ms var(--ease-heavy), background-color 250ms ease, opacity 180ms ease;
+    }
+
+    .pay-button::before {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(105deg, transparent 20%, rgba(155,108,255,.24) 50%, transparent 80%);
+      content: "";
+      transform: translateX(-120%);
+      transition: transform 700ms var(--ease-heavy);
+    }
+
+    .pay-button:hover { background: #fff; transform: translateY(-2px); }
+    .pay-button:hover::before { transform: translateX(120%); }
+    .pay-button:active { transform: scale(.987); }
+    .pay-button:disabled { cursor: wait; opacity: .55; transform: none; }
+    .pay-button.secondary {
+      border: 1px solid rgba(216,201,255,.26);
+      background: rgba(216,201,255,.07);
+      color: var(--paper);
+      box-shadow: none;
+    }
+    .pay-button.secondary::before { background: linear-gradient(105deg, transparent 20%, rgba(196,181,253,.14) 50%, transparent 80%); }
+    .pay-button.secondary:hover { background: rgba(216,201,255,.13); }
+
+    .button-spinner {
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(5,5,7,.2);
+      border-top-color: var(--ink);
+      border-radius: 50%;
+      animation: spin .7s linear infinite;
+    }
+
+    online-payment-button { display: block; width: 100%; min-height: 52px; }
+
+    .online-payment-frame {
+      padding: 18px;
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 15px;
+      background: #fff;
+    }
+
+    .bank-preview {
+      margin-bottom: 18px;
+      padding: 20px;
+      border: 1px solid rgba(216,201,255,.18);
+      border-radius: 15px;
+      background: linear-gradient(145deg, rgba(155,108,255,.1), rgba(4,3,6,.72));
+    }
+
+    .bank-preview strong { display: block; font: 650 20px/1.1 "Syne", sans-serif; letter-spacing: -.03em; }
+    .bank-preview p { margin: 9px 0 0; color: #aaa4b3; font-size: 13px; line-height: 1.5; }
+    .bank-preview ul { display: grid; gap: 8px; margin: 16px 0 0; padding: 0; list-style: none; }
+    .bank-preview li { display: flex; gap: 9px; color: #cbc5d2; font-size: 13px; line-height: 1.4; }
+    .bank-preview li::before { color: var(--green); content: "✓"; }
+
+    .stripe-preview {
+      margin-bottom: 18px;
+      padding: 20px;
+      border: 1px solid rgba(196,181,253,.3);
+      border-radius: 15px;
+      background: linear-gradient(145deg, rgba(124,60,255,.17), rgba(4,3,6,.78));
+    }
+    .stripe-preview-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .stripe-preview strong { font: 650 20px/1.1 "Syne", sans-serif; letter-spacing: -.03em; }
+    .stripe-badge { padding: 7px 9px; border-radius: 999px; background: #635bff; color: #fff; font: 700 9px/1 "IBM Plex Mono", monospace; letter-spacing: .04em; text-transform: uppercase; }
+    .stripe-preview p { margin: 9px 0 0; color: #c6bfd0; font-size: 13px; line-height: 1.5; }
+    .stripe-preview ul { display: grid; gap: 8px; margin: 16px 0 0; padding: 0; list-style: none; }
+    .stripe-preview li { display: flex; gap: 9px; color: #cbc5d2; font-size: 13px; line-height: 1.4; }
+    .stripe-preview li::before { color: var(--green); content: "✓"; }
+    .payment-divider { display: flex; align-items: center; gap: 12px; margin: 20px 0; color: #817b89; font: 600 8px/1 "IBM Plex Mono", monospace; letter-spacing: .1em; text-transform: uppercase; }
+    .payment-divider::before, .payment-divider::after { height: 1px; flex: 1; background: var(--hairline); content: ""; }
+
+    .coupon-panel {
+      margin-bottom: 18px;
+      padding: 20px;
+      border: 1px solid rgba(216,201,255,.22);
+      border-radius: 15px;
+      background: linear-gradient(145deg, rgba(155,108,255,.12), rgba(4,3,6,.82));
+    }
+
+    .coupon-heading {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+
+    .coupon-heading span,
+    .coupon-eligibility {
+      display: block;
+      color: var(--lilac);
+      font: 600 8px/1.35 "IBM Plex Mono", monospace;
+      letter-spacing: .11em;
+      text-transform: uppercase;
+    }
+
+    .coupon-heading strong { display: block; margin-top: 6px; color: #fff; font: 650 18px/1.1 "Syne", sans-serif; }
+    .coupon-eligibility { max-width: 132px; color: #817b89; text-align: right; }
+
+    .coupon-controls {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 9px;
+    }
+
+    .coupon-controls input {
+      width: 100%;
+      min-height: 52px;
+      padding: 0 15px;
+      border: 1px solid rgba(216,201,255,.22);
+      border-radius: 11px;
+      background: #09070d;
+      color: #fff;
+      font: 600 13px/1 "IBM Plex Mono", monospace;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      transition: border-color 180ms ease, box-shadow 180ms ease, opacity 180ms ease;
+    }
+
+    .coupon-controls input::placeholder { color: #77717f; text-transform: none; }
+    .coupon-controls input:focus { border-color: var(--violet); outline: 0; box-shadow: 0 0 0 3px rgba(155,108,255,.13); }
+    .coupon-controls input:disabled { opacity: .58; }
+
+    .coupon-controls button {
+      min-width: 112px;
+      min-height: 52px;
+      padding: 0 16px;
+      border: 1px solid var(--lilac);
+      border-radius: 11px;
+      background: var(--lilac);
+      color: var(--ink);
+      font: 700 9px/1 "IBM Plex Mono", monospace;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      transition: transform 220ms ease, opacity 180ms ease, background-color 180ms ease;
+    }
+
+    .coupon-controls button:hover { background: #fff; transform: translateY(-1px); }
+    .coupon-controls button:disabled { cursor: wait; opacity: .55; transform: none; }
+
+    .coupon-status { min-height: 18px; margin: 10px 0 0; color: #aaa4b3; font-size: 12px; line-height: 1.45; }
+    .coupon-status.is-success { color: var(--green); }
+    .coupon-status.is-error { color: #ffb1b1; }
+
+    .method-unavailable {
+      padding: 15px 17px;
+      border: 1px solid rgba(255,121,121,.22);
+      border-radius: 12px;
+      background: rgba(255,121,121,.06);
+      color: #e8c2c2;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .payment-status {
+      min-height: 0;
+      margin-top: 16px;
+      padding: 0;
+      border-radius: 12px;
+      color: #d8d2df;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .payment-status:not(:empty) {
+      min-height: 48px;
+      padding: 14px 16px;
+      border: 1px solid rgba(255,121,121,.26);
+      background: rgba(255,121,121,.075);
+      color: #ffd2d2;
+    }
+
+    .summary-wrap { position: sticky; top: 22px; }
+
+    .summary-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 28px;
+    }
+
+    .summary-card::before {
+      position: absolute;
+      top: -130px;
+      right: -130px;
+      width: 290px;
+      height: 290px;
+      border-radius: 50%;
+      background: rgba(124,60,255,.2);
+      filter: blur(12px);
+      content: "";
+    }
+
+    .summary-top {
+      position: relative;
+      padding: 34px 32px 28px;
+      border-bottom: 1px solid var(--hairline);
+    }
+
+    .summary-label {
+      display: block;
+      margin-bottom: 17px;
+      color: var(--violet);
+      font: 600 9px/1 "IBM Plex Mono", monospace;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .summary-top h2 { max-width: 310px; margin-bottom: 12px; font: 650 29px/.98 "Syne", sans-serif; letter-spacing: -.05em; }
+    .summary-description { margin-bottom: 0; color: #a9a3b1; font-size: 14px; line-height: 1.5; }
+
+    .event-facts { display: grid; gap: 0; padding: 0 32px; }
+
+    .event-fact {
+      display: grid;
+      grid-template-columns: 24px 1fr;
+      gap: 11px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--hairline);
+    }
+
+    .event-fact:last-child { border-bottom: 0; }
+    .event-fact svg { width: 18px; color: var(--violet); }
+    .event-fact span { display: block; color: #817b89; font: 500 8px/1 "IBM Plex Mono", monospace; letter-spacing: .09em; text-transform: uppercase; }
+    .event-fact strong { display: block; margin-top: 6px; color: #e8e4ec; font-size: 14px; font-weight: 550; }
+
+    .total-row {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 22px;
+      padding: 27px 32px 31px;
+      background: rgba(155,108,255,.055);
+    }
+
+    .total-copy span { display: block; color: #85808d; font: 500 8px/1 "IBM Plex Mono", monospace; letter-spacing: .1em; text-transform: uppercase; }
+    .total-copy small { display: block; margin-top: 8px; color: #aaa4b2; font-size: 11px; }
+    .total-pricing { display: flex; align-items: flex-end; flex-direction: column; gap: 7px; text-align: right; }
+    .total-pricing s { color: #817b89; font: 600 13px/1 "IBM Plex Mono", monospace; }
+    .total-coupon { color: var(--green); font: 600 8px/1 "IBM Plex Mono", monospace; letter-spacing: .08em; text-transform: uppercase; }
+    .total-price { font: 700 clamp(34px, 4vw, 48px)/.8 "Syne", sans-serif; letter-spacing: -.06em; white-space: nowrap; }
+
+    .trust-stack {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      margin-top: 11px;
+    }
+
+    .trust-item {
+      min-width: 0;
+      padding: 13px 8px;
+      border: 1px solid var(--hairline);
+      border-radius: 12px;
+      background: rgba(8,7,11,.72);
+      color: #8e8798;
+      font: 500 8px/1.35 "IBM Plex Mono", monospace;
+      letter-spacing: .035em;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .trust-item strong { display: block; margin-bottom: 6px; color: var(--green); font-size: 13px; }
+
+    .checkout-proof {
+      margin-top: 26px;
+      padding: clamp(28px, 4vw, 42px);
+      border: 1px solid var(--hairline);
+      border-radius: 28px;
+      background: linear-gradient(145deg, rgba(22,17,31,.9), rgba(9,8,13,.98));
+    }
+
+    .checkout-proof-head { display: flex; justify-content: space-between; gap: 28px; align-items: end; margin-bottom: 24px; }
+    .checkout-proof-head small { display: block; margin-bottom: 9px; color: var(--violet); font: 600 8px/1 "IBM Plex Mono", monospace; letter-spacing: .12em; text-transform: uppercase; }
+    .checkout-proof-head h2 { max-width: 680px; margin: 0; font: 650 clamp(28px, 4vw, 46px)/.95 "Syne", sans-serif; letter-spacing: -.052em; text-transform: uppercase; }
+    .checkout-proof-head p { max-width: 330px; margin: 0; color: #958e9e; font-size: 13px; line-height: 1.5; text-align: right; }
+    .checkout-proof-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    .checkout-proof-card { overflow: hidden; border: 1px solid var(--hairline); border-radius: 20px; background: rgba(8,7,11,.84); }
+    .checkout-proof-frame { aspect-ratio: 16 / 9; overflow: hidden; border-bottom: 1px solid var(--hairline); background: #09070d; }
+    .checkout-proof-frame iframe { display: block; width: 100%; height: 100%; border: 0; }
+    .video-facade { position: relative; display: block; width: 100%; height: 100%; padding: 0; overflow: hidden; border: 0; background: #09070d; color: #fff; cursor: pointer; text-decoration: none; }
+    .video-facade img { display: block; width: 100%; height: 100%; object-fit: cover; filter: saturate(.72) brightness(.72) contrast(1.08); transform: scale(1.01); transition: filter 400ms ease, transform 550ms ease; }
+    .video-facade::after { position: absolute; inset: 0; background: linear-gradient(180deg, transparent 42%, rgba(5,3,9,.78)); content: ""; }
+    .video-facade:hover img { filter: saturate(.94) brightness(.84) contrast(1.04); transform: scale(1.035); }
+    .video-play { position: absolute; top: 50%; left: 50%; z-index: 2; display: grid; width: 60px; height: 60px; place-items: center; border-radius: 50%; background: var(--paper); color: var(--ink); box-shadow: 0 16px 42px rgba(0,0,0,.38); transform: translate(-50%, -50%); transition: transform 350ms ease, background-color 350ms ease; }
+    .video-play::before { width: 0; height: 0; margin-left: 4px; border-top: 7px solid transparent; border-bottom: 7px solid transparent; border-left: 11px solid currentColor; content: ""; }
+    .video-facade:hover .video-play { background: var(--lilac); transform: translate(-50%, -50%) scale(1.08); }
+    .video-facade-label { position: absolute; right: 18px; bottom: 15px; left: 18px; z-index: 2; color: #fff; font: 600 7px/1 "IBM Plex Mono", monospace; letter-spacing: .09em; text-align: left; text-transform: uppercase; }
+    .checkout-proof-copy { padding: 20px; }
+    .checkout-proof-copy small { color: var(--violet); font: 600 8px/1 "IBM Plex Mono", monospace; letter-spacing: .09em; text-transform: uppercase; }
+    .checkout-proof-copy strong { display: block; margin: 22px 0 8px; color: #fff; font: 700 clamp(31px, 4vw, 48px)/.82 "Syne", sans-serif; letter-spacing: -.06em; }
+    .checkout-proof-copy p { margin: 0; color: #a7a0ae; font-size: 13px; line-height: 1.45; }
+    .checkout-review-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 12px; }
+    .checkout-review { display: flex; min-height: 148px; padding: 18px; flex-direction: column; border: 1px solid var(--hairline); border-radius: 16px; background: rgba(8,7,11,.48); color: #d6d0dc; font-size: 13px; line-height: 1.45; }
+    .checkout-review-author { display: flex; align-items: center; gap: 11px; }
+    .checkout-review-avatar { width: 48px; height: 48px; flex: 0 0 48px; border: 1px solid rgba(216,201,255,.24); border-radius: 50%; object-fit: cover; background: #15111d; }
+    .checkout-review-avatar.nicola { object-position: 50% 30%; }
+    .checkout-review strong { display: block; margin: 0; color: var(--paper); font: 600 9px/1.2 "IBM Plex Mono", monospace; letter-spacing: .075em; text-transform: uppercase; }
+    .checkout-review-role { display: block; margin-top: 5px; color: #817a89; font: 500 7px/1.35 "IBM Plex Mono", monospace; letter-spacing: .045em; text-transform: uppercase; }
+    .checkout-review blockquote { margin: 20px 0 0; color: #d6d0dc; font-size: 14px; line-height: 1.5; }
+    .checkout-proof-source { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px 20px; margin-top: 18px; color: #77717f; font: 500 8px/1.45 "IBM Plex Mono", monospace; letter-spacing: .05em; text-transform: uppercase; }
+
+    .mobile-summary { display: none; }
+
+    .state-card {
+      width: min(700px, 100%);
+      margin-inline: auto;
+      padding: clamp(34px, 6vw, 64px);
+      border-radius: 28px;
+      text-align: center;
+    }
+
+    .state-orbit {
+      position: relative;
+      display: grid;
+      width: 66px;
+      height: 66px;
+      margin: 0 auto 25px;
+      place-items: center;
+      border: 1px solid var(--hairline-strong);
+      border-radius: 50%;
+    }
+
+    .state-orbit::before {
+      position: absolute;
+      inset: -1px;
+      border: 2px solid transparent;
+      border-top-color: var(--violet);
+      border-radius: inherit;
+      content: "";
+      animation: spin 1.1s linear infinite;
+    }
+
+    .state-dot { width: 13px; height: 13px; border-radius: 50%; background: var(--violet); box-shadow: 0 0 28px rgba(155,108,255,.8); }
+    .state-card h2 { margin-bottom: 13px; font: 650 clamp(28px, 4vw, 42px)/1 "Syne", sans-serif; letter-spacing: -.05em; }
+    .state-card p { max-width: 510px; margin: 0 auto; color: #aaa4b3; font-size: 16px; line-height: 1.55; }
+    .state-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 26px; }
+
+    .state-link {
+      display: inline-flex;
+      min-height: 48px;
+      align-items: center;
+      justify-content: center;
+      padding: 0 20px;
+      border: 1px solid var(--hairline-strong);
+      border-radius: 999px;
+      color: #eeeaf2;
+      font: 600 10px/1 "IBM Plex Mono", monospace;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      transition: background-color 180ms ease, color 180ms ease;
+    }
+
+    .state-link.primary { border-color: var(--paper); background: var(--paper); color: var(--ink); }
+    .state-link:hover { background: var(--lilac); color: var(--ink); }
+
+    .sandbox-badge {
+      display: inline-flex;
+      margin-top: 20px;
+      padding: 7px 10px;
+      border: 1px solid rgba(255,217,61,.28);
+      border-radius: 999px;
+      background: rgba(255,217,61,.07);
+      color: #ffe892;
+      font: 600 8px/1 "IBM Plex Mono", monospace;
+      letter-spacing: .11em;
+      text-transform: uppercase;
+    }
+
+    .footer {
+      display: flex;
+      flex-wrap: wrap;
+      width: var(--page);
+      margin-inline: auto;
+      padding: 30px 0 38px;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px 40px;
+      border-top: 1px solid var(--hairline);
+      color: #77717f;
+      font: 500 8px/1.5 "IBM Plex Mono", monospace;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .footer-company { display: grid; gap: 4px; text-align: left; }
+    .footer-company strong { color: #f7f3fb; font-size: 11px; letter-spacing: .1em; }
+    .footer-company span { color: #918a98; letter-spacing: .04em; text-transform: none; }
+    .footer-meta { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px 16px; text-align: right; }
+    .footer a { color: var(--muted); text-decoration: underline; text-underline-offset: 3px; }
+    .footer a:hover { color: var(--lilac); }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    @media (max-width: 920px) {
+      :root { --page: min(100% - 28px, 720px); }
+      .checkout-nav { grid-template-columns: 1fr auto; }
+      .secure-label { display: none; }
+      .checkout-intro { grid-template-columns: 1fr; gap: 26px; }
+      .checkout-grid { grid-template-columns: 1fr; }
+      .checkout-proof-head { align-items: flex-start; flex-direction: column; }
+      .checkout-proof-head p { max-width: 620px; text-align: left; }
+      .summary-wrap { display: none; }
+      .mobile-summary { display: block; margin-bottom: 14px; border: 1px solid var(--hairline); border-radius: 17px; background: rgba(15,12,20,.9); }
+      .mobile-summary summary { display: flex; min-height: 58px; align-items: center; justify-content: space-between; gap: 20px; padding: 12px 17px; cursor: pointer; list-style: none; }
+      .mobile-summary summary::-webkit-details-marker { display: none; }
+      .mobile-summary strong { font: 600 12px/1.2 "Syne", sans-serif; }
+      .mobile-pricing { display: flex; align-items: flex-end; flex-direction: column; gap: 4px; }
+      .mobile-summary span { color: #fff; font: 700 19px/1 "Syne", sans-serif; white-space: nowrap; }
+      .mobile-summary s { color: #817b89; font: 600 10px/1 "IBM Plex Mono", monospace; }
+      .mobile-summary p { margin: 0; padding: 15px 17px 18px; border-top: 1px solid var(--hairline); color: #aaa4b3; font-size: 13px; line-height: 1.45; }
+    }
+
+    @media (max-width: 620px) {
+      :root { --page: calc(100% - 20px); }
+      .checkout-nav { min-height: 72px; }
+      .brand-copy small { display: none; }
+      .brand-copy strong { font-size: 16px; }
+      .back-link { font-size: 8px; }
+      .checkout-main { padding-top: 42px; }
+      .checkout-intro { margin-bottom: 30px; }
+      h1 { font-size: clamp(43px, 15vw, 63px); }
+      .intro-note p { font-size: 15px; }
+      .checkout-panel { border-radius: 21px; }
+      .form-section { padding: 25px 18px; }
+      .fields-grid { grid-template-columns: 1fr; }
+      .field.full { grid-column: auto; }
+      .customer-type-options { grid-template-columns: 1fr; }
+      .section-head { gap: 14px; }
+      .required-note { max-width: 88px; font-size: 7px; }
+      .buyer-section .section-head { align-items: flex-start; flex-direction: column; }
+      .buyer-section .required-note { max-width: none; text-align: left; }
+      .method-tab { padding-inline: 8px; font-size: 9px; }
+      .coupon-heading { align-items: flex-start; flex-direction: column; }
+      .coupon-eligibility { max-width: none; text-align: left; }
+      .coupon-controls { grid-template-columns: 1fr; }
+      .coupon-controls button { width: 100%; }
+      .card-fields-grid { gap: 12px; }
+      .trust-stack { grid-template-columns: 1fr; }
+      .checkout-proof { padding: 22px 16px; border-radius: 21px; }
+      .checkout-proof-grid, .checkout-review-row { grid-template-columns: 1fr; }
+      .checkout-proof-source { align-items: flex-start; flex-direction: column; }
+      .state-card { padding-inline: 22px; border-radius: 21px; }
+      .footer { align-items: flex-start; flex-direction: column; }
+      .footer-meta { justify-content: flex-start; text-align: left; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+    }
+  </style>
+  <link rel="stylesheet" href="/tirana/assets/event-chrome.css">
+  <script defer src="/tirana/assets/event-chrome.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#checkout">Vai al checkout</a>
+
+  <header class="checkout-nav" aria-label="Navigazione checkout">
+    <a class="brand" href="/" aria-label="Scalers, torna alla landing dell'evento">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-copy"><strong>scalers.</strong><small>Offline mode / Tirana</small></span>
+    </a>
+    <span class="secure-label">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="5" y="10" width="14" height="10" rx="2"></rect><path d="M8 10V7a4 4 0 0 1 8 0v3"></path></svg>
+      Checkout sicuro
+    </span>
+    <a class="back-link" href="/offerta"><span aria-hidden="true">←</span> Torna ai ticket</a>
+  </header>
+
+  <main class="checkout-main" id="checkout">
+    <section class="checkout-intro" aria-labelledby="page-title">
+      <div>
+        <span class="eyebrow">Ultimo step</span>
+        <h1 id="page-title">Completa il tuo <span class="gradient-word">accesso.</span></h1>
+      </div>
+      <div class="intro-note">
+	        <p><strong>4 e 5 settembre 2026, Piramide di Tirana.</strong><br>Inserisci i tuoi dati e paga con Stripe oppure tramite bonifico bancario.</p>
+      </div>
+    </section>
+
+    <section id="loading-state" class="state-card" aria-live="polite">
+      <div class="state-orbit" aria-hidden="true"><span class="state-dot"></span></div>
+      <h2>Prepariamo il checkout.</h2>
+	      <p>Stiamo verificando ticket, prezzo e metodi di pagamento disponibili.</p>
+    </section>
+
+    <section id="setup-state" class="state-card" hidden aria-live="polite">
+      <div class="state-orbit" aria-hidden="true"><span class="state-dot"></span></div>
+      <h2 id="setup-title">Checkout in fase di attivazione.</h2>
+      <p id="setup-message">Il checkout non è ancora disponibile. Torna ai ticket oppure contattaci per completare la prenotazione.</p>
+      <div class="state-actions">
+        <a class="state-link primary" href="/offerta">Torna ai ticket</a>
+        <a class="state-link" href="mailto:evento@tiranaoffline.com?subject=Checkout%20evento%20Tirana">Contattaci</a>
+      </div>
+    </section>
+
+    <div id="checkout-content" hidden>
+      <details class="mobile-summary">
+        <summary>
+          <strong id="mobile-plan-name">Ticket selezionato</strong>
+          <span class="mobile-pricing"><s id="mobile-original-price" hidden></s><span id="mobile-plan-price"></span></span>
+        </summary>
+        <p id="mobile-plan-description"></p>
+      </details>
+
+      <div class="checkout-grid">
+        <section class="checkout-panel" aria-label="Dati e pagamento">
+          <form id="checkout-form">
+            <div class="form-section buyer-section">
+              <div class="section-head">
+                <div><span class="section-kicker">01 / I tuoi dati</span><h2>Dati dell’acquirente</h2></div>
+                <span class="required-note" id="required-note">Solo il referral è facoltativo</span>
+              </div>
+
+              <div class="fields-grid">
+                <div class="field">
+                  <label for="first-name">Nome</label>
+                  <input id="first-name" name="firstName" type="text" autocomplete="given-name" placeholder="Il tuo nome" maxlength="80" required>
+                </div>
+                <div class="field">
+                  <label for="last-name">Cognome</label>
+                  <input id="last-name" name="lastName" type="text" autocomplete="family-name" placeholder="Il tuo cognome" maxlength="80" required>
+                </div>
+                <div class="field full">
+                  <label for="email">Email</label>
+                  <input id="email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="nome@azienda.it" maxlength="180" required>
+                </div>
+                <div class="field">
+                  <label for="phone">Numero di telefono</label>
+                  <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+39 333 123 4567" minlength="6" maxlength="40" required>
+                </div>
+                <div class="field">
+                  <label for="referral">Referral, facoltativo</label>
+                  <input id="referral" name="referral" type="text" autocomplete="off" placeholder="Codice o nome di chi ti ha invitato" maxlength="160">
+                </div>
+                <fieldset class="field full customer-type-field" data-billing-field>
+                  <legend>Tipo di acquirente</legend>
+                  <div class="customer-type-options">
+                    <label class="customer-type-option">
+                      <input type="radio" name="customerType" value="private" checked required>
+                      <span><strong>Privato</strong><small>Acquisto personale con codice fiscale.</small></span>
+                    </label>
+                    <label class="customer-type-option">
+                      <input type="radio" name="customerType" value="company" required>
+                      <span><strong>Azienda</strong><small>Acquisto intestato a società o attività.</small></span>
+                    </label>
+                  </div>
+                </fieldset>
+                <div class="field full" id="company-name-field" data-billing-field data-company-field hidden>
+                  <label for="company-name">Ragione sociale</label>
+                  <input id="company-name" name="companyName" type="text" autocomplete="organization" placeholder="Nome dell’azienda o dell’attività" maxlength="160" disabled>
+                </div>
+                <div class="field full" data-billing-field>
+                  <label for="billing-address">Indirizzo</label>
+                  <input id="billing-address" name="address" type="text" autocomplete="street-address" placeholder="Via, numero civico" maxlength="180" required>
+                </div>
+                <div class="field" data-billing-field>
+                  <label for="city">Città</label>
+                  <input id="city" name="city" type="text" autocomplete="address-level2" placeholder="Milano" maxlength="100" required>
+                </div>
+                <div class="field" data-billing-field>
+                  <label for="postal-code">CAP o codice postale</label>
+                  <input id="postal-code" name="postalCode" type="text" inputmode="text" autocomplete="postal-code" placeholder="20121" maxlength="20" required>
+                </div>
+                <div class="field" data-billing-field>
+                  <label for="country-code">Paese</label>
+                  <select id="country-code" name="countryCode" autocomplete="country" required>
+                    <option value="IT" selected>Italia</option>
+                    <option value="AL">Albania</option>
+                    <option value="AT">Austria</option>
+                    <option value="BE">Belgio</option>
+                    <option value="CH">Svizzera</option>
+                    <option value="DE">Germania</option>
+                    <option value="ES">Spagna</option>
+                    <option value="FR">Francia</option>
+                    <option value="GB">Regno Unito</option>
+                    <option value="NL">Paesi Bassi</option>
+                    <option value="PT">Portogallo</option>
+                    <option value="US">Stati Uniti</option>
+                  </select>
+                </div>
+                <div class="field" data-billing-field>
+                  <label for="tax-id" id="tax-id-label">Codice fiscale</label>
+                  <input id="tax-id" name="taxId" type="text" autocomplete="off" autocapitalize="characters" placeholder="RSSMRA80A01F205X" maxlength="32" required>
+                </div>
+              </div>
+
+              <p class="privacy-note" id="participation-note">I dati sono usati per gestire l’acquisto, il ticket e la fatturazione.</p>
+              <p class="privacy-note">Consulta la <a href="/privacy">Privacy Policy</a>.</p>
+              <div class="purchase-terms">
+                <div class="purchase-terms-check">
+                  <input id="purchase-terms-accepted" name="purchaseTermsAccepted" type="checkbox" required aria-describedby="purchase-terms-summary">
+                  <span class="purchase-terms-box" aria-hidden="true">
+                    <svg viewBox="0 0 16 16" fill="none"><path d="m3.25 8.1 3 3 6.5-6.5" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                  </span>
+                </div>
+                <label for="purchase-terms-accepted">
+                  <strong>Ho letto e accetto</strong> la <a href="/refund-policy" target="_blank" rel="noopener noreferrer">Policy di rimborso, cancellazione e condizioni di acquisto</a>.
+                  <small id="purchase-terms-summary">Rimborso volontario entro 14 giorni dall’acquisto e comunque non oltre il 14 agosto 2026. Restano salvi i diritti inderogabili previsti dalla legge.</small>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-section">
+                <div class="section-head">
+	                  <div><span class="section-kicker" id="payment-kicker">02 / Pagamento</span><h2 id="payment-title">Scegli come pagare.</h2></div>
+              </div>
+
+	              <div class="method-panel" id="payment-panel" role="region" aria-label="Metodi di pagamento">
+	                <div class="payment-note">
+	                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="4" y="7" width="16" height="11" rx="2"></rect><path d="M4 11h16M8 15h3"></path></svg>
+	                  <span id="payment-note-copy"><strong>Pagamento sicuro con Stripe</strong>. Puoi pagare subito con carta oppure scegliere il bonifico bancario.</span>
+	                </div>
+                <div class="coupon-panel" id="coupon-panel">
+                  <div class="coupon-heading">
+                    <div><span>Coupon</span><strong>Hai un codice?</strong></div>
+                    <span class="coupon-eligibility">Solo ticket individuali</span>
+                  </div>
+                  <div class="coupon-controls">
+                    <input id="coupon-code" type="text" inputmode="text" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="32" placeholder="Inserisci il codice" aria-describedby="coupon-status">
+                    <button id="coupon-apply" type="button">Applica</button>
+                  </div>
+                  <p class="coupon-status" id="coupon-status" role="status" aria-live="polite"></p>
+                </div>
+	                <div class="stripe-preview" id="stripe-preview">
+	                  <div class="stripe-preview-head"><strong>Carta, wallet e pagamento immediato</strong><span class="stripe-badge">Stripe</span></div>
+	                  <p>Completa il pagamento nella pagina sicura ospitata da Stripe. Scalers non riceve né conserva numero, scadenza o CVV della carta.</p>
+	                  <ul>
+	                    <li>Conferma del biglietto immediata dopo il pagamento</li>
+	                    <li>Ricevuta e riepilogo inviati via email</li>
+	                  </ul>
+	                </div>
+	                <button class="pay-button" id="stripe-pay-button" type="button">
+	                  <span id="stripe-pay-label">Paga con Stripe</span>
+	                  <span aria-hidden="true">→</span>
+	                </button>
+	                <div class="payment-divider" id="payment-divider"><span>oppure</span></div>
+	                <div class="bank-preview" id="bank-preview">
+	                  <strong id="payment-preview-title">Bonifico bancario</strong>
+                  <p id="payment-preview-copy">Dopo la registrazione del biglietto troverai beneficiario, IBAN, SWIFT, importo e causale univoca.</p>
+                  <ul id="payment-preview-list">
+                    <li>Nessuna commissione applicata da Scalers</li>
+                    <li>Assistenza WhatsApp disponibile</li>
+                  </ul>
+                </div>
+	                <button class="pay-button secondary" id="bank-pay-button" type="button">
+                  <span id="bank-pay-label">Continua con bonifico</span>
+                  <span aria-hidden="true">→</span>
+                </button>
+	                <p class="payment-privacy-notice" id="payment-privacy-notice">Con Stripe il ticket viene confermato dopo il pagamento. Con bonifico resta in attesa fino all’accredito.</p>
+              </div>
+
+              <div class="payment-status" id="payment-status" role="alert" aria-live="assertive"></div>
+            </div>
+          </form>
+        </section>
+
+        <aside class="summary-wrap" aria-label="Riepilogo biglietto">
+          <div class="summary-card">
+            <div class="summary-top">
+              <span class="summary-label">Il tuo ticket</span>
+              <h2 id="summary-plan-name">Caricamento ticket</h2>
+              <p class="summary-description" id="summary-plan-description"></p>
+            </div>
+            <div class="event-facts">
+              <div class="event-fact">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M16 3v4M8 3v4M3 10h18"></path></svg>
+                <div><span>Quando</span><strong>4 e 5 settembre 2026</strong></div>
+              </div>
+              <div class="event-fact">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>
+                <div><span>Dove</span><strong>Piramide di Tirana, Albania</strong></div>
+              </div>
+              <div class="event-fact">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="9" cy="8" r="3"></circle><path d="M3 20c0-4 2-7 6-7s6 3 6 7M16 5a3 3 0 0 1 0 6M17 14c2.6.6 4 2.8 4 6"></path></svg>
+                <div><span>Partecipanti</span><strong id="summary-participants">Verifica in corso</strong></div>
+              </div>
+              <div class="event-fact">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M5 19V8l7-4 7 4v11M9 19v-6h6v6"></path></svg>
+                <div><span>Live Building</span><strong id="summary-builder">Verifica in corso</strong></div>
+              </div>
+            </div>
+            <div class="total-row">
+              <div class="total-copy"><span>Totale</span><small>Pagamento unico</small></div>
+              <div class="total-pricing">
+                <s id="summary-original-price" hidden></s>
+                <span class="total-coupon" id="summary-coupon" hidden></span>
+                <strong class="total-price" id="summary-plan-price"></strong>
+              </div>
+            </div>
+          </div>
+          <div class="trust-stack" aria-label="Sicurezza del pagamento">
+	            <div class="trust-item"><strong>✓</strong>Pagamento protetto da Stripe</div>
+	            <div class="trust-item"><strong>✓</strong>Bonifico sempre disponibile</div>
+          </div>
+        </aside>
+      </div>
+
+      <section class="checkout-proof" aria-labelledby="checkout-proof-title">
+        <div class="checkout-proof-head">
+          <div><small>Prima di completare / casi reali</small><h2 id="checkout-proof-title">Guarda cosa hanno costruito.</h2></div>
+          <p>Testimonianze dai percorsi Scalers+. Risultati individuali, non una garanzia di risultato.</p>
+        </div>
+        <div class="checkout-proof-grid">
+          <article class="checkout-proof-card">
+            <div class="checkout-proof-frame">
+              <a class="video-facade" href="https://www.loom.com/share/e351d0857ccb4270ad43d6e447505064" target="_blank" rel="noopener noreferrer" aria-label="Guarda la testimonianza video di André in una nuova scheda">
+                <img src="/tirana/assets/testimonial-andre.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async">
+                <span class="video-play" aria-hidden="true"></span><span class="video-facade-label">Guarda la testimonianza ↗</span>
+              </a>
+            </div>
+            <div class="checkout-proof-copy"><small>André / Agenzia AI native</small><strong>70K incassati</strong><p>Fatturati e incassati in due mesi, con il primo cliente chiuso dopo due sessioni.</p></div>
+          </article>
+          <article class="checkout-proof-card">
+            <div class="checkout-proof-frame">
+              <a class="video-facade" href="https://www.loom.com/share/ea08c466f64749a1adae62d5522f2f75" target="_blank" rel="noopener noreferrer" aria-label="Guarda la testimonianza video di Claudio Pasinetti in una nuova scheda">
+                <img src="/tirana/assets/testimonial-claudio.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async">
+                <span class="video-play" aria-hidden="true"></span><span class="video-facade-label">Guarda la testimonianza ↗</span>
+              </a>
+            </div>
+            <div class="checkout-proof-copy"><small>Claudio Pasinetti / AI Solo Agency</small><strong>2K → 10K/mese</strong><p>Aprile da record e, in quattro mesi, più fatturato dell’intero anno precedente.</p></div>
+          </article>
+        </div>
+        <div class="checkout-review-row" aria-label="Altre recensioni verificate Scalers+">
+          <article class="checkout-review">
+            <div class="checkout-review-author">
+              <img class="checkout-review-avatar nicola" src="/tirana/assets/testimonial-nicola-caporale.jpg" alt="Nicola Caporale" width="110" height="240" loading="lazy" decoding="async">
+              <div><strong>Nicola Caporale</strong><span class="checkout-review-role">Membro VIP Scalers+</span></div>
+            </div>
+            <blockquote>“Due call, due contratti confermati.”</blockquote>
+          </article>
+          <article class="checkout-review">
+            <div class="checkout-review-author">
+              <img class="checkout-review-avatar" src="/tirana/assets/testimonial-michele-bet.jpg" alt="Michele Bet" width="240" height="240" loading="lazy" decoding="async">
+              <div><strong>Michele Bet</strong><span class="checkout-review-role">Agenzia / percorso di accelerazione</span></div>
+            </div>
+            <blockquote>“Si è già ripagato ampiamente l’investimento.”</blockquote>
+          </article>
+        </div>
+        <div class="checkout-proof-source">
+          <span>Risultati dichiarati dai singoli partecipanti.</span>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-company">
+      <strong>Scalers SHPK</strong>
+      <span>Rruga e Dibres, Tower Bridge 1, Nr. 22</span>
+      <span>Tirana, Albania</span>
+    </div>
+    <div class="footer-meta">
+	      <span>© <span id="year"></span> Scalers+. Checkout sicuro. Pagamento con Stripe o bonifico bancario.</span>
+      <a href="/privacy">Privacy Policy</a>
+      <a href="/refund-policy">Policy rimborsi</a>
+      <a href="#" data-consent-settings>Preferenze cookie</a>
+    </div>
+  </footer>
+
+  <script>
+    (() => {
+      'use strict';
+
+	      const $ = (selector) => document.querySelector(selector);
+	      const planId = new URLSearchParams(window.location.search).get('plan')?.trim() || '';
+	      const purchaseTermsVersion = '2026-07-22-v1';
+	      const initialCouponCode = new URLSearchParams(window.location.search).get('coupon')?.normalize('NFKC').trim().toUpperCase() || '';
+	      const stripeWasCancelled = new URLSearchParams(window.location.search).get('stripe') === 'cancelled';
+      const activePlanIds = new Set([
+        'solo-mid',
+        'solo-full',
+        'agency-mid',
+        'agency-full',
+        'company-mid',
+        'company-full'
+      ]);
+      const state = {
+        plan: null,
+        basePlan: null,
+        couponCode: '',
+        busy: false,
+        couponBusy: false
+      };
+      const elements = {
+        loading: $('#loading-state'),
+        setup: $('#setup-state'),
+        setupTitle: $('#setup-title'),
+        setupMessage: $('#setup-message'),
+        content: $('#checkout-content'),
+	        form: $('#checkout-form'),
+	        status: $('#payment-status'),
+	        stripeButton: $('#stripe-pay-button'),
+	        stripeButtonLabel: $('#stripe-pay-label'),
+	        stripePreview: $('#stripe-preview'),
+	        paymentDivider: $('#payment-divider'),
+	        bankPreview: $('#bank-preview'),
+	        bankButton: $('#bank-pay-button'),
+        bankButtonLabel: $('#bank-pay-label'),
+        couponInput: $('#coupon-code'),
+        couponButton: $('#coupon-apply'),
+        couponStatus: $('#coupon-status')
+      };
+
+      function randomUuid() {
+        return window.crypto?.randomUUID?.() || String(Date.now()) + '-' + Math.random().toString(16).slice(2) + '-' + Math.random().toString(16).slice(2);
+      }
+
+	      function idempotencyKey(method) {
+	        const couponState = state.plan?.coupon?.code || 'standard';
+	        const storageKey = 'tirana-' + method + '-order:' + planId + ':' + String(state.plan?.pricingStage ?? 'unknown') + ':' + couponState;
+	        try {
+	          const existing = window.sessionStorage.getItem(storageKey);
+	          if (existing) return existing;
+	          const created = 'aaw26.' + method + '.' + randomUuid();
+	          window.sessionStorage.setItem(storageKey, created);
+	          return created;
+	        } catch {
+	          return 'aaw26.' + method + '.' + randomUuid();
+	        }
+      }
+
+      function showSetup(title, message) {
+        elements.loading.hidden = true;
+        elements.content.hidden = true;
+        elements.setupTitle.textContent = title;
+        elements.setupMessage.textContent = message;
+        elements.setup.hidden = false;
+      }
+
+      function showCheckout() {
+        elements.loading.hidden = true;
+        elements.setup.hidden = true;
+        elements.content.hidden = false;
+      }
+
+      function setStatus(message, success = false) {
+        elements.status.textContent = message || '';
+        elements.status.classList.toggle('is-success', Boolean(success));
+      }
+
+      function setCouponStatus(message, type = '') {
+        elements.couponStatus.textContent = message || '';
+        elements.couponStatus.classList.toggle('is-success', type === 'success');
+        elements.couponStatus.classList.toggle('is-error', type === 'error');
+      }
+
+      function syncCouponControls() {
+        const applied = Boolean(state.couponCode);
+        const disabled = state.busy || state.couponBusy;
+        elements.couponInput.disabled = disabled;
+        elements.couponInput.readOnly = applied;
+        elements.couponButton.disabled = disabled;
+        elements.couponButton.textContent = state.couponBusy
+          ? 'Verifica'
+          : applied ? 'Rimuovi' : 'Applica';
+      }
+
+      function syncCustomerTypeFields() {
+        const isFree = state.plan?.price === '0.00';
+        const customerType = elements.form.querySelector('input[name="customerType"]:checked')?.value || 'private';
+        const isCompany = !isFree && customerType === 'company';
+        const companyField = $('#company-name-field');
+        const companyInput = $('#company-name');
+        companyField.hidden = !isCompany;
+        companyInput.disabled = !isCompany;
+        companyInput.required = isCompany;
+        $('#tax-id-label').textContent = isCompany ? 'Partita IVA' : 'Codice fiscale';
+        $('#tax-id').placeholder = isCompany ? 'IT12345678901' : 'RSSMRA80A01F205X';
+      }
+
+      function renderPlan(plan) {
+        const isFree = plan.price === '0.00';
+        const participantLabel = plan.participantCount === 1
+          ? '1 partecipante'
+          : String(plan.participantCount || 0) + ' partecipanti';
+        const builderLabel = plan.builderSlots > 0
+          ? (plan.builderSlots === 1 ? '1 posto Live Building' : String(plan.builderSlots) + ' posti Live Building')
+          : 'Sessioni del mattino';
+
+        $('#summary-plan-name').textContent = plan.name;
+        $('#summary-plan-description').textContent = plan.description;
+        $('#summary-plan-price').textContent = plan.priceFormatted;
+        $('#summary-participants').textContent = participantLabel;
+        $('#summary-builder').textContent = builderLabel;
+        $('#mobile-plan-name').textContent = plan.name;
+        $('#mobile-plan-description').textContent = plan.description;
+        $('#mobile-plan-price').textContent = plan.priceFormatted;
+        const originalPrice = $('#summary-original-price');
+        const couponLabel = $('#summary-coupon');
+        const mobileOriginalPrice = $('#mobile-original-price');
+        if (plan.coupon) {
+          originalPrice.textContent = plan.originalPriceFormatted;
+          originalPrice.hidden = false;
+          couponLabel.textContent = 'Coupon ' + plan.coupon.code + ' · -' + plan.coupon.discountPercent + '%';
+          couponLabel.hidden = false;
+          mobileOriginalPrice.textContent = plan.originalPriceFormatted;
+          mobileOriginalPrice.hidden = false;
+        } else {
+          originalPrice.hidden = true;
+          couponLabel.hidden = true;
+          mobileOriginalPrice.hidden = true;
+        }
+        document.querySelectorAll('[data-billing-field]').forEach((field) => {
+          field.hidden = isFree;
+          field.querySelectorAll('input, select').forEach((control) => {
+            control.disabled = isFree;
+            control.required = !isFree;
+          });
+        });
+        $('#required-note').textContent = isFree
+          ? 'Obbligatori nome, cognome, email e telefono'
+          : 'Il referral è facoltativo';
+        syncCustomerTypeFields();
+        $('#participation-note').textContent = isFree
+          ? 'I dati sono usati per registrare e inviarti il pass gratuito per ' + participantLabel + '.'
+          : 'I dati sono usati per gestire il biglietto e la fatturazione per ' + participantLabel + '.';
+        $('#payment-kicker').textContent = isFree ? '02 / Conferma' : '02 / Pagamento';
+	        $('#payment-title').textContent = isFree ? 'Conferma il pass gratuito.' : 'Scegli come pagare.';
+	        $('#payment-note-copy').innerHTML = isFree
+	          ? '<strong>Accesso gratuito</strong>. Il coupon copre il 100% del Workshop Pass e il biglietto viene confermato subito.'
+	          : '<strong>Pagamento sicuro con Stripe</strong>. Puoi pagare subito con carta oppure scegliere il bonifico bancario.';
+	        elements.stripePreview.hidden = isFree;
+	        elements.stripeButton.hidden = isFree;
+	        elements.paymentDivider.hidden = isFree;
+	        $('#payment-preview-title').textContent = isFree ? 'Workshop Pass gratuito' : 'Bonifico bancario';
+        $('#payment-preview-copy').textContent = isFree
+          ? 'Completa i dati essenziali e riceverai subito il biglietto personalizzato via email.'
+          : 'Dopo la registrazione del biglietto troverai beneficiario, IBAN, SWIFT, importo e causale univoca.';
+        $('#payment-preview-list').hidden = isFree;
+	        $('#payment-privacy-notice').textContent = isFree
+	          ? 'Nessun pagamento richiesto. Il pass viene confermato al termine della registrazione.'
+	          : 'Con Stripe il ticket viene confermato dopo il pagamento. Con bonifico resta in attesa fino all’accredito.';
+	        elements.stripeButtonLabel.textContent = 'Paga con Stripe · ' + plan.priceFormatted;
+	        elements.bankButtonLabel.textContent = isFree
+          ? 'Ottieni il pass gratuito'
+          : 'Continua con bonifico · ' + plan.priceFormatted;
+        document.title = 'Checkout ' + plan.name + ' | Scalers AI Bootcamp Offline Mode';
+      }
+
+      async function fetchPlan(couponCode = '') {
+        const query = new URLSearchParams({ plan: planId });
+        if (couponCode) query.set('coupon', couponCode);
+        const response = await fetch('/api/catalog?' + query.toString(), {
+          credentials: 'same-origin',
+          cache: 'no-store',
+          headers: { 'Accept': 'application/json' }
+        });
+        const catalog = await response.json().catch(() => null);
+	        if (!response.ok || !catalog?.plan || !catalog.paymentMethods?.includes('stripe') || !catalog.paymentMethods?.includes('bank-transfer')) {
+          throw new Error(catalog?.error?.message || 'Il ticket selezionato non è disponibile.');
+        }
+        return catalog.plan;
+      }
+
+      async function applyCoupon() {
+        if (state.busy || state.couponBusy || !state.basePlan) return;
+        if (state.couponCode) {
+          state.couponCode = '';
+          state.plan = state.basePlan;
+          elements.couponInput.value = '';
+          renderPlan(state.plan);
+          setCouponStatus('Coupon rimosso. Il prezzo pieno è stato ripristinato.');
+          syncCouponControls();
+          return;
+        }
+
+        const requestedCode = String(elements.couponInput.value || '')
+          .normalize('NFKC')
+          .trim()
+          .toUpperCase();
+        if (!requestedCode) {
+          setCouponStatus('Inserisci un codice coupon.', 'error');
+          elements.couponInput.focus();
+          return;
+        }
+
+        state.couponBusy = true;
+        setCouponStatus('Verifica del coupon in corso…');
+        syncCouponControls();
+        try {
+          const quotedPlan = await fetchPlan(requestedCode);
+          if (!quotedPlan.coupon?.code) throw new Error('Il coupon non è stato applicato.');
+          state.plan = quotedPlan;
+          state.couponCode = quotedPlan.coupon.code;
+          elements.couponInput.value = state.couponCode;
+          renderPlan(state.plan);
+          setCouponStatus(
+            quotedPlan.price === '0.00'
+              ? 'Coupon ' + state.couponCode + ' applicato. Il Workshop Pass è gratuito.'
+              : 'Coupon ' + state.couponCode + ' applicato. Sconto del ' + quotedPlan.coupon.discountPercent + '%.',
+            'success'
+          );
+        } catch (error) {
+          state.plan = state.basePlan;
+          state.couponCode = '';
+          renderPlan(state.plan);
+          setCouponStatus(error.message || 'Codice coupon non valido. Controllalo e riprova.', 'error');
+        } finally {
+          state.couponBusy = false;
+          syncCouponControls();
+        }
+      }
+
+      function customerData() {
+        const values = Object.fromEntries(new FormData(elements.form).entries());
+        return {
+          firstName: String(values.firstName || '').trim(),
+          lastName: String(values.lastName || '').trim(),
+          email: String(values.email || '').trim(),
+          phone: String(values.phone || '').trim(),
+          referral: String(values.referral || '').trim(),
+          customerType: String(values.customerType || 'private').trim().toLowerCase(),
+          companyName: String(values.companyName || '').trim(),
+          address: String(values.address || '').trim(),
+          city: String(values.city || '').trim(),
+          countryCode: String(values.countryCode || '').trim().toUpperCase(),
+          postalCode: String(values.postalCode || '').trim(),
+          taxId: String(values.taxId || '').trim().toUpperCase()
+        };
+      }
+
+      function validateCustomer() {
+        setStatus('');
+        if (!elements.form.reportValidity()) {
+          setStatus('Controlla i dati indicati prima di continuare.');
+          return false;
+        }
+        return true;
+      }
+
+	      function setBusy(busy, label = '') {
+	        state.busy = busy;
+	        elements.stripeButton.disabled = busy;
+	        elements.bankButton.disabled = busy;
+	        syncCouponControls();
+	        elements.stripeButtonLabel.textContent = busy && label
+	          ? label
+	          : 'Paga con Stripe · ' + (state.plan?.priceFormatted || '');
+	        elements.bankButtonLabel.textContent = busy
+          ? label
+          : state.plan?.price === '0.00'
+            ? 'Ottieni il pass gratuito'
+            : 'Continua con bonifico · ' + (state.plan?.priceFormatted || '');
+	      }
+
+	      function rememberTicketHolder(customer) {
+	        try {
+	          window.sessionStorage.setItem(
+	            'tirana-ticket-holder-name',
+	            (customer.firstName + ' ' + customer.lastName).trim()
+	          );
+	        } catch {
+	          // Il ticket usa il nome abbreviato firmato quando lo storage non è disponibile.
+	        }
+	      }
+
+	      async function submitStripe() {
+	        if (state.busy || !validateCustomer()) return;
+	        if (state.plan?.price === '0.00') return submitBankTransfer();
+	        setBusy(true, 'Apertura Stripe in corso');
+	        try {
+	          const customer = customerData();
+	          const response = await fetch('/api/stripe/create-checkout-session', {
+	            method: 'POST',
+	            credentials: 'same-origin',
+	            headers: {
+	              'Accept': 'application/json',
+	              'Content-Type': 'application/json',
+	              'Idempotency-Key': idempotencyKey('stripe')
+	            },
+	            body: JSON.stringify({
+	              planId,
+	              expectedPricingStage: state.plan.pricingStage,
+	              couponCode: state.couponCode,
+	              customer,
+	              tracking: window.TiranaAnalytics?.getCheckoutTracking?.() || {
+	                consent: { analytics: false, marketing: false }
+	              },
+	              purchaseTerms: {
+	                accepted: $('#purchase-terms-accepted').checked,
+	                version: purchaseTermsVersion
+	              }
+	            })
+	          });
+	          const result = await response.json().catch(() => null);
+	          let checkoutUrl = null;
+	          try { checkoutUrl = new URL(result?.url || ''); } catch { checkoutUrl = null; }
+	          if (!response.ok || !result?.ok || checkoutUrl?.protocol !== 'https:' || checkoutUrl?.hostname !== 'checkout.stripe.com') {
+	            throw new Error(result?.error?.message || 'Non è stato possibile aprire il pagamento con Stripe.');
+	          }
+	          await window.TiranaAnalytics?.trackAddPaymentInfo?.(state.plan, 'stripe');
+	          rememberTicketHolder(customer);
+	          setStatus('Sessione sicura pronta. Apertura di Stripe…', true);
+	          window.location.assign(checkoutUrl.toString());
+	        } catch (error) {
+	          console.error('[checkout] stripe', error);
+	          setBusy(false);
+	          setStatus(error.message || 'Non è stato possibile aprire Stripe. Riprova.');
+	        }
+	      }
+
+      async function submitBankTransfer() {
+        if (state.busy || !validateCustomer()) return;
+        const isFree = state.plan?.price === '0.00';
+        setBusy(true, 'Registrazione biglietto in corso');
+        try {
+          const customer = customerData();
+          const response = await fetch('/api/bank-orders', {
+            method: 'POST',
+            credentials: 'same-origin',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+	              'Idempotency-Key': idempotencyKey('bank')
+            },
+            body: JSON.stringify({
+              planId,
+              expectedPricingStage: state.plan.pricingStage,
+              couponCode: state.couponCode,
+              customer
+            })
+          });
+          const result = await response.json().catch(() => null);
+          if (!response.ok || !result?.ok || !result?.next) {
+            throw new Error(result?.error?.message || 'Non è stato possibile registrare il biglietto.');
+          }
+          if (isFree) {
+            await window.TiranaAnalytics?.trackCompleteRegistration?.(state.plan);
+          } else {
+            await window.TiranaAnalytics?.trackAddPaymentInfo?.(state.plan, 'bank-transfer');
+          }
+          setStatus(
+            isFree
+              ? 'Pass gratuito confermato. Apertura del biglietto…'
+              : 'Biglietto registrato. Apertura delle coordinate bancarie…',
+            true
+          );
+	          rememberTicketHolder(customer);
+          window.location.assign(result.next);
+        } catch (error) {
+          console.error('[checkout] bank transfer', error);
+          setBusy(false);
+          setStatus(error.message || 'Non è stato possibile preparare il bonifico. Riprova.');
+        }
+      }
+
+      async function bootstrap() {
+	        $('#year').textContent = new Date().getFullYear();
+	        elements.stripeButton.addEventListener('click', submitStripe);
+	        elements.bankButton.addEventListener('click', submitBankTransfer);
+        elements.form.querySelectorAll('input[name="customerType"]').forEach((input) => {
+          input.addEventListener('change', syncCustomerTypeFields);
+        });
+        elements.couponButton.addEventListener('click', applyCoupon);
+        elements.couponInput.addEventListener('keydown', (event) => {
+          if (event.key !== 'Enter') return;
+          event.preventDefault();
+          applyCoupon();
+        });
+
+        if (!activePlanIds.has(planId)) {
+          showSetup('Seleziona prima il tuo ticket.', 'Apri la pagina dei ticket, scegli il piano più adatto e poi torna al checkout.');
+          return;
+        }
+
+        try {
+	          state.basePlan = await fetchPlan();
+	          state.plan = state.basePlan;
+	          if (initialCouponCode) {
+	            const quotedPlan = await fetchPlan(initialCouponCode);
+	            if (quotedPlan.coupon?.code) {
+	              state.plan = quotedPlan;
+	              state.couponCode = quotedPlan.coupon.code;
+	              elements.couponInput.value = state.couponCode;
+	              setCouponStatus('Coupon ' + state.couponCode + ' applicato.', 'success');
+	            }
+	          }
+	          renderPlan(state.plan);
+	          const initiateCheckoutTracking = window.TiranaAnalytics?.trackBeginCheckout?.(state.plan);
+	          showCheckout();
+	          await Promise.resolve(initiateCheckoutTracking).catch((trackingError) => {
+	            console.error('[checkout] initiate checkout tracking', trackingError);
+	          });
+	          if (stripeWasCancelled) setStatus('Pagamento Stripe annullato. Puoi riprovare o scegliere il bonifico.');
+        } catch (error) {
+          console.error('[checkout] bootstrap', error);
+          showSetup('Checkout non disponibile.', error.message || 'Non è stato possibile preparare il bonifico. Riprova tra poco.');
+        }
+      }
+
+      bootstrap();
+    })();
+  </script>
+</body>
+</html>

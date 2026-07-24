@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Policy di rimborso e cancellazione | Scalers AI Bootcamp Tirana</title>
+  <meta name="description" content="Policy di rimborso, cancellazione e condizioni di acquisto dei biglietti per Scalers AI Bootcamp Offline Mode, Tirana, 4 e 5 settembre 2026.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://www.tiranaoffline.com/refund-policy">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&amp;family=Instrument+Sans:wdth,wght@75..100,400..700&amp;family=Syne:wght@500;600;700;800&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: dark;
+      --ink: #050507;
+      --panel: #100d17;
+      --panel-soft: #171126;
+      --text: #f8f6ff;
+      --muted: #aaa4b7;
+      --lilac: #c4b5fd;
+      --violet: #9b6cff;
+      --coral: #ff6b6b;
+      --yellow: #ffd93d;
+      --line: rgba(216, 201, 255, .16);
+      --page: min(1180px, calc(100% - 40px));
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 78% 4%, rgba(155, 108, 255, .16), transparent 34%),
+        radial-gradient(circle at 8% 50%, rgba(255, 107, 107, .08), transparent 30%),
+        var(--ink);
+      color: var(--text);
+      font-family: "Instrument Sans", Arial, sans-serif;
+    }
+
+    a { color: inherit; }
+    a:focus-visible { outline: 3px solid var(--yellow); outline-offset: 4px; }
+    .skip-link { position: fixed; z-index: 50; top: 10px; left: 10px; padding: 10px 14px; background: #fff; color: #000; transform: translateY(-150%); }
+    .skip-link:focus { transform: translateY(0); }
+
+    .topbar {
+      display: flex;
+      min-height: 84px;
+      padding: 16px max(20px, calc((100% - 1180px) / 2));
+      border-bottom: 1px solid var(--line);
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      background: rgba(5, 5, 7, .82);
+      backdrop-filter: blur(18px);
+    }
+
+    .brand { display: inline-flex; align-items: center; gap: 11px; text-decoration: none; }
+    .brand-mark { width: 13px; height: 13px; border-radius: 50%; background: var(--lilac); box-shadow: 17px 0 0 var(--coral), 34px 0 0 var(--yellow); margin-right: 34px; }
+    .brand-copy { display: grid; gap: 2px; }
+    .brand-copy strong { font: 700 17px/1 "Syne", sans-serif; letter-spacing: -.04em; }
+    .brand-copy small, .topbar-back { color: var(--muted); font: 600 9px/1.3 "IBM Plex Mono", monospace; letter-spacing: .08em; text-transform: uppercase; }
+    .topbar-back:hover { color: var(--lilac); }
+
+    .hero { width: var(--page); margin: 0 auto; padding: 84px 0 64px; }
+    .eyebrow, .section-label { color: var(--lilac); font: 600 10px/1 "IBM Plex Mono", monospace; letter-spacing: .14em; text-transform: uppercase; }
+    h1 { max-width: 920px; margin: 18px 0 26px; font: 750 clamp(50px, 8.5vw, 112px)/.84 "Syne", sans-serif; letter-spacing: -.075em; text-transform: uppercase; }
+    h1 span { display: block; color: var(--lilac); }
+    .hero-copy { max-width: 760px; color: #c9c3d1; font-size: clamp(17px, 2vw, 21px); line-height: 1.58; }
+    .version { display: inline-flex; margin-top: 24px; padding: 9px 12px; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); font: 500 9px/1 "IBM Plex Mono", monospace; letter-spacing: .08em; text-transform: uppercase; }
+
+    .summary-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 38px; }
+    .summary-card { min-height: 145px; padding: 22px; border: 1px solid var(--line); border-radius: 17px; background: rgba(16, 13, 23, .76); }
+    .summary-card span { color: var(--violet); font: 600 9px/1 "IBM Plex Mono", monospace; letter-spacing: .12em; text-transform: uppercase; }
+    .summary-card strong { display: block; margin: 14px 0 8px; font: 650 20px/1.05 "Syne", sans-serif; }
+    .summary-card p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.5; }
+
+    .policy-shell { display: grid; width: var(--page); margin: 0 auto 90px; grid-template-columns: 260px minmax(0, 1fr); gap: 42px; align-items: start; }
+    .toc { position: sticky; top: 24px; padding: 22px; border: 1px solid var(--line); border-radius: 17px; background: rgba(16, 13, 23, .88); }
+    .toc > strong { display: block; margin-bottom: 17px; color: #fff; font: 650 13px/1 "Syne", sans-serif; text-transform: uppercase; }
+    .toc nav { display: grid; gap: 11px; }
+    .toc a { color: var(--muted); font: 500 9px/1.45 "IBM Plex Mono", monospace; text-decoration: none; text-transform: uppercase; }
+    .toc a:hover { color: var(--lilac); }
+
+    .policy-content { overflow: hidden; border: 1px solid var(--line); border-radius: 24px; background: rgba(16, 13, 23, .82); }
+    .policy-section { padding: 38px clamp(22px, 5vw, 58px); border-bottom: 1px solid var(--line); scroll-margin-top: 20px; }
+    .policy-section:last-child { border-bottom: 0; }
+    .policy-section h2 { margin: 13px 0 18px; font: 700 clamp(27px, 4vw, 43px)/1 "Syne", sans-serif; letter-spacing: -.045em; }
+    .policy-section h3 { margin: 26px 0 10px; font: 650 18px/1.2 "Syne", sans-serif; }
+    .policy-section p, .policy-section li { color: #c3bdca; font-size: 16px; line-height: 1.72; }
+    .policy-section p { margin: 0 0 15px; }
+    .policy-section ul, .policy-section ol { display: grid; gap: 10px; margin: 16px 0; padding-left: 22px; }
+    .policy-section strong { color: #fff; }
+    .policy-section a { color: var(--lilac); font-weight: 650; text-underline-offset: 3px; }
+
+    .notice { margin: 22px 0 0; padding: 18px 20px; border-left: 3px solid var(--lilac); background: var(--panel-soft); }
+    .notice strong { display: block; margin-bottom: 6px; color: var(--lilac); font: 650 11px/1.3 "IBM Plex Mono", monospace; letter-spacing: .08em; text-transform: uppercase; }
+    .notice p { margin: 0; }
+    .notice.warning { border-left-color: var(--yellow); }
+    .notice.warning strong { color: var(--yellow); }
+
+    .contact-card { display: grid; gap: 8px; margin-top: 22px; padding: 22px; border: 1px solid var(--line); border-radius: 16px; background: #0a080e; }
+    .contact-card span { color: var(--muted); }
+
+    .footer { display: flex; width: var(--page); margin: 0 auto; padding: 30px 0 40px; border-top: 1px solid var(--line); justify-content: space-between; gap: 24px; color: #918a98; font: 500 9px/1.6 "IBM Plex Mono", monospace; text-transform: uppercase; }
+    .footer-links { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 16px; }
+    .footer a:hover { color: var(--lilac); }
+
+    @media (max-width: 880px) {
+      .summary-grid { grid-template-columns: 1fr; }
+      .policy-shell { grid-template-columns: 1fr; }
+      .toc { position: static; }
+    }
+
+    @media (max-width: 620px) {
+      :root { --page: calc(100% - 20px); }
+      .topbar { min-height: 72px; padding-inline: 14px; }
+      .brand-copy small { display: none; }
+      .topbar-back { max-width: 100px; text-align: right; }
+      .hero { padding: 58px 0 44px; }
+      h1 { font-size: clamp(38px, 10.8vw, 46px); }
+      .policy-shell { gap: 18px; margin-bottom: 52px; }
+      .policy-section { padding: 28px 20px; }
+      .footer { flex-direction: column; }
+      .footer-links { justify-content: flex-start; }
+    }
+
+    @media print {
+      body { background: #fff; color: #000; }
+      .topbar, .toc, .footer { display: none; }
+      .hero, .policy-shell { width: 100%; margin: 0; padding: 20px; }
+      .summary-grid { display: none; }
+      .policy-content { border: 0; background: #fff; }
+      .policy-section { break-inside: avoid; border-color: #ccc; }
+      .policy-section p, .policy-section li, .hero-copy { color: #111; }
+      .policy-section strong, .policy-section h2, .policy-section h3 { color: #000; }
+    }
+  </style>
+  <link rel="stylesheet" href="/tirana/assets/event-chrome.css">
+</head>
+<body>
+  <a class="skip-link" href="#contenuto">Vai alla policy</a>
+
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="Scalers offline-mode, torna alla landing">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-copy"><strong>scalers.</strong><small>Evento Tirana / Policy rimborsi</small></span>
+    </a>
+    <a class="topbar-back" href="/checkout?plan=solo-mid">Torna al checkout</a>
+  </header>
+
+  <main id="contenuto">
+    <section class="hero" aria-labelledby="policy-title">
+      <span class="eyebrow">Scalers AI Bootcamp Offline Mode / Tirana</span>
+      <h1 id="policy-title">Policy di <span>rimborso.</span></h1>
+      <p class="hero-copy">Condizioni trasparenti per acquisto, cancellazione, rimborso e trasferimento dei biglietti dell’evento del 4 e 5 settembre 2026 alla Piramide di Tirana.</p>
+      <span class="version">Versione 2026-07-22-v1 / in vigore dal 22 luglio 2026</span>
+
+      <div class="summary-grid" aria-label="Riepilogo della policy">
+        <article class="summary-card"><span>Rimborso volontario</span><strong>14 giorni dall’acquisto</strong><p>La richiesta deve comunque arrivare entro il 14 agosto 2026 alle 23:59, ora di Tirana.</p></article>
+        <article class="summary-card"><span>Evento annullato</span><strong>Rimborso integrale</strong><p>Restituzione dell’importo effettivamente pagato, senza commissioni applicate da Scalers.</p></article>
+        <article class="summary-card"><span>Cambio partecipante</span><strong>Gratuito fino al 28 agosto</strong><p>Puoi trasferire il biglietto a un’altra persona scrivendo all’assistenza.</p></article>
+      </div>
+    </section>
+
+    <div class="policy-shell">
+      <aside class="toc" aria-label="Indice della policy">
+        <strong>Indice</strong>
+        <nav>
+          <a href="#organizzatore">01. Organizzatore</a>
+          <a href="#acquisto">02. Acquisto e consegna</a>
+          <a href="#rimborso-volontario">03. Rimborso volontario</a>
+          <a href="#annullamento">04. Annullamento o rinvio</a>
+          <a href="#trasferimento">05. Trasferimento e assenza</a>
+          <a href="#procedura">06. Come richiederlo</a>
+          <a href="#diritti">07. Diritti inderogabili</a>
+          <a href="#contatti">08. Contatti e versione</a>
+        </nav>
+      </aside>
+
+      <article class="policy-content">
+        <section class="policy-section" id="organizzatore">
+          <span class="section-label">01 / Organizzatore e ambito</span>
+          <h2>Chi vende il biglietto.</h2>
+          <p>Il venditore e organizzatore è <strong>Scalers SHPK</strong>, con sede in Rruga e Dibres, Tower Bridge 1, Nr. 22, Tirana, Albania.</p>
+          <p>Questa policy si applica ai ticket acquistati su <strong>tiranaoffline.com</strong> per Scalers AI Bootcamp Offline Mode, previsto il <strong>4 e 5 settembre 2026</strong> presso la Piramide di Tirana, Albania. Si applica ai pagamenti con carta elaborati da Stripe e ai pagamenti tramite bonifico bancario.</p>
+          <p>I prezzi del checkout sono espressi in <strong>euro, EUR</strong>. Il rimborso non può superare l’importo effettivamente pagato dopo eventuali coupon o promozioni.</p>
+        </section>
+
+        <section class="policy-section" id="acquisto">
+          <span class="section-label">02 / Acquisto e consegna</span>
+          <h2>Cosa ricevi dopo il pagamento.</h2>
+          <p>Con carta, il contratto si conclude quando Stripe conferma il pagamento e Scalers emette il biglietto. Con bonifico, la registrazione resta in attesa fino alla verifica dell’accredito.</p>
+          <ul>
+            <li>Il biglietto e il riepilogo vengono mostrati nella pagina di conferma e inviati all’email indicata nel checkout.</li>
+            <li>L’accesso comprende quanto descritto nel piano selezionato e nel riepilogo mostrato prima del pagamento.</li>
+            <li>Eventuali accessi digitali o alla community collegati al ticket possono essere revocati quando viene riconosciuto un rimborso.</li>
+            <li>Il Free Pass non genera un rimborso monetario perché non prevede un importo pagato.</li>
+          </ul>
+          <div class="notice"><strong>Accettazione prima del pagamento</strong><p>Nel checkout devi selezionare la casella di accettazione. Per i pagamenti con carta, versione e fonte dell’accettazione vengono registrate nei metadati della sessione Stripe insieme alla data di creazione della sessione.</p></div>
+        </section>
+
+        <section class="policy-section" id="rimborso-volontario">
+          <span class="section-label">03 / Rimborso volontario</span>
+          <h2>Una finestra chiara per cambiare idea.</h2>
+          <p>Scalers riconosce volontariamente il rimborso integrale del prezzo del ticket quando sono rispettate entrambe le condizioni seguenti:</p>
+          <ol>
+            <li>la richiesta viene inviata entro <strong>14 giorni di calendario dalla data di acquisto</strong>;</li>
+            <li>la richiesta arriva comunque non oltre le <strong>23:59 del 14 agosto 2026</strong>, fuso orario Europe/Tirane.</li>
+          </ol>
+          <p>Non applichiamo penali o commissioni al cliente. Il rimborso riguarda l’importo effettivamente pagato per il ticket. Non comprende viaggio, alloggio, visto, trasporti, pasti o altri servizi acquistati separatamente.</p>
+          <p>Dopo il termine indicato, un’assenza o un cambio di programma personale non dà diritto al rimborso, fatti salvi i diritti inderogabili previsti dalla normativa applicabile e i casi di annullamento o modifica sostanziale indicati nella sezione successiva.</p>
+        </section>
+
+        <section class="policy-section" id="annullamento">
+          <span class="section-label">04 / Annullamento, rinvio e modifiche</span>
+          <h2>Se l’evento cambia per decisione dell’organizzatore.</h2>
+          <h3>Annullamento definitivo</h3>
+          <p>Se Scalers annulla definitivamente l’evento, ogni acquirente ha diritto al <strong>rimborso integrale dell’importo effettivamente pagato</strong> per il ticket. Scalers avvia il rimborso senza indebito ritardo e, di norma, entro 7 giorni lavorativi dalla comunicazione di annullamento.</p>
+          <h3>Rinvio o modifica sostanziale</h3>
+          <p>Se cambiano le date dell’evento o la città, il ticket resta valido per la nuova edizione. Se non puoi partecipare, puoi chiedere il rimborso integrale entro <strong>14 giorni di calendario dalla comunicazione</strong> delle nuove condizioni.</p>
+          <p>Aggiustamenti ragionevoli di agenda, orari, relatori, sale o contenuti, che non cambiano la natura principale dell’esperienza, non sono considerati una modifica sostanziale. Ogni situazione viene comunque valutata in buona fede.</p>
+          <div class="notice warning"><strong>Spese esterne</strong><p>Scalers non rimborsa costi sostenuti con terzi, come voli, hotel, trasferimenti o assicurazioni. Consigliamo prenotazioni modificabili o assicurate.</p></div>
+        </section>
+
+        <section class="policy-section" id="trasferimento">
+          <span class="section-label">05 / Trasferimento, assenza e utilizzo</span>
+          <h2>Puoi cedere il posto a un’altra persona.</h2>
+          <p>Se non puoi partecipare e non rientri nella finestra di rimborso, puoi chiedere gratuitamente il cambio nominativo fino alle <strong>23:59 del 28 agosto 2026</strong>, ora di Tirana.</p>
+          <ul>
+            <li>La richiesta deve provenire dall’email usata per l’acquisto.</li>
+            <li>Devono essere comunicati nome, cognome, email e telefono del nuovo partecipante.</li>
+            <li>Il trasferimento è definitivo quando Scalers invia la conferma scritta.</li>
+            <li>Il biglietto non può essere rivenduto a un prezzo superiore a quello effettivamente pagato.</li>
+          </ul>
+          <p>La mancata partecipazione, l’arrivo in ritardo, la partecipazione parziale o l’uso incompleto dei contenuti inclusi non generano un rimborso automatico.</p>
+        </section>
+
+        <section class="policy-section" id="procedura">
+          <span class="section-label">06 / Procedura e tempi</span>
+          <h2>Come chiedere un rimborso.</h2>
+          <ol>
+            <li>Scrivi a <a href="mailto:evento@tiranaoffline.com?subject=Rimborso%20Tirana%202026">evento@tiranaoffline.com</a> con oggetto <strong>Rimborso Tirana 2026</strong>.</li>
+            <li>Indica nome e cognome, email usata per l’acquisto e codice biglietto o ordine.</li>
+            <li>Non inviare mai numero completo della carta, CVV, password o credenziali bancarie.</li>
+          </ol>
+          <p>Una richiesta completa viene verificata e, quando accolta, il rimborso viene avviato entro 7 giorni lavorativi. I pagamenti con carta vengono rimborsati tramite Stripe sul metodo di pagamento originario. Per il bonifico possiamo chiedere i dati strettamente necessari a restituire la somma all’intestatario verificato.</p>
+          <p>Dopo l’avvio da parte di Stripe, l’accredito appare normalmente entro <strong>5-10 giorni lavorativi</strong>, in base alla banca o all’emittente della carta. In alcuni casi un rimborso molto rapido può apparire come storno dell’addebito originale.</p>
+          <p>Se il rimborso non è visibile trascorso tale periodo, contattaci. Quando disponibile, possiamo fornire il riferimento bancario del rimborso per agevolare la verifica con la banca.</p>
+        </section>
+
+        <section class="policy-section" id="diritti">
+          <span class="section-label">07 / Recesso e diritti inderogabili</span>
+          <h2>La policy non limita i diritti previsti dalla legge.</h2>
+          <p>Il biglietto riguarda un servizio legato ad attività ricreative fornito in date specifiche. Quando applicabile, la normativa sui contratti a distanza può escludere il diritto automatico di recesso previsto per altri acquisti online. Scalers offre comunque la finestra di rimborso volontario descritta in questa policy.</p>
+          <p>Nessuna disposizione esclude o riduce garanzie, rimedi, diritti di rimborso o diritti di contestazione che non possono essere limitati dalla legge applicabile. In caso di contrasto, prevale la norma inderogabile più favorevole al cliente.</p>
+          <p>Prima di aprire una contestazione bancaria, ti invitiamo a contattarci per tentare una soluzione rapida. Questo invito non limita il diritto di rivolgersi alla banca, al circuito di pagamento o alle autorità competenti.</p>
+        </section>
+
+        <section class="policy-section" id="contatti">
+          <span class="section-label">08 / Contatti, legge e versione</span>
+          <h2>Una versione verificabile nel tempo.</h2>
+          <p>Il rapporto è regolato dalla legge albanese, fatti salvi i diritti inderogabili eventualmente riconosciuti al consumatore dalla normativa applicabile nel suo Paese.</p>
+          <p>La versione accettata al momento dell’acquisto continua ad applicarsi a quel ticket. Eventuali aggiornamenti successivi non possono ridurre retroattivamente i diritti già acquisiti.</p>
+          <div class="contact-card">
+            <strong>Scalers SHPK</strong>
+            <span>Rruga e Dibres, Tower Bridge 1, Nr. 22, Tirana, Albania</span>
+            <span>Assistenza evento: <a href="mailto:evento@tiranaoffline.com">evento@tiranaoffline.com</a></span>
+            <span>Privacy: <a href="mailto:privacy@joinscalers.com">privacy@joinscalers.com</a></span>
+            <span>Policy: versione 2026-07-22-v1, in vigore dal 22 luglio 2026</span>
+          </div>
+        </section>
+      </article>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <span>© 2026 Scalers+. Tutti i diritti riservati.</span>
+    <nav class="footer-links" aria-label="Link legali e navigazione"><a href="/">Landing</a><a href="/offerta">Ticket</a><a href="/checkout?plan=solo-mid">Checkout</a><a href="/privacy">Privacy Policy</a><a href="/refund-policy" aria-current="page">Policy rimborsi</a></nav>
+  </footer>
+</body>
+</html>
