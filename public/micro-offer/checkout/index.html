@@ -1,0 +1,721 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Checkout sicuro · Micro Offer OS</title>
+  <meta name="description" content="Completa l’acquisto di Micro Offer OS: €14,95 una volta sola, accesso a vita immediato e garanzia “Primi 3 Clienti”.">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#013121">
+  <meta name="color-scheme" content="light">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23013121'/%3E%3Ctext x='32' y='43' font-family='Arial Black,Arial,sans-serif' font-size='28' font-weight='900' text-anchor='middle' fill='%23D8C289'%3ES+%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://js.stripe.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #17160F;
+      --body: #403D31;
+      --muted: #6E6B5E;
+      --green: #013121;
+      --cta: #0E5B39;
+      --check: #1C6E42;
+      --gold: #B9974C;
+      --gold-soft: #D8C289;
+      --cream: #FBF9F2;
+      --line: #E9E6DA;
+      --line-warm: #D9D3C2;
+      --font-head: "Bricolage Grotesque", "Arial Black", sans-serif;
+      --font-body: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      min-height: 100vh;
+      padding: 0 0 60px;
+      background: #fff;
+      color: var(--body);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    img, svg { display: block; max-width: 100%; }
+    a { color: var(--cta); }
+    [hidden] { display: none !important; }
+    :focus-visible { outline: none; box-shadow: 0 0 0 3px color-mix(in oklab, var(--gold) 45%, transparent); border-radius: 8px; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+
+    .strip {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      padding: 12px 16px;
+      background: var(--green);
+      color: #EAF3EC;
+      font-size: 13.5px;
+      font-weight: 700;
+      letter-spacing: .02em;
+      text-align: center;
+    }
+    .strip b { color: var(--gold-soft); }
+    .strip .dot { opacity: .4; }
+    .wrap { max-width: 1020px; margin: 0 auto; padding: 26px 16px 0; }
+    .secure { display: flex; align-items: center; justify-content: center; gap: 7px; margin: 0 0 18px; color: var(--muted); font-size: 13px; font-weight: 700; }
+    .secure svg { color: var(--cta); }
+    .grid { display: grid; gap: 20px; align-items: start; }
+
+    /* Colonna del modulo */
+    .form-head { margin: 0 0 12px; }
+    .eyebrow {
+      display: inline-block;
+      margin: 0 0 8px;
+      padding: 6px 12px;
+      border-radius: 6px;
+      background: var(--green);
+      color: #F5EFDC;
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+    h1, h2 { font-family: var(--font-head); font-weight: 800; color: var(--ink); letter-spacing: -.01em; text-wrap: balance; }
+    .form-head h1 { font-size: 24px; line-height: 1.15; }
+    .shell {
+      padding: 26px;
+      border: 1px solid var(--line-warm);
+      border-radius: 16px;
+      background: #fff;
+      box-shadow: 0 10px 26px rgba(8, 25, 17, .06);
+    }
+    .shell h2 { font-size: 21px; margin: 0 0 6px; }
+    .lede { margin: 0 0 16px; font-size: 13px; color: var(--muted); }
+    .test-banner {
+      margin: -4px 0 14px;
+      padding: 8px 12px;
+      border: 1px solid #F59E0B;
+      border-radius: 6px;
+      background: #FEF3C7;
+      color: #78350F;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-align: center;
+      text-transform: uppercase;
+    }
+    .row { display: grid; gap: 12px; margin-bottom: 12px; }
+    .row input {
+      width: 100%;
+      min-width: 0;
+      padding: 12px 14px;
+      border: 1.5px solid var(--line-warm);
+      border-radius: 10px;
+      background: #fff;
+      color: var(--ink);
+      font: inherit;
+      font-size: 16px;
+    }
+    .row input::placeholder { color: #8A877C; }
+    .row input:focus { outline: none; border-color: var(--cta); box-shadow: 0 0 0 3px rgba(14, 91, 57, .16); }
+    .row input[aria-invalid="true"] { border-color: #B6443A; }
+    .pay-label { display: block; margin: 18px 0 8px; color: var(--ink); font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+    .wallets { margin-bottom: 14px; }
+    .or-divider { display: flex; align-items: center; gap: 10px; margin: 6px 0 12px; color: #94A3B8; font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+    .or-divider::before, .or-divider::after { content: ""; flex: 1; height: 1px; background: #E2E6F0; }
+    .card-wrap { min-height: 64px; padding: 14px; border: 1.5px solid var(--line-warm); border-radius: 10px; background: #fff; }
+    .card-note { color: var(--muted); font-size: 14px; line-height: 1.5; }
+
+    .bumps { margin: 18px 0 10px; padding-top: 16px; border-top: 1px dashed #E2E6F0; }
+    .bumps-title { margin: 0 0 8px; color: #92400E; font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+    .bump {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 12px;
+      padding: 15px 16px;
+      border: 2px dashed var(--gold);
+      border-radius: 10px;
+      background: var(--cream);
+      cursor: pointer;
+      transition: border-color .12s, background .12s, box-shadow .12s;
+    }
+    .bump:hover { box-shadow: 0 2px 10px rgba(0, 0, 0, .07); }
+    .bump:has(input:checked) { border-style: solid; border-color: var(--cta); background: #E9F2EA; }
+    .bump input { flex-shrink: 0; width: 22px; height: 22px; margin: 2px 0 0; accent-color: var(--cta); cursor: pointer; }
+    .bump-cover { flex: 0 0 92px; width: 92px; border: 1px solid var(--line-warm); border-radius: 8px; overflow: hidden; background: #FAF8F3; }
+    .bump-body { flex: 1; min-width: 0; }
+    .bump-title { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 12px; color: var(--ink); font-family: var(--font-head); font-size: 15px; font-weight: 800; line-height: 1.35; }
+    .bump-price { flex-shrink: 0; padding: 3px 10px; border-radius: 999px; background: var(--cta); color: #fff; font-size: 14px; font-weight: 800; white-space: nowrap; }
+    .bump-desc { margin-top: 6px; color: var(--body); font-size: 13.5px; line-height: 1.55; }
+
+    .summary { margin: 16px 0 12px; padding: 14px; border: 1px solid var(--line-warm); border-radius: 10px; background: var(--cream); font-size: 14px; }
+    .summary .line { display: flex; justify-content: space-between; gap: 12px; padding: 4px 0; }
+    .summary .total { margin-top: 6px; padding-top: 10px; border-top: 1px solid var(--line-warm); color: var(--ink); font-size: 16px; font-weight: 700; }
+    .submit {
+      width: 100%;
+      margin-top: 14px;
+      padding: 16px 20px;
+      border: 0;
+      border-radius: 10px;
+      background: var(--cta);
+      color: #fff;
+      font-family: var(--font-head);
+      font-size: 17px;
+      font-weight: 800;
+      line-height: 1.3;
+      letter-spacing: .01em;
+      cursor: pointer;
+      transition: background .12s;
+    }
+    .submit:hover { background: var(--green); }
+    .submit:disabled { opacity: .6; cursor: not-allowed; }
+    .submit [data-idle]::after { content: " →"; }
+    .err { margin-top: 10px; color: #B6443A; font-size: 14px; font-weight: 700; text-align: center; }
+    .guarantee { margin-top: 14px; padding: 12px; border: 1px solid #CDE9D8; border-radius: 10px; background: #E9F2EA; color: #1C5B3C; font-size: 13px; font-weight: 600; text-align: center; }
+    .trust { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 6px; margin-top: 12px; color: #64748B; font-size: 11px; }
+    .trust span { display: inline-flex; align-items: center; gap: 4px; padding: 3px 8px; border-radius: 999px; background: #F4F1E8; color: var(--muted); font-weight: 600; }
+    .micro { margin-top: 10px; color: #64748B; font-size: 12px; text-align: center; }
+
+    /* Colonna di riepilogo */
+    .recap { position: relative; overflow: hidden; padding: 26px; border: 2px solid var(--green); border-radius: 16px; background: #fff; box-shadow: 0 14px 34px rgba(8, 25, 17, .08); }
+    .recap-eyebrow { margin: 0 0 8px; color: var(--gold); font-size: 12px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
+    .recap h2 { margin: 0 0 6px; font-size: 22px; line-height: 1.15; }
+    .price { margin: 8px 0 2px; color: var(--cta); font-family: var(--font-head); font-size: 32px; font-weight: 800; }
+    .price small { color: var(--muted); font-family: var(--font-body); font-size: 14px; font-weight: 400; }
+    .recap-list { display: grid; gap: 9px; margin: 14px 0 0; list-style: none; }
+    .recap-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 15px; line-height: 1.46; }
+    .recap-list svg { flex: 0 0 auto; margin-top: 3px; color: var(--cta); }
+    .bonuses { margin-top: 20px; padding-top: 18px; border-top: 1px dashed var(--line-warm); }
+    .bonuses-title { margin: 0 0 12px; color: var(--ink); font-family: var(--font-head); font-size: 17px; font-weight: 800; }
+    .bonus { margin-bottom: 10px; padding: 13px 15px; border: 1px solid var(--line-warm); border-radius: 12px; background: var(--cream); }
+    .bonus-t { color: var(--ink); font-size: 14.5px; font-weight: 700; line-height: 1.4; }
+    .bonus-b { margin: 4px 0 0; color: var(--muted); font-size: 13.5px; line-height: 1.5; }
+    .recap-gtee { margin-top: 18px; padding: 16px 18px; border-radius: 14px; background: var(--green); color: #EAF3EC; }
+    .recap-gtee-t { margin-bottom: 5px; color: #fff; font-family: var(--font-head); font-size: 16.5px; font-weight: 800; }
+    .recap-gtee p { color: #D9E7DD; font-size: 13.5px; line-height: 1.5; }
+    .recap-gtee a { color: #fff; }
+    .badges { margin-top: 16px; color: var(--muted); font-size: 12px; font-weight: 700; letter-spacing: .04em; text-align: center; text-transform: uppercase; }
+
+    /* Il sistema in un colpo d'occhio */
+    .stack { margin: 14px 0 2px; padding: 16px 14px 12px; border: 1px solid var(--line-warm); border-radius: 12px; background: radial-gradient(120% 90% at 50% 0%, #FFFFFF 0%, #F6F1E4 100%); }
+    .stack-head { margin-bottom: 12px; color: var(--green); font-family: var(--font-head); font-size: 19px; font-weight: 800; letter-spacing: .08em; text-align: center; text-transform: uppercase; }
+    .stack-parts { display: flex; flex-wrap: wrap; justify-content: center; gap: 7px; }
+    .stack-doc { display: flex; flex: 0 0 calc((100% - 28px) / 5); flex-direction: column; gap: 4px; min-width: 0; min-height: 96px; padding: 0 6px 8px; border: 1px solid var(--line-warm); border-radius: 6px; background: #fff; box-shadow: 0 6px 14px rgba(23, 22, 15, .08); overflow: hidden; }
+    .stack-doc:nth-child(odd) { transform: translateY(4px); }
+    .stack-tag { margin: 0 -6px 3px; padding: 4px 6px; background: var(--green); color: var(--gold-soft); font-size: 8.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+    .stack-doc b { color: var(--ink); font-size: 10px; line-height: 1.25; }
+    .stack-doc i { display: block; height: 4px; border-radius: 3px; background: var(--line); }
+    .stack-doc i:last-child { width: 60%; }
+    .stack-bonus { display: flex; flex-wrap: wrap; justify-content: center; gap: 5px; margin-top: 14px; }
+    .stack-bonus span { padding: 3px 8px; border: 1px solid var(--gold-soft); border-radius: 999px; background: #fff; color: var(--green); font-size: 10.5px; font-weight: 700; }
+    .stack-foot { display: flex; align-items: center; gap: 8px; margin-top: 12px; color: var(--green); font-size: 9.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+    .stack-foot::before, .stack-foot::after { content: ""; flex: 1; height: 1px; background: var(--line-warm); }
+
+    @media (min-width: 880px) {
+      .grid { grid-template-columns: .95fr 1.05fr; gap: 28px; }
+    }
+    @media (max-width: 520px) {
+      .shell, .recap { padding: 20px; }
+      .bump { gap: 9px; padding: 13px 12px; }
+      .bump-cover { flex-basis: 76px; width: 76px; }
+      .stack-doc { flex-basis: calc((100% - 14px) / 3); }
+      .stack-foot { justify-content: center; text-align: center; }
+      .stack-foot::before, .stack-foot::after { display: none; }
+    }
+    @media (max-width: 420px) {
+      .bump { display: grid; grid-template-columns: 22px minmax(0, 1fr); }
+      .bump-cover { grid-column: 2; width: 100%; max-width: 180px; }
+      .bump-body { grid-column: 1 / -1; }
+    }
+  </style>
+</head>
+<body>
+<main>
+  <div class="strip">
+    <span>Micro Offer OS</span>
+    <span class="dot" aria-hidden="true">|</span>
+    <span>Ordine sicuro al 100%</span>
+    <span class="dot" aria-hidden="true">|</span>
+    <span><b>8 bonus gratuiti</b></span>
+  </div>
+
+  <div class="wrap">
+    <div class="secure">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      <span>Checkout sicuro con crittografia SSL a 256 bit</span>
+    </div>
+
+    <div class="grid">
+      <div class="form-col">
+        <div class="form-head">
+          <p class="eyebrow">Ci sei quasi</p>
+          <h1>Inserisci i tuoi dati e sblocca subito il tuo accesso</h1>
+        </div>
+
+        <form class="shell" id="pay-form" novalidate>
+          <h2>Checkout sicuro</h2>
+          <p class="lede">Micro Offer OS · Pagamento gestito da Stripe</p>
+          <p class="test-banner" id="test-banner" hidden>Modalità test: usa la carta 4242 4242 4242 4242</p>
+
+          <div class="row">
+            <label><span class="sr-only">Nome e cognome</span><input id="full-name" name="name" type="text" autocomplete="name" autocapitalize="words" maxlength="120" placeholder="Il tuo nome e cognome" required></label>
+          </div>
+          <div class="row">
+            <label><span class="sr-only">Email</span><input id="email" name="email" type="email" inputmode="email" autocomplete="email" autocapitalize="off" spellcheck="false" maxlength="254" placeholder="La tua email migliore" required></label>
+          </div>
+
+          <span class="pay-label" id="wallets-label" hidden>Oppure paga con un tocco</span>
+          <div class="wallets" id="wallets" hidden></div>
+          <div class="or-divider" id="wallets-divider" hidden>oppure paga con carta</div>
+          <div class="card-wrap" id="payment-element">
+            <p class="card-note" id="card-note">Caricamento del modulo di pagamento…</p>
+          </div>
+
+          <div class="bumps" id="bumps" hidden>
+            <p class="bumps-title">Aggiungi al tuo ordine</p>
+            <div id="bump-list"></div>
+          </div>
+
+          <div class="summary" id="summary" aria-live="polite"></div>
+
+          <button type="submit" class="submit" id="pay-button" disabled>
+            <span data-idle>Accedi subito per €14,95</span>
+            <span data-busy hidden>Elaborazione del pagamento…</span>
+          </button>
+          <p class="err" id="pay-error" role="alert" hidden></p>
+
+          <div class="guarantee">Garanzia a vita “Primi 3 Clienti”</div>
+          <div class="trust">
+            <span>Crittografia SSL</span>
+            <span>Verificato da Stripe</span>
+            <span>Conforme PCI</span>
+          </div>
+          <p class="micro">I dati della carta vanno direttamente a Stripe. Noi non li vediamo e non li salviamo.</p>
+        </form>
+      </div>
+
+      <aside class="recap" aria-labelledby="recap-title">
+        <p class="recap-eyebrow">Congratulazioni</p>
+        <h2 id="recap-title">Ecco tutto quello che ricevi con Micro Offer OS</h2>
+        <p class="price">€14,95 <small>pagamento unico, accesso a vita</small></p>
+
+        <div class="stack" aria-hidden="true">
+          <div class="stack-head">Micro Offer OS</div>
+          <div class="stack-parts">
+            <div class="stack-doc"><span class="stack-tag">Parte 1</span><b>La matematica del primo cliente</b><i></i><i></i><i></i></div>
+            <div class="stack-doc"><span class="stack-tag">Parte 2</span><b>La tua Promessa Unica</b><i></i><i></i><i></i></div>
+            <div class="stack-doc"><span class="stack-tag">Parte 3</span><b>La pagina da 400 parole</b><i></i><i></i><i></i></div>
+            <div class="stack-doc"><span class="stack-tag">Parte 4</span><b>Il piano di lancio 24 ore</b><i></i><i></i><i></i></div>
+            <div class="stack-doc"><span class="stack-tag">Parte 5</span><b>Il Mega Prompt</b><i></i><i></i><i></i></div>
+          </div>
+          <div class="stack-bonus">
+            <span>+ Promise Operator</span>
+            <span>+ Offer Page Operator</span>
+            <span>+ Daily Push</span>
+            <span>+ Product Operator</span>
+            <span>+ Micro Offerta con un prompt</span>
+            <span>+ Piano 24 ore</span>
+            <span>+ Case study</span>
+            <span>+ Trascrizioni</span>
+          </div>
+          <div class="stack-foot">Il sistema completo per vendere prima di costruire</div>
+        </div>
+
+        <ul class="recap-list">
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>La matematica del primo cliente</span></li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>La tua Promessa Unica, la frase che decide se la tua offerta vende</span></li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>La pagina di validazione da 400 parole</span></li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Il piano di lancio 24 ore</span></li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Il Mega Prompt della Micro Offerta AI, per costruire la prima versione utile dopo che qualcuno ha pagato</span></li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Video brevi e template pronti per ogni parte, in un unico portale. Niente riempitivi.</span></li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Il metodo “prima il cliente”: vendi prima, costruisci dopo</span></li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Accesso IMMEDIATO e a vita a tutto, più gli 8 bonus qui sotto</span></li>
+        </ul>
+
+        <div class="bonuses">
+          <p class="bonuses-title">In più 8 bonus gratuiti</p>
+          <div class="bonus"><div class="bonus-t">Bonus #1: accesso a vita al Promise Operator</div><p class="bonus-b">La skill per Claude che ti intervista e costruisce la tua Promessa Unica, sia che tu parta da zero sia che tu voglia affilare un’offerta che hai già.</p></div>
+          <div class="bonus"><div class="bonus-t">Bonus #2: l’Offer Page Operator (funziona con qualsiasi funnel builder)</div><p class="bonus-b">Legge come scrivi, poi scrive pagina di validazione ed email con la TUA voce e ti consegna HTML pronto per Systeme.io, WordPress, ClickFunnels o GoHighLevel.</p></div>
+          <div class="bonus"><div class="bonus-t">Bonus #3: Daily Push, l’agente che ti fa lanciare</div><p class="bonus-b">Un’istruzione sullo schermo ogni mattina finché la tua offerta non è online e incassa. Se salti un giorno, chiama la scusa con il suo nome.</p></div>
+          <div class="bonus"><div class="bonus-t">Bonus #4: l’operatore “prodotti così buoni che ne parlano tutti”</div><p class="bonus-b">Ti intervista e prepara la scaletta del prodotto da registrare parlando, con ogni modulo diviso in introduzione, spiegazione, esempio, esercizio e riepilogo.</p></div>
+          <div class="bonus"><div class="bonus-t">Bonus #5: come creare la tua Micro Offerta AI con un semplice prompt</div><p class="bonus-b">Il training passo passo che ti porta da una chat vuota a una Micro Offerta AI che i clienti possono usare, senza sviluppatori e senza app su misura.</p></div>
+          <div class="bonus"><div class="bonus-t">Bonus #6: il piano di lancio 24 ore</div><p class="bonus-b">Il piano ora per ora che ti porta dalla pagina pubblicata ai primi soldi sul conto in 24 ore, con quello che hai già a disposizione oggi.</p></div>
+          <div class="bonus"><div class="bonus-t">Bonus #7: case study di una micro offerta Scalers</div><p class="bonus-b">Lo smontaggio completo, dietro le quinte: la promessa, la pagina, gli order bump, gli annunci e cosa abbiamo cambiato strada facendo.</p></div>
+          <div class="bonus"><div class="bonus-t">Bonus #8: trascrizioni plug-and-play per ogni video (con qualsiasi AI)</div><p class="bonus-b">Poco tempo? Salta il video. Ogni video ha la trascrizione completa e ricercabile: copiala in Claude, ChatGPT o nell’AI che usi e ottieni il riassunto in pochi secondi.</p></div>
+        </div>
+
+        <div class="recap-gtee">
+          <div class="recap-gtee-t">Garanzia a vita “Primi 3 Clienti”</div>
+          <p>Trovi i tuoi primi 3 clienti, oppure non paghi. Scrivi a <a href="mailto:matteo@milonematteo.com">matteo@milonematteo.com</a> quando vuoi e riavrai ogni centesimo. Senza domande. Tutto il resto rimane tuo.</p>
+        </div>
+        <p class="badges">Pagamento unico · Nessun abbonamento</p>
+      </aside>
+    </div>
+  </div>
+</main>
+
+<script>
+  (function () {
+    const API_URL = "/api/micro-offer/checkout";
+    const THANK_YOU_URL = "/micro-offer/grazie";
+    const PREFILL_KEY = "micro_offer_prefill";
+    const CONTACT_EMAIL = "matteo@milonematteo.com";
+    const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const STRIPE_APPEARANCE = {
+      theme: "stripe",
+      variables: {
+        colorPrimary: "#1C6E42",
+        colorText: "#17160F",
+        colorTextSecondary: "#6E6B5E",
+        colorDanger: "#B6443A",
+        fontFamily: "'Atkinson Hyperlegible', system-ui, -apple-system, sans-serif",
+        borderRadius: "10px",
+        spacingUnit: "4px",
+      },
+      rules: {
+        ".Input": { border: "1.5px solid #D9D3C2", boxShadow: "none", padding: "12px 14px" },
+        ".Input:focus": { border: "1.5px solid #0E5B39", boxShadow: "0 0 0 3px rgba(14,91,57,0.16)" },
+        ".Label": { fontWeight: "700", color: "#013121" },
+        ".Tab": { border: "1px solid #D9D3C2", borderRadius: "10px" },
+        ".Tab:hover": { color: "#1C6E42" },
+        ".Tab--selected": { borderColor: "#1C6E42", boxShadow: "0 0 0 1px #1C6E42" },
+      },
+    };
+    // Copertine delle aggiunte: solo grafica, testi e prezzi arrivano dal server.
+    const BUMP_COVERS = {
+      "launch-kit": cover("Il kit di lancio rapido", ["COMPILA", "GLI SPAZI"], ["Promessa e pagina", "Checkout e email", "Annunci pronti"], "Un corso a sé nel tuo portale"),
+      "aaw-replay": cover("AI Acceleration Week", ["7 SESSIONI", "REGISTRATE"], ["Start Here 60 min", "Colli di bottiglia", "Loop Operativo"], "Replay Pass · accesso personale"),
+      "launch-kit-replay": cover("Miglior valore", ["TUTTI E", "DUE"], ["Kit di lancio rapido", "Replay Pass AAW", "Risparmi €10"], "Insieme costano meno"),
+    };
+
+    const form = document.getElementById("pay-form");
+    const nameInput = document.getElementById("full-name");
+    const emailInput = document.getElementById("email");
+    const walletsLabel = document.getElementById("wallets-label");
+    const walletsHost = document.getElementById("wallets");
+    const walletsDivider = document.getElementById("wallets-divider");
+    const cardNote = document.getElementById("card-note");
+    const bumpsSection = document.getElementById("bumps");
+    const bumpList = document.getElementById("bump-list");
+    const summary = document.getElementById("summary");
+    const payButton = document.getElementById("pay-button");
+    const payIdle = payButton.querySelector("[data-idle]");
+    const payBusy = payButton.querySelector("[data-busy]");
+    const payError = document.getElementById("pay-error");
+
+    const state = {
+      product: { id: "micro-offer-os", name: "Micro Offer OS", amountCents: 1495 },
+      bumps: [],
+      selected: new Set(),
+      stripe: null,
+      elements: null,
+      busy: false,
+    };
+
+    function cover(kicker, title, lines, foot) {
+      const esc = (text) => text.replace(/&/g, "&amp;").replace(/</g, "&lt;");
+      const bullets = lines.map((line, i) => `<text x="12" y="${80 + i * 10}" font-size="7" fill="#403D31"><tspan fill="#1C6E42" font-weight="700">✓</tspan> ${esc(line)}</text>`).join("");
+      return `<svg viewBox="0 0 160 120" aria-hidden="true" focusable="false" font-family="'Atkinson Hyperlegible', system-ui, sans-serif">
+        <rect width="160" height="120" fill="#FBF9F2"/>
+        <rect width="160" height="20" fill="#013121"/>
+        <text x="12" y="13.5" font-size="6.5" font-weight="700" fill="#F5EFDC" letter-spacing="0.9">${esc(kicker.toUpperCase())}</text>
+        <rect x="12" y="27" width="16" height="2" fill="#B9974C"/>
+        <text x="12" y="46" font-size="14" font-weight="800" fill="#013121" font-family="'Bricolage Grotesque', 'Arial Black', sans-serif">${esc(title[0])}</text>
+        <text x="12" y="62" font-size="14" font-weight="800" fill="#013121" font-family="'Bricolage Grotesque', 'Arial Black', sans-serif">${esc(title[1])}</text>
+        <rect x="118" y="30" width="30" height="38" rx="3" fill="#fff" stroke="#013121" stroke-width="1.4"/>
+        <rect x="123" y="37" width="20" height="2.5" rx="1" fill="#D9D3C2"/><rect x="123" y="43" width="20" height="2.5" rx="1" fill="#D9D3C2"/><rect x="123" y="49" width="14" height="2.5" rx="1" fill="#D9D3C2"/><rect x="123" y="57" width="20" height="5" rx="2" fill="#0E5B39"/>
+        ${bullets}
+        <line x1="12" y1="107" x2="148" y2="107" stroke="#D9D3C2" stroke-width="0.8"/>
+        <text x="12" y="115" font-size="5.6" font-weight="700" fill="#1C6E42" letter-spacing="0.6">${esc(foot.toUpperCase())}</text>
+      </svg>`;
+    }
+
+    function formatEuro(cents) {
+      return "€" + (cents / 100).toFixed(2).replace(".", ",");
+    }
+
+    function selectedBumps() {
+      return state.bumps.filter((bump) => state.selected.has(bump.id));
+    }
+
+    function totalCents() {
+      return selectedBumps().reduce((total, bump) => total + bump.amountCents, state.product.amountCents);
+    }
+
+    function lineRow(label, cents, className) {
+      const row = document.createElement("div");
+      row.className = className ? `line ${className}` : "line";
+      const left = document.createElement("span");
+      left.textContent = label;
+      const right = document.createElement("span");
+      right.textContent = formatEuro(cents);
+      row.append(left, right);
+      return row;
+    }
+
+    function renderSummary() {
+      summary.replaceChildren(
+        lineRow(state.product.name, state.product.amountCents),
+        ...selectedBumps().map((bump) => lineRow(bump.name, bump.amountCents)),
+        lineRow("Totale", totalCents(), "total"),
+      );
+      payIdle.textContent = `Accedi subito per ${formatEuro(totalCents())}`;
+      if (state.elements) {
+        try { state.elements.update({ amount: totalCents() }); } catch (_) {}
+      }
+    }
+
+    function conflictsWith(id) {
+      const self = state.bumps.find((bump) => bump.id === id);
+      return state.bumps
+        .filter((other) => other.id !== id && (self.excludes.includes(other.id) || other.excludes.includes(id)))
+        .map((other) => other.id);
+    }
+
+    function renderBumps() {
+      bumpList.replaceChildren();
+      bumpsSection.hidden = state.bumps.length === 0;
+      for (const bump of state.bumps) {
+        const row = document.createElement("label");
+        row.className = "bump";
+        const input = document.createElement("input");
+        input.type = "checkbox";
+        input.dataset.bumpId = bump.id;
+        const art = document.createElement("span");
+        art.className = "bump-cover";
+        art.innerHTML = BUMP_COVERS[bump.id] || "";
+        const body = document.createElement("span");
+        body.className = "bump-body";
+        const title = document.createElement("span");
+        title.className = "bump-title";
+        const headline = document.createElement("span");
+        headline.textContent = bump.headline || `SÌ, aggiungi ${bump.name}`;
+        const price = document.createElement("span");
+        price.className = "bump-price";
+        price.textContent = `+ ${formatEuro(bump.amountCents)}`;
+        title.append(headline, price);
+        const desc = document.createElement("span");
+        desc.className = "bump-desc";
+        desc.textContent = bump.description;
+        body.append(title, desc);
+        row.append(input);
+        if (art.innerHTML) row.append(art);
+        row.append(body);
+        bumpList.append(row);
+        input.addEventListener("change", () => {
+          if (input.checked) {
+            state.selected.add(bump.id);
+            for (const id of conflictsWith(bump.id)) {
+              state.selected.delete(id);
+              const other = bumpList.querySelector(`input[data-bump-id="${id}"]`);
+              if (other) other.checked = false;
+            }
+          } else {
+            state.selected.delete(bump.id);
+          }
+          renderSummary();
+        });
+      }
+    }
+
+    function setBusy(on) {
+      state.busy = on;
+      payButton.disabled = on || !state.elements;
+      payIdle.hidden = on;
+      payBusy.hidden = !on;
+    }
+
+    function setError(message) {
+      payError.textContent = message || "";
+      payError.hidden = !message;
+    }
+
+    function showUnavailable() {
+      cardNote.textContent = "";
+      cardNote.append(
+        "Il pagamento con carta non è momentaneamente disponibile. Scrivi a ",
+        Object.assign(document.createElement("a"), { href: `mailto:${CONTACT_EMAIL}`, textContent: CONTACT_EMAIL }),
+        " per completare l’acquisto.",
+      );
+      payButton.disabled = true;
+    }
+
+    function prefill() {
+      let saved = null;
+      try { saved = JSON.parse(sessionStorage.getItem(PREFILL_KEY) || "null"); } catch (_) {}
+      const params = new URLSearchParams(window.location.search);
+      const name = params.get("name") || (saved && saved.name) || "";
+      const email = params.get("email") || (saved && saved.email) || "";
+      if (name && !nameInput.value) nameInput.value = name;
+      if (email && !emailInput.value) emailInput.value = email;
+      // Nome ed email non restano nell'indirizzo della pagina.
+      if (params.has("name") || params.has("email")) {
+        params.delete("name");
+        params.delete("email");
+        const query = params.toString();
+        history.replaceState(null, "", window.location.pathname + (query ? `?${query}` : ""));
+      }
+    }
+
+    function idempotencyKey() {
+      if (window.crypto && typeof window.crypto.randomUUID === "function") return window.crypto.randomUUID();
+      return `k-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 12)}`;
+    }
+
+    async function postJson(payload) {
+      const response = await fetch(API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Idempotency-Key": idempotencyKey() },
+        body: JSON.stringify(payload),
+      });
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error((data.error && data.error.message) || "Qualcosa è andato storto. Riprova.");
+      return data;
+    }
+
+    function goToThankYou(result) {
+      const params = new URLSearchParams({
+        payment_intent: result.paymentIntentId,
+        payment_intent_client_secret: result.clientSecret,
+      });
+      window.location.assign(`${THANK_YOU_URL}?${params}`);
+    }
+
+    async function pay(expressEvent) {
+      if (state.busy || !state.stripe || !state.elements) return;
+      setError("");
+      const wallet = (expressEvent && expressEvent.billingDetails) || {};
+      const name = nameInput.value.trim().replace(/\s+/g, " ") || String(wallet.name || "").trim();
+      const typedEmail = emailInput.value.trim();
+      const email = EMAIL_RE.test(typedEmail) ? typedEmail : String(wallet.email || "").trim();
+      nameInput.removeAttribute("aria-invalid");
+      emailInput.removeAttribute("aria-invalid");
+      if (!name || !EMAIL_RE.test(email)) {
+        if (expressEvent && typeof expressEvent.paymentFailed === "function") expressEvent.paymentFailed({ reason: "fail" });
+        const field = !name ? nameInput : emailInput;
+        field.setAttribute("aria-invalid", "true");
+        field.focus();
+        setError("Inserisci nome ed email: l’accesso arriva a quell’indirizzo.");
+        return;
+      }
+      setBusy(true);
+      try {
+        const submitted = await state.elements.submit();
+        if (submitted.error) throw new Error(submitted.error.message);
+        const { error, confirmationToken } = await state.stripe.createConfirmationToken({
+          elements: state.elements,
+          params: { payment_method_data: { billing_details: { name, email } } },
+        });
+        if (error) throw new Error(error.message);
+        const result = await postJson({
+          fullName: name,
+          email,
+          bumps: [...state.selected],
+          confirmationTokenId: confirmationToken.id,
+        });
+        if (result.status === "requires_action") {
+          const action = await state.stripe.handleNextAction({ clientSecret: result.clientSecret });
+          if (action.error) throw new Error(action.error.message);
+        }
+        goToThankYou(result);
+      } catch (err) {
+        if (expressEvent && typeof expressEvent.paymentFailed === "function") expressEvent.paymentFailed({ reason: "fail" });
+        setError((err && err.message) || "Qualcosa è andato storto. Riprova.");
+        setBusy(false);
+      }
+    }
+
+    function loadStripeJs() {
+      return new Promise((resolve, reject) => {
+        if (window.Stripe) return resolve(window.Stripe);
+        const script = document.createElement("script");
+        script.src = "https://js.stripe.com/v3/";
+        script.async = true;
+        script.onload = () => (window.Stripe ? resolve(window.Stripe) : reject(new Error("Stripe.js non disponibile")));
+        script.onerror = () => reject(new Error("Stripe.js non disponibile"));
+        document.head.appendChild(script);
+      });
+    }
+
+    function mountStripe(publishableKey) {
+      state.stripe = window.Stripe(publishableKey, { locale: "it" });
+      state.elements = state.stripe.elements({
+        mode: "payment",
+        amount: totalCents(),
+        currency: "eur",
+        paymentMethodCreation: "manual",
+        appearance: STRIPE_APPEARANCE,
+        fonts: [{ cssSrc: "https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" }],
+      });
+
+      const express = state.elements.create("expressCheckout", {
+        buttonHeight: 48,
+        emailRequired: true,
+        paymentMethods: { applePay: "auto", googlePay: "auto", link: "auto", paypal: "never", amazonPay: "never" },
+      });
+      walletsHost.hidden = false;
+      express.mount(walletsHost);
+      express.on("ready", (event) => {
+        const methods = (event && event.availablePaymentMethods) || {};
+        const available = Object.values(methods).filter(Boolean).length > 0;
+        walletsLabel.hidden = !available;
+        walletsDivider.hidden = !available;
+        walletsHost.hidden = !available;
+      });
+      express.on("click", (event) => {
+        event.resolve({
+          lineItems: [state.product, ...selectedBumps()].map((item) => ({ name: item.name, amount: item.amountCents })),
+        });
+      });
+      express.on("confirm", (event) => { pay(event); });
+
+      const paymentElement = state.elements.create("payment", { layout: "tabs" });
+      paymentElement.on("ready", () => { cardNote.remove(); });
+      paymentElement.mount("#payment-element");
+      payButton.disabled = false;
+    }
+
+    async function start() {
+      prefill();
+      renderSummary();
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        pay();
+      });
+
+      let config;
+      try {
+        const response = await fetch(API_URL, { headers: { Accept: "application/json" } });
+        if (!response.ok) throw new Error("config");
+        config = await response.json();
+      } catch (_) {
+        showUnavailable();
+        return;
+      }
+      if (config.product) state.product = config.product;
+      state.bumps = Array.isArray(config.bumps) ? config.bumps : [];
+      renderBumps();
+      renderSummary();
+
+      if (!config.configured || !config.publishableKey) {
+        showUnavailable();
+        return;
+      }
+      document.getElementById("test-banner").hidden = config.mode !== "test";
+      try {
+        await loadStripeJs();
+        mountStripe(config.publishableKey);
+      } catch (_) {
+        showUnavailable();
+      }
+    }
+
+    start();
+  })();
+</script>
+</body>
+</html>

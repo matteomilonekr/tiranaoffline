@@ -151,6 +151,20 @@ export function buildPaidTicketSlackMessage(order, customer, shareUrl) {
   return slackMessage("🟢 Pagamento Stripe confermato", fields);
 }
 
+export function buildMicroOfferSlackMessage(purchase) {
+  const fields = [
+    ["Stato", "PAGAMENTO CONFERMATO"],
+    ["Prodotto", cleanValue(purchase?.product)],
+    ["Aggiunte", cleanValue(purchase?.bumps, "Nessuna")],
+    ["Nome", cleanValue(purchase?.name)],
+    ["Email", cleanValue(purchase?.email)],
+    ["Importo", cleanValue(purchase?.amount)],
+    ["Metodo", "Stripe"],
+    ["Pagamento", cleanValue(purchase?.paymentIntentId, "Non disponibile", 100)],
+  ];
+  return slackMessage("🟢 Nuovo acquisto Micro Offer OS", fields);
+}
+
 export function hasSlackNotificationConfig() {
   return [process.env.SLACK_BOT_TOKEN, process.env.SLACK_CHANNEL_ID]
     .some((value) => String(value || "").trim().length > 0);

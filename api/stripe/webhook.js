@@ -9,6 +9,7 @@ import {
   readStripeWebhookBody,
   verifyStripeWebhookSignature,
 } from "./_shared.js";
+import { notifyMicroOfferPaymentFromWebhook } from "../micro-offer/_shared.js";
 
 export const config = {
   api: {
@@ -31,6 +32,9 @@ export default async function handler(req, res) {
     }
     if (event?.type === "checkout.session.completed") {
       await fulfillPaidStripeSession(event?.data?.object);
+    }
+    if (event?.type === "payment_intent.succeeded") {
+      await notifyMicroOfferPaymentFromWebhook(event?.data?.object);
     }
     return sendJson(res, 200, { received: true });
   } catch (error) {

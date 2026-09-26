@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Conferma ordine · Micro Offer OS</title>
+  <meta name="robots" content="noindex">
+  <meta name="referrer" content="no-referrer">
+  <meta name="theme-color" content="#013121">
+  <meta name="color-scheme" content="light">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23013121'/%3E%3Ctext x='32' y='43' font-family='Arial Black,Arial,sans-serif' font-size='28' font-weight='900' text-anchor='middle' fill='%23D8C289'%3ES+%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #17160F;
+      --body: #403D31;
+      --muted: #6E6B5E;
+      --green: #013121;
+      --cta: #0E5B39;
+      --gold: #B9974C;
+      --gold-soft: #D8C289;
+      --cream: #FBF9F2;
+      --line-warm: #D9D3C2;
+      --font-head: "Bricolage Grotesque", "Arial Black", sans-serif;
+      --font-body: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { min-height: 100vh; background: #fff; color: var(--body); font-family: var(--font-body); font-size: 17px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+    [hidden] { display: none !important; }
+    a { color: var(--cta); }
+    :focus-visible { outline: none; box-shadow: 0 0 0 3px color-mix(in oklab, var(--gold) 45%, transparent); border-radius: 8px; }
+    .topbar { padding: 11px 16px; background: var(--green); color: var(--gold-soft); font-family: var(--font-head); font-size: 15px; font-weight: 800; letter-spacing: .08em; text-align: center; text-transform: uppercase; }
+    .wrap { max-width: 640px; margin: 0 auto; padding: 40px 16px 60px; }
+    .card { padding: 30px 28px; border: 2px solid var(--green); border-radius: 16px; background: #fff; box-shadow: 0 14px 34px rgba(8, 25, 17, .08); text-align: center; }
+    .icon { display: flex; align-items: center; justify-content: center; width: 58px; height: 58px; margin: 0 auto 14px; border-radius: 50%; background: #E9F2EA; color: var(--cta); }
+    .card[data-state="error"] .icon, .card[data-state="failed"] .icon { background: #FAF0ED; color: #B6443A; }
+    .eyebrow { display: inline-block; margin: 0 0 10px; padding: 6px 12px; border-radius: 6px; background: var(--green); color: #F5EFDC; font-size: 11.5px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+    h1 { margin: 0 0 10px; color: var(--ink); font-family: var(--font-head); font-size: clamp(26px, 5vw, 32px); font-weight: 800; line-height: 1.12; letter-spacing: -.01em; text-wrap: balance; }
+    .text { margin: 0 auto; max-width: 480px; }
+    .summary { margin: 20px 0 0; padding: 14px 16px; border: 1px solid var(--line-warm); border-radius: 10px; background: var(--cream); font-size: 15px; text-align: left; }
+    .summary .line { display: flex; justify-content: space-between; gap: 12px; padding: 4px 0; }
+    .summary .total { margin-top: 6px; padding-top: 10px; border-top: 1px solid var(--line-warm); color: var(--ink); font-weight: 700; }
+    .cta { display: inline-block; width: 100%; max-width: 420px; margin: 22px auto 0; padding: 18px 24px; border-radius: 12px; background: var(--cta); color: #fff; font-family: var(--font-head); font-size: 19px; font-weight: 800; text-decoration: none; box-shadow: 0 10px 26px rgba(1, 49, 33, .22); }
+    .cta:hover { background: var(--green); color: #fff; }
+    .steps { margin: 22px 0 0; padding: 18px 20px; border-radius: 12px; background: var(--cream); text-align: left; }
+    .steps ol { list-style: none; counter-reset: step; }
+    .steps-title { margin-bottom: 10px; color: var(--ink); font-family: var(--font-head); font-size: 17px; font-weight: 800; }
+    .steps li { position: relative; margin-bottom: 10px; padding-left: 34px; font-size: 15.5px; line-height: 1.5; counter-increment: step; }
+    .steps li:last-child { margin-bottom: 0; }
+    .steps li::before { content: counter(step); position: absolute; left: 0; top: 0; display: flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 50%; background: var(--green); color: var(--gold-soft); font-family: var(--font-head); font-size: 13px; font-weight: 800; }
+    .help { margin-top: 22px; color: var(--muted); font-size: 14px; }
+    .footer { color: #8F8C7E; font-size: 13px; text-align: center; }
+    .footer a { color: #8F8C7E; }
+  </style>
+</head>
+<body>
+  <div class="topbar">Micro Offer OS · Accesso a vita</div>
+  <main class="wrap">
+    <div class="card" id="card" data-state="loading" aria-live="polite">
+      <div class="icon" id="icon" aria-hidden="true">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9" stroke-dasharray="4 3"/></svg>
+      </div>
+      <p class="eyebrow" id="eyebrow">Un attimo</p>
+      <h1 id="title">Stiamo verificando il pagamento…</h1>
+      <p class="text" id="text">Non chiudere questa pagina: ci vuole qualche secondo.</p>
+      <div class="summary" id="summary" hidden></div>
+      <a class="cta" id="access" href="#" hidden>Entra nell’area riservata →</a>
+      <div class="steps" id="steps" hidden>
+        <p class="steps-title">Da dove partire</p>
+        <ol>
+          <li>Apri Micro Offer OS e guarda la Parte 1: ti bastano 20 minuti.</li>
+          <li>Installa il Promise Operator e trova la tua Promessa Unica.</li>
+          <li>Segui il piano di lancio 24 ore fino al tuo primo cliente.</li>
+        </ol>
+      </div>
+      <a class="cta" id="retry" href="/micro-offer/checkout" hidden>Torna al checkout</a>
+      <p class="help">Serve aiuto? Scrivi a <a href="mailto:matteo@milonematteo.com">matteo@milonematteo.com</a></p>
+    </div>
+  </main>
+  <p class="footer">© 2026 Scalers+ · Matteo Milone · <a href="https://joinscalers.com/privacy">Privacy</a> · <a href="https://joinscalers.com/refund-policy">Rimborsi</a></p>
+
+<script>
+  (function () {
+    const API_URL = "/api/micro-offer/checkout";
+    const ICONS = {
+      ok: '<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>',
+      wait: '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg>',
+      fail: '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>',
+    };
+    const card = document.getElementById("card");
+    const $ = (id) => document.getElementById(id);
+
+    function formatEuro(cents) {
+      return "€" + (cents / 100).toFixed(2).replace(".", ",");
+    }
+
+    function show(state, { icon, eyebrow, title, text }) {
+      card.dataset.state = state;
+      $("icon").innerHTML = ICONS[icon];
+      $("eyebrow").textContent = eyebrow;
+      $("title").textContent = title;
+      $("text").textContent = text;
+    }
+
+    function renderSummary(result) {
+      const rows = result.items.map((item) => {
+        const row = document.createElement("div");
+        row.className = "line";
+        row.textContent = item;
+        return row;
+      });
+      const total = document.createElement("div");
+      total.className = "line total";
+      const label = document.createElement("span");
+      label.textContent = "Totale pagato";
+      const amount = document.createElement("span");
+      amount.textContent = formatEuro(result.amountCents);
+      total.append(label, amount);
+      $("summary").replaceChildren(...rows, total);
+      $("summary").hidden = false;
+    }
+
+    function notFound() {
+      show("error", {
+        icon: "fail",
+        eyebrow: "Ordine non trovato",
+        title: "Non troviamo questo pagamento",
+        text: "Se hai completato l’acquisto e non ricevi l’email di accesso entro un’ora, scrivici indicando l’indirizzo che hai usato per pagare.",
+      });
+    }
+
+    async function start() {
+      const params = new URLSearchParams(window.location.search);
+      const paymentIntentId = params.get("payment_intent") || "";
+      const clientSecret = params.get("payment_intent_client_secret") || "";
+      // Il client secret non deve restare nella cronologia del browser.
+      history.replaceState(null, "", window.location.pathname);
+      if (!paymentIntentId || !clientSecret) return notFound();
+
+      let result;
+      try {
+        const response = await fetch(API_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ action: "finalize", paymentIntentId, clientSecret }),
+        });
+        if (!response.ok) return notFound();
+        result = await response.json();
+      } catch (_) {
+        return notFound();
+      }
+
+      if (result.paid) {
+        show("paid", {
+          icon: "ok",
+          eyebrow: "Pagamento confermato",
+          title: result.firstName ? `Micro Offer OS è tuo, ${result.firstName}` : "Micro Offer OS è tuo",
+          text: result.accessUrl
+            ? "Il tuo ordine è confermato e Stripe ti ha inviato la ricevuta via email. Puoi entrare subito."
+            : "Il tuo ordine è confermato e Stripe ti ha inviato la ricevuta via email. Entro poche ore ricevi l’accesso all’indirizzo che hai usato per pagare: controlla anche lo spam.",
+        });
+        renderSummary(result);
+        if (result.accessUrl) {
+          $("access").href = result.accessUrl;
+          $("access").hidden = false;
+        }
+        $("steps").hidden = false;
+        return;
+      }
+      if (result.status === "processing") {
+        show("processing", {
+          icon: "wait",
+          eyebrow: "In elaborazione",
+          title: "La banca sta confermando il pagamento",
+          text: "Di solito ci vogliono pochi minuti. Appena arriva la conferma ricevi la ricevuta e l’accesso via email.",
+        });
+        renderSummary(result);
+        return;
+      }
+      show("failed", {
+        icon: "fail",
+        eyebrow: "Pagamento non riuscito",
+        title: "Il pagamento non è andato a buon fine",
+        text: "Non ti è stato addebitato nulla. Puoi riprovare con un’altra carta o un altro metodo di pagamento.",
+      });
+      $("retry").hidden = false;
+    }
+
+    start();
+  })();
+</script>
+</body>
+</html>

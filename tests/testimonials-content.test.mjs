@@ -179,7 +179,10 @@ test("il checkout non autorizza provider esterni di pagamento o video", () => {
     source.includes("checkout"),
   );
 
-  assert.equal(checkoutHeaders.length, 2);
+  assert.deepEqual(
+    checkoutHeaders.map(({ source }) => source),
+    ["/checkout(.*)", "/tirana/checkout(.*)", "/micro-offer/checkout(.*)"],
+  );
   for (const route of checkoutHeaders) {
     const csp = route.headers.find(
       ({ key }) => key === "Content-Security-Policy",
