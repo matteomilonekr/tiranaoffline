@@ -11,6 +11,19 @@ Landing page, pagina offerta e checkout dell'evento di Tirana con Stripe Checkou
 - `/ticket?token=...`: biglietto personalizzato condivisibile, senza dati bancari
 - `/privacy`: informativa privacy dell’evento e del checkout
 - `/refund-policy`: policy di rimborso, cancellazione e condizioni di acquisto
+- `/micro-offer`: pagina di vendita di Micro Offer OS
+
+## Pagina Micro Offer OS
+
+`public/micro-offer/index.html` è una pagina statica autonoma che riprende struttura, design e meccaniche di sellwhileyousleep.com: hero con garanzia e prezzo, barra dei numeri, vecchio modo contro nuovo modo con prove laterali, percorso in cinque parti, otto bonus con mockup animati, risultati per profilo, garanzia, riepilogo per chi scorre, FAQ e pop-up d’acquisto in due passaggi. I testi sono scritti da zero in italiano per Scalers. Brand, testimonianze e screenshot del sito di riferimento non sono stati copiati: le prove usano soltanto testimonianze Scalers+ già pubblicate nelle pagine Tirana e AAW Replay, con la stessa nota di trasparenza.
+
+Configurazione, in cima allo script della pagina:
+
+- `OFFER.checkoutUrl`: link del pagamento, per esempio un Payment Link Stripe. Se il link è Stripe, il passo 1 del pop-up passa l’email come `prefilled_email`. Finché è vuoto, ogni pulsante apre una email precompilata a `OFFER.contactEmail`, come nella pagina del Replay Pass.
+- `OFFER.heroVideoUrl`: URL embed del video di vendita. Se impostato, l’hero mostra il pulsante play al posto della sola foto.
+- Prezzo e nome compaiono anche nei testi: per cambiarli cerca `€14,95` e `Micro Offer OS` nel file.
+
+Prima di pubblicare, verifica con il team che bonus, durata delle lezioni, garanzia “Primi 3 Clienti” e promessa del primo cliente in 24 ore corrispondano a ciò che viene consegnato davvero. Il pop-up non salva i lead: se servono per il retargeting va collegato a un endpoint dedicato, non a `/api/registrations` che scrive nel foglio di Tirana.
 
 ## Catalogo attivo
 
