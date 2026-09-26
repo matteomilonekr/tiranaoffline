@@ -1,0 +1,1574 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Replay Pass AI Acceleration Week · 7 workshop a 27 euro | Scalers+</title>
+  <meta name="description" content="Le 7 registrazioni della AI Acceleration Week, lo Start Here da 60 minuti e 3 strumenti operativi per costruire il tuo primo workflow AI. 27 euro, pagamento unico.">
+  <meta name="theme-color" content="#000000">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.tiranaoffline.com/aaw-workshop">
+  <meta property="og:title" content="AI Acceleration Week · Replay Pass a 27 euro">
+  <meta property="og:description" content="7 workshop registrati, Start Here da 60 minuti e 3 strumenti operativi per costruire il primo workflow AI.">
+  <meta property="og:image" content="https://www.tiranaoffline.com/aaw-replay/assets/aaw-day-one.webp">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper: #FBF7F7;
+      --surface: #FFFFFF;
+      --surface-2: #F3ECEC;
+      --band-deep: #0A0A0A;
+      --band-deep-tx: #D9D4D0;
+      --band-brass: #FFFBDF;
+      --ink: #1E2732;
+      --ink-soft: #3D444C;
+      --ink-mute: #59606A;
+      --line: #E2DBDB;
+      --line-strong: #CEC5C5;
+      --cta: #F89D21;
+      --cta-deep: #E68A0B;
+      --cta-ink: #171A1E;
+      --red: #D22E24;
+      --red-deep: #A32019;
+      --red-tint: #FBEAE8;
+      --green: #12703F;
+      --green-deep: #0E5C33;
+      --brass: #9A6A22;
+      --mark: #FFE08A;
+      --focus: #1E63C8;
+      --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+      --sans: "Libre Franklin", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --wrap: 68rem;
+      --measure: 40rem;
+      --gutter: clamp(1rem, 4vw, 2.5rem);
+      --radius: 6px;
+      --radius-lg: 9px;
+      --shadow: 0 1px 2px rgba(14, 26, 43, .06), 0 8px 24px rgba(14, 26, 43, .08);
+      --shadow-lg: 0 2px 6px rgba(14, 26, 43, .08), 0 20px 50px rgba(14, 26, 43, .16);
+      --arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 12h15M13 6l6 6-6 6'/%3E%3C/svg%3E");
+      color-scheme: light dark;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #141110;
+        --surface: #1E1A18;
+        --surface-2: #262120;
+        --band-deep: #000000;
+        --band-deep-tx: #CBC4BE;
+        --band-brass: #2A2411;
+        --ink: #F0ECE8;
+        --ink-soft: #C4BDB6;
+        --ink-mute: #8E877F;
+        --line: #38312E;
+        --line-strong: #4C433F;
+        --cta-deep: #FFB040;
+        --red: #EC5347;
+        --red-deep: #F4796E;
+        --red-tint: #2B1614;
+        --green: #46B074;
+        --green-deep: #5CC488;
+        --brass: #D6AC5A;
+        --focus: #6FA6F0;
+        --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 8px 24px rgba(0, 0, 0, .45);
+        --shadow-lg: 0 2px 6px rgba(0, 0, 0, .5), 0 20px 50px rgba(0, 0, 0, .55);
+      }
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html {
+      -webkit-text-size-adjust: 100%;
+      scroll-behavior: smooth;
+      scroll-padding-top: 76px;
+    }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--serif);
+      font-size: 1.09rem;
+      line-height: 1.62;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    img { display: block; max-width: 100%; height: auto; }
+
+    h1, h2, h3 {
+      margin: 0;
+      font-family: var(--serif);
+      line-height: 1.15;
+      letter-spacing: -.011em;
+      text-wrap: balance;
+    }
+    h2 { font-weight: 700; font-size: clamp(1.85rem, 3.7vw, 2.7rem); }
+    h3 { font-weight: 600; font-size: clamp(1.25rem, 2vw, 1.55rem); letter-spacing: -.006em; }
+    p { margin: 0 0 1.1em; text-wrap: pretty; }
+    a { color: inherit; }
+    b, strong { font-weight: 600; }
+
+    mark {
+      background: var(--mark);
+      color: #1E2732;
+      padding: .04em .2em;
+      border-radius: 2px;
+      -webkit-box-decoration-break: clone;
+      box-decoration-break: clone;
+    }
+
+    :focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      padding: 0;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .skip {
+      position: absolute;
+      left: -9999px;
+      top: 0;
+      z-index: 100;
+      padding: .7rem 1rem;
+      background: #FFFFFF;
+      color: #000000;
+      font-family: var(--sans);
+      font-weight: 700;
+    }
+    .skip:focus { left: 1rem; top: 1rem; }
+
+    .wrap { max-width: var(--wrap); margin-inline: auto; padding-inline: var(--gutter); }
+    .measure { max-width: var(--measure); }
+    .sec { padding-block: clamp(2.6rem, 5vw, 3.1rem); }
+    .band-surface { background: var(--surface); border-block: 1px solid var(--line); }
+    .band-deep { background: var(--band-deep); color: var(--band-deep-tx); }
+    .band-deep h2, .band-deep h3 { color: #FFFFFF; }
+    .band-brass { background: var(--band-brass); border-block: 1px solid var(--line); }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      margin: 0 0 1rem;
+      font-family: var(--sans);
+      font-size: .8125rem;
+      font-weight: 600;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+    .eyebrow::before,
+    .centered .eyebrow::after {
+      content: "";
+      flex: none;
+      width: 1.6rem;
+      height: 2px;
+      background: var(--red);
+    }
+    .centered { margin-inline: auto; text-align: center; }
+    .centered .eyebrow { justify-content: center; }
+    main > section:not(.hero) .eyebrow { font-size: .95rem; }
+    .band-deep .eyebrow { color: #E7C066; }
+
+    .section-head { margin-bottom: 2.4rem; }
+    .section-head h2 { margin-bottom: .55rem; }
+    .section-head p { margin: 0; color: var(--ink-soft); font-size: clamp(1.15rem, 2.2vw, 1.35rem); line-height: 1.6; }
+
+    /* Header */
+    .siteheader {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: #000000;
+      border-bottom: 3px solid var(--red);
+    }
+    .siteheader .wrap {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      min-height: 58px;
+      padding-block: .5rem;
+    }
+    .brand { display: flex; align-items: center; flex: none; }
+    .brand img { width: 128px; }
+    .header-meta {
+      margin-left: auto;
+      font-family: var(--sans);
+      font-size: .8125rem;
+      color: rgba(255, 255, 255, .64);
+    }
+    .header-meta a { text-decoration: none; }
+    .header-meta a:hover { color: #FFFFFF; }
+    .header-cta {
+      display: none;
+      align-items: center;
+      gap: .6rem;
+      padding: .55rem .95rem;
+      border-radius: var(--radius);
+      background: var(--cta);
+      color: var(--cta-ink);
+      font-family: var(--sans);
+      font-size: .82rem;
+      font-weight: 800;
+      letter-spacing: .04em;
+      text-decoration: none;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .header-cta span { font-weight: 500; opacity: .85; }
+    .siteheader.is-stuck .header-cta { display: inline-flex; }
+    @media (max-width: 620px) {
+      .header-meta .long { display: none; }
+      .siteheader.is-stuck .header-meta { display: none; }
+      .siteheader.is-stuck .header-cta { margin-left: auto; }
+    }
+
+    /* Hero */
+    .hero { padding-block: clamp(1.4rem, 3vw, 2.25rem) clamp(1.5rem, 3.5vw, 2.5rem); }
+    .hero-headline {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: 52rem;
+      margin: 0 auto clamp(1.5rem, 3.5vw, 2.5rem);
+      text-align: center;
+    }
+    .hero-headline h1 {
+      margin-bottom: .7rem;
+      font-size: clamp(1.55rem, 3.3vw, 2.35rem);
+      font-weight: 700;
+      line-height: 1.14;
+      letter-spacing: -.018em;
+      overflow-wrap: break-word;
+    }
+    .lede { max-width: 42rem; margin: 0; color: var(--ink-soft); font-size: clamp(.98rem, 1.8vw, 1.1rem); }
+    .lede b { color: var(--ink); }
+    .hero-grid { display: grid; gap: clamp(1.5rem, 3.5vw, 2.5rem); align-items: start; }
+    @media (min-width: 960px) {
+      .hero-grid { grid-template-columns: minmax(0, 1.2fr) minmax(360px, 420px); }
+    }
+    .hero-col { min-width: 0; }
+
+    .vsl {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      border: 1px solid var(--line-strong);
+      border-radius: var(--radius-lg);
+      background: #0B0908;
+    }
+    .vsl img, .vsl iframe { width: 100%; height: 100%; object-fit: cover; border: 0; }
+    .vsl-play {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      width: 66px;
+      height: 66px;
+      margin: auto;
+      padding: 0;
+      border: 0;
+      border-radius: 50%;
+      background: var(--cta);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, .4);
+      cursor: pointer;
+    }
+    .vsl-play[hidden] { display: none; }
+    .vsl-play::before {
+      content: "";
+      margin-left: 5px;
+      border-style: solid;
+      border-width: 12px 0 12px 20px;
+      border-color: transparent transparent transparent var(--cta-ink);
+    }
+    .live-line {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      margin: .9rem 0 0;
+      font-family: var(--sans);
+      font-size: .85rem;
+      font-weight: 600;
+      color: var(--ink-soft);
+    }
+    .live-dot {
+      flex: none;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--red);
+      box-shadow: 0 0 0 4px color-mix(in srgb, var(--red) 18%, transparent);
+    }
+    .inside-card {
+      margin-top: 1.1rem;
+      padding: 1.1rem 1.25rem;
+      border: 1px solid var(--line-strong);
+      border-radius: var(--radius-lg);
+      background: var(--surface);
+    }
+    .card-tag {
+      margin: 0 0 .7rem;
+      font-family: var(--sans);
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+    }
+    .checks { display: grid; gap: .45rem; margin: 0; padding: 0; list-style: none; }
+    @media (min-width: 560px) { .checks { grid-template-columns: 1fr 1fr; column-gap: 1.2rem; } }
+    .checks li { display: flex; align-items: baseline; gap: .55rem; font-size: 1rem; line-height: 1.4; }
+    .checks li::before { content: "✓"; flex: none; font-family: var(--sans); font-weight: 800; color: var(--green); }
+
+    /* Order card */
+    .order { scroll-margin-top: 80px; }
+    .timerbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin: 0;
+      padding: 9px 14px;
+      border: 1px solid color-mix(in srgb, var(--red) 35%, transparent);
+      border-bottom: 0;
+      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+      background: var(--red-tint);
+      color: var(--red-deep);
+      font-family: var(--sans);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .05em;
+      line-height: 1.2;
+      text-align: center;
+      text-transform: uppercase;
+    }
+    .timerbar .clock {
+      padding: 3px 8px;
+      border-radius: 5px;
+      background: var(--red);
+      color: #FFFFFF;
+      font-weight: 800;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: .1em;
+    }
+    .timerbar .clock[hidden] { display: none; }
+    .offer-bar {
+      display: flex;
+      flex-direction: column;
+      gap: .6rem;
+      padding: 1.1rem 1.25rem;
+      border: 1px solid var(--line-strong);
+      border-bottom: 3px solid var(--cta);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+    .offer-price { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: .4rem .7rem; }
+    .offer-price .lbl {
+      font-family: var(--sans);
+      font-size: .66rem;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+    }
+    .ticket-price { display: inline-flex; align-items: baseline; gap: .45rem; }
+    .ticket-price .was {
+      color: var(--red-deep);
+      font-family: var(--sans);
+      font-size: 1rem;
+      opacity: .75;
+    }
+    .ticket-price .now { font-size: 2.1rem; font-weight: 700; line-height: 1; letter-spacing: -.01em; }
+    .ticket-price .today {
+      align-self: center;
+      font-family: var(--sans);
+      font-size: .66rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+    }
+    .save-line { margin: 0; font-family: var(--sans); font-size: .8125rem; font-weight: 600; color: var(--green-deep); }
+    .offer-cue { margin: 0; font-family: var(--sans); font-size: .85rem; font-weight: 600; line-height: 1.45; color: var(--ink-soft); }
+    .order-form {
+      display: flex;
+      flex-direction: column;
+      gap: .8rem;
+      padding: 1.3rem 1.35rem 1.4rem;
+      border: 1px solid var(--line-strong);
+      border-top: 0;
+      border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+      background: var(--surface);
+      box-shadow: var(--shadow-lg);
+    }
+    .form-title {
+      margin: 0 0 .1rem;
+      font-family: var(--sans);
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+    }
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: .8rem; }
+    @media (max-width: 420px) { .field-row { grid-template-columns: 1fr; } }
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: .3rem;
+      min-width: 0;
+      font-family: var(--sans);
+      font-size: .7rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+    .field em { font-style: normal; font-weight: 500; letter-spacing: .03em; text-transform: none; color: var(--ink-mute); }
+    .field input {
+      width: 100%;
+      min-width: 0;
+      padding: .8rem;
+      border: 1px solid var(--line-strong);
+      border-radius: var(--radius);
+      background: var(--surface);
+      color: var(--ink);
+      font: 400 1rem/1.3 var(--serif);
+      letter-spacing: normal;
+      text-transform: none;
+    }
+    .field input:focus {
+      outline: none;
+      border-color: var(--focus);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--focus) 25%, transparent);
+    }
+    .order-submit {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .15rem;
+      width: 100%;
+      margin-top: .3rem;
+      padding: 1.05rem 1rem;
+      border: 0;
+      border-radius: var(--radius);
+      background: var(--cta);
+      color: var(--cta-ink);
+      font-family: var(--sans);
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: .02em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background .15s ease;
+    }
+    .order-submit:hover { background: var(--cta-deep); }
+    .order-submit[disabled] { cursor: progress; opacity: .75; }
+    .order-submit small { font-size: .66rem; font-weight: 400; letter-spacing: .05em; text-transform: none; opacity: .7; }
+    .form-status { margin: 0; font-family: var(--sans); font-size: .8rem; font-weight: 600; color: var(--green-deep); text-align: center; }
+    .form-status:empty { display: none; }
+    .pay-row { display: flex; flex-wrap: wrap; justify-content: center; gap: .35rem; }
+    .pc {
+      padding: .3rem .5rem;
+      border-radius: 3px;
+      color: #FFFFFF;
+      font-family: var(--sans);
+      font-size: .58rem;
+      font-weight: 700;
+      letter-spacing: .02em;
+      line-height: 1;
+    }
+    .pc-visa { background: #1A1F71; }
+    .pc-mc { background: #C9241C; }
+    .pc-amex { background: #2E77BC; }
+    .secure {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: .4rem;
+      margin: 0;
+      font-family: var(--sans);
+      font-size: .72rem;
+      letter-spacing: .03em;
+      color: var(--ink-mute);
+      text-align: center;
+    }
+    .secure svg { flex: none; width: 13px; height: 13px; }
+    .form-legal { margin: 0; font-family: var(--sans); font-size: .72rem; line-height: 1.5; color: var(--ink-mute); text-align: center; }
+
+    /* Ticker */
+    .ticker {
+      padding-block: 30px;
+      border-top: 3px solid var(--red);
+      border-bottom: 1px solid var(--line);
+      background: var(--band-deep);
+      color: var(--band-deep-tx);
+    }
+    .ticker-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      row-gap: 1.25rem;
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+      max-width: var(--wrap);
+      list-style: none;
+    }
+    @media (min-width: 720px) { .ticker-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (min-width: 1000px) { .ticker-grid { grid-template-columns: repeat(6, 1fr); row-gap: 0; } }
+    .ticker-grid li { min-width: 0; padding: 0 .75rem; text-align: center; overflow-wrap: anywhere; }
+    .ticker-grid strong {
+      display: block;
+      color: #FFFFFF;
+      font-family: var(--serif);
+      font-size: clamp(1.6rem, 3.6vw, 2.15rem);
+      font-weight: 700;
+      line-height: 1.2;
+      font-variant-numeric: tabular-nums;
+    }
+    .ticker-grid span {
+      display: block;
+      margin-top: .4rem;
+      color: #B4ABA3;
+      font-family: var(--sans);
+      font-size: .8rem;
+      font-weight: 500;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    /* Credibilità */
+    .trusted { padding-block: clamp(2rem, 4.5vw, 2.9rem); }
+    .trusted-card {
+      max-width: 50rem;
+      margin-inline: auto;
+      padding: clamp(1.5rem, 3.5vw, 2.1rem) clamp(1.1rem, 3.5vw, 2.4rem);
+      border: 1px solid var(--line-strong);
+      border-radius: var(--radius-lg);
+      background: var(--surface);
+      box-shadow: 0 1px 3px rgba(16, 18, 22, .05);
+    }
+    .trusted .section-head { margin-bottom: 1.5rem; }
+    .trusted .eyebrow { margin-bottom: .45rem; }
+    .trusted h2 { margin-bottom: .35rem; font-size: clamp(1.3rem, 2.6vw, 1.65rem); line-height: 1.25; }
+    .trusted .section-head p { font-family: var(--sans); font-size: .9rem; color: var(--ink-mute); }
+    .people { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem .6rem; margin: 0; padding: 0; list-style: none; }
+    @media (min-width: 620px) { .people { grid-template-columns: repeat(6, 1fr); gap: 1rem .5rem; } }
+    .people li { display: flex; flex-direction: column; align-items: center; gap: .3rem; min-width: 0; text-align: center; }
+    .people b { margin-top: .15rem; font-family: var(--sans); font-size: .82rem; font-weight: 700; line-height: 1.2; }
+    .people small {
+      font-family: var(--sans);
+      font-size: .68rem;
+      font-weight: 500;
+      letter-spacing: .02em;
+      line-height: 1.25;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+    }
+    .pf {
+      flex: none;
+      width: clamp(58px, 8.5vw, 74px);
+      aspect-ratio: 1;
+      border: 2px solid var(--red);
+      border-radius: 50%;
+      background: var(--surface-2) center / cover no-repeat;
+    }
+    .pf--andre { background-image: url("/tirana/assets/testimonial-andre.jpg"); background-size: 388% auto; background-position: 50.8% 57.7%; }
+    .pf--claudio { background-image: url("/tirana/assets/testimonial-claudio.jpg"); background-size: 388% auto; background-position: 51.3% 55.1%; }
+    .pf--michele { background-image: url("/tirana/assets/testimonial-michele-bet.jpg"); background-size: 160% auto; background-position: 55% 0; }
+    .pf--nicola { background-image: url("/tirana/assets/testimonial-nicola-caporale.jpg"); background-size: 122% auto; background-position: 35% 33%; }
+    .pf--andrea { background-image: url("/tirana/assets/testimonial-andrea-michelin.jpg"); background-size: 120% auto; background-position: 50% 25%; }
+    .pf--edoardo { background-image: url("/aaw-replay/assets/case-edoardo.webp"); background-size: 1667% auto; background-position: 1.82% 3.6%; }
+    .trusted-note { margin: 1.4rem 0 0; font-family: var(--sans); font-size: .78rem; color: var(--ink-mute); text-align: center; }
+
+    /* Liste numerate */
+    .whats-inside { padding-block: 15px 45px; }
+    .ledger { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--line); counter-reset: step; }
+    .ledger li {
+      display: grid;
+      grid-template-columns: 2.9rem 1fr;
+      gap: 1rem;
+      padding: 1.3rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .ledger li::before {
+      content: counter(step, decimal-leading-zero);
+      counter-increment: step;
+      color: var(--red-deep);
+      font-family: var(--sans);
+      font-size: 1.5rem;
+      font-weight: 700;
+      line-height: 1.1;
+      font-variant-numeric: tabular-nums;
+    }
+    .ledger-arrows li::before {
+      content: "";
+      counter-increment: none;
+      width: 1.6rem;
+      height: 1.6rem;
+      margin-top: .05rem;
+      background: var(--red-deep);
+      -webkit-mask: var(--arrow) center / contain no-repeat;
+      mask: var(--arrow) center / contain no-repeat;
+    }
+    .ledger li > div { min-width: 0; }
+    .ledger h3 { margin-bottom: .35rem; }
+    .ledger p { margin: 0; color: var(--ink-soft); font-size: clamp(1.05rem, 1.8vw, 1.2rem); line-height: 1.55; }
+    .band-brass mark { padding: 0; background: transparent; color: var(--red-deep); font-weight: 700; }
+
+    /* CTA ripetute */
+    .cta-block { display: flex; flex-direction: column; align-items: center; gap: .9rem; margin-top: 2.5rem; text-align: center; }
+    .cta-btn {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .2rem;
+      max-width: 100%;
+      padding: 1.1rem clamp(1.2rem, 4vw, 2.2rem);
+      border-radius: var(--radius);
+      background: var(--cta);
+      color: var(--cta-ink);
+      font-family: var(--sans);
+      font-size: clamp(1.02rem, 2.2vw, 1.2rem);
+      font-weight: 800;
+      letter-spacing: .02em;
+      line-height: 1.2;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: background .15s ease;
+    }
+    .cta-btn:hover { background: var(--cta-deep); }
+    .cta-btn small { font-size: .82rem; font-weight: 400; letter-spacing: .05em; text-transform: none; opacity: .72; }
+    .cta-note { max-width: 34rem; margin: 0; color: var(--ink-soft); font-size: 1.05rem; }
+    .band-deep .cta-note { color: var(--band-deep-tx); }
+    .assure {
+      display: flex;
+      align-items: center;
+      gap: .85rem;
+      max-width: 33rem;
+      margin-top: .2rem;
+      padding: .85rem 1.05rem;
+      border: 1px solid var(--line-strong);
+      border-left: 3px solid var(--red);
+      border-radius: var(--radius);
+      background: var(--surface);
+      text-align: left;
+    }
+    .seal {
+      display: grid;
+      place-items: center;
+      flex: none;
+      width: 46px;
+      height: 46px;
+      border: 2px solid var(--red);
+      border-radius: 50%;
+      color: var(--red-deep);
+      font-family: var(--sans);
+      font-size: .8rem;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+    }
+    .assure p { margin: 0; color: var(--ink); font-size: 1rem; line-height: 1.5; }
+
+    /* Strumenti inclusi */
+    .bonus-list { margin-top: .5rem; border-top: 1px solid var(--line); }
+    .bonus {
+      display: grid;
+      grid-template-columns: 290px minmax(0, 1fr) auto;
+      grid-template-areas:
+        "thumb tag   tag"
+        "thumb title val"
+        "thumb desc  desc";
+      grid-template-rows: auto auto 1fr;
+      column-gap: 1.8rem;
+      row-gap: .45rem;
+      align-items: start;
+      padding: 1.9rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+    @media (max-width: 720px) {
+      .bonus { grid-template-columns: 170px minmax(0, 1fr) auto; column-gap: 1.1rem; }
+    }
+    @media (max-width: 480px) {
+      .bonus { grid-template-columns: minmax(0, 1fr); grid-template-areas: "thumb" "tag" "title" "val" "desc"; grid-template-rows: none; }
+    }
+    .bthumb {
+      grid-area: thumb;
+      align-self: center;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      border: 1px solid var(--line-strong);
+      border-radius: var(--radius);
+      background: var(--paper);
+    }
+    @media (max-width: 480px) { .bthumb { max-width: 320px; margin-bottom: .4rem; } }
+    .bthumb svg { display: block; width: 100%; height: 100%; }
+    .bonus .tag {
+      grid-area: tag;
+      color: var(--red-deep);
+      font-family: var(--sans);
+      font-size: .82rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+    .bonus h3 { grid-area: title; min-width: 0; }
+    .bonus .val {
+      grid-area: val;
+      color: var(--green-deep);
+      font-family: var(--sans);
+      font-size: 1.05rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .bonus p { grid-area: desc; min-width: 0; margin: .5rem 0 0; color: var(--ink-soft); font-size: clamp(1.05rem, 1.8vw, 1.2rem); line-height: 1.55; }
+    .bonus-total {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: .4rem 1rem;
+      padding: 1.3rem 0 0;
+      font-family: var(--sans);
+    }
+    .bonus-total span:first-child { color: var(--ink-mute); font-size: .85rem; letter-spacing: .12em; text-transform: uppercase; }
+    .bonus-total span:last-child { color: var(--green-deep); font-size: 1.35rem; font-weight: 600; }
+
+    /* Illustrazioni degli strumenti */
+    .bthumb text { font-family: var(--sans); }
+    .ill-card { fill: var(--surface); stroke: var(--line); }
+    .ill-kicker { fill: var(--red-deep); font-size: 11px; font-weight: 700; letter-spacing: .14em; }
+    .bthumb .ill-big { fill: var(--ink); font-family: var(--serif); font-size: 46px; font-weight: 700; }
+    .ill-small { fill: var(--ink-mute); font-size: 12px; }
+    .ill-ring-track { fill: none; stroke: var(--line-strong); stroke-width: 7; }
+    .ill-ring-fill { fill: none; stroke: var(--red); stroke-width: 7; }
+    .ill-track { stroke: var(--line-strong); stroke-width: 4; stroke-linecap: round; }
+    .ill-progress { stroke: var(--red); stroke-width: 4; stroke-linecap: round; }
+    .ill-dot { fill: var(--surface); stroke: var(--line-strong); stroke-width: 2.5; }
+    .ill-dot.is-done { fill: var(--red); stroke: var(--red); }
+    .ill-dot.is-active { fill: var(--cta); stroke: var(--surface); stroke-width: 3; }
+    .ill-dot-ring { fill: none; stroke: var(--cta); stroke-width: 2; opacity: .55; }
+    .ill-label { fill: var(--ink); font-size: 12px; font-weight: 600; }
+    .ill-time { fill: var(--ink-mute); font-size: 10.5px; font-variant-numeric: tabular-nums; }
+    .ill-cell { fill: var(--surface-2); stroke: var(--line); }
+    .ill-cell.is-hot { fill: var(--red-tint); stroke: var(--red); stroke-width: 1.5; }
+    .ill-pt { fill: var(--ink-mute); }
+    .ill-pt.is-hot { fill: var(--red); }
+    .ill-pt-ring { fill: none; stroke: var(--red); stroke-width: 1.5; opacity: .45; }
+    .ill-axis { fill: var(--ink-mute); font-size: 10px; font-weight: 700; letter-spacing: .12em; }
+    .ill-node { fill: var(--surface-2); stroke: var(--line-strong); stroke-width: 1.2; }
+    .ill-node.is-check { fill: var(--red-tint); stroke: var(--red); }
+    .ill-node-t { fill: var(--ink); font-size: 12px; font-weight: 600; }
+    .ill-link { stroke: var(--ink-mute); stroke-width: 2; }
+    .ill-link.is-return { stroke: var(--red); stroke-dasharray: 4 4; }
+    .ill-head { fill: var(--ink-mute); }
+    .ill-head.is-red { fill: var(--red); }
+    .ill-gate { fill: var(--green); }
+    .ill-check { fill: none; stroke: #FFFFFF; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+    .ill-gate-t { fill: var(--green-deep); font-size: 9px; font-weight: 700; letter-spacing: .12em; }
+
+    /* Case study */
+    .tearsheet {
+      max-width: 44rem;
+      margin: 1.75rem auto 0;
+      overflow: hidden;
+      border: 1px solid var(--line-strong);
+      border-radius: var(--radius-lg);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+    .ts-top {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: .3rem 1rem;
+      padding: 1.15rem 1.5rem;
+      border-top: 3px solid var(--red);
+      background: var(--band-deep);
+      color: #FFFFFF;
+    }
+    .ts-top b { font-family: var(--sans); font-size: 1.1rem; font-weight: 700; }
+    .ts-top span { color: #B4ABA3; font-family: var(--sans); font-size: .78rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
+    .ts-headline { display: flex; flex-direction: column; gap: .4rem; padding: 1.6rem 1.5rem; border-bottom: 1px solid var(--line); }
+    .ts-headline strong {
+      color: var(--green-deep);
+      font-size: clamp(2rem, 5vw, 2.9rem);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -.01em;
+      font-variant-numeric: tabular-nums;
+    }
+    .ts-headline span { color: var(--ink-mute); font-family: var(--sans); font-size: .82rem; font-weight: 500; letter-spacing: .04em; text-transform: uppercase; }
+    .ts-rows { display: grid; grid-template-columns: 1fr 1fr; margin: 0; }
+    .ts-rows div {
+      display: flex;
+      flex-direction: column;
+      gap: .25rem;
+      min-width: 0;
+      padding: 1.05rem 1.5rem;
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .ts-rows div:nth-child(2n) { border-right: 0; }
+    .ts-rows div:nth-last-child(-n + 2) { border-bottom: 0; }
+    .ts-rows dt { color: var(--ink-mute); font-family: var(--sans); font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; }
+    .ts-rows dd { margin: 0; color: var(--ink); font-size: 1.1rem; line-height: 1.45; }
+    @media (max-width: 560px) {
+      .ts-rows { grid-template-columns: 1fr; }
+      .ts-rows div { border-right: 0; }
+      .ts-rows div:nth-last-child(2) { border-bottom: 1px solid var(--line); }
+    }
+    .results-shot { max-width: 44rem; margin: 1.75rem auto 0; }
+    .results-shot img { width: 100%; border: 1px solid var(--line-strong); border-radius: var(--radius-lg); background: #FFFFFF; }
+    figcaption { margin-top: .8rem; color: var(--ink-mute); font-family: var(--sans); font-size: .9rem; letter-spacing: .02em; line-height: 1.5; }
+    .results-shot figcaption { text-align: center; }
+
+    /* Testo lungo */
+    .prose > h2 { margin-bottom: 1.15rem; }
+    .prose p { color: var(--ink-soft); font-size: clamp(1.12rem, 2vw, 1.35rem); line-height: 1.68; }
+    .prose p b { color: var(--ink); }
+    .band-deep .prose p { color: var(--band-deep-tx); }
+    .band-deep .prose p b { color: #FFFFFF; }
+    .prose .callout-q {
+      margin: 0 0 1.1rem;
+      padding-left: 1rem;
+      border-left: 3px solid var(--red);
+      color: var(--ink);
+      font-size: clamp(1.7rem, 2.8vw, 2.2rem);
+      font-weight: 700;
+      line-height: 1.2;
+    }
+    .profiles { margin: 1.75rem 0; }
+    .chips { display: flex; flex-wrap: wrap; gap: .5rem; margin: 0; padding: 0; list-style: none; }
+    .chips li {
+      padding: .45rem .85rem;
+      border: 1px solid var(--line-strong);
+      border-radius: 999px;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: .82rem;
+      font-weight: 600;
+    }
+    .proofs { margin: 1.5rem 0 2rem; }
+    .proof-grid { display: grid; gap: .9rem; }
+    .proof-grid img { width: 100%; border: 1px solid var(--line-strong); border-radius: var(--radius); background: #FFFFFF; }
+
+    .risk-stamp {
+      float: right;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: clamp(124px, 24vw, 176px);
+      aspect-ratio: 1;
+      margin: .2rem 0 .8rem 1.6rem;
+      border: 2px solid var(--brass);
+      border-radius: 50%;
+      background: var(--surface);
+      box-shadow: inset 0 0 0 6px var(--surface), inset 0 0 0 7.5px var(--brass);
+      color: var(--brass);
+      text-align: center;
+      shape-outside: circle(50%);
+    }
+    .risk-stamp span { font-family: var(--sans); font-size: .6rem; font-weight: 700; letter-spacing: .14em; line-height: 1.3; text-transform: uppercase; }
+    .risk-stamp strong { font-size: clamp(2rem, 4.6vw, 2.8rem); font-weight: 700; line-height: 1.05; }
+    @media (max-width: 560px) { .risk-stamp { float: none; margin: 0 auto 1.2rem; } }
+
+    /* Riepilogo finale */
+    .prose .recap-intro { margin-bottom: .5rem; color: var(--ink); font-size: clamp(1.9rem, 3vw, 2.5rem); font-weight: 700; line-height: 1.2; }
+    .band-brass .ledger { margin-bottom: 1.6rem; }
+    .urgency-note {
+      margin-top: 1.9rem;
+      padding: 1.4rem 1.6rem;
+      border: 2px dashed var(--red);
+      border-radius: var(--radius);
+      background: var(--surface);
+    }
+    .prose .urgency-note p { margin: 0 0 .7rem; font-size: 1.1rem; line-height: 1.6; }
+    .prose .urgency-note p:last-child { margin: 0; }
+    .prose .urgency-note p[hidden] { display: none; }
+    .final-cta { display: flex; justify-content: center; margin: 2.6rem 0 0; }
+    .sa-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .35rem;
+      width: min(100%, 32rem);
+      padding: 1.15rem 1.5rem;
+      border-radius: var(--radius-lg);
+      background: #0C0C0C;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, .28);
+      color: #FFFFFF;
+      text-decoration: none;
+      animation: balloon 1.4s ease-in-out infinite;
+    }
+    .sa-btn:hover { background: #1E1E1E; }
+    @keyframes balloon {
+      0%, 100% { transform: scale(1); }
+      30% { transform: scale(1.04); }
+      60% { transform: scale(1.02); }
+    }
+    .sa-main {
+      display: inline-flex;
+      align-items: center;
+      gap: .55rem;
+      font-family: var(--sans);
+      font-size: clamp(1.05rem, 2.4vw, 1.25rem);
+      font-weight: 800;
+      line-height: 1.15;
+      text-align: center;
+      text-transform: uppercase;
+    }
+    .sa-arrow {
+      display: inline-grid;
+      place-items: center;
+      flex: none;
+      width: 1.5rem;
+      height: 1.5rem;
+      border: 2px solid #FFFFFF;
+      border-radius: 50%;
+    }
+    .sa-arrow::before {
+      content: "";
+      width: .85rem;
+      height: .85rem;
+      background: #FFFFFF;
+      -webkit-mask: var(--arrow) center / contain no-repeat;
+      mask: var(--arrow) center / contain no-repeat;
+    }
+    .sa-sub { color: rgba(255, 255, 255, .82); font-family: var(--sans); font-size: .78rem; font-weight: 500; text-align: center; }
+    @media (prefers-color-scheme: dark) {
+      .sa-btn { background: #000000; border: 1px solid rgba(255, 255, 255, .16); }
+    }
+
+    /* Footer */
+    .sitefooter {
+      padding-block: 2.25rem;
+      background: #000000;
+      color: #8B837C;
+      font-family: var(--sans);
+      font-size: .9rem;
+      letter-spacing: .03em;
+      text-align: center;
+    }
+    .sitefooter img { width: 124px; margin: 0 auto 1rem; }
+    .sitefooter p { margin: 0 0 .35rem; }
+    .sitefooter a { color: #C7BFB8; text-decoration: none; }
+    .sitefooter a:hover { color: #FFFFFF; }
+    .foot-links { display: flex; flex-wrap: wrap; justify-content: center; gap: .35rem 1.1rem; margin-top: .6rem; }
+    .foot-note { max-width: 40rem; margin: 1.1rem auto 0 !important; color: #6F6862; font-size: .76rem; line-height: 1.55; }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .sa-btn { animation: none; }
+      *, *::before, *::after { transition-duration: .001ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Vai al contenuto</a>
+
+  <header class="siteheader" id="siteheader">
+    <div class="wrap">
+      <a class="brand" href="#top" aria-label="Scalers+, torna all'inizio"><img src="/Logo%20Scalers%20(3)%20(1).png" width="337" height="94" alt="Scalers"></a>
+      <div class="header-meta"><a href="mailto:matteo@milonematteo.com?subject=Domanda%20sul%20Replay%20Pass"><span class="long">Hai una domanda? </span>Scrivi a Matteo</a></div>
+      <a class="header-cta" href="#order">Accedi ora <span>€27</span></a>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="wrap">
+        <div class="hero-headline">
+          <p class="eyebrow">AI Acceleration Week · Replay Pass</p>
+          <h1>Copia il sistema completo della AI Acceleration Week: 7 workshop registrati, canvas pronti e il metodo per costruire il tuo primo workflow AI in&nbsp;60&nbsp;minuti</h1>
+          <p class="lede"><b>Costa meno di una cena fuori.</b> Ricevi le 7 registrazioni integrali più tre strumenti operativi da compilare sul tuo caso, tutti <b>inclusi</b> nel Replay Pass con un pagamento unico.</p>
+        </div>
+
+        <div class="hero-grid">
+          <div class="hero-col">
+            <div class="vsl" data-vsl>
+              <img src="/aaw-replay/assets/aaw-day-one.webp" width="1600" height="901" alt="Matteo Milone durante il Day One della AI Acceleration Week" fetchpriority="high">
+              <button class="vsl-play" type="button" aria-label="Guarda il video di presentazione" hidden></button>
+            </div>
+            <p class="live-line"><span class="live-dot" aria-hidden="true"></span>164 professionisti presenti in diretta al Day One</p>
+            <div class="inside-card">
+              <p class="card-tag">Dentro il Replay Pass</p>
+              <ul class="checks">
+                <li>7 registrazioni integrali</li>
+                <li>Start Here da 60 minuti</li>
+                <li>Mappa dei colli di bottiglia</li>
+                <li>Loop Operativo Canvas</li>
+                <li>Percorso in 7 giorni</li>
+                <li>Pagamento unico</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="hero-col order" id="order">
+            <p class="timerbar" aria-live="off"><span id="timer-label">Pagamento unico · nessun rinnovo</span><span class="clock" id="timer-clock" hidden></span></p>
+            <div class="offer-bar">
+              <div class="offer-price">
+                <span class="lbl">Replay Pass completo</span>
+                <span class="ticket-price"><s class="was" data-list-price hidden></s><span class="now">€27</span><span class="today">una tantum</span></span>
+              </div>
+              <p class="save-line" data-saving-line hidden>Risparmi <span data-saving></span> con il prezzo di lancio</p>
+              <p class="offer-cue">Accedi alle 7 sessioni della AI Acceleration Week e ricevi Start Here, Mappa, Canvas e percorso in 7 giorni, senza costi aggiuntivi.</p>
+            </div>
+            <form class="order-form" id="order-form" action="mailto:matteo@milonematteo.com?subject=AI%20Acceleration%20Week%20Replay%20Pass" method="post" enctype="text/plain" aria-labelledby="form-title">
+              <p class="form-title" id="form-title">Dove vuoi ricevere l'accesso?</p>
+              <div class="field-row">
+                <label class="field"><span>Nome</span><input id="lead-name" name="name" type="text" autocomplete="given-name" maxlength="100" required></label>
+                <label class="field"><span>Email</span><input name="email" type="email" autocomplete="email" inputmode="email" maxlength="254" required></label>
+              </div>
+              <label class="field"><span>Telefono <em>(facoltativo)</em></span><input name="phone" type="tel" autocomplete="tel" inputmode="tel" maxlength="30"></label>
+              <button class="order-submit" type="submit"><span data-submit-label>Sblocca il mio accesso</span><small>(clicca una sola volta)</small></button>
+              <p class="form-status" role="status" aria-live="polite"></p>
+              <div class="pay-row" aria-label="Carte accettate"><span class="pc pc-visa">VISA</span><span class="pc pc-mc">MASTERCARD</span><span class="pc pc-amex">AMEX</span></div>
+              <p class="secure"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="10" width="14" height="10" rx="2" stroke="currentColor" stroke-width="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="2"/></svg><span data-secure-text>Checkout sicuro e crittografato tramite Stripe</span></p>
+              <p class="form-legal">Continuando accetti i <a href="https://joinscalers.com/terms">Termini</a> e la <a href="https://joinscalers.com/privacy">Privacy Policy</a> di Scalers+.</p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ticker" aria-label="La AI Acceleration Week in numeri">
+      <ul class="ticker-grid">
+        <li><strong>7</strong><span>Workshop registrati</span></li>
+        <li><strong>164</strong><span>Presenti al Day&nbsp;One</span></li>
+        <li><strong>300+</strong><span>Iscritti alla&nbsp;Week</span></li>
+        <li><strong>60'</strong><span>Per il primo&nbsp;workflow</span></li>
+        <li><strong>3</strong><span>Strumenti operativi</span></li>
+        <li><strong>€27</strong><span>Pagamento unico</span></li>
+      </ul>
+    </section>
+
+    <section class="trusted" aria-labelledby="trusted-title">
+      <div class="wrap">
+        <div class="trusted-card">
+          <div class="section-head centered">
+            <p class="eyebrow">Community Scalers+</p>
+            <h2 id="trusted-title">Professionisti che hanno applicato il metodo con Matteo</h2>
+            <p>Alcuni dei membri che hanno condiviso i propri risultati.</p>
+          </div>
+          <ul class="people">
+            <li><span class="pf pf--andre" aria-hidden="true"></span><b>André</b><small>Agenzia AI native</small></li>
+            <li><span class="pf pf--claudio" aria-hidden="true"></span><b>Claudio Pasinetti</b><small>AI Solo Agency</small></li>
+            <li><span class="pf pf--michele" aria-hidden="true"></span><b>Michele Bet</b><small>Agenzia</small></li>
+            <li><span class="pf pf--nicola" aria-hidden="true"></span><b>Nicola Caporale</b><small>Membro VIP Scalers+</small></li>
+            <li><span class="pf pf--andrea" aria-hidden="true"></span><b>Andrea Michelin</b><small>Membro Premium Scalers+</small></li>
+            <li><span class="pf pf--edoardo" aria-hidden="true"></span><b>Edoardo Marchese</b><small>Workflow AI</small></li>
+          </ul>
+          <p class="trusted-note">Risultati individuali maturati nei percorsi Scalers+: non rappresentano una garanzia di risultato.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="whats-inside" aria-labelledby="inside-title">
+      <div class="wrap">
+        <div class="section-head measure centered">
+          <p class="eyebrow">Cosa c'è dentro</p>
+          <h2 id="inside-title">7 sessioni. 7 colli di bottiglia. Un sistema operativo.</h2>
+          <p>Sei blocchi presi dal metodo che Matteo usa ogni giorno in ricerca, advertising, contenuti, delivery e operations.</p>
+        </div>
+        <ol class="ledger">
+          <li><div><h3>Il metodo in 4 passaggi, dal task al workflow</h3><p>Trovi il collo di bottiglia, scegli un task delegabile, costruisci il Loop Operativo e prepari il primo test. <mark>Un'ora, un ciclo pronto da testare</mark>.</p></div></li>
+          <li><div><h3>La Mappa dei colli di bottiglia</h3><p>Valuti impatto, frequenza e delegabilità dei tuoi processi e scegli <mark>il primo da togliere dalle tue mani</mark>. Niente automazioni fatte per moda.</p></div></li>
+          <li><div><h3>Il Loop Operativo: contesto, piano, esecuzione, verifica</h3><p>La sequenza che trasforma una chat in un processo: l'AI riceve il contesto, esegue il lavoro e <mark>controlla il proprio risultato</mark> prima di arrivare a te.</p></div></li>
+          <li><div><h3>Il quality gate che decide quando il lavoro è fatto bene</h3><p>Definisci prima cosa deve produrre il sistema e come capire se è corretto. Se il risultato non supera il gate, <mark>il ciclo torna indietro e corregge</mark>.</p></div></li>
+          <li><div><h3>Sette colli di bottiglia, sette sessioni integrali</h3><p>Chiarezza, automazione, acquisizione, vendita, operations, prodotto e offerta: <mark>vedi il sistema completo</mark>, non un singolo trucco.</p></div></li>
+          <li><div><h3>Il percorso consigliato in 7 giorni</h3><p>Un ordine preciso per guardare, applicare e consolidare, così <mark>non accumuli ore di registrazioni</mark> senza metterle in pratica.</p></div></li>
+        </ol>
+        <div class="cta-block">
+          <a class="cta-btn" href="#order">Andiamo, sblocca il mio accesso <small>27 euro · pagamento unico</small></a>
+          <div class="assure"><span class="seal">€27</span><p>Paghi una volta sola. Nessun abbonamento e nessun rinnovo automatico: l'accesso al Replay Pass è personale.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="band-surface sec" aria-labelledby="tools-title">
+      <div class="wrap">
+        <div class="section-head measure centered">
+          <p class="eyebrow">Incluso nel tuo ordine</p>
+          <h2 id="tools-title">Più 3 strumenti operativi pronti da compilare</h2>
+          <p>Inclusi nel Replay Pass, senza costi aggiuntivi.</p>
+        </div>
+        <div class="bonus-list">
+          <article class="bonus">
+            <div class="bthumb">
+              <svg viewBox="0 0 320 240" aria-hidden="true" focusable="false">
+                <rect class="ill-card" x="12" y="12" width="296" height="216" rx="10"/>
+                <text class="ill-kicker" x="32" y="44">START HERE</text>
+                <text class="ill-big" x="30" y="98">60'</text>
+                <text class="ill-small" x="32" y="120">dal vincolo al primo test</text>
+                <g transform="rotate(-90 250 80)">
+                  <circle class="ill-ring-track" cx="250" cy="80" r="28" stroke-dasharray="39.98 4"/>
+                  <circle class="ill-ring-fill" cx="250" cy="80" r="28" stroke-dasharray="39.98 4 39.98 91.97"/>
+                </g>
+                <line class="ill-track" x1="52" y1="162" x2="268" y2="162"/>
+                <line class="ill-progress" x1="52" y1="162" x2="196" y2="162"/>
+                <circle class="ill-dot is-done" cx="52" cy="162" r="8"/>
+                <circle class="ill-dot is-done" cx="124" cy="162" r="8"/>
+                <circle class="ill-dot-ring" cx="196" cy="162" r="13"/>
+                <circle class="ill-dot is-active" cx="196" cy="162" r="8"/>
+                <circle class="ill-dot" cx="268" cy="162" r="8"/>
+                <text class="ill-label" x="52" y="192" text-anchor="middle">Vincolo</text>
+                <text class="ill-label" x="124" y="192" text-anchor="middle">Task</text>
+                <text class="ill-label" x="196" y="192" text-anchor="middle">Loop</text>
+                <text class="ill-label" x="268" y="192" text-anchor="middle">Test</text>
+                <text class="ill-time" x="52" y="209" text-anchor="middle">00:00</text>
+                <text class="ill-time" x="124" y="209" text-anchor="middle">00:15</text>
+                <text class="ill-time" x="196" y="209" text-anchor="middle">00:30</text>
+                <text class="ill-time" x="268" y="209" text-anchor="middle">00:45</text>
+              </svg>
+            </div>
+            <span class="tag">Strumento #1</span>
+            <h3>Start Here da 60 minuti</h3>
+            <span class="val">Incluso</span>
+            <p>Il percorso minimo per <mark>arrivare alla prima vittoria in un'ora</mark>. Parti da un task reale prima di guardare ore di registrazioni: quattro blocchi da 15 minuti, dal vincolo al primo test operativo.</p>
+          </article>
+          <article class="bonus">
+            <div class="bthumb">
+              <svg viewBox="0 0 320 240" aria-hidden="true" focusable="false">
+                <rect class="ill-card" x="12" y="12" width="296" height="216" rx="10"/>
+                <text class="ill-kicker" x="32" y="44">MAPPA DEI VINCOLI</text>
+                <rect class="ill-cell" x="80" y="60" width="60" height="40" rx="4"/>
+                <rect class="ill-cell" x="145" y="60" width="60" height="40" rx="4"/>
+                <rect class="ill-cell is-hot" x="210" y="60" width="60" height="40" rx="4"/>
+                <rect class="ill-cell" x="80" y="105" width="60" height="40" rx="4"/>
+                <rect class="ill-cell" x="145" y="105" width="60" height="40" rx="4"/>
+                <rect class="ill-cell" x="210" y="105" width="60" height="40" rx="4"/>
+                <rect class="ill-cell" x="80" y="150" width="60" height="40" rx="4"/>
+                <rect class="ill-cell" x="145" y="150" width="60" height="40" rx="4"/>
+                <rect class="ill-cell" x="210" y="150" width="60" height="40" rx="4"/>
+                <circle class="ill-pt" cx="98" cy="174" r="4"/>
+                <circle class="ill-pt" cx="120" cy="122" r="4"/>
+                <circle class="ill-pt" cx="164" cy="168" r="4"/>
+                <circle class="ill-pt" cx="182" cy="80" r="4"/>
+                <circle class="ill-pt" cx="236" cy="128" r="4"/>
+                <circle class="ill-pt" cx="104" cy="80" r="4"/>
+                <circle class="ill-pt-ring" cx="241" cy="80" r="12"/>
+                <circle class="ill-pt is-hot" cx="241" cy="80" r="6"/>
+                <text class="ill-axis" transform="translate(62 125) rotate(-90)" text-anchor="middle">IMPATTO →</text>
+                <text class="ill-axis" x="175" y="211" text-anchor="middle">FREQUENZA →</text>
+              </svg>
+            </div>
+            <span class="tag">Strumento #2</span>
+            <h3>Mappa dei colli di bottiglia</h3>
+            <span class="val">Incluso</span>
+            <p>Il workbook per valutare <mark>impatto, frequenza e delegabilità</mark> di ogni processo. Ti mostra dove il business perde tempo o margine e quale attività conviene togliere per prima dalle tue mani.</p>
+          </article>
+          <article class="bonus">
+            <div class="bthumb">
+              <svg viewBox="0 0 320 240" aria-hidden="true" focusable="false">
+                <defs>
+                  <marker id="loop-head" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="ill-head" d="M0 0L10 5L0 10z"/></marker>
+                  <marker id="loop-head-red" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="ill-head is-red" d="M0 0L10 5L0 10z"/></marker>
+                </defs>
+                <rect class="ill-card" x="12" y="12" width="296" height="216" rx="10"/>
+                <text class="ill-kicker" x="32" y="44">LOOP OPERATIVO</text>
+                <rect class="ill-node" x="52" y="74" width="92" height="30" rx="6"/>
+                <text class="ill-node-t" x="98" y="94" text-anchor="middle">Contesto</text>
+                <rect class="ill-node" x="176" y="74" width="92" height="30" rx="6"/>
+                <text class="ill-node-t" x="222" y="94" text-anchor="middle">Piano</text>
+                <rect class="ill-node" x="176" y="164" width="92" height="30" rx="6"/>
+                <text class="ill-node-t" x="222" y="184" text-anchor="middle">Esecuzione</text>
+                <rect class="ill-node is-check" x="52" y="164" width="92" height="30" rx="6"/>
+                <text class="ill-node-t" x="98" y="184" text-anchor="middle">Verifica</text>
+                <line class="ill-link" x1="146" y1="89" x2="172" y2="89" marker-end="url(#loop-head)"/>
+                <line class="ill-link" x1="222" y1="106" x2="222" y2="160" marker-end="url(#loop-head)"/>
+                <line class="ill-link" x1="174" y1="179" x2="148" y2="179" marker-end="url(#loop-head)"/>
+                <line class="ill-link is-return" x1="98" y1="162" x2="98" y2="108" marker-end="url(#loop-head-red)"/>
+                <circle class="ill-gate" cx="160" cy="131" r="15"/>
+                <path class="ill-check" d="M153 131l5 5 9-10"/>
+                <text class="ill-gate-t" x="160" y="158" text-anchor="middle">GATE</text>
+              </svg>
+            </div>
+            <span class="tag">Strumento #3</span>
+            <h3>Loop Operativo Canvas</h3>
+            <span class="val">Incluso</span>
+            <p>Contesto, piano, esecuzione, verifica e ritorno <mark>in una sola pagina</mark>. Lo compili sul tuo caso ed esci con un processo pronto da testare, che resta valido anche quando cambia il modello.</p>
+          </article>
+          <p class="bonus-total"><span>Costo aggiuntivo</span><span>€0, già inclusi</span></p>
+        </div>
+        <div class="cta-block">
+          <a class="cta-btn" href="#order">Mandami workshop e strumenti <small>7 replay + 3 strumenti + roadmap · 27 euro</small></a>
+          <div class="assure"><span class="seal">€27</span><p>Paghi una volta sola. Nessun abbonamento e nessun rinnovo automatico: l'accesso al Replay Pass è personale.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec" aria-labelledby="case-title">
+      <div class="wrap">
+        <div class="section-head measure centered">
+          <p class="eyebrow">Case study</p>
+          <h2 id="case-title">Edoardo non ha scritto un altro prompt. Ha costruito un team operativo.</h2>
+          <p>Edoardo ha applicato il metodo a un processo che ogni consulente conosce bene: l'onboarding di un nuovo cliente. Il risultato è <mark>un workflow multi-agente che consegna il report da solo</mark>.</p>
+        </div>
+        <div class="tearsheet">
+          <div class="ts-top"><b>Edoardo Marchese · onboarding cliente</b><span>Implementazione reale</span></div>
+          <div class="ts-headline"><strong>1 + 8</strong><span>Un orchestratore e otto agenti, un report consegnato su Drive</span></div>
+          <dl class="ts-rows">
+            <div><dt>Processo</dt><dd>Onboarding di un nuovo cliente</dd></div>
+            <div><dt>Dati</dt><dd>Proprietari del cliente: redditività, CAC, LTV</dd></div>
+            <div><dt>Analisi</dt><dd>Benchmark di CPC e CPA, anello debole dell'azienda</dd></div>
+            <div><dt>Output</dt><dd>Report su Drive e notifica a workflow concluso</dd></div>
+          </dl>
+        </div>
+        <figure class="results-shot">
+          <img src="/aaw-replay/assets/case-edoardo.webp" width="1400" height="501" alt="Messaggio di Edoardo Marchese: ha creato un workflow per l'onboarding del cliente con un orchestratore, un agente growth, sei agenti specialistici e un agente personale che scrive il report su Drive" loading="lazy">
+          <figcaption>Edoardo descrive il workflow che ha costruito.</figcaption>
+        </figure>
+        <div class="cta-block">
+          <a class="cta-btn" href="#order">Voglio costruire il mio primo workflow <small>Replay Pass completo · 27 euro</small></a>
+          <p class="cta-note">Trasparenza: il case study nasce dai percorsi e dalla community Scalers+, non dal solo acquisto del Replay Pass. Mostra il metodo applicato, non un risultato garantito.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="band-deep sec" aria-labelledby="mechanism-title">
+      <div class="wrap measure prose">
+        <p class="eyebrow">Il meccanismo</p>
+        <h2 id="mechanism-title">Perché il Loop Operativo funziona</h2>
+        <p>La maggior parte delle persone usa l'AI come una chat: chiede, corregge, ripete. Il Loop Operativo cambia la logica. <mark>Non cerchi un prompt migliore</mark>: costruisci una sequenza che sa cosa ricevere, cosa fare e come verificarsi.</p>
+        <p>Il risultato è un processo che non dipende dal tool del momento. Un buon workflow continua a funzionare anche quando il modello cambia, perché vive su processo, contesto e criteri.</p>
+        <p><b>Prima</b> individui il processo che ti costa più tempo, margine o attenzione. Non parti dalla tecnologia: parti dal vincolo.</p>
+        <p><b>Poi</b> scegli un'attività ricorrente, con input osservabili e un risultato che puoi valutare, e la trasformi in una sequenza con <mark>contesto, piano, esecuzione e verifica</mark>.</p>
+        <p><b>Da lì</b> l'AI esegue e controlla il proprio lavoro con un quality gate. Se il risultato non lo supera, il ciclo torna indietro e corregge. Strategia, approvazione e responsabilità <mark>restano a te</mark>.</p>
+        <p>Non è un prompt. È un sistema operativo: assegni, verifichi, approvi.</p>
+        <div class="cta-block">
+          <a class="cta-btn" href="#order">Attiva il mio accesso <small>27 euro · pagamento unico</small></a>
+          <p class="cta-note">Il metodo completo, senza il prezzo di un percorso di affiancamento.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec" aria-labelledby="helps-title">
+      <div class="wrap">
+        <div class="section-head measure centered">
+          <p class="eyebrow">Cosa porti a casa</p>
+          <h2 id="helps-title">Come ti aiuta questo workshop</h2>
+        </div>
+        <ul class="ledger ledger-arrows">
+          <li><div><h3>Smetti di rispiegare il contesto ogni volta</h3><p>Il contesto del tuo business entra nel processo: l'output non cambia più da una chat all'altra e <mark>la settimana dopo non riparti da zero</mark>.</p></div></li>
+          <li><div><h3>Deleghi un task vero, non un esercizio</h3><p>Parti da un'attività reale del tuo lavoro. In un'ora hai <mark>il primo ciclo pronto da testare</mark> sul tuo caso.</p></div></li>
+          <li><div><h3>Automatizzi solo dopo aver capito il processo</h3><p>Rendere più veloce un flusso sbagliato ti dà più output, non più margine. Prima scegli il vincolo giusto, <mark>poi deleghi</mark>.</p></div></li>
+          <li><div><h3>Intervieni solo sulle decisioni</h3><p>Un quality gate controlla il risultato prima che arrivi a te. <mark>Tu approvi, non riscrivi</mark>.</p></div></li>
+        </ul>
+        <div class="cta-block">
+          <a class="cta-btn" href="#order">Ci sto, lo voglio <small>27 euro</small></a>
+          <p class="cta-note">È il vantaggio di chi smette di collezionare prompt e inizia a costruire processi.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="band-surface sec" aria-labelledby="fit-title">
+      <div class="wrap measure prose">
+        <p class="eyebrow">La domanda giusta</p>
+        <p class="callout-q" id="fit-title">Funziona anche nel mio lavoro?</p>
+        <p>È la prima cosa da chiedersi, soprattutto se sei freelancer, advertiser, copywriter o guidi un'agenzia e hai già provato l'ennesimo tool.</p>
+        <p>La risposta dipende dal tuo processo, non dal tuo settore. Il metodo non parte dalla tecnologia: se hai un'attività ricorrente con input osservabili, passaggi ripetibili e un risultato che puoi valutare, <mark>hai già il materiale per il primo workflow</mark>. Non serve saper programmare.</p>
+        <p>È pensato per chi oggi è <b>il punto di passaggio obbligato di ogni attività</b> e vuole iniziare a delegare senza perdere il controllo.</p>
+        <figure class="profiles">
+          <ul class="chips">
+            <li>Freelancer</li>
+            <li>Advertiser</li>
+            <li>Copywriter</li>
+            <li>Media buyer</li>
+            <li>Consulente</li>
+            <li>Agenzia</li>
+            <li>Founder</li>
+            <li>Imprenditore</li>
+          </ul>
+          <figcaption>Per chi lavora ogni giorno con clienti, campagne e contenuti.</figcaption>
+        </figure>
+        <p>Non devi crederci sulla parola. Ecco due messaggi arrivati dalla community:</p>
+        <figure class="proofs">
+          <div class="proof-grid">
+            <img src="/aaw-replay/assets/proof-member.webp" width="1200" height="577" alt="Messaggio di un membro: dopo essere entrato nella community ha fatto upgrade alla versione a pagamento e una sola informazione lo ha fatto svoltare in poche ore" loading="lazy">
+            <img src="/aaw-replay/assets/proof-victor.webp" width="1200" height="895" alt="Conversazione con Victor: tra le mille informazioni che distraggono online, ci voleva proprio una guida specifica" loading="lazy">
+          </div>
+          <figcaption>Messaggi reali dalla community Scalers+. Risultati individuali: non rappresentano una garanzia di risultato.</figcaption>
+        </figure>
+        <div class="cta-block">
+          <a class="cta-btn" href="#order">Sì, dammi l'accesso <small>+ Start Here, Mappa e Canvas inclusi</small></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec" aria-labelledby="risk-title">
+      <div class="wrap measure prose">
+        <div class="risk-stamp" aria-hidden="true"><span>Pagamento unico</span><strong>€27</strong><span>Nessun rinnovo</span></div>
+        <p class="eyebrow">Il tuo rischio</p>
+        <h2 id="risk-title">27 euro, una volta sola. Nessun abbonamento, nessun rinnovo.</h2>
+        <p>Se hai letto fin qui e non hai ancora preso il tuo accesso, forse ti incuriosisce ma hai ancora un dubbio. Giusto così: facciamo due conti.</p>
+        <p>Prendi il Replay Pass. Guarda lo Start Here. Applica un solo strumento su un task reale, magari la Mappa dei colli di bottiglia, magari il Loop Operativo Canvas. Succede una di due cose:</p>
+        <p><b>Funziona.</b> Hai il primo processo che riceve contesto, esegue e controlla il proprio risultato. E la settimana prossima non ricostruisci lo stesso task a mano.</p>
+        <p><b>Oppure si blocca.</b> Per 27 euro scopri quale passaggio del tuo processo non è ancora delegabile: <mark>è l'informazione che ti serve per decidere il prossimo passo</mark>.</p>
+        <div class="cta-block">
+          <a class="cta-btn" href="#order">Prendo il mio accesso da 27 euro <small>workshop completo + strumenti + roadmap</small></a>
+          <div class="assure"><span class="seal">€27</span><p>Paghi 27 euro una volta. Nessun abbonamento, nessun rinnovo automatico, niente clausole scritte in piccolo.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="band-brass sec" aria-labelledby="recap-title">
+      <div class="wrap measure prose">
+        <p class="recap-intro" id="recap-title">Hai scrollato fino in fondo, eh?</p>
+        <p>Nessun problema, lo facciamo anche noi. Ecco l'offerta da 27 euro, tutta in una volta.</p>
+        <p class="eyebrow">Dettagli del Replay Pass: ecco cosa trovi</p>
+        <ol class="ledger">
+          <li><div><h3>7 registrazioni integrali della AI Acceleration Week</h3><p>Chiarezza, automazione, acquisizione, vendita, operations, prodotto e offerta: <mark>l'intera settimana</mark>, sessione per sessione.</p></div></li>
+          <li><div><h3>Start Here da 60 minuti</h3><p>Il percorso minimo per <mark>arrivare al primo test in un'ora</mark>, prima di guardare ore di registrazioni.</p></div></li>
+          <li><div><h3>Mappa dei colli di bottiglia</h3><p>Il workbook per scegliere il processo che ti costa <mark>più tempo, margine o attenzione</mark>.</p></div></li>
+          <li><div><h3>Loop Operativo Canvas</h3><p>Contesto, piano, esecuzione, verifica e ritorno <mark>in una pagina</mark>.</p></div></li>
+          <li><div><h3>Percorso consigliato in 7 giorni</h3><p>Un ordine preciso per guardare, applicare e consolidare <mark>senza accumulare</mark>.</p></div></li>
+          <li><div><h3>Il quality gate</h3><p>Il criterio che dice all'AI <mark>cosa significa “fatto bene”</mark> nel tuo lavoro.</p></div></li>
+          <li><div><h3>Accesso personale, pagamento unico</h3><p>Nessun abbonamento e <mark>nessun rinnovo automatico</mark>.</p></div></li>
+        </ol>
+        <p>È il metodo che Matteo usa ogni giorno dentro il suo business, tutto per <b>27 euro</b>.</p>
+        <div class="urgency-note">
+          <p data-deadline-only hidden><b>Prezzo di lancio fino al <span data-deadline-date></span>.</b><span data-list-price-note hidden> Dopo quella data il Replay Pass torna a <span data-list-price-text></span>.</span></p>
+          <p><b>Perché 27 euro e non il prezzo di un percorso completo?</b> Perché voglio che tu possa provare il metodo prima di fare un investimento più grande. Una prima vittoria crea più fiducia di cento promesse.</p>
+          <p>Il Replay Pass ti dà chiarezza e una prima implementazione. Non sostituisce l'affiancamento: il programma completo serve a costruire e monetizzare l'intero sistema, con feedback.</p>
+        </div>
+        <div class="final-cta">
+          <a class="sa-btn" href="#order"><span class="sa-main">Attiva il mio Replay Pass <span class="sa-arrow" aria-hidden="true"></span></span><span class="sa-sub">Le 7 sessioni, lo Start Here e i 3 strumenti operativi, in un solo accesso.</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="sitefooter">
+    <div class="wrap">
+      <img src="/Logo%20Scalers%20(3)%20(1).png" width="337" height="94" alt="Scalers" loading="lazy">
+      <p>© 2026 Scalers+ · Matteo Milone. Tutti i diritti riservati.</p>
+      <p>Scalers SHPK · Rruga e Dibres, Tower Bridge 1, Nr. 22 · Tirana, Albania</p>
+      <nav class="foot-links" aria-label="Link legali">
+        <a href="https://joinscalers.com/privacy">Privacy</a>
+        <a href="https://joinscalers.com/terms">Termini</a>
+        <a href="https://joinscalers.com/refund-policy">Rimborsi</a>
+        <a href="mailto:matteo@milonematteo.com">Contatti</a>
+      </nav>
+      <p class="foot-note">Testimonianze e case study provengono dai percorsi, dal mentoring e dalla community Scalers+, non dal solo acquisto del Replay Pass. Sono risultati individuali e non rappresentano una garanzia di risultato.</p>
+    </div>
+  </footer>
+
+  <script>
+    (() => {
+      "use strict";
+
+      // Configurazione della pagina: compila questi valori prima di mandare traffico.
+      const CONFIG = {
+        // Link di pagamento (es. Stripe Payment Link). Vuoto = la richiesta arriva via email a Matteo.
+        checkoutUrl: "",
+        // Opzionale: webhook (Make, Zapier, n8n, Apps Script) che riceve nome, email e telefono prima del checkout.
+        leadWebhookUrl: "",
+        // Opzionale: scadenza REALE del prezzo di lancio, es. "2026-10-12T23:59:00+02:00". Vuoto = nessun countdown.
+        offerEndsAt: "",
+        // Prezzo mostrato nella pagina. listPrice: prezzo pieno realmente praticato dopo la scadenza (0 = nessun prezzo barrato).
+        price: 27,
+        listPrice: 0,
+        // Opzionale: URL embed del video di vendita (YouTube, Vimeo, Loom). Vuoto = solo copertina.
+        vslEmbedUrl: "",
+      };
+      const CONTACT_EMAIL = "matteo@milonematteo.com";
+      const PRODUCT_NAME = "AI Acceleration Week Replay Pass";
+      const UTM_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"];
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const euro = (value) => `€${value}`;
+
+      const header = document.getElementById("siteheader");
+      const updateHeader = () => header.classList.toggle("is-stuck", window.scrollY > 420);
+      updateHeader();
+      window.addEventListener("scroll", updateHeader, { passive: true });
+
+      if (CONFIG.listPrice > CONFIG.price) {
+        document.querySelectorAll("[data-list-price]").forEach((el) => {
+          const label = document.createElement("span");
+          label.className = "sr-only";
+          label.textContent = "Prezzo pieno ";
+          el.replaceChildren(label, euro(CONFIG.listPrice));
+          el.hidden = false;
+        });
+        document.querySelectorAll("[data-saving]").forEach((el) => {
+          el.textContent = euro(CONFIG.listPrice - CONFIG.price);
+        });
+        document.querySelectorAll("[data-saving-line]").forEach((el) => { el.hidden = false; });
+      }
+
+      const deadline = CONFIG.offerEndsAt ? Date.parse(CONFIG.offerEndsAt) : NaN;
+      const timerLabel = document.getElementById("timer-label");
+      const timerClock = document.getElementById("timer-clock");
+      const defaultTimerLabel = timerLabel.textContent;
+      const pad = (value) => String(value).padStart(2, "0");
+      const formatLeft = (ms) => {
+        const total = Math.floor(ms / 1000);
+        const days = Math.floor(total / 86400);
+        const clock = `${pad(Math.floor((total % 86400) / 3600))}:${pad(Math.floor((total % 3600) / 60))}:${pad(total % 60)}`;
+        return days ? `${days} ${days === 1 ? "giorno" : "giorni"} ${clock}` : clock;
+      };
+      const endLaunchPrice = () => {
+        timerLabel.textContent = defaultTimerLabel;
+        timerClock.hidden = true;
+        document.querySelectorAll("[data-deadline-only]").forEach((el) => { el.hidden = true; });
+      };
+      const tick = () => {
+        const left = deadline - Date.now();
+        if (left <= 0) {
+          endLaunchPrice();
+          return;
+        }
+        timerClock.textContent = formatLeft(left);
+        window.setTimeout(tick, 1000 - (Date.now() % 1000));
+      };
+      if (deadline > Date.now()) {
+        const deadlineText = new Intl.DateTimeFormat("it-IT", {
+          day: "numeric",
+          month: "long",
+          hour: "2-digit",
+          minute: "2-digit",
+          timeZone: "Europe/Rome",
+        }).format(deadline);
+        document.querySelectorAll("[data-deadline-date]").forEach((el) => { el.textContent = deadlineText; });
+        if (CONFIG.listPrice > CONFIG.price) {
+          document.querySelectorAll("[data-list-price-text]").forEach((el) => { el.textContent = `${CONFIG.listPrice} euro`; });
+          document.querySelectorAll("[data-list-price-note]").forEach((el) => { el.hidden = false; });
+        }
+        document.querySelectorAll("[data-deadline-only]").forEach((el) => { el.hidden = false; });
+        timerLabel.textContent = "Prezzo di lancio valido ancora per";
+        timerClock.hidden = false;
+        tick();
+      }
+
+      const vsl = document.querySelector("[data-vsl]");
+      if (vsl && CONFIG.vslEmbedUrl) {
+        const play = vsl.querySelector(".vsl-play");
+        play.hidden = false;
+        play.addEventListener("click", () => {
+          const src = new URL(CONFIG.vslEmbedUrl, window.location.href);
+          src.searchParams.set("autoplay", "1");
+          const frame = document.createElement("iframe");
+          frame.src = src.href;
+          frame.title = "Video di presentazione del Replay Pass";
+          frame.allow = "autoplay; fullscreen; picture-in-picture; encrypted-media";
+          frame.allowFullscreen = true;
+          vsl.replaceChildren(frame);
+        });
+      }
+
+      document.addEventListener("click", (event) => {
+        const link = event.target.closest('a[href="#order"]');
+        const target = document.getElementById("order");
+        if (!link || !target) return;
+        event.preventDefault();
+        const top = target.getBoundingClientRect().top + window.scrollY - header.offsetHeight - 12;
+        window.scrollTo({ top: Math.max(0, top), behavior: reduceMotion ? "auto" : "smooth" });
+        // Da tastiera il focus passa al primo campo del modulo.
+        if (event.detail === 0) {
+          window.setTimeout(() => document.getElementById("lead-name").focus({ preventScroll: true }), reduceMotion ? 0 : 600);
+        }
+      });
+
+      const form = document.getElementById("order-form");
+      const submit = form.querySelector(".order-submit");
+      const submitLabel = form.querySelector("[data-submit-label]");
+      const status = form.querySelector(".form-status");
+      const pageParams = new URLSearchParams(window.location.search);
+
+      if (!CONFIG.checkoutUrl) {
+        form.querySelector("[data-secure-text]").textContent = "Ricevi via email il link di pagamento sicuro";
+      }
+
+      const resetSubmit = () => {
+        submit.disabled = false;
+        submitLabel.textContent = "Sblocca il mio accesso";
+      };
+      // Chi torna indietro dal checkout ritrova il pulsante attivo.
+      window.addEventListener("pageshow", resetSubmit);
+
+      const sendLead = (lead) => {
+        if (!CONFIG.leadWebhookUrl) return Promise.resolve();
+        // text/plain evita il preflight CORS: Make, Zapier, n8n e Apps Script leggono comunque il JSON.
+        return fetch(CONFIG.leadWebhookUrl, {
+          method: "POST",
+          mode: "no-cors",
+          keepalive: true,
+          headers: { "Content-Type": "text/plain;charset=UTF-8" },
+          body: JSON.stringify(lead),
+        }).catch(() => {});
+      };
+
+      const checkoutHref = (lead) => {
+        let url = null;
+        try {
+          url = CONFIG.checkoutUrl ? new URL(CONFIG.checkoutUrl, window.location.href) : null;
+        } catch {
+          url = null;
+        }
+        if (!url) {
+          const body = [
+            `Ciao Matteo, voglio accedere al ${PRODUCT_NAME}.`,
+            "",
+            `Nome: ${lead.name}`,
+            `Email: ${lead.email}`,
+            lead.phone ? `Telefono: ${lead.phone}` : "",
+          ].join("\n").trim();
+          return `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(`${PRODUCT_NAME} a ${CONFIG.price} euro`)}&body=${encodeURIComponent(body)}`;
+        }
+        if (/(^|\.)stripe\.com$/.test(url.hostname)) url.searchParams.set("prefilled_email", lead.email);
+        UTM_KEYS.forEach((key) => {
+          const value = pageParams.get(key);
+          if (value && !url.searchParams.has(key)) url.searchParams.set(key, value);
+        });
+        return url.href;
+      };
+
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        if (submit.disabled) return;
+        const data = new FormData(form);
+        const lead = {
+          name: String(data.get("name") || "").trim(),
+          email: String(data.get("email") || "").trim(),
+          phone: String(data.get("phone") || "").trim(),
+          product: PRODUCT_NAME,
+          price: CONFIG.price,
+          page: window.location.origin + window.location.pathname,
+          submittedAt: new Date().toISOString(),
+        };
+        UTM_KEYS.forEach((key) => {
+          if (pageParams.get(key)) lead[key] = pageParams.get(key);
+        });
+
+        const href = checkoutHref(lead);
+        const viaEmail = href.startsWith("mailto:");
+        submit.disabled = true;
+        submitLabel.textContent = viaEmail ? "Apro la tua email…" : "Ti porto al pagamento…";
+        await Promise.race([sendLead(lead), new Promise((resolve) => window.setTimeout(resolve, 800))]);
+        window.location.href = href;
+
+        if (viaEmail) {
+          status.textContent = `Se non si apre nulla, scrivi a ${CONTACT_EMAIL}.`;
+          window.setTimeout(resetSubmit, 2500);
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
