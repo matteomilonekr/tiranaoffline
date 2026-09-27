@@ -11,6 +11,38 @@ Landing page, pagina offerta e checkout dell'evento di Tirana con Stripe Checkou
 - `/ticket?token=...`: biglietto personalizzato condivisibile, senza dati bancari
 - `/privacy`: informativa privacy dell’evento e del checkout
 - `/refund-policy`: policy di rimborso, cancellazione e condizioni di acquisto
+- `/70-specialisti-claude`: pagina di vendita dei 70 Specialisti AI per Claude
+
+## Pagina 70 Specialisti AI per Claude
+
+Pagina statica in `public/70-specialisti-claude/index.html`, con asset in `public/70-specialisti-claude/assets/`. Presenta 70 Specialisti in 8 aree: 30 hanno il tag Starter e sono inclusi anche nel pacchetto Starter. Se modifichi l’elenco, aggiorna i conteggi nel pacchetto completo, nello Starter e nella griglia delle aree: `tests/specialisti-claude.test.mjs` li confronta tutti.
+
+Prezzi, scadenza del lancio e link di pagamento si trovano nell’oggetto `OFFER` in fondo alla pagina:
+
+```js
+const OFFER = {
+  launchDeadline: '2026-10-15T23:59:59+02:00',
+  plans: {
+    starter: { launchPrice: 27, regularPrice: 135, checkoutLaunch: '', checkoutRegular: '' },
+    completo: { launchPrice: 57, regularPrice: 285, checkoutLaunch: '', checkoutRegular: '' },
+  },
+};
+```
+
+Il pagamento non passa dal checkout dell’evento. Crea un link di pagamento per ogni piano e prezzo, ad esempio uno Stripe Payment Link, e incollalo in `checkoutLaunch` e `checkoutRegular`. Finché i campi restano vuoti, i pulsanti aprono WhatsApp con un messaggio precompilato. Se cambi un prezzo, aggiorna anche il valore statico nell’HTML: i test verificano che coincidano.
+
+Fino alla scadenza la pagina mostra prezzo di lancio, sconto, prezzo pieno barrato e countdown. Dopo la scadenza nasconde sconto e countdown, mostra il prezzo pieno e usa i link `checkoutRegular`. Disattiva in Stripe i link del prezzo di lancio alla scadenza. Non spostare la data più volte: un’urgenza che si rinnova sempre diventa una pratica ingannevole.
+
+La pagina carica `/tirana/assets/analytics.js`: GA4 e Meta Pixel si attivano soltanto dopo il consenso e il clic su un piano invia `begin_checkout` e `InitiateCheckout`.
+
+Prima di pubblicarla:
+
+- rendi disponibile il prodotto descritto: le 70 Skill, i prompt di avvio, la video-guida e i 4 Sprint;
+- configura i link di pagamento e la consegna del prodotto dopo l’acquisto;
+- conferma prezzi, valore degli Sprint e scadenza del lancio;
+- verifica che la policy di rimborso su joinscalers.com preveda la garanzia di 14 giorni;
+- estendi la Privacy Policy, oggi riferita all’evento, alla vendita di questo prodotto;
+- sostituisci le testimonianze sul metodo Scalers+ con quelle degli acquirenti appena disponibili.
 
 ## Catalogo attivo
 
