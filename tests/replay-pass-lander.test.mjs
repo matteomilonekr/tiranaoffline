@@ -45,10 +45,10 @@ test("tutti gli asset locali della lander esistono", async () => {
   }
 });
 
-test("il prezzo resta 27 euro senza prezzi barrati, scadenze o garanzie non previste", () => {
+test("il prezzo resta 7 euro senza prezzi barrati, scadenze o garanzie non previste", () => {
   const prices = [...page.matchAll(/€\s?(\d+)/g)].map(([, value]) => value);
   assert.ok(prices.length > 5);
-  assert.deepEqual([...new Set(prices)], ["27"]);
+  assert.deepEqual([...new Set(prices)], ["7"]);
   assert.match(page, /Nessun abbonamento/);
   assert.doesNotMatch(page, /<(?:s|del|strike)\b|line-through/i);
   assert.doesNotMatch(page, /countdown|ultimi giorni|solo per oggi|posti limitati/i);
