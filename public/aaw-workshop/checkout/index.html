@@ -1,0 +1,642 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Checkout · AI Acceleration Week Replay Pass | Scalers+</title>
+  <meta name="description" content="Completa l'ordine del Replay Pass della AI Acceleration Week: 7 workshop registrati e 3 strumenti operativi, pagamento unico.">
+  <meta name="theme-color" content="#000000">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@700&family=Libre+Franklin:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/aaw-workshop/assets/workshop.css">
+  <style>
+    :root {
+      --check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 12.5l5.2 5L20 6.5'/%3E%3C/svg%3E");
+    }
+
+    /* Testata */
+    .siteheader--checkout { position: relative; }
+    .siteheader--checkout .wrap { display: grid; grid-template-columns: 1fr auto 1fr; min-height: 52px; }
+    .siteheader--checkout .brand { justify-self: center; }
+    .mast-meta {
+      display: inline-flex;
+      align-items: center;
+      gap: .45rem;
+      color: rgba(255, 255, 255, .72);
+      font-family: var(--sans);
+      font-size: .8125rem;
+      text-decoration: none;
+    }
+    .mast-meta b { color: #FFFFFF; font-weight: 700; }
+    .mast-meta svg { flex: none; width: 14px; height: 14px; }
+    .mast-left { justify-self: start; }
+    .mast-right { justify-self: end; }
+    .mast-right:hover b { text-decoration: underline; }
+    @media (max-width: 720px) {
+      .mast-meta { display: none; }
+      .siteheader--checkout .wrap { grid-template-columns: 1fr; }
+    }
+
+    /* Titolo */
+    .co-main { padding-block: 1.25rem 3rem; }
+    .co-headline {
+      max-width: 34rem;
+      margin: 0 auto 1.6rem;
+      padding: .7rem 1.2rem .8rem;
+      border: 3px dashed var(--brass-line);
+      border-radius: 10px;
+      background: var(--band-brass);
+      text-align: center;
+    }
+    .co-headline h1 {
+      font-family: var(--sans);
+      font-size: clamp(1.15rem, 2.6vw, 1.45rem);
+      font-weight: 800;
+      line-height: 1.25;
+      letter-spacing: -.005em;
+    }
+    .co-headline p { margin: .25rem 0 0; color: var(--ink-soft); font-family: var(--sans); font-size: .82rem; font-style: italic; }
+
+    .co-grid { display: grid; gap: 1.5rem; align-items: start; }
+    @media (min-width: 960px) {
+      .co-grid { grid-template-columns: minmax(360px, 440px) minmax(0, 1fr); gap: 2.2rem; }
+    }
+    .co-card {
+      min-width: 0;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+
+    /* Modulo d'ordine */
+    .co-form { display: flex; flex-direction: column; gap: 1.15rem; padding: 1.3rem 1.25rem 1.5rem; }
+    .co-section { display: flex; flex-direction: column; gap: .75rem; min-width: 0; margin: 0; padding: 0; border: 0; }
+    .co-step {
+      display: flex;
+      align-items: center;
+      gap: .8rem;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .09em;
+      line-height: 1.2;
+      text-transform: uppercase;
+    }
+    .co-step::after { content: ""; flex: 1; height: 1px; background: var(--line-strong); }
+    legend.co-step { float: left; margin-bottom: .75rem; }
+    legend.co-step + * { clear: both; }
+    .products { display: grid; gap: .6rem; }
+    .product {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      gap: .2rem .7rem;
+      align-items: start;
+      padding: .85rem .9rem;
+      border: 1px solid var(--line-strong);
+      border-radius: var(--radius);
+      background: var(--surface);
+      cursor: pointer;
+    }
+    .product:has(input:checked) { border-color: var(--accent); background: var(--accent-tint); box-shadow: inset 0 0 0 1px var(--accent); }
+    .product input { width: 1rem; height: 1rem; margin: .15rem 0 0; accent-color: var(--accent); }
+    .product b { display: block; font-family: var(--sans); font-size: .86rem; font-weight: 700; line-height: 1.3; }
+    .product small { display: block; margin-top: .25rem; color: var(--ink-soft); font-family: var(--sans); font-size: .74rem; line-height: 1.45; }
+    .product-price { font-family: var(--sans); font-size: .9rem; font-weight: 700; white-space: nowrap; }
+    .co-paynote { margin: 0; color: var(--ink-soft); font-family: var(--sans); font-size: .8rem; line-height: 1.5; }
+    .co-section .pay-row { justify-content: flex-start; }
+
+    .bump {
+      padding: .9rem 1rem 1rem;
+      border: 2px solid var(--ink-mute);
+      border-radius: var(--radius);
+      background: var(--surface);
+      font-family: var(--sans);
+    }
+    .bump[hidden] { display: none; }
+    .bump-head { display: flex; align-items: center; gap: .55rem; font-size: .85rem; cursor: pointer; }
+    .bump-arrows { color: var(--accent); font-size: 1.2rem; font-weight: 800; line-height: 1; animation: nudge 1.2s ease-in-out infinite; }
+    @keyframes nudge {
+      0%, 100% { transform: translateX(0); }
+      50% { transform: translateX(3px); }
+    }
+    .bump-head input { flex: none; width: 1.1rem; height: 1.1rem; margin: 0; accent-color: var(--green); }
+    .bump-head b { font-weight: 700; }
+    .bump-price { margin-left: auto; font-weight: 700; white-space: nowrap; }
+    .bump p { margin: .5rem 0 0; font-size: .82rem; line-height: 1.5; }
+    .bump p[hidden] { display: none; }
+    .bump .bump-headline { margin-top: .65rem; color: var(--green); font-size: .9rem; font-weight: 700; }
+    .bump-inc { color: var(--green); }
+
+    .co-summary { border: 1px solid var(--line-strong); border-radius: var(--radius); background: var(--surface); font-family: var(--sans); }
+    .co-summary summary {
+      display: flex;
+      align-items: center;
+      gap: .55rem;
+      padding: .8rem .9rem;
+      font-size: .8rem;
+      font-weight: 700;
+      list-style: none;
+      cursor: pointer;
+    }
+    .co-summary summary::-webkit-details-marker { display: none; }
+    .co-summary summary svg { flex: none; width: 16px; height: 16px; }
+    .co-summary summary b { margin-left: auto; }
+    .co-summary summary::after {
+      content: "";
+      width: .45rem;
+      height: .45rem;
+      margin: 0 .2rem 0 .35rem;
+      border-right: 2px solid currentColor;
+      border-bottom: 2px solid currentColor;
+      transform: translateY(-2px) rotate(45deg);
+      transition: transform .15s ease;
+    }
+    .co-summary[open] summary::after { transform: translateY(2px) rotate(-135deg); }
+    .summary-lines { margin: 0 .9rem; padding: 0; list-style: none; border-top: 1px solid var(--line); }
+    .summary-lines li, .summary-total {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: .6rem 0;
+      border-bottom: 1px solid var(--line);
+      font-size: .82rem;
+    }
+    .summary-total { margin: 0 .9rem; border-bottom: 0; font-weight: 700; }
+    .summary-note { margin: -.2rem .9rem .8rem; color: var(--ink-mute); font-size: .74rem; }
+    .summary-note[hidden] { display: none; }
+
+    .co-submit {
+      padding: 1.1rem 1rem;
+      font-size: clamp(1.25rem, 3.6vw, 1.6rem);
+      animation: breathe 3s ease-in-out infinite;
+    }
+    .co-submit[disabled] { animation: none; }
+    @keyframes breathe {
+      0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(141, 74, 252, .5); }
+      50% { transform: scale(1.03); box-shadow: 0 0 20px 10px rgba(141, 74, 252, 0); }
+      100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(141, 74, 252, 0); }
+    }
+    .co-secure {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .5rem;
+      margin: 0;
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: clamp(1.02rem, 2.6vw, 1.25rem);
+      font-weight: 800;
+      line-height: 1.2;
+      text-align: center;
+    }
+    .co-secure svg { flex: none; width: 1.15em; height: 1.15em; }
+    .co-assure {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: .9rem 1rem;
+      border: 2px dashed var(--accent);
+      border-radius: var(--radius);
+      background: var(--surface);
+    }
+    .co-stamp {
+      display: grid;
+      place-content: center;
+      flex: none;
+      width: 92px;
+      aspect-ratio: 1;
+      border: 2px solid var(--brass);
+      border-radius: 50%;
+      box-shadow: inset 0 0 0 4px var(--surface), inset 0 0 0 5.5px var(--brass);
+      color: var(--brass);
+      text-align: center;
+    }
+    .co-stamp span { font-family: var(--sans); font-size: .52rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+    .co-stamp strong { font-size: 1.6rem; font-weight: 700; line-height: 1; }
+    .co-assure p { margin: 0; color: var(--ink-soft); font-family: var(--sans); font-size: .82rem; line-height: 1.5; }
+    .co-assure p b { display: block; margin-bottom: .15rem; color: var(--ink); font-size: .98rem; font-weight: 800; text-transform: uppercase; }
+
+    /* Cosa ricevi */
+    .co-aside { padding: clamp(1.3rem, 3vw, 2rem) clamp(1.1rem, 3vw, 2rem); }
+    .co-title {
+      margin: 0 0 1.2rem;
+      font-family: var(--sans);
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -.01em;
+      text-align: center;
+    }
+    .co-mockup { position: relative; max-width: 34rem; margin: 0 auto 3rem; }
+    .co-mockup img { width: 100%; border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); }
+    .mock-badge {
+      position: absolute;
+      top: .7rem;
+      left: .7rem;
+      display: inline-flex;
+      align-items: center;
+      gap: .45rem;
+      padding: .4rem .75rem;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, .74);
+      color: #FFFFFF;
+      font-family: var(--sans);
+      font-size: .72rem;
+      font-weight: 600;
+    }
+    .mock-badge::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--live); }
+    .mock-tools {
+      position: absolute;
+      bottom: -2rem;
+      left: 50%;
+      display: flex;
+      justify-content: center;
+      gap: .5rem;
+      width: 94%;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      transform: translateX(-50%);
+    }
+    .mock-tools li {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      min-width: 0;
+      max-width: 11rem;
+      padding: .45rem .7rem;
+      border-top: 3px solid var(--accent);
+      border-radius: 6px;
+      background: var(--surface);
+      box-shadow: var(--shadow);
+      font-family: var(--sans);
+      font-size: .76rem;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+    .mock-tools small { color: var(--accent-deep); font-size: .56rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+    @media (max-width: 420px) { .mock-tools li { padding: .35rem .5rem; font-size: .66rem; } }
+    .get-list { display: grid; gap: .95rem; margin: 0 0 1.4rem; padding: 0; list-style: none; }
+    .get-list li {
+      position: relative;
+      padding-left: 1.75rem;
+      color: var(--ink-soft);
+      font-family: var(--sans);
+      font-size: .95rem;
+      line-height: 1.55;
+    }
+    .get-list li::before {
+      content: "";
+      position: absolute;
+      top: .22rem;
+      left: 0;
+      width: 1.1rem;
+      height: 1.1rem;
+      background: var(--accent);
+      -webkit-mask: var(--check) center / contain no-repeat;
+      mask: var(--check) center / contain no-repeat;
+    }
+    .get-list b, .get-close b { color: var(--ink); font-weight: 700; }
+    .get-close { margin: 0; color: var(--ink-soft); font-family: var(--sans); font-size: .95rem; line-height: 1.55; }
+    .hand {
+      display: table;
+      margin: 1.6rem auto 2.2rem;
+      padding: .15rem .9rem;
+      border-block: 2px solid var(--accent);
+      color: var(--accent);
+      font-family: "Kalam", "Comic Sans MS", cursive;
+      font-size: clamp(1.45rem, 3vw, 1.9rem);
+      font-weight: 700;
+      line-height: 1.35;
+      text-align: center;
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 4px;
+    }
+    .t-list { display: grid; gap: 1.6rem; max-width: 34rem; margin: 0 auto; }
+    .t-card { position: relative; margin: 0; padding: 1.5rem 1.1rem 1.1rem; overflow: hidden; border-radius: var(--radius-lg); background: var(--surface-2); }
+    .t-card::before { content: ""; position: absolute; top: 0; left: 0; width: 36%; height: 7px; background: var(--accent); }
+    .t-card blockquote { margin: 0 0 1rem; }
+    .t-card blockquote p {
+      margin: 0;
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: clamp(1.02rem, 2vw, 1.2rem);
+      font-style: italic;
+      font-weight: 700;
+      line-height: 1.35;
+      text-align: center;
+    }
+    .t-card em { color: var(--accent); }
+    .t-shot { overflow: hidden; border: 1px solid var(--line-strong); border-radius: var(--radius); background: #FFFFFF; }
+    .t-shot img { width: 100%; }
+    .t-shot--crop { aspect-ratio: 1200 / 1250; }
+    .t-shot--crop img { height: 100%; object-fit: cover; object-position: top; }
+    .t-name {
+      position: relative;
+      display: table;
+      margin: -1.1rem .4rem 0 auto;
+      padding: .5rem 1rem;
+      border-radius: 3px;
+      background: var(--accent);
+      box-shadow: var(--shadow);
+      color: #FFFFFF;
+      font-family: var(--sans);
+      font-size: 1rem;
+      font-weight: 700;
+    }
+    .t-note { max-width: 34rem; margin: 1.2rem auto 0; color: var(--ink-mute); font-family: var(--sans); font-size: .8rem; line-height: 1.5; text-align: center; }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Vai al contenuto</a>
+
+  <header class="siteheader siteheader--checkout">
+    <div class="wrap">
+      <span class="mast-meta mast-left"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="10" width="14" height="10" rx="2" stroke="currentColor" stroke-width="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="2"/></svg>Checkout sicuro</span>
+      <a class="brand" href="/aaw-workshop" aria-label="Torna alla pagina del Replay Pass"><img src="/Logo%20Scalers%20(3)%20(1).png" width="337" height="94" alt="Scalers"></a>
+      <a class="mast-meta mast-right" href="mailto:matteo@milonematteo.com?subject=Domanda%20sul%20checkout%20del%20Replay%20Pass"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="2"/><path d="m4 7 8 6 8-6" stroke="currentColor" stroke-width="2"/></svg>Hai bisogno di aiuto? <b>Scrivi a Matteo</b></a>
+    </div>
+  </header>
+
+  <main id="main" class="co-main">
+    <div class="wrap">
+      <div class="co-headline">
+        <h1>Sì! Mandami il Replay Pass della AI Acceleration Week</h1>
+        <p>7 workshop registrati + 3 strumenti operativi inclusi</p>
+      </div>
+
+      <div class="co-grid">
+        <form class="co-card co-form" id="checkout-form" action="mailto:matteo@milonematteo.com?subject=Ordine%20AI%20Acceleration%20Week%20Replay%20Pass" method="post" enctype="text/plain" aria-label="Modulo d'ordine">
+          <fieldset class="co-section">
+            <legend class="co-step">Seleziona il prodotto</legend>
+            <div class="products" data-products>
+              <label class="product"><input type="radio" name="product" value="replay-pass" checked><span><b>AI Acceleration Week Replay Pass</b><small>Le 7 registrazioni integrali, lo Start Here da 60 minuti, la Mappa dei colli di bottiglia, il Loop Operativo Canvas e il percorso in 7 giorni.</small></span><span class="product-price">€27</span></label>
+            </div>
+          </fieldset>
+
+          <div class="co-section">
+            <h2 class="co-step">Dati di contatto</h2>
+            <label class="field"><span>Email</span><input name="email" type="email" autocomplete="email" inputmode="email" maxlength="254" required></label>
+            <div class="field-row">
+              <label class="field"><span>Nome</span><input name="name" type="text" autocomplete="given-name" maxlength="100" required></label>
+              <label class="field"><span>Cognome <em>(facoltativo)</em></span><input name="lastName" type="text" autocomplete="family-name" maxlength="100"></label>
+            </div>
+            <label class="field"><span>Telefono <em>(facoltativo)</em></span><input name="phone" type="tel" autocomplete="tel" inputmode="tel" maxlength="30"></label>
+          </div>
+
+          <div class="co-section">
+            <h2 class="co-step">Pagamento</h2>
+            <p class="co-paynote" data-paynote>Nel passaggio successivo inserisci i dati della carta nella pagina protetta di Stripe.</p>
+            <div class="pay-row" aria-label="Carte accettate"><span class="pc pc-visa">VISA</span><span class="pc pc-mc">MASTERCARD</span><span class="pc pc-amex">AMEX</span></div>
+          </div>
+
+          <div class="bump" data-bump hidden>
+            <label class="bump-head"><span class="bump-arrows" aria-hidden="true">»</span><input type="checkbox" name="bump" data-bump-input><b data-bump-name></b><span class="bump-price" data-bump-price></span></label>
+            <p class="bump-headline" data-bump-headline></p>
+            <p data-bump-description></p>
+            <p data-bump-includes-row><b class="bump-inc">Include:</b> <span data-bump-includes></span></p>
+          </div>
+
+          <details class="co-summary">
+            <summary><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 4h2l2.4 11h10.2L20 8H6.2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="19" r="1.5" fill="currentColor"/><circle cx="17" cy="19" r="1.5" fill="currentColor"/></svg><span>Riepilogo ordine</span><b data-total>€27</b></summary>
+            <ul class="summary-lines" data-lines><li><span>AI Acceleration Week Replay Pass</span><span>€27</span></li></ul>
+            <p class="summary-total"><span>Totale oggi</span><b data-total>€27</b></p>
+            <p class="summary-note" data-recurring hidden></p>
+          </details>
+
+          <button class="order-submit co-submit" type="submit"><span data-submit-label>Procedi al pagamento</span><small>(clicca una sola volta)</small></button>
+          <p class="form-status" role="status" aria-live="polite"></p>
+          <p class="form-legal">I tuoi dati sono trattati secondo la <a href="https://joinscalers.com/privacy">Privacy Policy</a>. Continuando accetti i <a href="https://joinscalers.com/terms">Termini</a> di Scalers+.</p>
+          <p class="co-secure"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="10" width="14" height="10" rx="2" fill="currentColor"/><path d="M8 10V7a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="2.4"/></svg>Pagamento sicuro e crittografato</p>
+          <div class="co-assure">
+            <div class="co-stamp" aria-hidden="true"><span>Una tantum</span><strong data-stamp-price>€27</strong></div>
+            <p><b>Pagamento unico, nessun rinnovo</b>Il Replay Pass si paga una volta sola: nessun abbonamento e nessun rinnovo automatico.</p>
+          </div>
+        </form>
+
+        <aside class="co-card co-aside" aria-labelledby="get-title">
+          <h2 class="co-title" id="get-title">Ecco cosa ricevi…</h2>
+          <figure class="co-mockup">
+            <img src="/aaw-replay/assets/aaw-day-one.webp" width="1600" height="901" alt="Copertina del Day One della AI Acceleration Week con Matteo Milone">
+            <ul class="mock-tools" aria-label="Strumenti inclusi">
+              <li><small>Strumento 1</small>Start Here 60'</li>
+              <li><small>Strumento 2</small>Mappa dei vincoli</li>
+              <li><small>Strumento 3</small>Loop Operativo</li>
+            </ul>
+            <figcaption class="mock-badge"><strong>164</strong> presenti in diretta al Day One</figcaption>
+          </figure>
+          <ul class="get-list">
+            <li><b>Il metodo in 4 passaggi</b>: trovi il collo di bottiglia, scegli un task delegabile, costruisci il Loop Operativo e prepari il primo test. <i>Un'ora, un ciclo pronto da testare.</i></li>
+            <li><b>Le 7 registrazioni integrali della AI Acceleration Week</b>: chiarezza, automazione, acquisizione, vendita, operations, prodotto e offerta. <i>Il sistema completo, non un singolo trucco.</i></li>
+            <li><b>Start Here da 60 minuti</b>: il percorso minimo per arrivare alla prima vittoria partendo da un task reale. <i>Quattro blocchi da 15 minuti, dal vincolo al primo test.</i></li>
+            <li><b>Mappa dei colli di bottiglia</b>: il workbook per valutare impatto, frequenza e delegabilità dei tuoi processi. <i>Scegli il primo da togliere dalle tue mani.</i></li>
+            <li><b>Loop Operativo Canvas</b>: contesto, piano, esecuzione, verifica e ritorno in una sola pagina. <i>Resta valido anche quando cambia il modello.</i></li>
+            <li><b>Il quality gate</b>: il criterio che dice all'AI cosa significa “fatto bene” nel tuo lavoro. <i>Tu approvi, non riscrivi.</i></li>
+            <li><b>Il percorso consigliato in 7 giorni</b>: un ordine preciso per guardare, applicare e consolidare. <i>Senza accumulare ore di registrazioni.</i></li>
+          </ul>
+          <p class="get-close">Sono gli stessi <b>processi</b> che Matteo usa <b>ogni giorno</b> dentro il suo business. <i>Non teoria da slide: sistemi da applicare al tuo lavoro.</i></p>
+          <p class="hand">Tutto per soli <span data-main-price>27 euro</span></p>
+
+          <h2 class="co-title" id="quotes-title">Cosa dicono i membri…</h2>
+          <div class="t-list">
+            <figure class="t-card">
+              <blockquote><p>“Siamo passati dall'essere operatori di prompt a diventare <em>architetti di sistemi agentici</em>.”</p></blockquote>
+              <div class="t-shot t-shot--crop"><img src="/aaw-replay/assets/proof-giacomo.webp" width="1200" height="2284" alt="Post LinkedIn di Giacomo Simioni sul percorso di mentoring con Matteo Milone e sui sistemi di agenti AI" loading="lazy"></div>
+              <figcaption class="t-name">Giacomo Simioni</figcaption>
+            </figure>
+            <figure class="t-card">
+              <blockquote><p>“Una sola informazione mi ha fatto <em>svoltare in poche ore</em>.”</p></blockquote>
+              <div class="t-shot"><img src="/aaw-replay/assets/proof-member.webp" width="1200" height="577" alt="Messaggio di un membro: dopo essere entrato nella community ha fatto upgrade alla versione a pagamento e una sola informazione lo ha fatto svoltare in poche ore" loading="lazy"></div>
+              <figcaption class="t-name">Membro Scalers+</figcaption>
+            </figure>
+            <figure class="t-card">
+              <blockquote><p>“Tra le mille informazioni che distraggono online, <em>ci voleva proprio una guida specifica</em>.”</p></blockquote>
+              <div class="t-shot"><img src="/aaw-replay/assets/proof-victor.webp" width="1200" height="895" alt="Conversazione con Victor: tra le mille informazioni che distraggono online, ci voleva proprio una guida specifica" loading="lazy"></div>
+              <figcaption class="t-name">Victor</figcaption>
+            </figure>
+          </div>
+          <p class="t-note">Messaggi reali dalla community e dai percorsi Scalers+. Risultati individuali: non rappresentano una garanzia di risultato.</p>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <footer class="sitefooter">
+    <div class="wrap">
+      <img src="/Logo%20Scalers%20(3)%20(1).png" width="337" height="94" alt="Scalers" loading="lazy">
+      <p>© 2026 Scalers+ · Matteo Milone. Tutti i diritti riservati.</p>
+      <p>Scalers SHPK · Rruga e Dibres, Tower Bridge 1, Nr. 22 · Tirana, Albania</p>
+      <nav class="foot-links" aria-label="Link legali">
+        <a href="https://joinscalers.com/privacy">Privacy</a>
+        <a href="https://joinscalers.com/terms">Termini</a>
+        <a href="https://joinscalers.com/refund-policy">Rimborsi</a>
+        <a href="mailto:matteo@milonematteo.com">Contatti</a>
+      </nav>
+      <p class="foot-note">Testimonianze e case study provengono dai percorsi, dal mentoring e dalla community Scalers+, non dal solo acquisto del Replay Pass. Sono risultati individuali e non rappresentano una garanzia di risultato.</p>
+    </div>
+  </footer>
+
+  <script src="/aaw-workshop/config.js"></script>
+  <script src="/aaw-workshop/assets/funnel.js"></script>
+  <script>
+    (() => {
+      "use strict";
+
+      const funnel = window.AAWFunnel;
+      const { config, euro } = funnel;
+      const bump = config.bump;
+      const form = document.getElementById("checkout-form");
+      const submit = form.querySelector(".order-submit");
+      const submitLabel = form.querySelector("[data-submit-label]");
+      const status = form.querySelector(".form-status");
+      const bumpInput = form.querySelector("[data-bump-input]");
+      const perInterval = (interval) => (interval ? ` / ${interval}` : "");
+
+      const productOption = (product, checked) => {
+        const label = document.createElement("label");
+        label.className = "product";
+        const input = document.createElement("input");
+        input.type = "radio";
+        input.name = "product";
+        input.value = product.id;
+        input.checked = checked;
+        const body = document.createElement("span");
+        const name = document.createElement("b");
+        name.textContent = product.name;
+        body.append(name);
+        if (product.description) {
+          const description = document.createElement("small");
+          description.textContent = product.description;
+          body.append(description);
+        }
+        const price = document.createElement("span");
+        price.className = "product-price";
+        price.textContent = euro(product.price);
+        label.append(input, body, price);
+        return label;
+      };
+      form.querySelector("[data-products]").replaceChildren(
+        ...config.products.map((product, index) => productOption(product, index === 0)),
+      );
+
+      if (bump) {
+        form.querySelector("[data-bump-name]").textContent = bump.name;
+        form.querySelector("[data-bump-price]").textContent = euro(bump.price) + perInterval(bump.interval);
+        [["headline", "[data-bump-headline]"], ["description", "[data-bump-description]"], ["includes", "[data-bump-includes]"]].forEach(([key, selector]) => {
+          const el = form.querySelector(selector);
+          el.textContent = bump[key];
+          (key === "includes" ? form.querySelector("[data-bump-includes-row]") : el).hidden = !bump[key];
+        });
+        form.querySelector("[data-bump]").hidden = false;
+      }
+
+      document.querySelectorAll("[data-main-price]").forEach((el) => {
+        el.textContent = `${config.products[0].price} euro`;
+      });
+
+      const currentOrder = () => {
+        const selected = form.querySelector('input[name="product"]:checked');
+        const product = config.products.find((item) => item.id === selected?.value) || config.products[0];
+        const withBump = Boolean(bump && bumpInput.checked);
+        return { product, withBump, totalToday: product.price + (withBump ? bump.price : 0) };
+      };
+      const paymentHref = ({ product, withBump }, email) =>
+        funnel.paymentUrl(withBump ? product.checkoutUrlWithBump : product.checkoutUrl, email);
+
+      const render = () => {
+        const order = currentOrder();
+        const lines = [[order.product.name, euro(order.product.price)]];
+        if (order.withBump) lines.push([bump.name, euro(bump.price) + perInterval(bump.interval)]);
+        form.querySelector("[data-lines]").replaceChildren(...lines.map(([name, price]) => {
+          const item = document.createElement("li");
+          const label = document.createElement("span");
+          label.textContent = name;
+          const amount = document.createElement("span");
+          amount.textContent = price;
+          item.append(label, amount);
+          return item;
+        }));
+        form.querySelectorAll("[data-total]").forEach((el) => { el.textContent = euro(order.totalToday); });
+        const recurring = form.querySelector("[data-recurring]");
+        recurring.hidden = !(order.withBump && bump.interval);
+        if (!recurring.hidden) recurring.textContent = `Poi ${euro(bump.price)} ogni ${bump.interval} per ${bump.name}.`;
+        form.querySelector("[data-stamp-price]").textContent = euro(order.product.price);
+
+        const viaEmail = !paymentHref(order);
+        submitLabel.textContent = viaEmail ? "Invia la richiesta" : "Procedi al pagamento";
+        form.querySelector("[data-paynote]").textContent = viaEmail
+          ? "Ti rispondiamo via email con il link di pagamento sicuro."
+          : "Nel passaggio successivo inserisci i dati della carta nella pagina protetta di Stripe.";
+      };
+      form.addEventListener("change", render);
+      render();
+
+      // Precompila con i dati lasciati nella landing.
+      const lead = funnel.loadLead();
+      ["email", "name", "lastName", "phone"].forEach((key) => {
+        const field = form.elements[key];
+        if (field && lead[key] && !field.value) field.value = lead[key];
+      });
+
+      // Chi torna indietro da Stripe ritrova il pulsante attivo.
+      window.addEventListener("pageshow", () => {
+        submit.disabled = false;
+        render();
+      });
+
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        if (submit.disabled) return;
+        const data = new FormData(form);
+        const contact = {
+          name: String(data.get("name") || "").trim(),
+          lastName: String(data.get("lastName") || "").trim(),
+          email: String(data.get("email") || "").trim(),
+          phone: String(data.get("phone") || "").trim(),
+        };
+        const order = currentOrder();
+        const href = paymentHref(order, contact.email);
+        funnel.saveLead(contact);
+        submit.disabled = true;
+        submitLabel.textContent = href ? "Ti porto al pagamento sicuro…" : "Apro la tua email…";
+        await Promise.race([
+          funnel.send("checkout", {
+            ...contact,
+            product: order.product.name,
+            productId: order.product.id,
+            price: order.product.price,
+            bump: order.withBump ? bump.name : null,
+            bumpPrice: order.withBump ? bump.price : null,
+            bumpInterval: order.withBump ? bump.interval : null,
+            totalToday: order.totalToday,
+          }),
+          funnel.pause(800),
+        ]);
+        if (href) {
+          window.location.href = href;
+          return;
+        }
+
+        const lines = ["Ciao Matteo, voglio completare l'ordine.", "", `Prodotto: ${order.product.name} (${euro(order.product.price)})`];
+        if (order.withBump) lines.push(`Aggiunta: ${bump.name} (${euro(bump.price)}${perInterval(bump.interval)})`);
+        lines.push(`Totale oggi: ${euro(order.totalToday)}`, "", `Nome: ${[contact.name, contact.lastName].filter(Boolean).join(" ")}`, `Email: ${contact.email}`);
+        if (contact.phone) lines.push(`Telefono: ${contact.phone}`);
+        window.location.href = funnel.mailto(`Ordine ${order.product.name}`, lines);
+        status.textContent = `Se non si apre nulla, scrivi a ${funnel.CONTACT_EMAIL}.`;
+        window.setTimeout(() => {
+          submit.disabled = false;
+          render();
+        }, 2500);
+      });
+    })();
+  </script>
+</body>
+</html>
