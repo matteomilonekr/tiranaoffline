@@ -6,9 +6,9 @@
   <title>Checkout sicuro · Micro Offer OS</title>
   <meta name="description" content="Completa l’acquisto di Micro Offer OS: €14,95 una volta sola, accesso a vita immediato e garanzia “Primi 3 Clienti”.">
   <meta name="robots" content="noindex">
-  <meta name="theme-color" content="#013121">
+  <meta name="theme-color" content="#1E0B40">
   <meta name="color-scheme" content="light">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23013121'/%3E%3Ctext x='32' y='43' font-family='Arial Black,Arial,sans-serif' font-size='28' font-weight='900' text-anchor='middle' fill='%23D8C289'%3ES+%3C/text%3E%3C/svg%3E">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231E0B40'/%3E%3Ctext x='32' y='43' font-family='Arial Black,Arial,sans-serif' font-size='28' font-weight='900' text-anchor='middle' fill='%23D8C289'%3ES+%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://js.stripe.com">
@@ -18,9 +18,10 @@
       --ink: #17160F;
       --body: #403D31;
       --muted: #6E6B5E;
-      --green: #013121;
-      --cta: #0E5B39;
-      --check: #1C6E42;
+      --deep: #1E0B40;
+      --cta: #8D4AFC;
+      --cta-hover: #6F31E3;
+      --check: #7B3CF0;
       --gold: #B9974C;
       --gold-soft: #D8C289;
       --cream: #FBF9F2;
@@ -45,7 +46,7 @@
     img, svg { display: block; max-width: 100%; }
     a { color: var(--cta); }
     [hidden] { display: none !important; }
-    :focus-visible { outline: none; box-shadow: 0 0 0 3px color-mix(in oklab, var(--gold) 45%, transparent); border-radius: 8px; }
+    :focus-visible { outline: none; box-shadow: 0 0 0 3px color-mix(in oklab, var(--cta) 45%, transparent); border-radius: 8px; }
     .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
 
     .strip {
@@ -55,8 +56,8 @@
       justify-content: center;
       gap: 18px;
       padding: 12px 16px;
-      background: var(--green);
-      color: #EAF3EC;
+      background: var(--deep);
+      color: #EEE9FB;
       font-size: 13.5px;
       font-weight: 700;
       letter-spacing: .02em;
@@ -76,7 +77,7 @@
       margin: 0 0 8px;
       padding: 6px 12px;
       border-radius: 6px;
-      background: var(--green);
+      background: var(--deep);
       color: #F5EFDC;
       font-size: 11.5px;
       font-weight: 700;
@@ -90,7 +91,7 @@
       border: 1px solid var(--line-warm);
       border-radius: 16px;
       background: #fff;
-      box-shadow: 0 10px 26px rgba(8, 25, 17, .06);
+      box-shadow: 0 10px 26px rgba(18, 7, 42, .06);
     }
     .shell h2 { font-size: 21px; margin: 0 0 6px; }
     .lede { margin: 0 0 16px; font-size: 13px; color: var(--muted); }
@@ -120,7 +121,7 @@
       font-size: 16px;
     }
     .row input::placeholder { color: #8A877C; }
-    .row input:focus { outline: none; border-color: var(--cta); box-shadow: 0 0 0 3px rgba(14, 91, 57, .16); }
+    .row input:focus { outline: none; border-color: var(--cta); box-shadow: 0 0 0 3px rgba(141, 74, 252, .2); }
     .row input[aria-invalid="true"] { border-color: #B6443A; }
     .pay-label { display: block; margin: 18px 0 8px; color: var(--ink); font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
     .wallets { margin-bottom: 14px; }
@@ -144,7 +145,7 @@
       transition: border-color .12s, background .12s, box-shadow .12s;
     }
     .bump:hover { box-shadow: 0 2px 10px rgba(0, 0, 0, .07); }
-    .bump:has(input:checked) { border-style: solid; border-color: var(--cta); background: #E9F2EA; }
+    .bump:has(input:checked) { border-style: solid; border-color: var(--cta); background: #F1EAFF; }
     .bump input { flex-shrink: 0; width: 22px; height: 22px; margin: 2px 0 0; accent-color: var(--cta); cursor: pointer; }
     .bump-cover { flex: 0 0 92px; width: 92px; border: 1px solid var(--line-warm); border-radius: 8px; overflow: hidden; background: #FAF8F3; }
     .bump-body { flex: 1; min-width: 0; }
@@ -171,17 +172,17 @@
       cursor: pointer;
       transition: background .12s;
     }
-    .submit:hover { background: var(--green); }
+    .submit:hover { background: var(--cta-hover); }
     .submit:disabled { opacity: .6; cursor: not-allowed; }
     .submit [data-idle]::after { content: " →"; }
     .err { margin-top: 10px; color: #B6443A; font-size: 14px; font-weight: 700; text-align: center; }
-    .guarantee { margin-top: 14px; padding: 12px; border: 1px solid #CDE9D8; border-radius: 10px; background: #E9F2EA; color: #1C5B3C; font-size: 13px; font-weight: 600; text-align: center; }
+    .guarantee { margin-top: 14px; padding: 12px; border: 1px solid #DCCBFF; border-radius: 10px; background: #F1EAFF; color: #5B24C9; font-size: 13px; font-weight: 600; text-align: center; }
     .trust { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 6px; margin-top: 12px; color: #64748B; font-size: 11px; }
     .trust span { display: inline-flex; align-items: center; gap: 4px; padding: 3px 8px; border-radius: 999px; background: #F4F1E8; color: var(--muted); font-weight: 600; }
     .micro { margin-top: 10px; color: #64748B; font-size: 12px; text-align: center; }
 
     /* Colonna di riepilogo */
-    .recap { position: relative; overflow: hidden; padding: 26px; border: 2px solid var(--green); border-radius: 16px; background: #fff; box-shadow: 0 14px 34px rgba(8, 25, 17, .08); }
+    .recap { position: relative; overflow: hidden; padding: 26px; border: 2px solid var(--deep); border-radius: 16px; background: #fff; box-shadow: 0 14px 34px rgba(18, 7, 42, .08); }
     .recap-eyebrow { margin: 0 0 8px; color: var(--gold); font-size: 12px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
     .recap h2 { margin: 0 0 6px; font-size: 22px; line-height: 1.15; }
     .price { margin: 8px 0 2px; color: var(--cta); font-family: var(--font-head); font-size: 32px; font-weight: 800; }
@@ -194,25 +195,25 @@
     .bonus { margin-bottom: 10px; padding: 13px 15px; border: 1px solid var(--line-warm); border-radius: 12px; background: var(--cream); }
     .bonus-t { color: var(--ink); font-size: 14.5px; font-weight: 700; line-height: 1.4; }
     .bonus-b { margin: 4px 0 0; color: var(--muted); font-size: 13.5px; line-height: 1.5; }
-    .recap-gtee { margin-top: 18px; padding: 16px 18px; border-radius: 14px; background: var(--green); color: #EAF3EC; }
+    .recap-gtee { margin-top: 18px; padding: 16px 18px; border-radius: 14px; background: var(--deep); color: #EEE9FB; }
     .recap-gtee-t { margin-bottom: 5px; color: #fff; font-family: var(--font-head); font-size: 16.5px; font-weight: 800; }
-    .recap-gtee p { color: #D9E7DD; font-size: 13.5px; line-height: 1.5; }
+    .recap-gtee p { color: #E4DCF8; font-size: 13.5px; line-height: 1.5; }
     .recap-gtee a { color: #fff; }
     .badges { margin-top: 16px; color: var(--muted); font-size: 12px; font-weight: 700; letter-spacing: .04em; text-align: center; text-transform: uppercase; }
 
     /* Il sistema in un colpo d'occhio */
     .stack { margin: 14px 0 2px; padding: 16px 14px 12px; border: 1px solid var(--line-warm); border-radius: 12px; background: radial-gradient(120% 90% at 50% 0%, #FFFFFF 0%, #F6F1E4 100%); }
-    .stack-head { margin-bottom: 12px; color: var(--green); font-family: var(--font-head); font-size: 19px; font-weight: 800; letter-spacing: .08em; text-align: center; text-transform: uppercase; }
+    .stack-head { margin-bottom: 12px; color: var(--deep); font-family: var(--font-head); font-size: 19px; font-weight: 800; letter-spacing: .08em; text-align: center; text-transform: uppercase; }
     .stack-parts { display: flex; flex-wrap: wrap; justify-content: center; gap: 7px; }
     .stack-doc { display: flex; flex: 0 0 calc((100% - 28px) / 5); flex-direction: column; gap: 4px; min-width: 0; min-height: 96px; padding: 0 6px 8px; border: 1px solid var(--line-warm); border-radius: 6px; background: #fff; box-shadow: 0 6px 14px rgba(23, 22, 15, .08); overflow: hidden; }
     .stack-doc:nth-child(odd) { transform: translateY(4px); }
-    .stack-tag { margin: 0 -6px 3px; padding: 4px 6px; background: var(--green); color: var(--gold-soft); font-size: 8.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+    .stack-tag { margin: 0 -6px 3px; padding: 4px 6px; background: var(--deep); color: var(--gold-soft); font-size: 8.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
     .stack-doc b { color: var(--ink); font-size: 10px; line-height: 1.25; }
     .stack-doc i { display: block; height: 4px; border-radius: 3px; background: var(--line); }
     .stack-doc i:last-child { width: 60%; }
     .stack-bonus { display: flex; flex-wrap: wrap; justify-content: center; gap: 5px; margin-top: 14px; }
-    .stack-bonus span { padding: 3px 8px; border: 1px solid var(--gold-soft); border-radius: 999px; background: #fff; color: var(--green); font-size: 10.5px; font-weight: 700; }
-    .stack-foot { display: flex; align-items: center; gap: 8px; margin-top: 12px; color: var(--green); font-size: 9.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+    .stack-bonus span { padding: 3px 8px; border: 1px solid var(--gold-soft); border-radius: 999px; background: #fff; color: var(--deep); font-size: 10.5px; font-weight: 700; }
+    .stack-foot { display: flex; align-items: center; gap: 8px; margin-top: 12px; color: var(--deep); font-size: 9.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
     .stack-foot::before, .stack-foot::after { content: ""; flex: 1; height: 1px; background: var(--line-warm); }
 
     @media (min-width: 880px) {
@@ -368,7 +369,7 @@
     const STRIPE_APPEARANCE = {
       theme: "stripe",
       variables: {
-        colorPrimary: "#1C6E42",
+        colorPrimary: "#8D4AFC",
         colorText: "#17160F",
         colorTextSecondary: "#6E6B5E",
         colorDanger: "#B6443A",
@@ -378,11 +379,11 @@
       },
       rules: {
         ".Input": { border: "1.5px solid #D9D3C2", boxShadow: "none", padding: "12px 14px" },
-        ".Input:focus": { border: "1.5px solid #0E5B39", boxShadow: "0 0 0 3px rgba(14,91,57,0.16)" },
-        ".Label": { fontWeight: "700", color: "#013121" },
+        ".Input:focus": { border: "1.5px solid #8D4AFC", boxShadow: "0 0 0 3px rgba(141,74,252,0.2)" },
+        ".Label": { fontWeight: "700", color: "#1E0B40" },
         ".Tab": { border: "1px solid #D9D3C2", borderRadius: "10px" },
-        ".Tab:hover": { color: "#1C6E42" },
-        ".Tab--selected": { borderColor: "#1C6E42", boxShadow: "0 0 0 1px #1C6E42" },
+        ".Tab:hover": { color: "#7B3CF0" },
+        ".Tab--selected": { borderColor: "#8D4AFC", boxShadow: "0 0 0 1px #8D4AFC" },
       },
     };
     // Copertine delle aggiunte: solo grafica, testi e prezzi arrivano dal server.
@@ -418,19 +419,19 @@
 
     function cover(kicker, title, lines, foot) {
       const esc = (text) => text.replace(/&/g, "&amp;").replace(/</g, "&lt;");
-      const bullets = lines.map((line, i) => `<text x="12" y="${80 + i * 10}" font-size="7" fill="#403D31"><tspan fill="#1C6E42" font-weight="700">✓</tspan> ${esc(line)}</text>`).join("");
+      const bullets = lines.map((line, i) => `<text x="12" y="${80 + i * 10}" font-size="7" fill="#403D31"><tspan fill="#7B3CF0" font-weight="700">✓</tspan> ${esc(line)}</text>`).join("");
       return `<svg viewBox="0 0 160 120" aria-hidden="true" focusable="false" font-family="'Atkinson Hyperlegible', system-ui, sans-serif">
         <rect width="160" height="120" fill="#FBF9F2"/>
-        <rect width="160" height="20" fill="#013121"/>
+        <rect width="160" height="20" fill="#1E0B40"/>
         <text x="12" y="13.5" font-size="6.5" font-weight="700" fill="#F5EFDC" letter-spacing="0.9">${esc(kicker.toUpperCase())}</text>
         <rect x="12" y="27" width="16" height="2" fill="#B9974C"/>
-        <text x="12" y="46" font-size="14" font-weight="800" fill="#013121" font-family="'Bricolage Grotesque', 'Arial Black', sans-serif">${esc(title[0])}</text>
-        <text x="12" y="62" font-size="14" font-weight="800" fill="#013121" font-family="'Bricolage Grotesque', 'Arial Black', sans-serif">${esc(title[1])}</text>
-        <rect x="118" y="30" width="30" height="38" rx="3" fill="#fff" stroke="#013121" stroke-width="1.4"/>
-        <rect x="123" y="37" width="20" height="2.5" rx="1" fill="#D9D3C2"/><rect x="123" y="43" width="20" height="2.5" rx="1" fill="#D9D3C2"/><rect x="123" y="49" width="14" height="2.5" rx="1" fill="#D9D3C2"/><rect x="123" y="57" width="20" height="5" rx="2" fill="#0E5B39"/>
+        <text x="12" y="46" font-size="14" font-weight="800" fill="#1E0B40" font-family="'Bricolage Grotesque', 'Arial Black', sans-serif">${esc(title[0])}</text>
+        <text x="12" y="62" font-size="14" font-weight="800" fill="#1E0B40" font-family="'Bricolage Grotesque', 'Arial Black', sans-serif">${esc(title[1])}</text>
+        <rect x="118" y="30" width="30" height="38" rx="3" fill="#fff" stroke="#1E0B40" stroke-width="1.4"/>
+        <rect x="123" y="37" width="20" height="2.5" rx="1" fill="#D9D3C2"/><rect x="123" y="43" width="20" height="2.5" rx="1" fill="#D9D3C2"/><rect x="123" y="49" width="14" height="2.5" rx="1" fill="#D9D3C2"/><rect x="123" y="57" width="20" height="5" rx="2" fill="#8D4AFC"/>
         ${bullets}
         <line x1="12" y1="107" x2="148" y2="107" stroke="#D9D3C2" stroke-width="0.8"/>
-        <text x="12" y="115" font-size="5.6" font-weight="700" fill="#1C6E42" letter-spacing="0.6">${esc(foot.toUpperCase())}</text>
+        <text x="12" y="115" font-size="5.6" font-weight="700" fill="#7B3CF0" letter-spacing="0.6">${esc(foot.toUpperCase())}</text>
       </svg>`;
     }
 
