@@ -22,6 +22,12 @@
     { "source": "/refund-policy", "destination": "/tirana/refund-policy/index.html" },
     { "source": "/refund-policy/", "destination": "/tirana/refund-policy/index.html" },
     { "source": "/aaw26", "destination": "/aaw26/index.html" },
+    { "source": "/micro-offer", "destination": "/micro-offer/index.html" },
+    { "source": "/micro-offer/", "destination": "/micro-offer/index.html" },
+    { "source": "/micro-offer/checkout", "destination": "/micro-offer/checkout/index.html" },
+    { "source": "/micro-offer/checkout/", "destination": "/micro-offer/checkout/index.html" },
+    { "source": "/micro-offer/grazie", "destination": "/micro-offer/grazie/index.html" },
+    { "source": "/micro-offer/grazie/", "destination": "/micro-offer/grazie/index.html" },
     { "source": "/tirana", "destination": "/tirana/index.html" },
     { "source": "/tirana/", "destination": "/tirana/index.html" },
     { "source": "/tirana/registrazione", "destination": "/tirana/registrazione/index.html" },
@@ -40,7 +46,7 @@
     { "source": "/tirana/refund-policy/", "destination": "/tirana/refund-policy/index.html" },
     { "source": "/admin", "destination": "/tirana/admin/index.html" },
     { "source": "/admin/", "destination": "/tirana/admin/index.html" },
-    { "source": "/((?!api|aaw26|tirana|registrazione|offerta|checkout|thank-you|ticket|privacy|refund-policy|admin).*)", "destination": "/index.html" }
+    { "source": "/((?!api|aaw26|micro-offer|tirana|registrazione|offerta|checkout|thank-you|ticket|privacy|refund-policy|admin).*)", "destination": "/index.html" }
   ],
   "headers": [
     {
@@ -208,6 +214,29 @@
       "headers": [
         { "key": "Cache-Control", "value": "no-store, max-age=0" },
         { "key": "X-Robots-Tag", "value": "noindex, nofollow" },
+        { "key": "Content-Security-Policy", "value": "default-src 'self'; script-src 'self' 'unsafe-inline'; connect-src 'self'; img-src 'self' data:; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com data:; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'" },
+        { "key": "Referrer-Policy", "value": "no-referrer" },
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options", "value": "DENY" },
+        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" }
+      ]
+    },
+    {
+      "source": "/micro-offer/checkout(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "no-store, max-age=0" },
+        { "key": "Content-Security-Policy", "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://js.stripe.com https://*.js.stripe.com; connect-src 'self' https://api.stripe.com https://*.stripe.com https://*.stripe.network; frame-src https://js.stripe.com https://*.js.stripe.com https://hooks.stripe.com https://*.stripe.com https://*.stripe.network; img-src 'self' data: https://*.stripe.com; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com data:; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'" },
+        { "key": "Cross-Origin-Opener-Policy", "value": "same-origin-allow-popups" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options", "value": "DENY" },
+        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" }
+      ]
+    },
+    {
+      "source": "/micro-offer/grazie(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "no-store, max-age=0" },
         { "key": "Content-Security-Policy", "value": "default-src 'self'; script-src 'self' 'unsafe-inline'; connect-src 'self'; img-src 'self' data:; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com data:; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'" },
         { "key": "Referrer-Policy", "value": "no-referrer" },
         { "key": "X-Content-Type-Options", "value": "nosniff" },

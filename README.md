@@ -11,6 +11,41 @@ Landing page, pagina offerta e checkout dell'evento di Tirana con Stripe Checkou
 - `/ticket?token=...`: biglietto personalizzato condivisibile, senza dati bancari
 - `/privacy`: informativa privacy dell’evento e del checkout
 - `/refund-policy`: policy di rimborso, cancellazione e condizioni di acquisto
+- `/micro-offer`: pagina di vendita di Micro Offer OS
+- `/micro-offer/checkout`: checkout di Micro Offer OS con Stripe Elements e order bump
+- `/micro-offer/grazie`: conferma dell’ordine Micro Offer OS, verificata lato server
+
+## Micro Offer OS
+
+Tre pagine statiche che riprendono struttura, design e meccaniche di sellwhileyousleep.com e del suo checkout. I testi sono scritti da zero in italiano per Scalers. Brand, testimonianze e screenshot del sito di riferimento non sono stati copiati: le prove usano soltanto testimonianze Scalers+ già pubblicate nelle pagine Tirana e AAW Replay, con la stessa nota di trasparenza.
+
+- `public/micro-offer/index.html`: hero con garanzia e prezzo, barra dei numeri, vecchio modo contro nuovo modo con prove laterali, percorso in cinque parti, otto bonus con mockup animati, risultati per profilo, garanzia, riepilogo per chi scorre, FAQ e pop-up d’acquisto in due passaggi. Il pop-up salva nome ed email in `sessionStorage` e porta al checkout, che li precompila senza metterli nell’URL.
+- `public/micro-offer/checkout/index.html`: modulo con Apple Pay, Google Pay e Link tramite Express Checkout Element, carta tramite Payment Element, tre order bump con esclusione reciproca, riepilogo e totale aggiornati a ogni scelta, garanzia e colonna con tutto ciò che è incluso.
+- `public/micro-offer/grazie/index.html`: verifica il pagamento con il server, mostra riepilogo e accesso, poi rimuove il client secret dall’indirizzo.
+
+`OFFER.checkoutUrl`, in cima allo script della sales page, punta al checkout interno. Può essere sostituito con un Payment Link Stripe, che riceve l’email come `prefilled_email`; se resta vuoto i pulsanti aprono un’email precompilata. `OFFER.heroVideoUrl` mostra il pulsante play nell’hero quando contiene l’URL embed del video di vendita.
+
+### Pagamento
+
+`/api/micro-offer/checkout` è un’unica funzione, così il progetto resta a 10 Serverless Function sulle 12 del piano Hobby:
+
+- `GET` restituisce catalogo e chiave pubblicabile. Senza chiavi Stripe valide restituisce `configured: false` e il checkout disattiva il pagamento con un messaggio per il cliente.
+- `POST` riceve nome, email, aggiunte scelte e il ConfirmationToken creato da Stripe Elements, poi crea e conferma il PaymentIntent. Prezzi e totale sono in `api/micro-offer/_shared.js` e vengono ricalcolati dal server: richieste con importi, aggiunte sconosciute o incompatibili vengono rifiutate. L’autenticazione 3D Secure viene completata nel browser con `handleNextAction`.
+- `POST` con `action: "finalize"` viene chiamato dalla pagina di conferma: verifica il PaymentIntent tramite client secret e restituisce esito, articoli, totale e, solo se il pagamento è riuscito, `MICRO_OFFER_ACCESS_URL`.
+
+Usa le stesse `STRIPE_SECRET_KEY` e `STRIPE_PUBLISHABLE_KEY` del checkout di Tirana, che devono appartenere alla stessa modalità. I pagamenti sono in euro, hanno `metadata[funnel]=micro-offer-os` e Stripe invia la ricevuta all’email del cliente.
+
+Quando un pagamento riesce, il team riceve un messaggio nel canale Slack già configurato con prodotto, aggiunte, nome, email e importo. Il messaggio parte una sola volta per pagamento: il PaymentIntent viene marcato con `metadata[notified_at]`. Per non perdere i pagamenti in cui il cliente chiude la pagina dopo il 3D Secure, aggiungi l’evento `payment_intent.succeeded` all’endpoint webhook Stripe esistente: `api/stripe/webhook.js` lo gestisce solo per i PaymentIntent Micro Offer e ignora gli altri.
+
+Variabile opzionale:
+
+```dotenv
+MICRO_OFFER_ACCESS_URL=https://...
+```
+
+Se impostata, la pagina di conferma mostra il pulsante per entrare nell’area riservata. Altrimenti comunica che l’accesso arriva via email: in quel caso va consegnato a mano partendo dalla notifica Slack.
+
+Prima di pubblicare, verifica con il team che bonus, durata delle lezioni, garanzia “Primi 3 Clienti”, promessa del primo cliente in 24 ore e order bump corrispondano a ciò che viene consegnato davvero. Completa poi un acquisto in modalità test con e senza order bump, con una carta 3D Secure (`4000 0027 6000 3184`) e con una carta rifiutata (`4000 0000 0000 0002`). Nome ed email del checkout non vengono salvati prima del pagamento: per recuperare i carrelli abbandonati serve un endpoint dedicato, non `/api/registrations` che scrive nel foglio di Tirana.
 
 ## Catalogo attivo
 
