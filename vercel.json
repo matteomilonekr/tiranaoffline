@@ -22,6 +22,8 @@
     { "source": "/refund-policy", "destination": "/tirana/refund-policy/index.html" },
     { "source": "/refund-policy/", "destination": "/tirana/refund-policy/index.html" },
     { "source": "/aaw26", "destination": "/aaw26/index.html" },
+    { "source": "/70-specialisti-claude", "destination": "/70-specialisti-claude/index.html" },
+    { "source": "/70-specialisti-claude/", "destination": "/70-specialisti-claude/index.html" },
     { "source": "/tirana", "destination": "/tirana/index.html" },
     { "source": "/tirana/", "destination": "/tirana/index.html" },
     { "source": "/tirana/registrazione", "destination": "/tirana/registrazione/index.html" },
@@ -40,7 +42,7 @@
     { "source": "/tirana/refund-policy/", "destination": "/tirana/refund-policy/index.html" },
     { "source": "/admin", "destination": "/tirana/admin/index.html" },
     { "source": "/admin/", "destination": "/tirana/admin/index.html" },
-    { "source": "/((?!api|aaw26|tirana|registrazione|offerta|checkout|thank-you|ticket|privacy|refund-policy|admin).*)", "destination": "/index.html" }
+    { "source": "/((?!api|aaw26|70-specialisti-claude|tirana|registrazione|offerta|checkout|thank-you|ticket|privacy|refund-policy|admin).*)", "destination": "/index.html" }
   ],
   "headers": [
     {
