@@ -91,8 +91,8 @@
       width: 9px;
       height: 9px;
       border-radius: 50%;
-      background: var(--red);
-      box-shadow: 0 0 0 4px color-mix(in srgb, var(--red) 18%, transparent);
+      background: var(--live);
+      box-shadow: 0 0 0 4px color-mix(in srgb, var(--live) 18%, transparent);
     }
     .inside-card {
       margin-top: 1.1rem;
@@ -125,11 +125,11 @@
       gap: 8px;
       margin: 0;
       padding: 9px 14px;
-      border: 1px solid color-mix(in srgb, var(--red) 35%, transparent);
+      border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
       border-bottom: 0;
       border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-      background: var(--red-tint);
-      color: var(--red-deep);
+      background: var(--accent-tint);
+      color: var(--accent-deep);
       font-family: var(--sans);
       font-size: 12px;
       font-weight: 700;
@@ -141,7 +141,7 @@
     .timerbar .clock {
       padding: 3px 8px;
       border-radius: 5px;
-      background: var(--red);
+      background: var(--accent);
       color: #FFFFFF;
       font-weight: 800;
       font-variant-numeric: tabular-nums;
@@ -168,7 +168,7 @@
     }
     .ticket-price { display: inline-flex; align-items: baseline; gap: .45rem; }
     .ticket-price .was {
-      color: var(--red-deep);
+      color: var(--accent-deep);
       font-family: var(--sans);
       font-size: 1rem;
       opacity: .75;
@@ -199,7 +199,7 @@
     /* Ticker */
     .ticker {
       padding-block: 30px;
-      border-top: 3px solid var(--red);
+      border-top: 3px solid var(--accent);
       border-bottom: 1px solid var(--line);
       background: var(--band-deep);
       color: var(--band-deep-tx);
@@ -268,7 +268,7 @@
       flex: none;
       width: clamp(58px, 8.5vw, 74px);
       aspect-ratio: 1;
-      border: 2px solid var(--red);
+      border: 2px solid var(--accent);
       border-radius: 50%;
       background: var(--surface-2) center / cover no-repeat;
     }
@@ -293,7 +293,7 @@
     .ledger li::before {
       content: counter(step, decimal-leading-zero);
       counter-increment: step;
-      color: var(--red-deep);
+      color: var(--accent-deep);
       font-family: var(--sans);
       font-size: 1.5rem;
       font-weight: 700;
@@ -306,14 +306,14 @@
       width: 1.6rem;
       height: 1.6rem;
       margin-top: .05rem;
-      background: var(--red-deep);
+      background: var(--accent-deep);
       -webkit-mask: var(--arrow) center / contain no-repeat;
       mask: var(--arrow) center / contain no-repeat;
     }
     .ledger li > div { min-width: 0; }
     .ledger h3 { margin-bottom: .35rem; }
     .ledger p { margin: 0; color: var(--ink-soft); font-size: clamp(1.05rem, 1.8vw, 1.2rem); line-height: 1.55; }
-    .band-brass mark { padding: 0; background: transparent; color: var(--red-deep); font-weight: 700; }
+    .band-brass mark { padding: 0; background: transparent; color: var(--accent-deep); font-weight: 700; }
 
     /* CTA ripetute */
     .cta-block { display: flex; flex-direction: column; align-items: center; gap: .9rem; margin-top: 2.5rem; text-align: center; }
@@ -337,7 +337,7 @@
       transition: background .15s ease;
     }
     .cta-btn:hover { background: var(--cta-deep); }
-    .cta-btn small { font-size: .82rem; font-weight: 400; letter-spacing: .05em; text-transform: none; opacity: .72; }
+    .cta-btn small { font-size: .82rem; font-weight: 400; letter-spacing: .05em; text-transform: none; opacity: .85; }
     .cta-note { max-width: 34rem; margin: 0; color: var(--ink-soft); font-size: 1.05rem; }
     .band-deep .cta-note { color: var(--band-deep-tx); }
 
@@ -377,7 +377,7 @@
     .bthumb svg { display: block; width: 100%; height: 100%; }
     .bonus .tag {
       grid-area: tag;
-      color: var(--red-deep);
+      color: var(--accent-deep);
       font-family: var(--sans);
       font-size: .82rem;
       font-weight: 700;
@@ -409,32 +409,32 @@
     /* Illustrazioni degli strumenti */
     .bthumb text { font-family: var(--sans); }
     .ill-card { fill: var(--surface); stroke: var(--line); }
-    .ill-kicker { fill: var(--red-deep); font-size: 11px; font-weight: 700; letter-spacing: .14em; }
+    .ill-kicker { fill: var(--accent-deep); font-size: 11px; font-weight: 700; letter-spacing: .14em; }
     .bthumb .ill-big { fill: var(--ink); font-family: var(--serif); font-size: 46px; font-weight: 700; }
     .ill-small { fill: var(--ink-mute); font-size: 12px; }
     .ill-ring-track { fill: none; stroke: var(--line-strong); stroke-width: 7; }
-    .ill-ring-fill { fill: none; stroke: var(--red); stroke-width: 7; }
+    .ill-ring-fill { fill: none; stroke: var(--accent); stroke-width: 7; }
     .ill-track { stroke: var(--line-strong); stroke-width: 4; stroke-linecap: round; }
-    .ill-progress { stroke: var(--red); stroke-width: 4; stroke-linecap: round; }
+    .ill-progress { stroke: var(--accent); stroke-width: 4; stroke-linecap: round; }
     .ill-dot { fill: var(--surface); stroke: var(--line-strong); stroke-width: 2.5; }
-    .ill-dot.is-done { fill: var(--red); stroke: var(--red); }
-    .ill-dot.is-active { fill: var(--cta); stroke: var(--surface); stroke-width: 3; }
-    .ill-dot-ring { fill: none; stroke: var(--cta); stroke-width: 2; opacity: .55; }
+    .ill-dot.is-done { fill: var(--accent); stroke: var(--accent); }
+    .ill-dot.is-active { fill: var(--accent-tint); stroke: var(--accent); stroke-width: 3; }
+    .ill-dot-ring { fill: none; stroke: var(--accent); stroke-width: 2; opacity: .35; }
     .ill-label { fill: var(--ink); font-size: 12px; font-weight: 600; }
     .ill-time { fill: var(--ink-mute); font-size: 10.5px; font-variant-numeric: tabular-nums; }
     .ill-cell { fill: var(--surface-2); stroke: var(--line); }
-    .ill-cell.is-hot { fill: var(--red-tint); stroke: var(--red); stroke-width: 1.5; }
+    .ill-cell.is-hot { fill: var(--accent-tint); stroke: var(--accent); stroke-width: 1.5; }
     .ill-pt { fill: var(--ink-mute); }
-    .ill-pt.is-hot { fill: var(--red); }
-    .ill-pt-ring { fill: none; stroke: var(--red); stroke-width: 1.5; opacity: .45; }
+    .ill-pt.is-hot { fill: var(--accent); }
+    .ill-pt-ring { fill: none; stroke: var(--accent); stroke-width: 1.5; opacity: .45; }
     .ill-axis { fill: var(--ink-mute); font-size: 10px; font-weight: 700; letter-spacing: .12em; }
     .ill-node { fill: var(--surface-2); stroke: var(--line-strong); stroke-width: 1.2; }
-    .ill-node.is-check { fill: var(--red-tint); stroke: var(--red); }
+    .ill-node.is-check { fill: var(--accent-tint); stroke: var(--accent); }
     .ill-node-t { fill: var(--ink); font-size: 12px; font-weight: 600; }
     .ill-link { stroke: var(--ink-mute); stroke-width: 2; }
-    .ill-link.is-return { stroke: var(--red); stroke-dasharray: 4 4; }
+    .ill-link.is-return { stroke: var(--accent); stroke-dasharray: 4 4; }
     .ill-head { fill: var(--ink-mute); }
-    .ill-head.is-red { fill: var(--red); }
+    .ill-head.is-red { fill: var(--accent); }
     .ill-gate { fill: var(--green); }
     .ill-check { fill: none; stroke: #FFFFFF; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
     .ill-gate-t { fill: var(--green-deep); font-size: 9px; font-weight: 700; letter-spacing: .12em; }
@@ -456,7 +456,7 @@
       justify-content: space-between;
       gap: .3rem 1rem;
       padding: 1.15rem 1.5rem;
-      border-top: 3px solid var(--red);
+      border-top: 3px solid var(--accent);
       background: var(--band-deep);
       color: #FFFFFF;
     }
@@ -505,7 +505,7 @@
     .prose .callout-q {
       margin: 0 0 1.1rem;
       padding-left: 1rem;
-      border-left: 3px solid var(--red);
+      border-left: 3px solid var(--accent);
       color: var(--ink);
       font-size: clamp(1.7rem, 2.8vw, 2.2rem);
       font-weight: 700;
@@ -554,7 +554,7 @@
     .urgency-note {
       margin-top: 1.9rem;
       padding: 1.4rem 1.6rem;
-      border: 2px dashed var(--red);
+      border: 2px dashed var(--accent);
       border-radius: var(--radius);
       background: var(--surface);
     }

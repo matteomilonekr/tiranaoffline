@@ -13,12 +13,14 @@
   --ink-mute: #59606A;
   --line: #E2DBDB;
   --line-strong: #CEC5C5;
-  --cta: #F89D21;
-  --cta-deep: #E68A0B;
-  --cta-ink: #171A1E;
-  --red: #D22E24;
-  --red-deep: #A32019;
-  --red-tint: #FBEAE8;
+  --cta: #8D4AFC;
+  --cta-deep: #7634E8;
+  --cta-ink: #FFFFFF;
+  --accent: #8D4AFC;
+  --accent-deep: #6A2FD8;
+  --accent-tint: #F1E8FF;
+  --accent-on-dark: #C4A2FF;
+  --live: #E0342A;
   --green: #12703F;
   --green-deep: #0E5C33;
   --brass: #9A6A22;
@@ -51,10 +53,9 @@
     --ink-mute: #8E877F;
     --line: #38312E;
     --line-strong: #4C433F;
-    --cta-deep: #FFB040;
-    --red: #EC5347;
-    --red-deep: #F4796E;
-    --red-tint: #2B1614;
+    --cta-deep: #A174FF;
+    --accent-deep: #B58CFF;
+    --accent-tint: #241A3A;
     --green: #46B074;
     --green-deep: #5CC488;
     --brass: #D6AC5A;
@@ -160,12 +161,12 @@ mark {
   flex: none;
   width: 1.6rem;
   height: 2px;
-  background: var(--red);
+  background: var(--accent);
 }
 .centered { margin-inline: auto; text-align: center; }
 .centered .eyebrow { justify-content: center; }
 main > section:not(.hero) .eyebrow { font-size: .95rem; }
-.band-deep .eyebrow { color: #E7C066; }
+.band-deep .eyebrow { color: var(--accent-on-dark); }
 
 .section-head { margin-bottom: 2.4rem; }
 .section-head h2 { margin-bottom: .55rem; }
@@ -177,7 +178,7 @@ main > section:not(.hero) .eyebrow { font-size: .95rem; }
   top: 0;
   z-index: 40;
   background: #000000;
-  border-bottom: 3px solid var(--red);
+  border-bottom: 3px solid var(--accent);
 }
 .siteheader .wrap {
   display: flex;
@@ -284,7 +285,7 @@ main > section:not(.hero) .eyebrow { font-size: .95rem; }
 }
 .order-submit:hover { background: var(--cta-deep); }
 .order-submit[disabled] { cursor: progress; opacity: .75; }
-.order-submit small { font-size: .66rem; font-weight: 400; letter-spacing: .05em; text-transform: none; opacity: .7; }
+.order-submit small { font-size: .66rem; font-weight: 400; letter-spacing: .05em; text-transform: none; opacity: .85; }
 .form-status { margin: 0; font-family: var(--sans); font-size: .8rem; font-weight: 600; color: var(--green-deep); text-align: center; }
 .form-status:empty { display: none; }
 .pay-row { display: flex; flex-wrap: wrap; justify-content: center; gap: .35rem; }
@@ -326,7 +327,7 @@ main > section:not(.hero) .eyebrow { font-size: .95rem; }
   margin-top: .2rem;
   padding: .85rem 1.05rem;
   border: 1px solid var(--line-strong);
-  border-left: 3px solid var(--red);
+  border-left: 3px solid var(--accent);
   border-radius: var(--radius);
   background: var(--surface);
   text-align: left;
@@ -337,9 +338,9 @@ main > section:not(.hero) .eyebrow { font-size: .95rem; }
   flex: none;
   width: 46px;
   height: 46px;
-  border: 2px solid var(--red);
+  border: 2px solid var(--accent);
   border-radius: 50%;
-  color: var(--red-deep);
+  color: var(--accent-deep);
   font-family: var(--sans);
   font-size: .8rem;
   font-weight: 700;
