@@ -22,6 +22,10 @@
     { "source": "/refund-policy", "destination": "/tirana/refund-policy/index.html" },
     { "source": "/refund-policy/", "destination": "/tirana/refund-policy/index.html" },
     { "source": "/aaw26", "destination": "/aaw26/index.html" },
+    { "source": "/replay-pass", "destination": "/replay-pass/index.html" },
+    { "source": "/replay-pass/", "destination": "/replay-pass/index.html" },
+    { "source": "/aaw-replay/v3", "destination": "/aaw-replay/v3/index.html" },
+    { "source": "/aaw-replay/v3/", "destination": "/aaw-replay/v3/index.html" },
     { "source": "/tirana", "destination": "/tirana/index.html" },
     { "source": "/tirana/", "destination": "/tirana/index.html" },
     { "source": "/tirana/registrazione", "destination": "/tirana/registrazione/index.html" },
@@ -40,9 +44,31 @@
     { "source": "/tirana/refund-policy/", "destination": "/tirana/refund-policy/index.html" },
     { "source": "/admin", "destination": "/tirana/admin/index.html" },
     { "source": "/admin/", "destination": "/tirana/admin/index.html" },
-    { "source": "/((?!api|aaw26|tirana|registrazione|offerta|checkout|thank-you|ticket|privacy|refund-policy|admin).*)", "destination": "/index.html" }
+    { "source": "/((?!api|aaw26|aaw-replay/v3|replay-pass|tirana|registrazione|offerta|checkout|thank-you|ticket|privacy|refund-policy|admin).*)", "destination": "/index.html" }
   ],
   "headers": [
+    {
+      "source": "/replay-pass(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" },
+        { "key": "Content-Security-Policy", "value": "default-src 'self'; script-src 'self' 'unsafe-inline'; connect-src 'self'; img-src 'self' data:; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com data:; frame-src https://www.loom.com; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options", "value": "DENY" },
+        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" }
+      ]
+    },
+    {
+      "source": "/aaw-replay/v3(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" },
+        { "key": "Content-Security-Policy", "value": "default-src 'self'; script-src 'self' 'unsafe-inline'; connect-src 'self'; img-src 'self' data:; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com data:; frame-src https://www.loom.com; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options", "value": "DENY" },
+        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" }
+      ]
+    },
     {
       "source": "/offerta(.*)",
       "headers": [

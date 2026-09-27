@@ -1,0 +1,2372 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Acceleration Week Replay Pass | Le 7 sessioni e il primo workflow AI in 60 minuti</title>
+  <meta name="description" content="Le 7 sessioni registrate della AI Acceleration Week: chiarezza, automazione, acquisizione, vendita, operations, prodotto e offerta. Più Start Here, Mappa dei colli di bottiglia, Loop Operativo Canvas e percorso di 7 giorni. Replay Pass a 7 euro, pagamento unico.">
+  <meta name="theme-color" content="#060616">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="AI Acceleration Week · Replay Pass a 7 euro">
+  <meta property="og:description" content="Le 7 sessioni della AI Acceleration Week e il metodo in 4 passaggi per trasformare un task ripetitivo nel tuo primo workflow AI.">
+  <meta property="og:image" content="/aaw-replay/assets/aaw-day-one.webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300..900;1,9..40,400..700&family=Plus+Jakarta+Sans:ital,wght@0,500..800;1,600..800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --deep: #060616;
+      --navy: #050a29;
+      --ink: #0d0d0d;
+      --steel: #0c182a;
+      --navy-text: #0b234d;
+      --text: #cbd5e0;
+      --text-soft: #9aa6ba;
+      --white: #ffffff;
+      --primary: #8D4AFC;
+      --primary-dark: #7433E6;
+      --primary-light: #A977FD;
+      --primary-tint: #F4EEFF;
+      --primary-line: #DCCBFE;
+      --blue: #3b8bf6;
+      --cyan: #38bdf8;
+      --green: #37ca37;
+      --green-soft: #86efac;
+      --red: #ef4444;
+      --display: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+      --body: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      color: var(--text);
+      background: var(--deep);
+      font: 400 18px/1.5 var(--body);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { display: block; max-width: 100%; height: auto; }
+    a { color: inherit; }
+    h1, h2, h3, h4, p, ul, ol, figure, blockquote { margin: 0; }
+    ul, ol { padding: 0; list-style: none; }
+    button, input { font: inherit; }
+    :focus-visible { outline: 3px solid var(--primary); outline-offset: 3px; }
+    ::selection { color: #fff; background: var(--primary); }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      padding: 0;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+    .skip-link {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      z-index: 50;
+      padding: 10px 14px;
+      color: #fff;
+      background: var(--primary);
+      border-radius: 8px;
+      transform: translateY(-160%);
+    }
+    .skip-link:focus { transform: none; }
+
+    .o { color: var(--primary-light); }
+    .on-light .o, .paper .o, .order-card .o, .incl .o { color: var(--primary); }
+    .b { color: var(--blue); }
+    .w { color: #fff; }
+    .u { text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
+    .i { font-style: italic; }
+    .dim { color: rgba(255, 255, 255, .55); }
+    .brand-name { font-weight: 700; color: #fff; white-space: nowrap; }
+    .on-light .brand-name { color: var(--navy-text); }
+
+    .wrap { width: min(1140px, calc(100% - 32px)); margin-inline: auto; }
+    .narrow { width: min(620px, calc(100% - 32px)); margin-inline: auto; }
+    .split {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 360px;
+      gap: 56px;
+      align-items: start;
+    }
+    .letter { max-width: 600px; margin-inline: auto; }
+    .side { display: grid; gap: 22px; }
+
+    .sec { position: relative; }
+    .sec-hero, .sec-glow {
+      background: linear-gradient(270deg, #000 0%, #0b234d 50%, #0d0d0d 100%);
+    }
+    .sec-glow { background: linear-gradient(270deg, #060616 0%, #0b234d 50%, #060616 100%); }
+    .sec-hero::before, .sec-glow::before {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      content: "";
+      background: repeating-linear-gradient(90deg, transparent 0 72px, rgba(147, 197, 253, .03) 72px 76px, transparent 76px 150px);
+    }
+    .sec-hero > *, .sec-glow > * { position: relative; }
+    .sec-navy { background: var(--navy); }
+    .sec-ink { background: var(--ink); border-block: 1px solid rgba(255, 255, 255, .08); }
+    .sec-steel { background: var(--steel); border-block: 1px solid rgba(96, 165, 250, .18); }
+    .sec-light { color: var(--navy-text); background: linear-gradient(50deg, #fff 0%, #e6edfd 100%); }
+    .sec-dawn { color: var(--navy-text); background: linear-gradient(#fff 30%, #ffd9d9 60%, #ecf9e6 75%); }
+    .sec-deep { background: var(--deep); }
+    .pad { padding: 88px 0; }
+
+    /* Top bar */
+    .topbar { background: #0a0a0a; border-bottom: 1px solid rgba(255, 255, 255, .08); }
+    .topbar-inner {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 16px;
+      align-items: center;
+      width: min(1240px, calc(100% - 40px));
+      min-height: 80px;
+      margin-inline: auto;
+    }
+    .logo { display: flex; align-items: center; gap: 12px; color: #fff; text-decoration: none; }
+    .logo img { width: 96px; }
+    .logo-text { padding-left: 12px; border-left: 1px solid rgba(255, 255, 255, .18); font: 800 15px/1.15 var(--display); }
+    .trust { display: flex; align-items: center; gap: 12px; }
+    .avatars { display: flex; }
+    .avatars span {
+      display: grid;
+      width: 38px;
+      height: 38px;
+      margin-left: -10px;
+      place-items: center;
+      color: #fff;
+      border: 2px solid #0a0a0a;
+      border-radius: 50%;
+      font: 700 12px/1 var(--display);
+      box-shadow: 0 0 0 1px rgba(141, 74, 252, .5);
+    }
+    .avatars span:first-child { margin-left: 0; }
+    .avatars span:nth-child(1) { background: linear-gradient(135deg, #8D4AFC, #4c1d95); }
+    .avatars span:nth-child(2) { background: linear-gradient(135deg, #3b82f6, #1e3a8a); }
+    .avatars span:nth-child(3) { background: linear-gradient(135deg, #10b981, #065f46); }
+    .avatars span:nth-child(4) { background: linear-gradient(135deg, #06b6d4, #155e75); }
+    .avatars span:nth-child(5) { background: linear-gradient(135deg, #ec4899, #9d174d); }
+    .trust-copy { display: grid; line-height: 1.05; }
+    .trust-copy small { color: #cbd5e0; font: 500 10px/1.2 var(--body); letter-spacing: .06em; text-transform: uppercase; }
+    .trust-copy strong { color: var(--primary-light); font: 800 22px/1.1 var(--display); }
+    .help { justify-self: end; color: #fff; font-size: 13px; line-height: 1.45; text-align: right; }
+    .help a { text-decoration: none; }
+    .help a strong { color: var(--primary-light); font-weight: 500; }
+    .help small { display: block; color: var(--text-soft); font-size: 12px; }
+
+    /* Hero */
+    .hero { padding: 38px 0 96px; }
+    .hero-head { max-width: 960px; margin: 0 auto 36px; text-align: center; }
+    .pill-glow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      max-width: 100%;
+      padding: 8px 20px;
+      color: #7dd3fc;
+      background: rgba(8, 47, 73, .5);
+      border: 1.5px solid rgba(56, 189, 248, .45);
+      border-radius: 999px;
+      font: 600 14.5px/1.35 var(--display);
+      letter-spacing: .01em;
+      text-transform: uppercase;
+      box-shadow: 0 0 26px rgba(56, 189, 248, .25), inset 0 0 14px rgba(56, 189, 248, .14);
+    }
+    .dot {
+      flex: none;
+      width: 9px;
+      height: 9px;
+      background: var(--cyan);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--cyan);
+      animation: pulse 2.4s ease-in-out infinite;
+    }
+    @keyframes pulse { 50% { opacity: .35; } }
+    .hero h1 {
+      margin-top: 22px;
+      color: #fff;
+      font: 800 clamp(33px, 4.6vw, 50px)/1.1 var(--display);
+      letter-spacing: -.02em;
+      text-wrap: balance;
+    }
+    .hero-sub {
+      max-width: 820px;
+      margin: 22px auto 0;
+      color: #fff;
+      font: 500 clamp(19px, 2vw, 24px)/1.4 var(--body);
+      text-wrap: balance;
+    }
+
+    /* Product covers */
+    .cover {
+      --c1: #22d3ee;
+      --c2: #4ade80;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      aspect-ratio: 3 / 4;
+      overflow: hidden;
+      text-align: center;
+      container-type: inline-size;
+      isolation: isolate;
+      background:
+        radial-gradient(95% 55% at 50% 100%, color-mix(in srgb, var(--c1) 32%, transparent), transparent 72%),
+        radial-gradient(70% 45% at 88% 4%, color-mix(in srgb, var(--c2) 24%, transparent), transparent 70%),
+        linear-gradient(165deg, #15224f 0%, #070b1f 56%, #04060f 100%);
+      border: 2px solid color-mix(in srgb, var(--c1) 80%, #fff);
+      border-radius: 7px;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .08), 0 0 18px color-mix(in srgb, var(--c1) 38%, transparent), 0 16px 30px rgba(0, 0, 0, .5);
+    }
+    .cover::before {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      content: "";
+      background-image: linear-gradient(rgba(255, 255, 255, .055) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, .055) 1px, transparent 1px);
+      background-size: 12cqw 12cqw;
+      -webkit-mask-image: linear-gradient(180deg, #000, transparent 72%);
+      mask-image: linear-gradient(180deg, #000, transparent 72%);
+    }
+    .cv-brand {
+      position: absolute;
+      top: 6cqw;
+      left: 7cqw;
+      color: rgba(255, 255, 255, .78);
+      font: 800 6.4cqw/1 var(--display);
+      letter-spacing: .06em;
+    }
+    .cv-art {
+      position: absolute;
+      top: 14cqw;
+      left: 50%;
+      width: 30cqw;
+      height: 30cqw;
+      color: var(--c1);
+      transform: translateX(-50%);
+      filter: drop-shadow(0 0 3cqw color-mix(in srgb, var(--c1) 75%, transparent));
+    }
+    .cv-pre, .cv-title { max-width: 100%; padding-inline: 6cqw; }
+    .cv-pre { color: #fff; font: 700 9cqw/1.1 var(--display); }
+    .cv-title {
+      display: block;
+      margin-top: 1cqw;
+      color: transparent;
+      background: linear-gradient(90deg, var(--c1), var(--c2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      font: 800 16cqw/.94 var(--display);
+      letter-spacing: -.02em;
+      filter: drop-shadow(0 0 2cqw color-mix(in srgb, var(--c1) 45%, transparent));
+    }
+    .cv-title.sm { font-size: 13cqw; }
+    .cv-tag {
+      margin: 6cqw 0 10cqw;
+      padding: 2.2cqw 4cqw;
+      color: var(--ink, #03131c);
+      background: var(--c1);
+      border-radius: 1.6cqw;
+      font: 800 6cqw/1 var(--body);
+      letter-spacing: .08em;
+      white-space: nowrap;
+      box-shadow: 0 0 4cqw color-mix(in srgb, var(--c1) 60%, transparent);
+    }
+
+    /* Hero bundle */
+    .bundle { position: relative; aspect-ratio: 16 / 8.6; container-type: inline-size; }
+    .bundle::after {
+      position: absolute;
+      right: 12%;
+      bottom: 0;
+      left: 12%;
+      height: 9%;
+      content: "";
+      background: radial-gradient(closest-side, rgba(56, 189, 248, .45), transparent);
+      filter: blur(1.2cqw);
+    }
+    .bundle-screen {
+      position: absolute;
+      top: 13%;
+      left: 22%;
+      z-index: 1;
+      width: 56%;
+      aspect-ratio: 16 / 9.6;
+      overflow: hidden;
+      background: #000;
+      border: .9cqw solid #1f2937;
+      border-radius: 1.8cqw;
+      box-shadow: 0 0 0 .25cqw rgba(255, 255, 255, .12), 0 0 7cqw rgba(56, 189, 248, .4), 0 3cqw 6cqw rgba(0, 0, 0, .6);
+    }
+    .bundle-screen img { width: 100%; height: 100%; object-fit: cover; }
+    .bundle-stand {
+      position: absolute;
+      top: 79%;
+      left: 44%;
+      width: 12%;
+      height: 5%;
+      background: linear-gradient(#1f2937, #0b0f19);
+      border-radius: 0 0 1cqw 1cqw;
+    }
+    .bundle .cover { position: absolute; width: 17cqw; }
+    .bundle .bc-1 { top: 6%; left: 1%; z-index: 2; transform: rotate(-10deg); }
+    .bundle .bc-2 { top: 40%; left: 12%; z-index: 3; transform: rotate(5deg); }
+    .bundle .bc-3 { top: 2%; right: 12%; z-index: 2; transform: rotate(7deg); }
+    .bundle .bc-4 { top: 24%; right: 0; z-index: 3; transform: rotate(-6deg); }
+    .bundle .bc-5 { top: 49%; right: 18%; z-index: 4; transform: rotate(3deg); }
+
+    /* Price box */
+    .pricebox {
+      margin-top: 36px;
+      padding: 20px 22px 14px;
+      background: #070b1c;
+      border: 3px solid rgba(37, 99, 235, .5);
+      border-radius: 14px;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .04), 0 0 32px rgba(37, 99, 235, .28);
+      container-type: inline-size;
+    }
+    .pricebox-row { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 20px; align-items: center; }
+    .pb-price { display: grid; justify-items: start; color: #fff; font: 800 50px/1 var(--display); letter-spacing: -.03em; }
+    .pb-price small { margin-top: 4px; color: var(--text-soft); font: 500 13px/1.1 var(--body); letter-spacing: 0; }
+    .pb-copy { color: var(--text); font: 500 17px/1.35 var(--body); }
+    .pb-copy strong { color: #fff; }
+    .pricebox-foot { display: flex; justify-content: space-between; gap: 12px; margin-top: 14px; color: var(--text); font-size: 13px; }
+    .pricebox-foot span { display: inline-flex; align-items: center; gap: 6px; }
+    .pricebox-foot svg { width: 14px; height: 14px; color: var(--primary-light); }
+    @container (max-width: 640px) {
+      .pricebox-row { grid-template-columns: auto minmax(0, 1fr); }
+      .pricebox-row .btn-grad { grid-column: 1 / -1; width: 100%; }
+    }
+    @container (max-width: 440px) {
+      .pricebox-row { grid-template-columns: 1fr; gap: 14px; justify-items: center; text-align: center; }
+      .pb-price { justify-items: center; }
+      .pricebox-row .btn-grad { padding-inline: 16px; }
+      .pricebox-foot { flex-direction: column; align-items: center; gap: 6px; }
+    }
+
+    .btn-grad {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+      min-height: 64px;
+      padding: 11px 30px;
+      color: #fff;
+      text-align: center;
+      text-decoration: none;
+      background: linear-gradient(100deg, #1e40af 0%, #3b82f6 30%, #8D4AFC 72%, #b48dff 100%);
+      border: 2px solid rgba(255, 255, 255, .78);
+      border-radius: 10px;
+      box-shadow: 0 0 22px rgba(141, 74, 252, .5), 0 8px 24px rgba(0, 0, 0, .4);
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .btn-grad strong { font: 800 19px/1.2 var(--body); }
+    .btn-grad small { color: rgba(255, 255, 255, .92); font: 500 13px/1.2 var(--body); }
+    .btn-grad:hover { transform: translateY(-2px); box-shadow: 0 0 34px rgba(141, 74, 252, .65), 0 12px 28px rgba(0, 0, 0, .45); }
+
+    /* Sales letter */
+    .letter { padding-top: 64px; }
+    .letter h2, .letter h3 {
+      margin: 0 0 20px;
+      color: #fff;
+      font: 700 clamp(27px, 3vw, 31px)/1.2 var(--display);
+      letter-spacing: -.015em;
+    }
+    .letter h2:not(:first-child), .letter h3:not(:first-child) { margin-top: 64px; }
+    .letter p { margin-bottom: 22px; color: var(--text); font-size: 20px; line-height: 1.42; }
+    .letter p.strong { color: rgba(255, 255, 255, .92); font-weight: 700; }
+    .letter p strong { color: #fff; }
+    .fineprint { color: rgba(203, 213, 224, .6) !important; font-size: 13px !important; line-height: 1.5 !important; }
+
+    /* Win cards */
+    .win {
+      margin: 28px 0 36px;
+      overflow: hidden;
+      background: #0f1422;
+      border: 1px solid rgba(255, 255, 255, .08);
+      border-radius: 14px;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, .35);
+    }
+    .win-media { padding: 12px 12px 0; }
+    .win-media img { width: 100%; background: #fff; border-radius: 8px; }
+    .win-foot { margin-top: 12px; padding: 16px 16px 14px; border-top: 1px solid rgba(255, 255, 255, .06); }
+    .win-foot strong { display: block; margin-bottom: 9px; color: #cbd0da; font: 700 17px/1.35 var(--body); }
+    .win-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 10px;
+      color: var(--green-soft);
+      background: rgba(55, 202, 55, .12);
+      border: 1px solid rgba(55, 202, 55, .35);
+      border-radius: 6px;
+      font: 700 13px/1.35 var(--body);
+    }
+    .win-pill::before { flex: none; width: 7px; height: 7px; content: ""; background: var(--green); border-radius: 50%; box-shadow: 0 0 8px var(--green); }
+    .win-foot p { margin: 9px 0 0 !important; color: rgba(242, 242, 247, .58) !important; font-size: 12.5px !important; line-height: 1.5 !important; }
+
+    /* Video facades */
+    .vid {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      background: #020617;
+      border: 1px solid rgba(56, 189, 248, .4);
+      border-radius: 12px;
+      box-shadow: 0 0 26px rgba(56, 189, 248, .22);
+      container-type: inline-size;
+    }
+    .vid.big { margin: 28px -20px 36px; }
+    .vid-btn {
+      position: absolute;
+      inset: 0;
+      display: block;
+      width: 100%;
+      padding: 0;
+      color: #fff;
+      text-align: left;
+      background: none;
+      border: 0;
+      cursor: pointer;
+    }
+    .vid-btn img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.85) brightness(.82); transition: transform .5s ease, filter .5s ease; }
+    .vid-btn:hover img { filter: saturate(1) brightness(.9); transform: scale(1.03); }
+    .vid-shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(2, 6, 23, .1) 30%, rgba(2, 6, 23, .92) 100%); }
+    .vid-play {
+      position: absolute;
+      top: 42%;
+      left: 50%;
+      display: grid;
+      width: max(40px, 12cqw);
+      aspect-ratio: 1;
+      place-items: center;
+      background: rgba(255, 255, 255, .16);
+      border: 1px solid rgba(255, 255, 255, .45);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      backdrop-filter: blur(4px);
+    }
+    .vid-play svg { width: 44%; height: 44%; margin-left: 8%; }
+    .vid-copy { position: absolute; right: 5cqw; bottom: 4.5cqw; left: 5cqw; display: grid; gap: .8cqw; }
+    .vid-copy b { color: #fff; font: 800 max(15px, 6.4cqw)/1.05 var(--display); letter-spacing: -.02em; }
+    .vid-copy b em { color: var(--primary-light); font-style: normal; }
+    .vid-copy span { color: rgba(226, 232, 240, .85); font: 500 max(11px, 3cqw)/1.3 var(--body); }
+    .vid-label {
+      position: absolute;
+      top: 4cqw;
+      left: 4cqw;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 10px;
+      color: #e0f2fe;
+      background: rgba(15, 23, 42, .85);
+      border: 1px solid rgba(56, 189, 248, .55);
+      border-radius: 999px;
+      font: 700 max(9px, 2.2cqw)/1 var(--body);
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+    .vid-label::before { width: 6px; height: 6px; content: ""; background: var(--cyan); border-radius: 50%; }
+    .vid iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
+    /* Sidebar order card */
+    .order-card {
+      padding: 20px 16px 16px;
+      color: var(--navy-text);
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, .35), 0 0 42px rgba(59, 130, 246, .55);
+      scroll-margin-top: 24px;
+    }
+    .oc-proof { display: flex; align-items: center; justify-content: center; gap: 10px; color: #475569; font-size: 13px; line-height: 1.3; }
+    .oc-proof .avatars span { width: 28px; height: 28px; margin-left: -8px; border-color: #fff; font-size: 9px; box-shadow: none; }
+    .oc-proof .avatars span:first-child { margin-left: 0; }
+    .oc-proof strong { color: var(--navy-text); }
+    .oc-kicker { margin-top: 16px; color: #888; font: 600 12px/1.3 var(--display); letter-spacing: .06em; text-align: center; text-transform: uppercase; }
+    .order-card .bundle { width: 96%; margin: 6px auto 0; }
+    .oc-title { margin-top: 8px; color: var(--navy-text); font: 700 29px/1.2 var(--display); letter-spacing: -.02em; text-align: center; }
+    .oc-title span { color: var(--primary); }
+    .oc-sub { margin-top: 4px; color: #334155; font-size: 18px; text-align: center; }
+    .oc-deal {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: fit-content;
+      margin: 14px auto 16px;
+      padding: 7px 14px;
+      color: var(--navy-text);
+      background: var(--primary-tint);
+      border: 1px solid var(--primary-line);
+      border-radius: 999px;
+      font: 600 14px/1.3 var(--display);
+    }
+    .oc-deal svg { width: 15px; height: 15px; color: var(--primary); }
+    .oc-why {
+      margin: 12px 0 16px;
+      padding: 16px;
+      color: #0f172a;
+      background: #cfd8e6;
+      border-radius: 10px;
+      font-size: 14px;
+      line-height: 1.5;
+      text-align: center;
+    }
+    .oc-why strong { color: #0b234d; }
+
+    .two-step { margin-top: 4px; }
+    .ts-tabs { position: relative; display: grid; grid-template-columns: 1fr 1fr; text-align: center; }
+    .ts-tabs::after { position: absolute; top: 18%; bottom: 18%; left: 50%; width: 2px; content: ""; background: #cbd5e1; }
+    .ts-tab { display: grid; gap: 2px; padding: 4px 6px 8px; color: #94a3b8; }
+    .ts-tab strong { font: 700 16px/1.2 var(--display); }
+    .ts-tab span { font-size: 12px; }
+    .ts-tab.is-active { color: var(--primary); }
+    .ts-tab.is-active span { color: #475569; }
+    .ts-bar { height: 4px; margin-bottom: 14px; background: #e2e8f0; border-radius: 2px; }
+    .ts-bar span { display: block; width: 50%; height: 100%; background: var(--primary); border-radius: 2px; transition: width .3s ease; }
+    .two-step[data-current="2"] .ts-bar span { width: 100%; }
+    .ts-step { display: grid; gap: 10px; margin: 0; padding: 0; border: 0; min-width: 0; }
+    .ts-step[hidden] { display: none; }
+    .ts-step input {
+      width: 100%;
+      padding: 13px 14px;
+      color: #0f172a;
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      font-size: 15px;
+    }
+    .ts-step input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(141, 74, 252, .2); }
+    .ts-error { padding: 8px 10px; color: #b91c1c; background: #fef2f2; border-radius: 6px; font-size: 13px; }
+    .btn-primary {
+      width: 100%;
+      padding: 14px 16px;
+      color: #fff;
+      background: var(--primary);
+      border: 0;
+      border-radius: 6px;
+      font: 700 18px/1.2 var(--display);
+      cursor: pointer;
+      box-shadow: 0 6px 16px rgba(141, 74, 252, .35);
+      transition: background .2s ease, transform .2s ease;
+    }
+    .btn-primary:hover { background: var(--primary-dark); transform: translateY(-1px); }
+    .ts-summary { padding: 14px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 14px; }
+    .ts-line { display: flex; justify-content: space-between; gap: 12px; color: #0f172a; }
+    .ts-line strong { font-size: 16px; }
+    .ts-list { display: grid; gap: 4px; margin: 10px 0; color: #475569; font-size: 13px; }
+    .ts-list li { display: flex; gap: 7px; }
+    .ts-list svg { flex: none; width: 14px; height: 14px; margin-top: 2px; color: var(--green); }
+    .ts-total { display: flex; justify-content: space-between; padding-top: 10px; border-top: 1px dashed #cbd5e1; color: #0f172a; font-weight: 700; }
+    .ts-total strong { color: var(--primary-dark); font-size: 18px; }
+    .ts-who { margin-top: 8px; color: #64748b; font-size: 12.5px; overflow-wrap: anywhere; }
+    .ts-back { padding: 2px; color: #475569; background: none; border: 0; font-size: 13px; text-decoration: underline; cursor: pointer; }
+    .ts-legal { color: #64748b; font-size: 11.5px; line-height: 1.45; text-align: center; }
+    .oc-secure {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 14px;
+      padding: 9px 10px;
+      color: #0f172a;
+      background: #f1f5f9;
+      border-radius: 6px;
+      font-size: 12.5px;
+    }
+    .oc-secure span { display: inline-flex; align-items: center; gap: 6px; }
+    .oc-secure svg { width: 16px; height: 16px; color: #0f172a; }
+    .oc-secure em { color: #64748b; font-size: 11px; font-style: normal; letter-spacing: .04em; text-transform: uppercase; }
+    .paychips { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin-top: 12px; }
+    .paychips span { padding: 4px 7px; color: #1e293b; background: #fff; border: 1px solid #e2e8f0; border-radius: 4px; font: 800 10px/1 var(--body); letter-spacing: .04em; }
+
+    .promise {
+      display: grid;
+      grid-template-columns: 96px 1fr;
+      gap: 14px;
+      align-items: center;
+      padding: 16px;
+      color: var(--navy-text);
+      background: #dde4ee;
+      border-radius: 14px;
+    }
+    .seal {
+      position: relative;
+      display: grid;
+      width: 96px;
+      aspect-ratio: 1;
+      place-items: center;
+      color: #fff;
+      text-align: center;
+      background: radial-gradient(circle at 50% 38%, #8D4AFC, #2e1065 72%);
+      border: 3px dashed rgba(255, 255, 255, .55);
+      border-radius: 50%;
+      box-shadow: 0 0 0 5px #5b21b6, 0 8px 18px rgba(15, 23, 42, .35);
+    }
+    .seal b { display: block; font: 800 25px/1 var(--display); }
+    .seal small { display: block; margin-top: 3px; font: 700 8.5px/1.2 var(--body); letter-spacing: .1em; }
+    .promise h3 { font: 700 14px/1.35 var(--display); }
+    .promise p { margin-top: 5px; color: #475569; font-size: 12.5px; line-height: 1.5; }
+    .promise p strong { color: var(--navy-text); }
+
+    .shot { overflow: hidden; background: #fff; border: 1px solid rgba(255, 255, 255, .14); border-radius: 10px; box-shadow: 0 12px 30px rgba(0, 0, 0, .35); }
+    .shot img { width: 100%; }
+    .shot figcaption { padding: 8px 12px; color: #475569; background: #f8fafc; font-size: 12px; line-height: 1.4; }
+
+    /* White card section */
+    .paper {
+      width: min(820px, calc(100% - 32px));
+      margin-inline: auto;
+      padding: 56px clamp(20px, 7vw, 76px) 64px;
+      color: var(--navy-text);
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 60px rgba(59, 130, 246, .25);
+    }
+    .paper h2 { color: var(--navy-text); font: 700 clamp(28px, 3.4vw, 35px)/1.2 var(--display); letter-spacing: -.02em; }
+    .paper h2:not(:first-child) { margin-top: 56px; }
+    .paper p { margin-top: 18px; color: #1e293b; font-size: 18px; line-height: 1.5; }
+    .paper strong { color: var(--navy-text); }
+    .paper .lead-o { color: var(--primary); font-weight: 700; }
+    .paper-card { margin-top: 18px; padding: 32px 28px; background: #f3f3f3; border-radius: 10px; }
+    .paper-card:first-of-type { margin-top: 24px; }
+    .paper-card h3 { color: var(--navy-text); font: 600 clamp(23px, 2.6vw, 27px)/1.22 var(--display); }
+    .paper-card h3 strong { font-weight: 800; }
+    .paper-card p { margin-top: 16px; font-size: 17px; }
+    .checks { display: grid; gap: 12px; margin-top: 16px; }
+    .checks li { display: flex; gap: 10px; color: #1e293b; font-size: 17px; line-height: 1.4; }
+    .checks svg {
+      flex: none;
+      width: 20px;
+      height: 20px;
+      margin-top: 1px;
+      padding: 3px;
+      color: #fff;
+      background: var(--navy-text);
+      border-radius: 50%;
+    }
+    .dash-list { display: grid; gap: 4px; margin-top: 18px; color: #1e293b; font-size: 18px; }
+
+    /* Proof */
+    .proof-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 24px 48px; margin-bottom: 44px; }
+    .proof-head h2 { color: #fff; font: 800 clamp(34px, 4vw, 45px)/1.1 var(--display); letter-spacing: -.02em; }
+    .proof-head p { max-width: 560px; margin-top: 14px; color: var(--text); font-size: 18px; }
+    .proof-head p strong { color: #fff; }
+    .stats { display: flex; gap: 40px; }
+    .stat { text-align: center; }
+    .stat b { display: block; color: #fff; font: 900 30px/1 var(--body); }
+    .stat span { display: block; margin-top: 6px; color: var(--text); font: 600 11px/1.3 var(--body); letter-spacing: .06em; text-transform: uppercase; }
+    .vid-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+    .disclosure { max-width: 780px; margin: 32px auto 0; color: rgba(203, 213, 224, .62); font-size: 13px; line-height: 1.55; text-align: center; }
+
+    /* Quick start timeline */
+    .tag-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      color: #93c5fd;
+      background: rgba(30, 64, 175, .25);
+      border: 1px solid rgba(96, 165, 250, .35);
+      border-radius: 999px;
+      font: 700 12px/1.2 var(--display);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .tag-pill::after { width: 7px; height: 7px; content: ""; background: var(--primary-light); border-radius: 50%; }
+    .center { text-align: center; }
+    .sec-title { margin-top: 18px; color: #f2f2f7; font: 800 clamp(30px, 3.6vw, 38px)/1.15 var(--display); letter-spacing: -.02em; }
+    .sec-title em { color: var(--blue); }
+    .sec-sub { margin-top: 12px; color: #9499b0; font-size: 17px; }
+    .timeline { position: relative; max-width: 560px; margin: 52px auto 0; padding-left: 36px; }
+    .timeline::before {
+      position: absolute;
+      top: 10px;
+      bottom: 60px;
+      left: 5px;
+      width: 2px;
+      content: "";
+      background: linear-gradient(#3b82f6, #ec4899 33%, #10b981 66%, #8D4AFC);
+      opacity: .65;
+    }
+    .tl-step { --c: #3b82f6; position: relative; padding-bottom: 88px; }
+    .tl-step:last-child { padding-bottom: 20px; }
+    .tl-step::before {
+      position: absolute;
+      top: 5px;
+      left: -36px;
+      width: 12px;
+      height: 12px;
+      content: "";
+      background: var(--c);
+      border-radius: 50%;
+      box-shadow: 0 0 0 4px color-mix(in srgb, var(--c) 25%, transparent), 0 0 14px var(--c);
+    }
+    .tl-step:nth-child(2) { --c: #ec4899; }
+    .tl-step:nth-child(3) { --c: #10b981; }
+    .tl-step:nth-child(4) { --c: #8D4AFC; }
+    .tl-meta { display: flex; align-items: center; gap: 14px; color: var(--text); font-size: 12.5px; }
+    .tl-badge {
+      padding: 3px 11px;
+      color: color-mix(in srgb, var(--c) 78%, #fff);
+      background: color-mix(in srgb, var(--c) 14%, transparent);
+      border: 1px solid color-mix(in srgb, var(--c) 60%, transparent);
+      border-radius: 6px;
+      font: 700 11px/1.5 var(--body);
+      letter-spacing: .14em;
+    }
+    .tl-meta span { display: inline-flex; align-items: center; gap: 4px; }
+    .tl-meta svg { width: 12px; height: 12px; color: #facc15; }
+    .tl-step h3 { margin: 14px 0 8px; color: #f2f2f7; font: 700 21px/1.3 var(--body); }
+    .tl-step p { color: #b4bccd; font-size: 16px; line-height: 1.65; }
+    .tl-chip {
+      display: inline-flex;
+      margin-top: 14px;
+      padding: 6px 12px;
+      color: color-mix(in srgb, var(--c) 72%, #fff);
+      background: color-mix(in srgb, var(--c) 12%, transparent);
+      border: 1px solid color-mix(in srgb, var(--c) 40%, transparent);
+      border-radius: 6px;
+      font: 600 14px/1.3 var(--body);
+    }
+    .tl-shot { margin-top: 18px; border: 1.5px solid color-mix(in srgb, var(--c) 65%, transparent); border-radius: 8px; overflow: hidden; box-shadow: 0 0 30px color-mix(in srgb, var(--c) 18%, transparent); }
+
+    /* UI mockups */
+    .ui { color: #e2e8f0; background: linear-gradient(160deg, #111b33, #0a0f1f); font-size: 13px; }
+    .ui-bar { display: flex; align-items: center; gap: 6px; padding: 10px 14px; background: rgba(255, 255, 255, .04); border-bottom: 1px solid rgba(255, 255, 255, .07); }
+    .ui-bar i { width: 9px; height: 9px; background: #334155; border-radius: 50%; }
+    .ui-bar i:nth-child(1) { background: #f87171; }
+    .ui-bar i:nth-child(2) { background: #fbbf24; }
+    .ui-bar i:nth-child(3) { background: #34d399; }
+    .ui-bar span { margin-left: 8px; color: #94a3b8; font-size: 12px; }
+    .ui-bar em { margin-left: auto; padding: 2px 8px; color: #94a3b8; border: 1px solid rgba(148, 163, 184, .35); border-radius: 999px; font-size: 10px; font-style: normal; letter-spacing: .06em; text-transform: uppercase; }
+    .ui-body { display: grid; gap: 12px; padding: 18px; }
+    .ui-table { display: grid; gap: 6px; }
+    .ui-tr { display: grid; grid-template-columns: minmax(0, 1.6fr) repeat(3, minmax(0, 1fr)); gap: 12px; align-items: center; padding: 9px 10px; background: rgba(255, 255, 255, .03); border: 1px solid transparent; border-radius: 6px; }
+    .ui-th { padding-block: 2px; color: #64748b; background: none; font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase; }
+    .ui-tr.is-top { background: color-mix(in srgb, var(--c) 14%, transparent); border-color: color-mix(in srgb, var(--c) 45%, transparent); }
+    .lv { height: 6px; background: linear-gradient(90deg, var(--c) calc(var(--v) * 33.33%), rgba(255, 255, 255, .1) 0); border-radius: 3px; }
+    .ui-note { padding: 10px 12px; color: #f8fafc; background: color-mix(in srgb, var(--c) 18%, transparent); border-radius: 6px; font-weight: 600; }
+    .ui-label { color: #64748b; font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; }
+    .ui-title { margin-top: -6px; color: #fff; font: 700 17px/1.3 var(--display); }
+    .ui-checks { display: grid; gap: 8px; }
+    .ui-checks li { display: grid; grid-template-columns: 18px 1fr; gap: 8px; align-items: start; padding: 9px 10px; background: rgba(255, 255, 255, .03); border-radius: 6px; }
+    .ui-checks li svg { width: 18px; height: 18px; padding: 3px; color: #04130a; background: #34d399; border-radius: 50%; }
+    .ui-checks li.no svg { color: #fff; background: #ef4444; }
+    .ui-checks small { display: block; color: #94a3b8; font-size: 11.5px; }
+    .ui-canvas { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+    .ui-canvas div { padding: 10px; background: rgba(255, 255, 255, .03); border: 1px solid rgba(255, 255, 255, .07); border-radius: 6px; }
+    .ui-canvas div:last-child { grid-column: 1 / -1; border-color: color-mix(in srgb, var(--c) 55%, transparent); background: color-mix(in srgb, var(--c) 12%, transparent); }
+    .ui-canvas b { display: block; color: color-mix(in srgb, var(--c) 70%, #fff); font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; }
+    .ui-canvas span { display: block; margin-top: 4px; color: #cbd5e1; font-size: 12px; line-height: 1.4; }
+    .ui-run { display: grid; gap: 8px; }
+    .ui-run > div { padding: 10px 12px; background: rgba(255, 255, 255, .03); border-left: 3px solid #ef4444; border-radius: 6px; }
+    .ui-run > div.ok { border-left-color: #34d399; }
+    .ui-run b { display: flex; justify-content: space-between; gap: 8px; color: #fff; font-size: 13px; }
+    .ui-run b em { color: #f87171; font-style: normal; }
+    .ui-run .ok b em { color: #34d399; }
+    .ui-run span { display: block; margin-top: 3px; color: #94a3b8; font-size: 12px; }
+    .ui-approve { justify-self: end; padding: 8px 16px; color: #04130a; background: #34d399; border-radius: 6px; font-weight: 700; }
+
+    /* Light section */
+    .means-head { max-width: 760px; margin: 0 auto 64px; text-align: center; }
+    .means-head h2 { color: #0c182a; font: 700 clamp(32px, 4vw, 45px)/1.12 var(--display); letter-spacing: -.02em; }
+    .means-head p { margin-top: 14px; font: 500 20px/1.45 var(--body); }
+    .means-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; align-items: center; }
+    .means-row + .means-row { margin-top: 80px; }
+    .means-text { display: grid; grid-template-columns: 44px 1fr; gap: 0 18px; }
+    .num-badge { display: grid; width: 44px; height: 44px; place-items: center; color: #fff; background: var(--primary); border-radius: 8px; font: 800 24px/1 var(--body); box-shadow: 0 6px 14px rgba(141, 74, 252, .35); }
+    .means-text h3 { font: 500 clamp(26px, 3vw, 34px)/1.2 var(--body); }
+    .means-text > div > p { margin-top: 16px; font-size: 19px; font-weight: 300; line-height: 1.45; }
+    .means-text > div > p strong { font-weight: 600; }
+    .soft-quote { margin: 20px 0 0 -12px; padding: 16px 18px; background: #e3eafb; border-radius: 10px; font-size: 18px; font-style: italic; line-height: 1.45; }
+    .soft-quote strong { font-weight: 700; }
+    .mini-checks { display: grid; gap: 8px; margin-top: 18px; font-size: 16px; }
+    .mini-checks li { display: flex; align-items: center; gap: 8px; }
+    .mini-checks svg { width: 16px; height: 16px; padding: 2px; color: #fff; background: #4ade80; border-radius: 50%; }
+    .x-stack { display: grid; justify-items: center; gap: 10px; margin: 20px 0; }
+    .x-stack span { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; background: #e3eafb; border-radius: 6px; font-size: 15.5px; font-weight: 500; }
+    .x-stack span:nth-child(2) { margin-left: 40px; }
+    .x-stack span:nth-child(3) { margin-left: 90px; }
+    .x-stack span:nth-child(4) { margin-left: -30px; }
+    .x-stack svg { width: 12px; height: 12px; color: var(--primary); }
+    .down-arrow { display: block; width: 26px; height: 26px; margin: 22px auto 0; color: var(--primary); }
+    .tilt { position: relative; }
+    .tilt img { border-radius: 16px; box-shadow: 0 30px 60px rgba(11, 35, 77, .25); }
+    .tilt .t1 { transform: rotate(-2.5deg); }
+    .tilt .t2 { position: absolute; right: -18px; bottom: -34px; width: 48%; border: 5px solid #fff; transform: rotate(4deg); }
+
+    /* That's why section */
+    .grad-title {
+      color: transparent;
+      background: linear-gradient(90deg, #fff, #9fb3cf);
+      -webkit-background-clip: text;
+      background-clip: text;
+      font: 700 clamp(30px, 3.6vw, 40px)/1.15 var(--display);
+      letter-spacing: -.02em;
+    }
+    .grad-title .o, .grad-title .b { -webkit-text-fill-color: currentColor; }
+    .x-pills { display: flex; flex-wrap: wrap; gap: 12px 20px; margin: 6px 0 26px; }
+    .x-pills span { display: inline-flex; align-items: center; gap: 7px; padding: 7px 12px; color: #fff; background: #111827; border-radius: 6px; font-size: 16px; font-weight: 500; }
+    .x-pills svg { width: 12px; height: 12px; color: var(--red); }
+    .photo { margin: 36px 0; overflow: hidden; border: 4px solid #fff; border-radius: 10px; transform: rotate(-1.5deg); box-shadow: 0 24px 50px rgba(0, 0, 0, .45); }
+    .choice { display: grid; grid-template-columns: 40px 1fr; gap: 16px; margin-top: 16px; padding: 22px; background: #0f1624; border: 1px solid rgba(255, 255, 255, .07); border-radius: 12px; }
+    .choice-ico { display: grid; width: 40px; height: 40px; place-items: center; background: rgba(141, 74, 252, .16); border-radius: 8px; font-size: 20px; }
+    .choice h3 { margin: 0 0 6px !important; color: #fff !important; font: 600 20px/1.3 var(--body) !important; letter-spacing: 0 !important; }
+    .choice p { margin: 0 !important; color: #9fb2c7 !important; font-size: 17px !important; }
+
+    .incl { padding: 22px 18px 8px; color: var(--navy-text); background: #fff; border-radius: 16px; box-shadow: 0 0 42px rgba(59, 130, 246, .45); }
+    .incl-head { color: #0c182a; font: 700 12px/1.2 var(--display); letter-spacing: .08em; text-align: center; text-transform: uppercase; }
+    .incl-head em { color: var(--primary); font-style: normal; }
+    .incl-intro { color: #0c182a; font: 500 21px/1.3 var(--body); }
+    .incl-item { display: grid; grid-template-columns: 70px 1fr; gap: 12px; padding: 18px 0; border-bottom: 1px solid #e5e7eb; }
+    .incl-item:last-child { border-bottom: 0; }
+    .incl-item .cover { width: 70px; align-self: start; }
+    .incl-item h3 { color: var(--navy-text); font: 800 16px/1.25 var(--body); }
+    .incl-item p { margin-top: 5px; color: #4b5563; font-size: 13.5px; line-height: 1.45; }
+    .incl-meta { display: flex; grid-column: 1 / -1; align-items: center; justify-content: space-between; margin-top: 4px; }
+    .chip-lock { display: inline-flex; align-items: center; gap: 4px; padding: 4px 9px; color: #334155; background: #f1f5f9; border-radius: 999px; font: 600 11px/1 var(--body); }
+    .chip-lock svg { width: 11px; height: 11px; }
+    .chip-green { padding: 5px 9px; color: #fff; background: var(--green); border-radius: 6px; font: 700 11px/1 var(--body); }
+    .sessions-mini { display: grid; gap: 8px; margin: 14px 0 12px; }
+    .sessions-mini li { display: grid; grid-template-columns: 34px 1fr auto; gap: 10px; align-items: center; padding: 9px 10px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 15px; font-weight: 700; }
+    .sessions-mini li b { display: grid; width: 34px; height: 34px; place-items: center; color: #fff; background: linear-gradient(135deg, #0ea5e9, #1d4ed8); border-radius: 7px; font: 800 13px/1 var(--display); }
+
+    /* Dawn section */
+    .dawn-letter { max-width: 600px; margin-inline: auto; }
+    .dawn-letter h2 { color: var(--navy-text); font: 700 clamp(30px, 3.6vw, 40px)/1.2 var(--display); letter-spacing: -.02em; }
+    .dawn-letter h3 { margin-top: 56px; color: var(--navy-text); font: 700 clamp(27px, 3vw, 35px)/1.2 var(--display); letter-spacing: -.02em; }
+    .dawn-letter p { margin-top: 20px; color: #0b234d; font-size: 18px; line-height: 1.5; }
+    .dawn-letter p.big { font-size: 20px; font-weight: 500; }
+    .cmp-stack { display: grid; gap: 16px; max-width: 440px; margin-top: 32px; }
+    .cmp { padding: 12px; background: #3a3d45; border-radius: 16px; box-shadow: 0 24px 44px rgba(11, 35, 77, .25); }
+    .cmp-art { padding: 28px 18px 20px; border-radius: 10px; }
+    .cmp.old .cmp-art { background: linear-gradient(180deg, #2a0b0b 0%, #7f1d1d 45%, #dc2626 100%); }
+    .cmp.new .cmp-art { background: linear-gradient(180deg, #0b1f14 0%, #166534 50%, #4ade80 100%); }
+    .cmp-art h3 { margin: 0 !important; color: #fff !important; font: 800 34px/1 var(--display) !important; letter-spacing: -.02em; }
+    .cmp-art > p { margin: 10px 0 18px !important; color: rgba(255, 255, 255, .88) !important; font: 700 15px/1.3 var(--display) !important; }
+    .cmp-list { display: grid; gap: 8px; }
+    .cmp-list li { display: grid; grid-template-columns: 22px 1fr auto; gap: 8px; align-items: center; padding: 8px 9px; color: #111827; background: #fff; border-radius: 6px; font-size: 13.5px; line-height: 1.3; }
+    .cmp-list svg { width: 22px; height: 22px; padding: 5px; color: #fff; background: var(--red); border-radius: 50%; }
+    .cmp.new .cmp-list svg { background: #22c55e; }
+    .cmp-list em { padding: 3px 6px; color: #fff; background: var(--red); border-radius: 3px; font: 700 10px/1.2 var(--body); font-style: normal; white-space: nowrap; }
+    .cmp.new .cmp-list em { color: #052e12; background: #86efac; }
+    .cmp-foot { padding: 16px 6px 6px; }
+    .cmp-foot strong { display: block; color: #e5e7eb; font-size: 17px; }
+    .cmp-foot .win-pill { margin-top: 8px; }
+    .cmp.old .cmp-foot .win-pill { color: #fca5a5; background: rgba(239, 68, 68, .12); border-color: rgba(239, 68, 68, .4); }
+    .cmp.old .cmp-foot .win-pill::before { background: var(--red); box-shadow: 0 0 8px var(--red); }
+    .cmp-foot p { margin-top: 8px !important; color: #a3a3a3 !important; font-size: 12px !important; }
+    .sec-dawn .order-card { box-shadow: 0 0 0 1px #cbd5e1, 0 20px 50px rgba(11, 35, 77, .18); }
+    .sec-dawn .shot { border-color: #e2e8f0; box-shadow: 0 12px 30px rgba(11, 35, 77, .16); }
+
+    /* How it helps */
+    .flow { display: grid; gap: 30px; max-width: 560px; margin: 44px auto 0; }
+    .flow-card {
+      --c: #3b82f6;
+      position: relative;
+      padding: 18px 20px;
+      text-align: center;
+      background: color-mix(in srgb, var(--c) 8%, #0b1020);
+      border: 1px solid color-mix(in srgb, var(--c) 45%, transparent);
+      border-radius: 10px;
+      box-shadow: 0 0 26px color-mix(in srgb, var(--c) 20%, transparent);
+    }
+    .flow-card + .flow-card::before {
+      position: absolute;
+      top: -26px;
+      left: 50%;
+      width: 1px;
+      height: 20px;
+      content: "";
+      background: linear-gradient(transparent, rgba(148, 163, 184, .6));
+    }
+    .flow-card:nth-child(2) { --c: #22c55e; }
+    .flow-card:nth-child(3) { --c: #8D4AFC; }
+    .flow-card i { display: block; font-size: 20px; font-style: normal; }
+    .flow-card b { display: block; margin-top: 6px; color: #fff; font: 700 18px/1.3 var(--body); }
+    .flow-card p { margin-top: 3px; color: #94a3b8; font-size: 14px; }
+    .flow-card span { display: inline-flex; align-items: center; gap: 6px; margin-top: 10px; padding: 4px 10px; color: color-mix(in srgb, var(--c) 70%, #fff); background: color-mix(in srgb, var(--c) 14%, transparent); border: 1px solid color-mix(in srgb, var(--c) 40%, transparent); border-radius: 999px; font-size: 12px; }
+    .flow-card span::before { width: 6px; height: 6px; content: ""; background: currentColor; border-radius: 50%; }
+    .flow-sum { padding: 16px 20px; color: #a9b3c1; text-align: center; background: rgba(255, 255, 255, .03); border: 1px solid rgba(255, 255, 255, .08); border-radius: 10px; font-size: 18px; }
+    .flow-sum strong { color: #fff; }
+    .obj { max-width: 560px; margin: 72px auto 0; }
+    .obj-q { display: flex; gap: 12px; padding: 18px 22px; color: #fff; background: rgba(15, 23, 42, .6); border: 1px solid rgba(96, 165, 250, .35); border-radius: 10px; font: 700 18px/1.35 var(--body); }
+    .obj-q i { display: grid; flex: none; width: 22px; height: 22px; place-items: center; color: #fff; background: var(--primary); border-radius: 50%; font: 800 13px/1 var(--body); font-style: normal; }
+    .obj-a { display: grid; gap: 18px; padding: 22px 30px 0; color: var(--text); font-size: 16.5px; line-height: 1.55; }
+    .obj-a .o { font-weight: 700; }
+    .glowbox { max-width: 560px; margin: 72px auto 0; padding: 24px 28px; color: var(--text); text-align: center; background: rgba(8, 12, 30, .6); border: 2px solid rgba(141, 74, 252, .75); border-radius: 10px; box-shadow: 0 0 32px rgba(141, 74, 252, .4); font-size: 17px; }
+    .glowbox strong { color: #fff; }
+
+    /* Wall */
+    .wall { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
+    .qcard {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      aspect-ratio: 16 / 10.5;
+      padding: 22px;
+      background: radial-gradient(120% 90% at 100% 0%, rgba(59, 130, 246, .22), transparent 60%), #0b1020;
+      border: 1px solid rgba(56, 189, 248, .4);
+      border-radius: 12px;
+      box-shadow: 0 0 26px rgba(56, 189, 248, .2);
+      container-type: inline-size;
+    }
+    .qcard blockquote { color: #fff; font: 700 6.6cqw/1.22 var(--display); letter-spacing: -.01em; }
+    .qcard blockquote em { color: var(--primary-light); font-style: normal; }
+    .qcard cite { display: block; color: #94a3b8; font: 500 4.4cqw/1.3 var(--body); font-style: normal; }
+    .qcard cite b { color: #e2e8f0; }
+
+    /* Stack */
+    .stack-head { max-width: 820px; margin: 0 auto; text-align: center; }
+    .stack-head h2 { color: #cbd5e0; font: 700 clamp(31px, 4vw, 45px)/1.15 var(--display); letter-spacing: -.02em; }
+    .stack-head p { margin-top: 18px; color: var(--text); font-size: 18px; }
+    .total {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 20px;
+      align-items: center;
+      margin-top: 40px;
+      padding: 16px 16px 16px 24px;
+      background: #070b1c;
+      border: 1.5px solid rgba(59, 130, 246, .45);
+      border-radius: 14px;
+      box-shadow: 0 0 32px rgba(59, 130, 246, .3);
+    }
+    .total-left { display: flex; align-items: center; gap: 16px; }
+    .total-left i { display: grid; flex: none; width: 44px; height: 44px; place-items: center; background: #1e293b; border-radius: 8px; font-size: 22px; font-style: normal; }
+    .total-left h3 { color: #fff; font: 600 23px/1.2 var(--display); }
+    .total-left p { margin-top: 4px; color: var(--text); font-size: 16px; }
+    .total-right { display: flex; align-items: center; gap: 28px; padding: 16px 26px; background: linear-gradient(135deg, #2a1152, #150a30); border: 1px solid rgba(141, 74, 252, .45); border-radius: 10px; }
+    .total-right small { display: block; color: var(--text); font: 600 11px/1.2 var(--body); letter-spacing: .08em; text-transform: uppercase; }
+    .total-right b { display: block; margin-top: 4px; color: #e2e8f0; font: 700 18px/1.25 var(--display); }
+    .total-right .price { color: var(--primary-light); font: 800 44px/1 var(--display); }
+    .total-right em { color: #fff; font-size: 15px; font-style: normal; }
+    .total-right em u { font-style: italic; }
+    .stack-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 26px; }
+    .stack-card {
+      display: flex;
+      flex-direction: column;
+      padding: 28px 22px 18px;
+      text-align: center;
+      background: linear-gradient(180deg, #2426a3 0%, #121a5c 45%, #0a1236 100%);
+      border: 1px solid rgba(129, 140, 248, .35);
+      border-radius: 12px;
+    }
+    .stack-card .cover { width: 66%; margin: 0 auto 22px; }
+    .stack-card h3 { color: #fff; font: 700 21px/1.2 var(--display); }
+    .stack-card p { flex: 1; margin-top: 12px; color: #c7cbe0; font-size: 14px; line-height: 1.5; }
+    .card-meta { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 18px; }
+    .card-meta .chip-lock { color: #cbd5e1; background: rgba(15, 23, 42, .6); border: 1px solid rgba(148, 163, 184, .3); }
+    .inc-pill { display: inline-flex; align-items: center; gap: 8px; margin-top: 64px; padding: 7px 16px; color: #e0f2fe; background: rgba(8, 47, 73, .6); border: 1px solid rgba(56, 189, 248, .4); border-radius: 999px; font-size: 14px; box-shadow: 0 0 20px rgba(56, 189, 248, .25); }
+    .inc-pill::before { width: 7px; height: 7px; content: ""; background: var(--cyan); border-radius: 50%; }
+    .bonus-title { margin-top: 22px; color: #cbd5e0; font: 500 clamp(28px, 3.4vw, 35px)/1.3 var(--display); letter-spacing: -.01em; }
+    .bonus-title strong { color: #fff; }
+    .session-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin-top: 32px; }
+    .session-grid > * { flex: 0 1 calc((100% - 48px) / 4); }
+    .session-card {
+      padding: 22px 16px 16px;
+      text-align: center;
+      background: linear-gradient(180deg, #06b6d4 0%, #1d4ed8 38%, #0b1a4a 72%);
+      border: 1px solid rgba(56, 189, 248, .45);
+      border-radius: 12px;
+    }
+    .session-card .cover { width: 72%; margin: 0 auto 16px; }
+    .session-card h3 { color: #fff; font: 700 18px/1.2 var(--display); }
+    .session-card p { margin-top: 6px; color: #c7d2fe; font-size: 13px; }
+
+    /* FAQ */
+    .faq-head { max-width: 820px; margin: 0 auto; text-align: center; }
+    .faq-head h2 { margin-top: 20px; color: #cbd5e0; font: 600 clamp(31px, 4vw, 45px)/1.15 var(--display); letter-spacing: -.02em; }
+    .faq { display: grid; gap: 14px; max-width: 860px; margin: 44px auto 0; }
+    .faq details { background: #12121a; border: 1px solid rgba(255, 255, 255, .08); border-radius: 12px; }
+    .faq summary { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 20px 22px; color: #f1f5f9; font: 700 17px/1.35 var(--body); list-style: none; cursor: pointer; }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq summary::after { display: grid; flex: none; width: 32px; height: 32px; place-items: center; color: #fff; content: "+"; background: #1e2a4a; border: 1px solid rgba(96, 165, 250, .4); border-radius: 7px; font: 400 22px/1 var(--body); }
+    .faq details[open] summary::after { content: "−"; background: #3a1d2a; border-color: rgba(244, 114, 182, .4); }
+    .faq-body { display: grid; gap: 14px; padding: 0 22px 22px; color: #c3c9d6; font-size: 16px; line-height: 1.6; }
+    .faq-quote { padding: 14px 16px; color: #e2e8f0; background: rgba(34, 197, 94, .1); border: 1px solid rgba(34, 197, 94, .35); border-radius: 8px; font-weight: 600; }
+    .faq-quote strong { display: block; margin-bottom: 4px; color: var(--green-soft); }
+    .final-box { max-width: 860px; margin: 44px auto 0; }
+
+    /* Program */
+    .to-program { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 18px; color: #93c5fd; font: 600 15px/1.4 var(--body); text-align: center; text-decoration: none; }
+    .to-program svg { flex: none; width: 16px; height: 16px; }
+    .to-program.up svg { transform: rotate(180deg); }
+    .to-program:hover { color: #fff; }
+    .program-head { max-width: 860px; margin: 0 auto; }
+    .program-head .sec-sub { max-width: 640px; margin-inline: auto; }
+    .program-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 30px; }
+    .program-nav a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 13px 6px 6px;
+      color: #e2e8f0;
+      text-decoration: none;
+      background: rgba(15, 23, 42, .7);
+      border: 1px solid rgba(96, 165, 250, .3);
+      border-radius: 999px;
+      font: 600 14px/1 var(--body);
+      transition: border-color .2s ease, background .2s ease;
+    }
+    .program-nav a:hover { background: rgba(141, 74, 252, .18); border-color: var(--primary-light); }
+    .program-nav b { display: grid; width: 26px; height: 26px; place-items: center; color: #fff; background: var(--primary); border-radius: 50%; font: 800 11px/1 var(--display); }
+    .program-split { margin-top: 52px; }
+    .program-list { display: grid; gap: 22px; }
+    .day {
+      --c: #38bdf8;
+      position: relative;
+      padding: 28px 28px 24px;
+      background: linear-gradient(180deg, color-mix(in srgb, var(--c) 7%, #0b1224) 0%, #0a0f1f 100%);
+      border: 1px solid color-mix(in srgb, var(--c) 38%, transparent);
+      border-radius: 16px;
+      box-shadow: 0 0 30px color-mix(in srgb, var(--c) 12%, transparent), 0 18px 40px rgba(0, 0, 0, .3);
+      scroll-margin-top: 20px;
+    }
+    .day::before { position: absolute; top: 24px; bottom: 24px; left: -1px; width: 3px; content: ""; background: var(--c); border-radius: 0 3px 3px 0; box-shadow: 0 0 12px var(--c); }
+    .day-head { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; }
+    .day-num { padding: 4px 10px; color: color-mix(in srgb, var(--c) 75%, #fff); background: color-mix(in srgb, var(--c) 14%, transparent); border: 1px solid color-mix(in srgb, var(--c) 55%, transparent); border-radius: 6px; font: 700 11px/1.4 var(--body); letter-spacing: .14em; text-transform: uppercase; }
+    .day-pillar { color: #fff; font: 800 21px/1.1 var(--display); letter-spacing: -.01em; }
+    .day h3 { margin-top: 14px; color: #fff; font: 700 clamp(22px, 2.4vw, 26px)/1.25 var(--display); letter-spacing: -.015em; text-wrap: balance; }
+    .day-neck { display: grid; grid-template-columns: 20px 1fr; gap: 10px; margin-top: 16px; padding: 12px 14px; color: #e2e8f0; background: rgba(239, 68, 68, .08); border: 1px solid rgba(239, 68, 68, .28); border-radius: 10px; font-size: 16px; line-height: 1.5; }
+    .day-neck svg { width: 20px; height: 20px; margin-top: 2px; color: #f87171; }
+    .day-neck strong { color: #fca5a5; }
+    .day-label { margin-top: 20px; color: #94a3b8; font: 700 11px/1.3 var(--body); letter-spacing: .12em; text-transform: uppercase; }
+    .day-points { display: grid; gap: 10px; margin-top: 10px; }
+    .day-points li { display: grid; grid-template-columns: 20px 1fr; gap: 10px; color: #cbd5e0; font-size: 16.5px; line-height: 1.5; }
+    .day-points svg { width: 20px; height: 20px; margin-top: 2px; padding: 3px; color: #04130a; background: color-mix(in srgb, var(--c) 80%, #fff); border-radius: 50%; }
+    .day-points strong { color: #fff; }
+    .day-quote { margin-top: 18px; padding: 14px 18px; color: #fff; background: rgba(255, 255, 255, .04); border-left: 3px solid var(--primary-light); border-radius: 0 8px 8px 0; font: 700 18px/1.4 var(--display); letter-spacing: -.01em; }
+    .day-quote cite { display: block; margin-top: 6px; color: #94a3b8; font: 500 13px/1.3 var(--body); font-style: normal; letter-spacing: 0; }
+    .day-take { margin-top: 16px; padding: 14px 16px; color: #ede4ff; background: rgba(141, 74, 252, .14); border: 1px solid rgba(169, 119, 253, .4); border-radius: 10px; font-size: 16px; line-height: 1.5; }
+    .day-take strong { display: block; margin-bottom: 3px; color: var(--primary-light); font: 700 11px/1.3 var(--body); letter-spacing: .12em; text-transform: uppercase; }
+    .program-note { max-width: 860px; margin: 40px auto 0; padding: 18px 22px; color: var(--text); text-align: center; background: rgba(8, 12, 30, .6); border: 1px solid rgba(96, 165, 250, .3); border-radius: 12px; font-size: 16px; line-height: 1.55; }
+    .program-note strong { color: #fff; }
+    .program-note small { display: block; margin-top: 8px; color: rgba(203, 213, 224, .6); font-size: 12.5px; }
+    .side-sticky { align-self: stretch; align-content: start; }
+    .faq-body a { color: var(--primary-light); }
+    .oc-mini { display: grid; grid-template-columns: 84px 1fr; gap: 12px; align-items: center; margin-top: 14px; padding: 10px 12px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; }
+    .oc-mini img { width: 84px; aspect-ratio: 16 / 10; object-fit: cover; border: 2px solid #1f2937; border-radius: 6px; box-shadow: 0 0 12px rgba(56, 189, 248, .35); }
+    .oc-mini strong { display: block; color: var(--navy-text); font: 800 15px/1.25 var(--display); }
+    .oc-mini span { display: block; margin-top: 3px; color: #475569; font-size: 12.5px; line-height: 1.4; }
+    @media (min-width: 981px) and (min-height: 640px) {
+      .side-sticky .order-card { position: sticky; top: 16px; max-height: calc(100vh - 32px); overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; }
+    }
+
+    /* Footer */
+    .foot { padding: 64px 0 44px; color: #94a3b8; text-align: center; background: linear-gradient(270deg, #060616 0%, #0b234d 51%, #060616 100%); border-top: 1px solid rgba(255, 255, 255, .14); font-size: 12px; line-height: 1.6; }
+    .foot-inner { width: min(660px, calc(100% - 32px)); margin-inline: auto; display: grid; gap: 18px; }
+    .foot-brand { color: #fff; font: 800 15px/1.2 var(--display); }
+    .foot hr { width: 100%; margin: 0; border: 0; border-top: 1px solid rgba(255, 255, 255, .1); }
+    .foot nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 14px; }
+    .foot nav a { color: #64748b; }
+
+    @media (max-width: 1080px) {
+      .split { gap: 40px; grid-template-columns: minmax(0, 1fr) 330px; }
+      .wall { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .session-grid > * { flex-basis: calc((100% - 32px) / 3); }
+    }
+
+    @media (max-width: 980px) {
+      .split { grid-template-columns: 1fr; }
+      .side { width: 100%; max-width: 440px; margin-inline: auto; }
+      .vid.big { margin-inline: 0; }
+      .means-row { grid-template-columns: 1fr; gap: 64px; }
+      .means-row.flip .tilt { order: 2; }
+      .vid-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .stack-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 760px) {
+      body { font-size: 17px; }
+      .topbar { display: none; }
+      .hero { padding-top: 20px; }
+      .pill-glow { padding: 8px 14px; font-size: 13px; }
+      .letter { padding-top: 44px; }
+      .letter p { font-size: 18px; }
+      .pad { padding: 64px 0; }
+      .paper { padding-top: 40px; padding-bottom: 44px; border-radius: 6px; }
+      .paper-card { padding: 24px 18px; }
+      .proof-head { margin-bottom: 30px; }
+      .vid-grid, .stack-grid, .wall { grid-template-columns: 1fr; }
+      .session-grid > * { flex-basis: calc((100% - 16px) / 2); }
+      .timeline { padding-left: 28px; }
+      .tl-step::before { left: -28px; }
+      .ui-body { padding: 14px; }
+      .ui-tr { gap: 8px; }
+      .x-stack span:nth-child(n) { margin-left: 0; }
+      .tilt .t2 { right: -6px; bottom: -26px; }
+      .qcard { gap: 18px; aspect-ratio: auto; }
+      .qcard blockquote { font-size: clamp(16px, 6cqw, 20px); }
+      .qcard cite { font-size: 13px; }
+      .stack-card .cover { width: 52%; }
+      .total { grid-template-columns: 1fr; padding: 18px; }
+      .total-right { justify-content: space-between; }
+      .obj-a { padding-inline: 8px; }
+      .program-split { margin-top: 36px; }
+      .program-nav a { font-size: 13px; }
+      .day { padding: 22px 18px 18px; }
+      .day-points li { font-size: 16px; }
+      .day-quote { padding: 12px 14px; font-size: 17px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition: none !important; animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4.8v14.4L19 12z" fill="currentColor"/></symbol>
+    <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13.5 2 4 14h7l-1 8 9.5-12.5h-7z" fill="currentColor"/></symbol>
+    <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="1.7" fill="currentColor"/></symbol>
+    <symbol id="i-loop" viewBox="0 0 24 24"><path d="M4 12a8 8 0 0 1 13.7-5.6M20 12a8 8 0 0 1-13.7 5.6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M18 2.6v4.2h-4.2M6 21.4v-4.2h4.2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-route" viewBox="0 0 24 24"><circle cx="6" cy="18" r="2.6" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="18" cy="6" r="2.6" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8.6 18H15a3 3 0 0 0 0-6H9a3 3 0 0 1 0-6h6.4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-key" viewBox="0 0 24 24"><circle cx="8" cy="15" r="4.2" fill="none" stroke="currentColor" stroke-width="2"/><path d="m11 12 9-9m-3 3 3 3m-6 0 2 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.2 4.2L19 7" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 10.5v-3a4 4 0 0 1 8 0v3" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+    <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 4v15m0 0-6-6m6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v11m0 0-4.5-4.5M12 14l4.5-4.5M4 17v3h16v-3" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  </svg>
+
+  <a class="skip-link" href="#contenuto">Vai al contenuto</a>
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="logo" href="#top" aria-label="Scalers+, AI Acceleration Week Replay Pass">
+        <img src="/Logo%20Scalers%20(3)%20(1).png" alt="Scalers" width="337" height="94">
+        <span class="logo-text">AI Acceleration <span class="b">Week</span><br>Replay Pass</span>
+      </a>
+      <div class="trust">
+        <div class="avatars" aria-hidden="true"><span>MM</span><span>AM</span><span>GM</span><span>CP</span><span>MB</span></div>
+        <div class="trust-copy"><small>Presenti alla</small><strong>164</strong><small>prima live</small></div>
+      </div>
+      <div class="help">
+        <a href="mailto:matteo@milonematteo.com?subject=Domanda%20sul%20Replay%20Pass"><strong>Hai una domanda?</strong> Scrivi a Matteo</a>
+        <small>matteo@milonematteo.com</small>
+      </div>
+    </div>
+  </header>
+
+  <main id="contenuto">
+    <section class="sec sec-hero hero" id="top">
+      <div class="wrap">
+        <div class="hero-head">
+          <p class="pill-glow"><span class="dot" aria-hidden="true"></span>La AI Acceleration Week, seguita in diretta da 164 professionisti già alla prima live. Ora in replay.</p>
+          <h1>Trasforma un task ripetitivo nel tuo primo workflow AI in 60 minuti e <span class="o">smetti di ripartire da zero ogni settimana</span></h1>
+          <p class="hero-sub">Trova il collo di bottiglia. Compila il Loop Operativo Canvas. Lascia che sia il workflow a verificare il risultato.</p>
+        </div>
+
+        <div class="split">
+          <div class="main-col">
+            <figure class="bundle" role="img" aria-label="Il Replay Pass: 7 registrazioni della AI Acceleration Week, Start Here, Mappa dei vincoli, Loop Operativo Canvas e Percorso 7 giorni">
+              <div class="bundle-screen"><img src="/aaw-replay/assets/aaw-day-one.webp" alt="" width="1600" height="901" fetchpriority="high"></div>
+              <div class="bundle-stand"></div>
+              <div class="cover bc-1" style="--c1:#38bdf8;--c2:#a78bfa"><span class="cv-brand">SCALERS+</span><svg class="cv-art"><use href="#i-play"/></svg><span class="cv-pre">Le 7</span><b class="cv-title">Replay</b><span class="cv-tag">REGISTRAZIONI</span></div>
+              <div class="cover bc-2" style="--c1:#22d3ee;--c2:#4ade80"><span class="cv-brand">SCALERS+</span><svg class="cv-art"><use href="#i-bolt"/></svg><span class="cv-pre">Lo</span><b class="cv-title">Start Here</b><span class="cv-tag">QUICK START</span></div>
+              <div class="cover bc-3" style="--c1:#8D4AFC;--c2:#f0abfc;--ink:#fff"><span class="cv-brand">SCALERS+</span><svg class="cv-art"><use href="#i-target"/></svg><span class="cv-pre">La</span><b class="cv-title sm">Mappa dei vincoli</b><span class="cv-tag">WORKBOOK</span></div>
+              <div class="cover bc-4" style="--c1:#f472b6;--c2:#a78bfa"><span class="cv-brand">SCALERS+</span><svg class="cv-art"><use href="#i-loop"/></svg><span class="cv-pre">Il</span><b class="cv-title">Loop Canvas</b><span class="cv-tag">CANVAS</span></div>
+              <div class="cover bc-5" style="--c1:#4ade80;--c2:#22d3ee"><span class="cv-brand">SCALERS+</span><svg class="cv-art"><use href="#i-route"/></svg><span class="cv-pre">Il</span><b class="cv-title sm">Percorso 7 giorni</b><span class="cv-tag">ROADMAP</span></div>
+            </figure>
+
+            <div class="pricebox">
+              <div class="pricebox-row">
+                <p class="pb-price">€7<small>una tantum</small></p>
+                <p class="pb-copy">Ottieni il <strong>Replay Pass</strong> della <strong>AI Acceleration Week</strong> a soli <span class="o">€7</span></p>
+                <a class="btn-grad" href="#ordine" data-cta><strong>Ottieni il Replay Pass ➜</strong><small>Pagamento unico · Nessun abbonamento</small></a>
+              </div>
+              <div class="pricebox-foot">
+                <span><svg aria-hidden="true"><use href="#i-download"/></svg>Accesso personale</span>
+                <span><svg aria-hidden="true"><use href="#i-bolt"/></svg>Parti dallo Start Here da 60 minuti</span>
+              </div>
+            </div>
+            <a class="to-program" href="#programma">Prima vuoi sapere cosa c’è dentro? Guarda il programma delle 7 sessioni <svg aria-hidden="true"><use href="#i-down"/></svg></a>
+
+            <article class="letter">
+              <h2>Dopo 7 workshop in 7 sere, <span class="o">300+ iscritti e 164 professionisti presenti già alla prima live</span>, posso dirti una cosa:</h2>
+              <p>Il modo più veloce per passare da «uso l’AI tutti i giorni» a «l’AI lavora per me»…</p>
+              <p>Quello che ti toglie dalle mani report, setup e copy ripetitivo…</p>
+              <p>Che ti fa smettere di rispiegare il contesto a ogni nuova chat…</p>
+              <p>E ti lascia il tempo per strategia, clienti e decisioni…</p>
+              <p><strong>Non</strong> è quello che ti stanno raccontando tutti.</p>
+              <p>Non è il prompt perfetto copiato da LinkedIn. Non è l’ennesimo tool uscito questa settimana. Non è aprire una nuova chat per ogni attività.</p>
+              <p>È un <strong>workflow</strong>: una sequenza che sa cosa ricevere, cosa fare e come verificarsi.</p>
+              <p>Un processo semplice che toglie di mezzo UN task ripetitivo che oggi fai ancora tu, a mano.</p>
+              <p>E con gli strumenti AI che hai già oggi…</p>
+
+              <h3>Puoi <span class="o">costruire il tuo primo workflow AI in 60 minuti</span>…</h3>
+              <p class="strong">Partendo da un’attività vera del tuo lavoro…</p>
+              <p class="strong">Con un canvas che ti guida passaggio dopo passaggio…</p>
+              <p class="strong">E un quality gate che controlla il risultato prima che arrivi a te.</p>
+              <p>Il motivo per cui funziona è quasi banale.</p>
+              <p>L’AI non sbaglia perché è stupida. Sbaglia perché non ha contesto e non sa cosa significa «fatto bene».</p>
+              <p>Il workflow risolve esattamente questo: il contesto è già disponibile, il processo segue una sequenza e un criterio di riuscita decide quando il lavoro è pronto.</p>
+              <p>E quando il primo workflow gira?</p>
+              <p>Smetti di rispiegare tutto ogni volta.</p>
+              <p>Smetti di correggere a mano ogni output.</p>
+              <p>Intervieni solo sulle decisioni.</p>
+              <p>È tutto qui.</p>
+              <p>Freelancer, advertiser e founder di agenzia della community Scalers+ lo stanno già facendo.</p>
+
+              <h3>Edoardo, per esempio, non ha scritto un prompt migliore. <span class="o">Ha costruito un orchestratore con otto agenti</span> che lavorano per lui</h3>
+              <p>Edoardo lavora con i dati dei suoi clienti.</p>
+              <p class="strong">Il suo workflow di onboarding raccoglie i dati proprietari, calcola CAC e LTV, li confronta con i benchmark di settore e trova <span class="o">l’anello debole</span> dell’azienda.</p>
+              <div class="win">
+                <div class="win-media"><img src="/aaw-replay/assets/case-edoardo.webp" alt="Messaggio di Edoardo Marchese: ho creato un workflow per l’onboarding del cliente con 1 orchestratore, 1 agente growth, 6 agenti specialistici e 1 agente personale che scrive il report su Drive" width="1400" height="501" loading="lazy" decoding="async"></div>
+                <div class="win-foot">
+                  <strong>Un orchestratore. Otto agenti. Un report consegnato.</strong>
+                  <span class="win-pill">Report su Drive e notifica a workflow concluso</span>
+                  <p>Workflow di onboarding cliente costruito da Edoardo Marchese dentro la community Scalers+.</p>
+                </div>
+              </div>
+
+              <p>Oppure André, che ha chiuso il primo cliente dopo la seconda sessione del percorso, <span class="o">e in due mesi ha fatturato e incassato 70.000€</span>.</p>
+              <div class="vid big">
+                <button class="vid-btn" type="button" data-testimonial-video="https://www.loom.com/embed/e351d0857ccb4270ad43d6e447505064" data-video-title="Testimonianza di André sul percorso Scalers+" aria-label="Riproduci la testimonianza video di André">
+                  <img src="/tirana/assets/testimonial-andre.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async">
+                  <span class="vid-shade"></span>
+                  <span class="vid-label">Clicca per guardare</span>
+                  <span class="vid-play"><svg aria-hidden="true"><use href="#i-play"/></svg></span>
+                  <span class="vid-copy"><b><em>70K</em> fatturati e incassati in due mesi.</b><span>«Dalla seconda sessione ho chiuso il primo cliente.» · André, agenzia AI native</span></span>
+                </button>
+              </div>
+
+              <p>Oppure Claudio Pasinetti, freelancer, che è passato da <strong>2.000€</strong> <span class="o">a 10.000€ al mese</span>, con aprile da record.</p>
+              <div class="win">
+                <div class="win-media">
+                  <div class="vid">
+                    <button class="vid-btn" type="button" data-testimonial-video="https://www.loom.com/embed/ea08c466f64749a1adae62d5522f2f75" data-video-title="Testimonianza di Claudio Pasinetti sul percorso Scalers+" aria-label="Riproduci la testimonianza video di Claudio Pasinetti">
+                      <img src="/tirana/assets/testimonial-claudio.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async">
+                      <span class="vid-shade"></span>
+                      <span class="vid-label">Clicca per guardare</span>
+                      <span class="vid-play"><svg aria-hidden="true"><use href="#i-play"/></svg></span>
+                      <span class="vid-copy"><b>Da 2K a <em>10K al mese.</em></b><span>Claudio Pasinetti · AI Solo Agency</span></span>
+                    </button>
+                  </div>
+                </div>
+                <div class="win-foot">
+                  <strong>Celebrando…</strong>
+                  <span class="win-pill">«Aprile record di fatturato: 10k.»</span>
+                  <p>In quattro mesi ha superato il fatturato dell’intero anno precedente.</p>
+                </div>
+              </div>
+
+              <p>Oppure il membro della community che, dopo essere entrato, ha fatto subito l’upgrade: <span class="o">«Una sola informazione mi ha fatto svoltare in poche ore.»</span></p>
+              <div class="win">
+                <div class="win-media"><img src="/aaw-replay/assets/proof-member.webp" alt="Commento di un membro: dopo essere entrato nella tua community ho fatto upgrade subito dopo alla versione a pagamento. Una sola informazione mi ha fatto svoltare in poche ore." width="1200" height="577" loading="lazy" decoding="async"></div>
+                <div class="win-foot">
+                  <strong>Una sola informazione. Poche ore.</strong>
+                  <span class="win-pill">Upgrade subito dopo l’ingresso in community</span>
+                  <p>Nome oscurato per privacy.</p>
+                </div>
+              </div>
+              <p class="fineprint">Trasparenza: testimonianze e risultati provengono dai percorsi, dal mentoring e dalla community Scalers+, non dal solo acquisto del Replay Pass. Sono prove del metodo applicato, non garanzie di risultato individuale.</p>
+
+              <h2>Cosa fanno di diverso loro rispetto a chi usa l’AI ogni giorno ma <span class="o">riparte da zero ogni settimana</span>?</h2>
+              <p>Il <span class="brand-name">Loop <span class="b">Operativo</span></span> è un approccio controintuitivo per trasformare un task ripetitivo in un <span class="o">processo che si verifica da solo</span> in meno di 60 minuti.</p>
+              <p>Hanno capito che, prima di costruire un sistema AI, serve costruire <strong>un workflow</strong>.</p>
+              <p>Qual è la differenza, ti chiederai?</p>
+              <p>Per qualcuno è una sfumatura. Per me <span class="u">è enorme</span>.</p>
+              <p><strong>Un prompt</strong> è una richiesta isolata: funziona una volta, poi <span class="o">riparti da capo</span>.</p>
+              <p><strong>Un workflow</strong> è un processo: sa cosa ricevere, cosa fare e <span class="u">come verificarsi</span>.</p>
+              <p>Per questo i prompt si condividono nei post virali. I workflow, invece, restano dentro i business che l’AI la usano davvero.</p>
+              <p>Ma perché questa distinzione conta così tanto?</p>
+              <p>Perché, ed è <span class="o u">fondamentale</span>:</p>
+
+              <h2>È <span class="o">molto più facile</span> trasformare un task in un workflow, e poi i workflow in un sistema… <span class="dim">che cercare di trasformare <span class="u">direttamente</span> il tuo business in un’azienda AI.</span></h2>
+              <p>Non fraintendermi.<br>Si può fare.</p>
+              <p>Magari ci hai già provato.</p>
+              <p>Ma, come sai per esperienza, è <strong>durissima</strong>.</p>
+              <p>È facile per chi ha un team di sviluppatori e budget illimitati.</p>
+              <p>Ma per <span class="o">tutti gli altri</span>?</p>
+              <p>Serve <strong>un approccio <span class="u">diverso</span></strong>…</p>
+            </article>
+          </div>
+
+          <aside class="side" aria-label="Ordine del Replay Pass">
+            <div class="order-card" id="ordine" data-order>
+              <div class="oc-proof">
+                <div class="avatars" aria-hidden="true"><span>MM</span><span>AM</span><span>GM</span><span>CP</span></div>
+                <p><strong>164 professionisti</strong><br>presenti alla prima live</p>
+              </div>
+              <p class="oc-kicker">Offerta Replay Pass</p>
+              <div class="bundle" aria-hidden="true">
+                <div class="bundle-screen"><img src="/aaw-replay/assets/aaw-day-one.webp" alt="" width="1600" height="901" loading="lazy" decoding="async"></div>
+                <div class="bundle-stand"></div>
+                <div class="cover bc-1" style="--c1:#38bdf8;--c2:#a78bfa"><span class="cv-brand">SCALERS+</span><svg class="cv-art"><use href="#i-play"/></svg><span class="cv-pre">Le 7</span><b class="cv-title">Replay</b><span class="cv-tag">REGISTRAZIONI</span></div>
+                <div class="cover bc-2" style="--c1:#22d3ee;--c2:#4ade80"><span class="cv-brand">SCALERS+</span><svg class="cv-art"><use href="#i-bolt"/></svg><span class="cv-pre">Lo</span><b class="cv-title">Start Here</b><span class="cv-tag">QUICK START</span></div>
+                <div class="cover bc-3" style="--c1:#8D4AFC;--c2:#f0abfc;--ink:#fff"><span class="cv-brand">SCALERS+</span><svg class="cv-art"><use href="#i-target"/></svg><span class="cv-pre">La</span><b class="cv-title sm">Mappa dei vincoli</b><span class="cv-tag">WORKBOOK</span></div>
+                <div class="cover bc-4" style="--c1:#f472b6;--c2:#a78bfa"><span class="cv-brand">SCALERS+</span><svg class="cv-art"><use href="#i-loop"/></svg><span class="cv-pre">Il</span><b class="cv-title">Loop Canvas</b><span class="cv-tag">CANVAS</span></div>
+              </div>
+              <h2 class="oc-title">Accedi ora per <span>€7</span></h2>
+              <p class="oc-sub">Pagamento unico. <strong>Nessun rinnovo.</strong></p>
+              <p class="oc-deal"><svg aria-hidden="true"><use href="#i-down"/></svg>7 replay + 3 strumenti + roadmap</p>
+              <form class="two-step" data-two-step data-current="1" novalidate>
+                <div class="ts-tabs">
+                  <p class="ts-tab is-active" data-tab="1"><strong>STEP 1</strong><span>Dati di contatto</span></p>
+                  <p class="ts-tab" data-tab="2"><strong>STEP 2</strong><span>Riepilogo ordine</span></p>
+                </div>
+                <div class="ts-bar" aria-hidden="true"><span></span></div>
+                <fieldset class="ts-step" data-step="1">
+                  <legend class="sr-only">Step 1 di 2: dati di contatto</legend>
+                  <label class="sr-only" for="ordine-nome">Nome e cognome</label>
+                  <input id="ordine-nome" name="name" type="text" autocomplete="name" placeholder="Nome e cognome" required>
+                  <label class="sr-only" for="ordine-email">Email</label>
+                  <input id="ordine-email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="Indirizzo email" required>
+                  <p class="ts-error" data-error role="alert" hidden></p>
+                  <button class="btn-primary" type="submit">Vai allo Step #2</button>
+                </fieldset>
+                <fieldset class="ts-step" data-step="2" hidden>
+                  <legend class="sr-only">Step 2 di 2: riepilogo ordine</legend>
+                  <div class="ts-summary">
+                    <div class="ts-line"><span>AI Acceleration Week<br><strong>Replay Pass</strong></span><strong>€7</strong></div>
+                    <ul class="ts-list">
+                      <li><svg aria-hidden="true"><use href="#i-check"/></svg>7 registrazioni integrali della Week</li>
+                      <li><svg aria-hidden="true"><use href="#i-check"/></svg>Start Here da 60 minuti</li>
+                      <li><svg aria-hidden="true"><use href="#i-check"/></svg>Mappa dei colli di bottiglia</li>
+                      <li><svg aria-hidden="true"><use href="#i-check"/></svg>Loop Operativo Canvas</li>
+                      <li><svg aria-hidden="true"><use href="#i-check"/></svg>Percorso consigliato in 7 giorni</li>
+                    </ul>
+                    <div class="ts-total"><span>Totale, pagamento unico</span><strong>€7</strong></div>
+                    <p class="ts-who">Accesso intestato a <strong data-who></strong></p>
+                  </div>
+                  <button class="btn-primary" type="submit">Completa l’ordine · €7</button>
+                  <button class="ts-back" type="button" data-back>← Modifica i dati</button>
+                  <p class="ts-legal">Proseguendo accetti i <a href="https://joinscalers.com/terms">Termini</a> e la <a href="https://joinscalers.com/refund-policy">Policy rimborsi</a>.</p>
+                </fieldset>
+              </form>
+              <div class="oc-secure"><span><svg aria-hidden="true"><use href="#i-lock"/></svg>Checkout <strong>sicuro</strong> e protetto</span><em>Una tantum</em></div>
+              <div class="paychips" aria-label="Metodi di pagamento"><span>VISA</span><span>MASTERCARD</span><span>AMEX</span><span>APPLE PAY</span><span>G PAY</span></div>
+            </div>
+
+            <div class="promise">
+              <div class="seal" aria-hidden="true"><div><b>€7</b><small>UNA TANTUM</small></div></div>
+              <div>
+                <h3>Pagamento unico, nessuna sorpresa.</h3>
+                <p>Paghi 7 euro una sola volta. <strong>Non ci sono abbonamenti o rinnovi automatici.</strong></p>
+              </div>
+            </div>
+
+            <figure class="shot"><img src="/aaw-replay/assets/proof-victor.webp" alt="Conversazione nella community: tra le mille informazioni che distraggono online, ci voleva proprio una guida specifica" width="1200" height="895" loading="lazy" decoding="async"></figure>
+            <figure class="shot"><img src="/aaw-replay/assets/proof-marco.webp" alt="Commento di Marco Famà: sei veramente il GOAT in Italia per quanto mi riguarda, ovviamente interessato al tuo processo" width="1200" height="208" loading="lazy" decoding="async"></figure>
+            <figure class="shot"><img src="/aaw-replay/assets/proof-giacomo.webp" alt="Post LinkedIn di Giacomo Simioni sul concetto di Agent First approfondito nel percorso di mentoring con Matteo Milone" width="1200" height="2284" loading="lazy" decoding="async"></figure>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec sec-navy pad">
+      <div class="paper">
+        <h2>Questo approccio lo chiamo: <span class="b">Loop</span> Operativo</h2>
+        <p>Il <strong>Loop <span class="b">Operativo</span></strong> è un approccio controintuitivo per trasformare un task ripetitivo in un <span class="lead-o">workflow che si verifica da solo</span> in meno di <span class="u">60 minuti</span>.</p>
+        <p class="lead-o">Ecco come funziona…</p>
+
+        <div class="paper-card">
+          <h3><strong>#1: Prima</strong>, trovi il <span class="o">collo di bottiglia</span></h3>
+          <p>Il processo che ti costa più tempo, margine o attenzione.</p>
+          <p>Non parti dalla <strong>tecnologia</strong>. Non parti dal tool del momento.</p>
+          <p>Parti <strong>dal vincolo</strong>: il punto esatto in cui il tuo lavoro perde tempo o margine.</p>
+          <p>Tutto qui.</p>
+          <p class="lead-o">Basta questo per ottenere 3 cose:</p>
+          <ul class="checks">
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Smetti di automatizzare per <strong>moda</strong>.</span></li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Intervieni dove il lavoro ha <strong>più impatto</strong>.</span></li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Hai una <strong>priorità reale</strong> da cui partire.</span></li>
+          </ul>
+        </div>
+
+        <div class="paper-card">
+          <h3><strong>#2: Poi</strong> scegli un task <span class="o">delegabile</span></h3>
+          <p>Un’attività ricorrente con input osservabili, passaggi ripetibili e un risultato che puoi valutare.</p>
+          <p>Reportistica, setup delle campagne, copy ripetitivo: sono i candidati perfetti.</p>
+          <p><strong>Quando il task è definito, <span class="o">sai esattamente cosa delegare.</span></strong></p>
+        </div>
+
+        <div class="paper-card">
+          <h3><strong>#3: Infine</strong> costruisci il Loop e lo <span class="o">metti alla prova</span>…</h3>
+          <p>…dentro un solo canvas: <span class="u">contesto, piano, esecuzione, strumenti e criteri di riuscita</span>.</p>
+          <p>Poi esegui il workflow su un caso reale. <span class="o i">(Se il risultato non supera il gate, il ciclo torna indietro e corregge.)</span></p>
+          <p>L’AI esegue e verifica. Strategia, approvazione e responsabilità <strong>restano tue</strong>.</p>
+        </div>
+
+        <h2>Quindi cos’è il Replay <span class="b">Pass</span>?</h2>
+        <p>Il <strong>Replay <span class="b">Pass</span></strong> è l’intera <span class="lead-o">AI Acceleration Week</span> registrata: 7 workshop su chiarezza, automazione, acquisizione, vendita, operations, prodotto e offerta.</p>
+        <p>Più gli strumenti per <strong>applicarla subito</strong>, invece di accumulare altre ore di video.</p>
+        <ul class="dash-list">
+          <li>– Lo <strong>Start Here da 60 minuti</strong>.</li>
+          <li>– La <strong>Mappa dei colli di bottiglia</strong>.</li>
+          <li>– Il <strong>Loop Operativo Canvas</strong>.</li>
+          <li>– Il <strong>Percorso consigliato in 7 giorni</strong>.</li>
+        </ul>
+        <p class="lead-o u">Tutto.</p>
+        <p>Lo apri… e in <span class="lead-o">60 minuti</span> il tuo primo task ripetitivo diventa un processo con contesto, esecuzione e verifica. Poi segui il percorso di 7 giorni per consolidarlo senza accumulare registrazioni.</p>
+
+        <h2>La AI Acceleration Week ha raccolto <span class="o">300+ iscritti tra freelancer, advertiser, professionisti, imprenditori e founder di agenzia</span>…</h2>
+        <p>Professionisti che usano già l’AI ma senza un sistema strutturato, e che vogliono <strong>smettere di essere il passaggio obbligato di ogni attività</strong> senza perdere il controllo.</p>
+        <p>E la parte migliore?</p>
+        <p><span class="lead-o u">Non devi saper programmare</span>… Il percorso parte dalla logica del processo, e il primo Loop Operativo non richiede competenze di programmazione.</p>
+        <p>Significa che puoi costruire il tuo primo workflow <span class="lead-o">oggi stesso</span>.</p>
+        <p><strong>E nei prossimi 7 giorni</strong> consolidarlo con il percorso guidato, <strong>SENZA altri venti tool, senza codice obbligatorio e senza abbonamenti</strong>.</p>
+      </div>
+    </section>
+
+    <section class="sec sec-steel pad program" id="programma" aria-labelledby="programma-title">
+      <div class="wrap">
+        <div class="program-head center">
+          <p class="tag-pill">🗓️ Il programma</p>
+          <h2 class="sec-title" id="programma-title">Cosa trovi dentro le <span class="o">7 sessioni</span> della AI Acceleration <em>Week</em></h2>
+          <p class="sec-sub">Sette sere di workshop dal vivo, sette pilastri. Ogni sessione parte da un collo di bottiglia e ti mostra come toglierlo.</p>
+        </div>
+        <nav class="program-nav" aria-label="Vai a una sessione del programma">
+          <a href="#sessione-1"><b>01</b>Chiarezza</a>
+          <a href="#sessione-2"><b>02</b>Automazione</a>
+          <a href="#sessione-3"><b>03</b>Acquisizione</a>
+          <a href="#sessione-4"><b>04</b>Vendita</a>
+          <a href="#sessione-5"><b>05</b>Operations</a>
+          <a href="#sessione-6"><b>06</b>Prodotto</a>
+          <a href="#sessione-7"><b>07</b>Offerta</a>
+        </nav>
+
+        <div class="split program-split">
+          <ol class="program-list">
+            <li class="day" id="sessione-1" style="--c:#38bdf8">
+              <div class="day-head"><span class="day-num">Sessione 01</span><span class="day-pillar">Chiarezza</span></div>
+              <h3>Da operativo ad architetto: cosa delegare all’AI e cosa ignorare</h3>
+              <p class="day-neck"><svg aria-hidden="true"><use href="#i-target"/></svg><span><strong>Il collo di bottiglia:</strong> troppe informazioni e nessun sistema. È il blackout cognitivo che ti fa provare dieci tool senza cambiare il modo in cui lavori.</span></p>
+              <p class="day-label">Cosa vedi nella sessione</p>
+              <ul class="day-points">
+                <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Le due North Star per giudicare qualsiasi tool, skill o MCP: <strong>ti fa andare più veloce o ti fa fatturare di più?</strong> Se la risposta è no, si scarta.</span></li>
+                <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Il passaggio <strong>dal prompting al looping</strong>: invece di scrivere prompt, dai all’AI un obiettivo e una condizione da rispettare, e il lavoro continua finché non la soddisfa.</span></li>
+                <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>I <strong>6 livelli</strong> d’uso dell’AI, dalla chat usata come chatbot ai sistemi che lavorano in autonomia. E perché fermarsi al primo è tempo perso.</span></li>
+                <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>La teoria dei vincoli applicata al tuo business: come trovare i <strong>2-3 colli di bottiglia</strong> tra acquisizione, vendita e delivery.</span></li>
+              </ul>
+              <blockquote class="day-quote">«Se potessi assumere 50 persone oggi, chi assumeresti, e per fare cosa?»<cite>Matteo Milone, sessione 01</cite></blockquote>
+              <p class="day-take"><strong>Ti porti a casa</strong>Le due North Star e i tuoi colli di bottiglia, prima di toccare qualsiasi tool.</p>
+            </li>
+
+            <li class="day" id="sessione-2" style="--c:#4ade80">
+              <div class="day-head"><span class="day-num">Sessione 02</span><span class="day-pillar">Automazione</span></div>
+              <h3>Il problema non è tecnico: è sapere cosa automatizzare</h3>
+              <p class="day-neck"><svg aria-hidden="true"><use href="#i-target"/></svg><span><strong>Il collo di bottiglia:</strong> i task ripetitivi a basso valore che fai ancora a mano, ogni settimana.</span></p>
+              <p class="day-label">Cosa vedi nella sessione</p>
+              <ul class="day-points">
+                <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Automazione, agente e skill spiegati senza tecnicismi: <strong>nell’automazione decidi tu il percorso da A a B, l’agente sceglie da solo come arrivarci</strong>.</span></li>
+                <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Claude Chat, Cowork e Code: cosa puoi fare con ciascuno e <strong>dove si fermano</strong>.</span></li>
+                <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Le due architetture multi-agente: <strong>sub-agenti</strong> che riportano solo all’orchestratore e <strong>agent team</strong> che si parlano tra loro.</span></li>
+                <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Come vendere automazioni: <strong>non vendi il software, vendi le ore che fai risparmiare</strong>. E come quantificarle.</span></li>
+              </ul>
+              <blockquote class="day-quote">«Il problema più grande oggi non è tecnico. È sapere cosa automatizzare.»<cite>Matteo Milone, sessione 02</cite></blockquote>
+              <p class="day-take"><strong>Ti porti a casa</strong>Il criterio per scegliere cosa automatizzare per primo, e perché la skill più importante del 2026 è l’adattabilità.</p>
+            </li>
+
+            <li class="day" id="sessione-3" style="--c:#A977FD">
+              <div class="day-head"><span class="day-num">Sessione 03</span><span class="day-pillar">Acquisizione</span></div>
+              <h3>Clienti in modo costante, senza dipendere dal passaparola</h3>
+              <p class="day-neck"><svg aria-hidden="true"><use href="#i-target"/></svg><span><strong>Il collo di bottiglia:</strong> dipendere dal passaparola, da un cliente grande o da chi ti passa lavoro.</span></p>
+              <p class="day-label">Cosa vedi nella sessione</p>
+              <ul class="day-points">
+                <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>La <strong>sindrome di Salomone</strong>: perché sei bravissimo a portare risultati ai clienti e ti blocchi quando si tratta del tuo business.</span></li>
+                <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Il funnel che non spinge più il contatto verso il basso ma lo attira: <strong>soft selling</strong> e contenuti value first, a partire da LinkedIn.</span></li>
+                <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>La <strong>scala del valore</strong> (freebie, low ticket, mid ticket, high ticket) e il continuity funnel: il cliente torna invece di uscire.</span></li>
+                <li><svg aria-hidden="true"><use href="#i-check"/></svg><span><strong>Micro nicchia e personal branding</strong>: l’asset che moltiplica il resto del tuo fatturato.</span></li>
+              </ul>
+              <blockquote class="day-quote">«Non è mai questione di prezzo. È sempre questione di fiducia.»<cite>Matteo Milone, sessione 03</cite></blockquote>
+              <p class="day-take"><strong>Ti porti a casa</strong>Come passare dal cercare clienti all’attirarli, con i contenuti e con la scala del valore.</p>
+            </li>
+
+            <li class="day" id="sessione-4" style="--c:#f472b6">
+              <div class="day-head"><span class="day-num">Sessione 04</span><span class="day-pillar">Vendita</span></div>
+              <h3>Vendere senza vendere e raddoppiare il fatturato</h3>
+              <p class="day-neck"><svg aria-hidden="true"><use href="#i-target"/></svg><span><strong>Il collo di bottiglia:</strong> parlare con le persone sbagliate e non avere il tempo per gestire più clienti.</span></p>
+              <p class="day-label">Cosa vedi nella sessione</p>
+              <ul class="day-points">
+                <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Perché le campagne a pagamento <strong>non risolvono i problemi di vendita: li amplificano</strong>.</span></li>
+                <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>La fase di scoperta che ti posiziona con autorevolezza, a partire da una frase: <strong>«Vediamo se ti posso aiutare.»</strong></span></li>
+                <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Il test da fare subito: se domani acquisisci il doppio dei clienti, riesci a gestirli? Se la risposta è no, il primo passo è <strong>liberare 100 ore al mese</strong> delegandole all’AI.</span></li>
+                <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Come crescere facendo investire di più <strong>i clienti che hai già</strong>, con prodotti e servizi AI slegati dal tuo tempo.</span></li>
+              </ul>
+              <blockquote class="day-quote">«Il paid non risolve i problemi. Li amplifica.»<cite>Matteo Milone, sessione 04</cite></blockquote>
+              <p class="day-take"><strong>Ti porti a casa</strong>Perché oggi i servizi AI sono un oceano blu: tanta domanda e pochi che li sanno costruire davvero.</p>
+            </li>
+
+            <li class="day" id="sessione-5" style="--c:#22d3ee">
+              <div class="day-head"><span class="day-num">Sessione 05</span><span class="day-pillar">Operations</span></div>
+              <h3>Una delivery che non dipende da te</h3>
+              <p class="day-neck"><svg aria-hidden="true"><use href="#i-target"/></svg><span><strong>Il collo di bottiglia:</strong> se domani raddoppi i clienti, non riesci a consegnare il lavoro senza fare brutte figure.</span></p>
+              <p class="day-label">Cosa vedi nella sessione</p>
+              <ul class="day-points">
+                <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Il connettore MCP che collega Claude a <strong>oltre 260 milioni di ads</strong> già analizzate: competitor, concept e copy che performano, anche per i contenuti organici.</span></li>
+                <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Campagne <strong>Meta e Google Ads create e gestite da Claude</strong> tramite MCP, nel rispetto dei limiti delle API.</span></li>
+                <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Come si costruisce un agente, <strong>cervello, strumenti e obiettivo</strong>, e l’ufficio in cui lavora: l’harness.</span></li>
+                <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Contesto, memoria e harness: i tre elementi che decidono <strong>la qualità del lavoro dei tuoi agenti</strong>.</span></li>
+              </ul>
+              <blockquote class="day-quote">«Non voglio più usare io gli strumenti. Devono usarli i miei agenti.»<cite>Matteo Milone, sessione 05</cite></blockquote>
+              <p class="day-take"><strong>Ti porti a casa</strong>Perché il futuro ha meno software e meno dashboard, e come iniziare a delegare la delivery ai tuoi agenti.</p>
+            </li>
+
+            <li class="day" id="sessione-6" style="--c:#60a5fa">
+              <div class="day-head"><span class="day-num">Sessione 06</span><span class="day-pillar">Prodotto</span></div>
+              <h3>Prodotti e servizi con poche variabili, slegati dal tuo tempo</h3>
+              <p class="day-neck"><svg aria-hidden="true"><use href="#i-target"/></svg><span><strong>Il collo di bottiglia:</strong> un prodotto con troppe variabili. Ogni cliente diventa un progetto diverso e non riesci a scalare.</span></p>
+              <p class="day-label">Cosa vedi nella sessione</p>
+              <ul class="day-points">
+                <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Report a semaforo (<strong>rosso, giallo, verde</strong>) e Google Ads gestito da Claude: termini di ricerca, keyword e feed Shopping.</span></li>
+                <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Il second brain che funziona davvero: <strong>veloce, preciso e senza sprecare token</strong>, con trascrizioni, decisioni e risultati a disposizione degli agenti.</span></li>
+                <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Perché il pensiero critico <strong>non si delega all’AI</strong>, e cosa succede quando spegni il cervello.</span></li>
+                <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>La scala del valore di Matteo con numeri reali: <strong>dai prodotti low ticket alle licenze da 1.500 euro</strong> vendute con una pagina Notion.</span></li>
+              </ul>
+              <blockquote class="day-quote">«Non spegnere il cervello.»<cite>Matteo Milone, sessione 06</cite></blockquote>
+              <p class="day-take"><strong>Ti porti a casa</strong>Come trasformare una tua competenza in un prodotto o servizio AI che non dipende dalle tue ore.</p>
+            </li>
+
+            <li class="day" id="sessione-7" style="--c:#c4b5fd">
+              <div class="day-head"><span class="day-num">Sessione 07</span><span class="day-pillar">Offerta</span></div>
+              <h3>Offerta, posizionamento e come funziona davvero Claude Code</h3>
+              <p class="day-neck"><svg aria-hidden="true"><use href="#i-target"/></svg><span><strong>Il collo di bottiglia:</strong> un’offerta che assomiglia a quella di tutti gli altri.</span></p>
+              <p class="day-label">Cosa vedi nella sessione</p>
+              <ul class="day-points">
+                <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Il loop agentico di Claude Code in quattro fasi: <strong>contesto, pianificazione, esecuzione, verifica</strong>. Se la verifica non passa, il ciclo riparte.</span></li>
+                <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>App, estensione e terminale: tre modi diversi di usare Claude Code, e perché conviene lavorare <strong>sempre nella stessa cartella</strong>.</span></li>
+                <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Perché la qualità dei tuoi agenti dipende da contesto, memoria e harness <strong>più che dall’ultimo modello uscito</strong>.</span></li>
+                <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>I posizionamenti che stanno nascendo, come l’<strong>AI CMO frazionale</strong>, per le aziende che queste competenze non le hanno in casa.</span></li>
+              </ul>
+              <blockquote class="day-quote">«Se non ti distingui, ti estingui.»<cite>Matteo Milone, sessione 07</cite></blockquote>
+              <p class="day-take"><strong>Ti porti a casa</strong>Perché in questo mercato vince chi arriva prima e va più veloce, e come posizionarti adesso.</p>
+            </li>
+          </ol>
+
+          <aside class="side side-sticky" aria-label="Ordine del Replay Pass">
+            <div class="order-card" id="ordine-programma" data-order>
+              <div class="oc-proof">
+                <div class="avatars" aria-hidden="true"><span>MM</span><span>AM</span><span>GM</span><span>CP</span></div>
+                <p><strong>164 professionisti</strong><br>presenti alla prima live</p>
+              </div>
+              <div class="oc-mini">
+                <img src="/aaw-replay/assets/aaw-day-one.webp" alt="" width="1600" height="901" loading="lazy" decoding="async">
+                <div><strong>Tutte e 7 le sessioni</strong><span>Più Start Here, Mappa dei colli di bottiglia, Loop Operativo Canvas e Percorso 7 giorni</span></div>
+              </div>
+              <h2 class="oc-title">Accedi ora per <span>€7</span></h2>
+              <p class="oc-sub">Pagamento unico. <strong>Nessun rinnovo.</strong></p>
+              <p class="oc-deal"><svg aria-hidden="true"><use href="#i-down"/></svg>7 replay + 3 strumenti + roadmap</p>
+              <form class="two-step" data-two-step data-current="1" novalidate>
+                <div class="ts-tabs">
+                  <p class="ts-tab is-active" data-tab="1"><strong>STEP 1</strong><span>Dati di contatto</span></p>
+                  <p class="ts-tab" data-tab="2"><strong>STEP 2</strong><span>Riepilogo ordine</span></p>
+                </div>
+                <div class="ts-bar" aria-hidden="true"><span></span></div>
+                <fieldset class="ts-step" data-step="1">
+                  <legend class="sr-only">Step 1 di 2: dati di contatto</legend>
+                  <label class="sr-only" for="ordine-programma-nome">Nome e cognome</label>
+                  <input id="ordine-programma-nome" name="name" type="text" autocomplete="name" placeholder="Nome e cognome" required>
+                  <label class="sr-only" for="ordine-programma-email">Email</label>
+                  <input id="ordine-programma-email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="Indirizzo email" required>
+                  <p class="ts-error" data-error role="alert" hidden></p>
+                  <button class="btn-primary" type="submit">Vai allo Step #2</button>
+                </fieldset>
+                <fieldset class="ts-step" data-step="2" hidden>
+                  <legend class="sr-only">Step 2 di 2: riepilogo ordine</legend>
+                  <div class="ts-summary">
+                    <div class="ts-line"><span>AI Acceleration Week<br><strong>Replay Pass</strong></span><strong>€7</strong></div>
+                    <ul class="ts-list">
+                      <li><svg aria-hidden="true"><use href="#i-check"/></svg>7 registrazioni integrali della Week</li>
+                      <li><svg aria-hidden="true"><use href="#i-check"/></svg>Start Here da 60 minuti</li>
+                      <li><svg aria-hidden="true"><use href="#i-check"/></svg>Mappa dei colli di bottiglia</li>
+                      <li><svg aria-hidden="true"><use href="#i-check"/></svg>Loop Operativo Canvas</li>
+                      <li><svg aria-hidden="true"><use href="#i-check"/></svg>Percorso consigliato in 7 giorni</li>
+                    </ul>
+                    <div class="ts-total"><span>Totale, pagamento unico</span><strong>€7</strong></div>
+                    <p class="ts-who">Accesso intestato a <strong data-who></strong></p>
+                  </div>
+                  <button class="btn-primary" type="submit">Completa l’ordine · €7</button>
+                  <button class="ts-back" type="button" data-back>← Modifica i dati</button>
+                  <p class="ts-legal">Proseguendo accetti i <a href="https://joinscalers.com/terms">Termini</a> e la <a href="https://joinscalers.com/refund-policy">Policy rimborsi</a>.</p>
+                </fieldset>
+              </form>
+              <div class="oc-secure"><span><svg aria-hidden="true"><use href="#i-lock"/></svg>Checkout <strong>sicuro</strong> e protetto</span><em>Una tantum</em></div>
+              <div class="paychips" aria-label="Metodi di pagamento"><span>VISA</span><span>MASTERCARD</span><span>AMEX</span><span>APPLE PAY</span><span>G PAY</span></div>
+            </div>
+          </aside>
+        </div>
+
+        <p class="program-note"><strong>Sono le registrazioni integrali delle dirette:</strong> circa due ore a sessione, con le domande dei partecipanti. Non devi guardarle tutte in fila. Parti dallo Start Here da 60 minuti, poi approfondisci la sessione del collo di bottiglia più rilevante per te.<small>Titoli e contenuti descrivono gli argomenti trattati nelle sessioni. Esempi e numeri citati dal vivo non sono garanzie di risultato individuale.</small></p>
+      </div>
+    </section>
+
+    <section class="sec sec-ink pad" aria-labelledby="prove-title">
+      <div class="wrap">
+        <div class="proof-head">
+          <div>
+            <h2 id="prove-title">Prove <span class="o">dal campo</span></h2>
+            <p>Freelancer, advertiser e founder di agenzia della community Scalers+ hanno portato il metodo <strong>dentro il loro lavoro</strong>.</p>
+          </div>
+          <div class="stats">
+            <div class="stat"><b>164</b><span>Presenti al Day One</span></div>
+            <div class="stat"><b>7</b><span>Workshop registrati</span></div>
+          </div>
+        </div>
+        <div class="vid-grid">
+          <div class="vid">
+            <button class="vid-btn" type="button" data-testimonial-video="https://www.loom.com/embed/9acc55001f934cd888d722217bd938e3" data-video-title="Testimonianza di Mattia Pastrello sul percorso Scalers+" aria-label="Riproduci la testimonianza video di Mattia Pastrello">
+              <img src="/tirana/assets/testimonial-video-mattia-pastrello.webp" alt="" width="1280" height="720" loading="lazy" decoding="async">
+              <span class="vid-shade"></span><span class="vid-label">Clicca per guardare</span>
+              <span class="vid-play"><svg aria-hidden="true"><use href="#i-play"/></svg></span>
+              <span class="vid-copy"><b>«Questa è <em>fantascienza</em>.»</b><span>Mattia Pastrello · Founder di agenzia</span></span>
+            </button>
+          </div>
+          <div class="vid">
+            <button class="vid-btn" type="button" data-testimonial-video="https://www.loom.com/embed/ab59611fe5544beca89244a29080dd30" data-video-title="Testimonianza di Andrea Quaranta sul percorso Scalers+" aria-label="Riproduci la testimonianza video di Andrea Quaranta">
+              <img src="/tirana/assets/testimonial-video-andrea-quaranta.webp" alt="" width="1280" height="720" loading="lazy" decoding="async">
+              <span class="vid-shade"></span><span class="vid-label">Clicca per guardare</span>
+              <span class="vid-play"><svg aria-hidden="true"><use href="#i-play"/></svg></span>
+              <span class="vid-copy"><b>Sistemi che fanno <em>Google Ads</em> per te.</b><span>Andrea Quaranta · Google Ads specialist</span></span>
+            </button>
+          </div>
+          <div class="vid">
+            <button class="vid-btn" type="button" data-testimonial-video="https://www.loom.com/embed/9187ac3df771499b847ba1c092c26a58" data-video-title="Testimonianza di Giacomo Simioni sul percorso Scalers+" aria-label="Riproduci la testimonianza video di Giacomo Simioni">
+              <img src="/tirana/assets/testimonial-video-giacomo-simioni.webp" alt="" width="1280" height="720" loading="lazy" decoding="async">
+              <span class="vid-shade"></span><span class="vid-label">Clicca per guardare</span>
+              <span class="vid-play"><svg aria-hidden="true"><use href="#i-play"/></svg></span>
+              <span class="vid-copy"><b>Progetti <em>concreti</em>, criticità reali.</b><span>Giacomo Simioni · Advertiser</span></span>
+            </button>
+          </div>
+          <div class="vid">
+            <button class="vid-btn" type="button" data-testimonial-video="https://www.loom.com/embed/71007ccbe7514c958683d2a61b558458" data-video-title="Testimonianza di Luigi Virginio sul percorso Scalers+" aria-label="Riproduci la testimonianza video di Luigi Virginio">
+              <img src="/tirana/assets/testimonial-video-luigi-virginio.webp" alt="" width="1280" height="720" loading="lazy" decoding="async">
+              <span class="vid-shade"></span><span class="vid-label">Clicca per guardare</span>
+              <span class="vid-play"><svg aria-hidden="true"><use href="#i-play"/></svg></span>
+              <span class="vid-copy"><b>Report a mano? <em>Mai più.</em></b><span>Luigi Virginio · Advertiser Google Ads</span></span>
+            </button>
+          </div>
+          <div class="vid">
+            <button class="vid-btn" type="button" data-testimonial-video="https://www.loom.com/embed/fcffe2089642470998e80ae4306a7076" data-video-title="Testimonianza di Francesco Cinori sul percorso Scalers+" aria-label="Riproduci la testimonianza video di Francesco Cinori">
+              <img src="/tirana/assets/testimonial-video-francesco-cinori.webp" alt="" width="1280" height="720" loading="lazy" decoding="async">
+              <span class="vid-shade"></span><span class="vid-label">Clicca per guardare</span>
+              <span class="vid-play"><svg aria-hidden="true"><use href="#i-play"/></svg></span>
+              <span class="vid-copy"><b>Campagne <em>dal terminale</em>.</b><span>Francesco Cinori · Meta Ads</span></span>
+            </button>
+          </div>
+          <div class="vid">
+            <button class="vid-btn" type="button" data-testimonial-video="https://www.loom.com/embed/3c255a6273d84549a4173f58ebabf18a" data-video-title="Testimonianza di Stefano sul percorso Scalers+" aria-label="Riproduci la testimonianza video di Stefano">
+              <img src="/tirana/assets/testimonial-video-stefano.webp" alt="" width="1280" height="720" loading="lazy" decoding="async">
+              <span class="vid-shade"></span><span class="vid-label">Clicca per guardare</span>
+              <span class="vid-play"><svg aria-hidden="true"><use href="#i-play"/></svg></span>
+              <span class="vid-copy"><b>Agenti AI, <em>risultati</em>.</b><span>Stefano · Ottimizzazione dei workflow</span></span>
+            </button>
+          </div>
+        </div>
+        <p class="disclosure">Testimonianze e risultati provengono dai percorsi, dal mentoring e dalla community Scalers+, non dal solo acquisto del Replay Pass. Sono prove del metodo applicato, non garanzie di risultato individuale.</p>
+      </div>
+    </section>
+
+    <section class="sec sec-steel pad" aria-labelledby="come-funziona">
+      <div class="wrap center">
+        <p class="tag-pill">⚡ Quick start guide</p>
+        <h2 class="sec-title" id="come-funziona">Ecco come funziona il Loop <em>Operativo</em></h2>
+        <p class="sec-sub">Dal task ripetitivo al primo workflow in 60 minuti</p>
+      </div>
+      <ol class="timeline">
+        <li class="tl-step">
+          <div class="tl-meta"><span class="tl-badge">STEP 01</span><span><svg aria-hidden="true"><use href="#i-bolt"/></svg>00:00 – 00:15</span></div>
+          <h3>Trova il collo di bottiglia</h3>
+          <p>Individua il processo che ti costa più tempo, margine o attenzione. Valuti impatto, frequenza e delegabilità con la Mappa dei vincoli. Non parti dalla tecnologia: parti dal vincolo.</p>
+          <span class="tl-chip">🎯 Output: una priorità reale</span>
+          <div class="tl-shot" aria-hidden="true">
+            <div class="ui">
+              <div class="ui-bar"><i></i><i></i><i></i><span>Mappa dei vincoli</span><em>Esempio</em></div>
+              <div class="ui-body">
+                <div class="ui-table">
+                  <div class="ui-tr ui-th"><span>Processo</span><span>Impatto</span><span>Frequenza</span><span>Delegabile</span></div>
+                  <div class="ui-tr is-top"><span>Report settimanale clienti</span><span class="lv" style="--v:3"></span><span class="lv" style="--v:3"></span><span class="lv" style="--v:3"></span></div>
+                  <div class="ui-tr"><span>Setup campagne</span><span class="lv" style="--v:3"></span><span class="lv" style="--v:2"></span><span class="lv" style="--v:2"></span></div>
+                  <div class="ui-tr"><span>Copy ripetitivo</span><span class="lv" style="--v:2"></span><span class="lv" style="--v:3"></span><span class="lv" style="--v:2"></span></div>
+                  <div class="ui-tr"><span>Onboarding cliente</span><span class="lv" style="--v:2"></span><span class="lv" style="--v:1"></span><span class="lv" style="--v:2"></span></div>
+                </div>
+                <p class="ui-note">🎯 Priorità: report settimanale clienti</p>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="tl-step">
+          <div class="tl-meta"><span class="tl-badge">STEP 02</span><span><svg aria-hidden="true"><use href="#i-bolt"/></svg>00:15 – 00:30</span></div>
+          <h3>Scegli un task delegabile</h3>
+          <p>Selezioni un’attività ricorrente con input osservabili, passaggi ripetibili e un risultato che puoi valutare. Se non sai dire quando è «fatto bene», non è ancora pronto per l’AI.</p>
+          <span class="tl-chip">🧩 Output: un task definito</span>
+          <div class="tl-shot" aria-hidden="true">
+            <div class="ui">
+              <div class="ui-bar"><i></i><i></i><i></i><span>Task delegabile</span><em>Esempio</em></div>
+              <div class="ui-body">
+                <p class="ui-label">Task selezionato</p>
+                <p class="ui-title">Report settimanale clienti</p>
+                <ul class="ui-checks">
+                  <li><svg><use href="#i-check"/></svg><span>Input osservabili<small>Export di Meta Ads e Google Ads</small></span></li>
+                  <li><svg><use href="#i-check"/></svg><span>Passaggi ripetibili<small>Ogni lunedì, sempre la stessa sequenza</small></span></li>
+                  <li><svg><use href="#i-check"/></svg><span>Risultato valutabile<small>KPI, anomalie e prossime azioni</small></span></li>
+                </ul>
+                <p class="ui-note">✓ Pronto per il Loop Operativo</p>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="tl-step">
+          <div class="tl-meta"><span class="tl-badge">STEP 03</span><span><svg aria-hidden="true"><use href="#i-bolt"/></svg>00:30 – 00:45</span></div>
+          <h3>Costruisci il Loop Operativo</h3>
+          <p>Definisci contesto, piano, esecuzione, strumenti e criteri di riuscita dentro un solo canvas. Una pagina, un processo, nessuna ambiguità su cosa significa «fatto bene».</p>
+          <span class="tl-chip">🛠️ Output: il Loop Canvas compilato</span>
+          <div class="tl-shot" aria-hidden="true">
+            <div class="ui">
+              <div class="ui-bar"><i></i><i></i><i></i><span>Loop Operativo Canvas</span><em>Esempio</em></div>
+              <div class="ui-body">
+                <div class="ui-canvas">
+                  <div><b>Contesto</b><span>Obiettivi del cliente, storico KPI, standard del report</span></div>
+                  <div><b>Piano</b><span>Estrai → confronta → evidenzia anomalie → scrivi</span></div>
+                  <div><b>Esecuzione</b><span>L’agente produce la bozza del report</span></div>
+                  <div><b>Strumenti</b><span>Export dati, template, cartella Drive</span></div>
+                  <div><b>Criteri di riuscita</b><span>Numeri verificati, 3 azioni concrete, tono del brand</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="tl-step">
+          <div class="tl-meta"><span class="tl-badge">STEP 04</span><span><svg aria-hidden="true"><use href="#i-bolt"/></svg>00:45 – 01:00</span></div>
+          <h3>Prepara il primo test</h3>
+          <p>Esegui il workflow su un caso reale. Se il risultato non supera il gate, il ciclo torna indietro e corregge. Tu approvi solo quando il lavoro è fatto bene.</p>
+          <span class="tl-chip">✅ Output: il primo test operativo</span>
+          <div class="tl-shot" aria-hidden="true">
+            <div class="ui">
+              <div class="ui-bar"><i></i><i></i><i></i><span>Quality gate</span><em>Esempio</em></div>
+              <div class="ui-body">
+                <div class="ui-run">
+                  <div><b>Test #1 <em>✕ Non superato</em></b><span>Manca il confronto con la settimana precedente → il ciclo torna indietro e corregge</span></div>
+                  <div class="ok"><b>Test #2 <em>✓ Superato</em></b><span>Numeri verificati, 3 azioni concrete, tono corretto</span></div>
+                </div>
+                <span class="ui-approve">Approva il report</span>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section class="sec sec-light pad on-light" aria-labelledby="significa">
+      <div class="wrap">
+        <div class="means-head">
+          <h2 id="significa">Ecco cosa <span class="o">significa</span> per il <em>tuo</em> lavoro</h2>
+          <p>Chi usa l’AI <strong>senza moltiplicare le ore</strong> ha <span class="o i u">capito due cose:</span></p>
+        </div>
+
+        <div class="means-row">
+          <div class="means-text">
+            <span class="num-badge">1</span>
+            <div>
+              <h3>Come togliere dalle tue mani il lavoro ripetitivo <span class="o i u">senza</span> perdere il controllo.</h3>
+              <p>Oggi l’AI ti fa produrre una bozza più in fretta. Ma il lavoro continua a dipendere <strong>da te, dal tuo contesto</strong> e dalle correzioni che solo tu sai fare.</p>
+              <p class="soft-quote">Un workflow cambia le cose: il contesto è già disponibile, il processo segue una sequenza e <strong>un quality gate controlla il risultato prima che arrivi a te.</strong></p>
+              <ul class="mini-checks">
+                <li><svg aria-hidden="true"><use href="#i-check"/></svg>Meno correzioni a mano.</li>
+                <li><svg aria-hidden="true"><use href="#i-check"/></svg>Più output verificato.</li>
+                <li><svg aria-hidden="true"><use href="#i-check"/></svg>Senza lavorare di più.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="tilt">
+            <img class="t1" src="/aaw-replay/assets/prompt-vs-loop.webp" alt="Schema: nel 2024 l’advertiser passa il 70% del tempo su ricerca e prompt; nel 2026 orchestra workflow multi-agente con agenti che lavorano in parallelo" width="918" height="732" loading="lazy" decoding="async">
+          </div>
+        </div>
+
+        <div class="means-row flip">
+          <div class="tilt">
+            <img class="t1" src="/aaw-replay/assets/ai-agency-os.webp" alt="L’organigramma della AI-Solo Agency: una persona, nove dipartimenti e venti agenti AI" width="1100" height="1465" loading="lazy" decoding="async">
+          </div>
+          <div class="means-text">
+            <span class="num-badge">2</span>
+            <div>
+              <h3>Come smettere di essere il passaggio obbligato. <span class="o u">Completamente.</span></h3>
+              <p>Così il lavoro avanza anche quando non sei tu a orchestrare ogni singolo passaggio.</p>
+              <p><strong>Se sbagli una delle due, ecco cosa succede…</strong></p>
+              <div class="x-stack">
+                <span><svg aria-hidden="true"><use href="#i-x"/></svg>Accetti più clienti.</span>
+                <span><svg aria-hidden="true"><use href="#i-x"/></svg>Lavori più ore.</span>
+                <span><svg aria-hidden="true"><use href="#i-x"/></svg>Apri altri tool.</span>
+                <span><svg aria-hidden="true"><use href="#i-x"/></svg>Passi ancora più ore a correggere output.</span>
+              </div>
+              <p>E un martedì pomeriggio, alla quinta chat aperta della giornata, pensi: <span class="o">«Non è <strong class="u">questo</strong> che mi <em>aspettavo</em> dall’AI.»</span></p>
+              <svg class="down-arrow" aria-hidden="true"><use href="#i-down"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec sec-glow pad">
+      <div class="wrap split">
+        <div class="letter" style="padding-top:0">
+          <h2 class="grad-title">Per questo ho creato il<br><span class="o">Replay</span> <span class="b">Pass</span></h2>
+          <p>Chiude entrambi i buchi nello stesso momento…</p>
+          <p>Un metodo per scegliere <span class="o">cosa delegare</span>, e un canvas per costruire il workflow che <strong>lo esegue e controlla il proprio risultato</strong>. <span class="b">Senza codice obbligatorio.</span></p>
+          <div class="x-pills">
+            <span><svg aria-hidden="true"><use href="#i-x"/></svg>Niente codice</span>
+            <span><svg aria-hidden="true"><use href="#i-x"/></svg>Niente altri venti tool.</span>
+            <span><svg aria-hidden="true"><use href="#i-x"/></svg>Niente abbonamenti.</span>
+          </div>
+          <div class="win">
+            <div class="win-media"><img src="/aaw-replay/assets/proof-andre.webp" alt="André durante una sessione del percorso guidato con Matteo Milone" width="1200" height="675" loading="lazy" decoding="async"></div>
+            <div class="win-foot">
+              <strong>André durante il percorso guidato con Matteo.</strong>
+              <span class="win-pill">Primo cliente chiuso dopo la seconda sessione</span>
+              <p>Ha costruito un’offerta applicabile nella sua agenzia.</p>
+            </div>
+          </div>
+          <p>Con il <span class="brand-name">Replay <span class="b">Pass</span></span> costruisci il primo workflow in <strong>60 minuti</strong>. Lo testi lo stesso giorno su un caso reale e, nei 7 giorni successivi, <strong>lo consolidi con il percorso guidato</strong>.</p>
+          <p><span class="o u">Non copi prompt. Non ricominci da zero. Non rimandi alla prossima settimana.</span><br><strong>Assegni. Verifichi. <span class="b">Approvi.</span></strong></p>
+          <figure class="photo"><img src="/tirana/assets/tirana-live-workshop-hfarm.webp" alt="Matteo Milone durante un workshop dal vivo con i partecipanti al computer" width="2040" height="1536" loading="lazy" decoding="async"></figure>
+
+          <h2 class="grad-title">Quando il primo workflow gira e il metodo <span class="b">entra nel tuo lavoro</span>. <span class="o">Scegli tu…</span></h2>
+          <div class="choice">
+            <span class="choice-ico" aria-hidden="true">🚀</span>
+            <div><h3>Replica il metodo su altri processi</h3><p>Usa la Mappa dei colli di bottiglia per scegliere il prossimo vincolo e costruire il secondo loop.</p></div>
+          </div>
+          <div class="choice">
+            <span class="choice-ico" aria-hidden="true">🌴</span>
+            <div><h3>Oppure goditi le ore recuperate</h3><p>Anche un solo workflow ben fatto ti evita di ripartire da zero ogni settimana.</p></div>
+          </div>
+          <p style="margin-top:22px">In ogni caso… prompt copiati, chat senza memoria, correzioni infinite… <strong>sono finiti.</strong></p>
+          <div class="win">
+            <div class="win-media">
+              <div class="vid">
+                <button class="vid-btn" type="button" data-testimonial-video="https://www.loom.com/embed/e026ecfecabb445dbdd071a2baf9c0e3" data-video-title="Testimonianza di Michele Bet sul percorso Scalers+" aria-label="Riproduci la testimonianza video di Michele Bet">
+                  <img src="/tirana/assets/testimonial-video-michele-bet.webp" alt="" width="1280" height="720" loading="lazy" decoding="async">
+                  <span class="vid-shade"></span><span class="vid-label">Clicca per guardare</span>
+                  <span class="vid-play"><svg aria-hidden="true"><use href="#i-play"/></svg></span>
+                  <span class="vid-copy"><b><em>+15K</em> nella pipeline.</b><span>Michele Bet · Agenzia</span></span>
+                </button>
+              </div>
+            </div>
+            <div class="win-foot">
+              <strong>+15.000€ in pipeline.</strong>
+              <span class="win-pill">«Si è già ripagato ampiamente l’investimento.»</span>
+              <p>Applicazione del metodo dentro il lavoro di agenzia.</p>
+            </div>
+          </div>
+          <div class="pricebox">
+            <div class="pricebox-row">
+              <p class="pb-price">€7<small>una tantum</small></p>
+              <p class="pb-copy">Ottieni il <strong>Replay Pass</strong> della <strong>AI Acceleration Week</strong> a soli <span class="o">€7</span></p>
+              <a class="btn-grad" href="#ordine" data-cta><strong>Ottieni il Replay Pass ➜</strong><small>Pagamento unico · Nessun abbonamento</small></a>
+            </div>
+            <div class="pricebox-foot">
+              <span><svg aria-hidden="true"><use href="#i-download"/></svg>Accesso personale</span>
+              <span><svg aria-hidden="true"><use href="#i-bolt"/></svg>Parti dallo Start Here da 60 minuti</span>
+            </div>
+          </div>
+        </div>
+
+        <aside class="side" aria-label="Cosa include il Replay Pass">
+          <div class="incl">
+            <p class="incl-head"><em>Incluso</em> nel tuo ordine</p>
+            <div class="incl-item">
+              <div class="cover" aria-hidden="true" style="--c1:#38bdf8;--c2:#a78bfa"><span class="cv-brand">SCALERS+</span><svg class="cv-art"><use href="#i-play"/></svg><b class="cv-title">Replay</b><span class="cv-tag">7 SESSIONI</span></div>
+              <div><h3>Le 7 <span class="o">registrazioni</span> integrali</h3><p>L’intera AI Acceleration Week: chiarezza, automazione, acquisizione, vendita, operations, prodotto e offerta.</p></div>
+              <div class="incl-meta"><span class="chip-lock"><svg aria-hidden="true"><use href="#i-lock"/></svg>Accesso personale</span><span class="chip-green">7 sessioni</span></div>
+            </div>
+            <div class="incl-item">
+              <div class="cover" aria-hidden="true" style="--c1:#22d3ee;--c2:#4ade80"><span class="cv-brand">SCALERS+</span><svg class="cv-art"><use href="#i-bolt"/></svg><b class="cv-title">Start Here</b><span class="cv-tag">60'</span></div>
+              <div><h3>Lo Start <span class="o">Here</span> da 60 minuti</h3><p>Il percorso minimo: parti dal primo task prima di guardare ore di registrazioni. Prima vittoria in un’ora.</p></div>
+              <div class="incl-meta"><span class="chip-lock"><svg aria-hidden="true"><use href="#i-lock"/></svg>Accesso personale</span><span class="chip-green">60 minuti</span></div>
+            </div>
+            <div class="incl-item">
+              <div class="cover" aria-hidden="true" style="--c1:#8D4AFC;--c2:#f0abfc;--ink:#fff"><span class="cv-brand">SCALERS+</span><svg class="cv-art"><use href="#i-target"/></svg><b class="cv-title sm">Mappa dei vincoli</b><span class="cv-tag">WORKBOOK</span></div>
+              <div><h3>La Mappa dei <span class="o">colli di bottiglia</span></h3><p>Valuti impatto, frequenza e delegabilità dei processi. Risultato: una priorità chiara.</p></div>
+              <div class="incl-meta"><span class="chip-lock"><svg aria-hidden="true"><use href="#i-lock"/></svg>Accesso personale</span><span class="chip-green">Workbook</span></div>
+            </div>
+            <div class="incl-item">
+              <div class="cover" aria-hidden="true" style="--c1:#f472b6;--c2:#a78bfa"><span class="cv-brand">SCALERS+</span><svg class="cv-art"><use href="#i-loop"/></svg><b class="cv-title">Loop Canvas</b><span class="cv-tag">CANVAS</span></div>
+              <div><h3>Il Loop Operativo <span class="o">Canvas</span></h3><p>Contesto, piano, esecuzione, verifica e ritorno in una pagina. Risultato: un processo pronto da testare.</p></div>
+              <div class="incl-meta"><span class="chip-lock"><svg aria-hidden="true"><use href="#i-lock"/></svg>Accesso personale</span><span class="chip-green">Canvas</span></div>
+            </div>
+            <div class="incl-item">
+              <div class="cover" aria-hidden="true" style="--c1:#4ade80;--c2:#22d3ee"><span class="cv-brand">SCALERS+</span><svg class="cv-art"><use href="#i-route"/></svg><b class="cv-title sm">Percorso 7 giorni</b><span class="cv-tag">ROADMAP</span></div>
+              <div><h3>Il Percorso <span class="o">7 giorni</span></h3><p>Un ordine preciso per guardare, applicare e consolidare, senza accumulare registrazioni.</p></div>
+              <div class="incl-meta"><span class="chip-lock"><svg aria-hidden="true"><use href="#i-lock"/></svg>Accesso personale</span><span class="chip-green">Roadmap</span></div>
+            </div>
+          </div>
+
+          <div class="incl">
+            <p class="incl-intro">Dentro trovi <strong>7 sessioni</strong> su <span class="o">7 colli di bottiglia</span>. Un sistema operativo.</p>
+            <ol class="sessions-mini">
+              <li><b>01</b>Chiarezza<span class="chip-green">Replay</span></li>
+              <li><b>02</b>Automazione<span class="chip-green">Replay</span></li>
+              <li><b>03</b>Acquisizione<span class="chip-green">Replay</span></li>
+              <li><b>04</b>Vendita<span class="chip-green">Replay</span></li>
+              <li><b>05</b>Operations<span class="chip-green">Replay</span></li>
+              <li><b>06</b>Prodotto<span class="chip-green">Replay</span></li>
+              <li><b>07</b>Offerta<span class="chip-green">Replay</span></li>
+            </ol>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="sec sec-dawn pad on-light">
+      <div class="wrap split">
+        <div class="dawn-letter">
+          <h2>Il <span class="o">Replay</span> <span class="b">Pass</span> è una <span class="u">scorciatoia</span> per usare l’AI <em>senza moltiplicare le ore</em></h2>
+          <p class="big"><strong>Dal 2024 a oggi è cambiato tutto…</strong></p>
+          <p>Nel 2024 tutti parlavano di come scrivere prompt. Poi è arrivata l’ingegneria del contesto. Oggi si passa dal prompting al looping.</p>
+          <p>I prompt copiati da LinkedIn o YouTube non bastano più. Ottieni risposte isolate: appena cambia il cliente, il task o lo standard, devi ricominciare da capo.</p>
+          <p>Una nuova chat per ogni attività frammenta il contesto. L’AI non conosce il tuo business, non ricorda le decisioni e non sa cosa significa «fatto bene».</p>
+          <p class="big">Questi approcci dovevano <span class="o u">farti risparmiare tempo</span>.</p>
+          <p class="big">Oggi sono diventati <span class="o u i">un secondo lavoro</span>, <em>fatto di copia-incolla, correzioni e tool da inseguire.</em></p>
+          <p>Così ho iniziato a guardare cosa facevano di diverso i professionisti che con l’AI <em>recuperano davvero ore</em>, <em>non quelli che producono solo più bozze</em>.</p>
+          <p><strong>Perché automatizzare prima di capire il processo rende solo più veloce un flusso sbagliato.</strong></p>
+
+          <h3>Avevano tutti una <span class="o">cosa</span> in comune…</h3>
+          <p>Non usavano più tool. Avevano un processo con contesto, esecuzione e verifica. E i più bravi avevano costruito workflow in cui <span class="o">l’AI controlla il proprio risultato</span> <strong>prima che arrivi a loro</strong>.</p>
+          <p>Era il modello giusto. Ma costruirlo da zero era <em class="u">lento</em>.</p>
+
+          <h3>Poi ho messo il mio lavoro dentro un <span class="o">sistema</span>…</h3>
+          <p>Uso l’AI in ricerca, advertising, contenuti, delivery e operations. Ho costruito un Second Brain locale, agenti specializzati e flussi con quality gate.</p>
+          <p><strong>Il mio obiettivo non è generare più output. È liberare tempo senza abbassare la qualità.</strong></p>
+          <p>Nella AI Acceleration Week ho raccolto il metodo, i casi e le decisioni che hanno trasformato il mio modo di lavorare: <strong>7 sessioni, 7 colli di bottiglia, un sistema operativo.</strong></p>
+          <p class="big">Funziona. E oggi puoi avere l’intera Week per <span class="o">€7</span>.</p>
+
+          <div class="cmp-stack">
+            <div class="cmp old">
+              <div class="cmp-art">
+                <h3>Modalità chat</h3>
+                <p>Il vecchio modo</p>
+                <ul class="cmp-list">
+                  <li><svg aria-hidden="true"><use href="#i-x"/></svg><span>Rispieghi il contesto <strong>ogni volta</strong></span><em>Ogni chat</em></li>
+                  <li><svg aria-hidden="true"><use href="#i-x"/></svg><span>L’output cambia da una chat all’altra</span><em>Zero coerenza</em></li>
+                  <li><svg aria-hidden="true"><use href="#i-x"/></svg><span>Verifichi tutto <strong>manualmente</strong></span><em>Ore perse</em></li>
+                  <li><svg aria-hidden="true"><use href="#i-x"/></svg><span>Copi prompt da LinkedIn e YouTube</span><em>Risposte isolate</em></li>
+                  <li><svg aria-hidden="true"><use href="#i-x"/></svg><span>La settimana dopo <strong>riparti da zero</strong></span><em>Ogni settimana</em></li>
+                </ul>
+              </div>
+              <div class="cmp-foot">
+                <strong>↺ Chiedi. Correggi. Ripeti.</strong>
+                <span class="win-pill">Sei tu l’orchestratore</span>
+                <p>Fai TUTTO il lavoro di coordinamento.</p>
+              </div>
+            </div>
+            <div class="cmp new">
+              <div class="cmp-art">
+                <h3>Modalità sistema</h3>
+                <p>Il modo Loop Operativo</p>
+                <ul class="cmp-list">
+                  <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Il contesto è <strong>già disponibile</strong></span><em>Sempre</em></li>
+                  <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Il processo segue una sequenza</span><em>Ripetibile</em></li>
+                  <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Un quality gate <strong>controlla il risultato</strong></span><em>Prima di te</em></li>
+                  <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Tu intervieni <strong>solo sulle decisioni</strong></span><em>Strategia</em></li>
+                </ul>
+              </div>
+              <div class="cmp-foot">
+                <strong>⚡ Assegna. Verifica. Approva.</strong>
+                <span class="win-pill">Il workflow lavora</span>
+                <p>Tu fai SOLO le scelte che contano.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="side" aria-label="Ordine del Replay Pass">
+          <div class="order-card" id="ordine-2" data-order>
+            <div class="oc-proof">
+              <div class="avatars" aria-hidden="true"><span>MM</span><span>AM</span><span>GM</span><span>CP</span></div>
+              <p><strong>164 professionisti</strong><br>presenti alla prima live</p>
+            </div>
+            <p class="oc-kicker">Offerta Replay Pass</p>
+            <div class="bundle" aria-hidden="true">
+              <div class="bundle-screen"><img src="/aaw-replay/assets/aaw-day-one.webp" alt="" width="1600" height="901" loading="lazy" decoding="async"></div>
+              <div class="bundle-stand"></div>
+              <div class="cover bc-1" style="--c1:#38bdf8;--c2:#a78bfa"><span class="cv-brand">SCALERS+</span><svg class="cv-art"><use href="#i-play"/></svg><span class="cv-pre">Le 7</span><b class="cv-title">Replay</b><span class="cv-tag">REGISTRAZIONI</span></div>
+              <div class="cover bc-2" style="--c1:#22d3ee;--c2:#4ade80"><span class="cv-brand">SCALERS+</span><svg class="cv-art"><use href="#i-bolt"/></svg><span class="cv-pre">Lo</span><b class="cv-title">Start Here</b><span class="cv-tag">QUICK START</span></div>
+              <div class="cover bc-3" style="--c1:#8D4AFC;--c2:#f0abfc;--ink:#fff"><span class="cv-brand">SCALERS+</span><svg class="cv-art"><use href="#i-target"/></svg><span class="cv-pre">La</span><b class="cv-title sm">Mappa dei vincoli</b><span class="cv-tag">WORKBOOK</span></div>
+              <div class="cover bc-4" style="--c1:#f472b6;--c2:#a78bfa"><span class="cv-brand">SCALERS+</span><svg class="cv-art"><use href="#i-loop"/></svg><span class="cv-pre">Il</span><b class="cv-title">Loop Canvas</b><span class="cv-tag">CANVAS</span></div>
+            </div>
+            <h2 class="oc-title">Accedi ora per <span>€7</span></h2>
+            <p class="oc-sub">Pagamento unico. <strong>Nessun rinnovo.</strong></p>
+            <div class="oc-why">
+              <strong>Perché costa solo 7 euro?</strong> Voglio che tu possa provare il metodo prima di fare un investimento più grande. <strong>Una prima vittoria crea più fiducia di cento promesse.</strong>
+            </div>
+            <p class="oc-deal"><svg aria-hidden="true"><use href="#i-down"/></svg>7 replay + 3 strumenti + roadmap</p>
+            <form class="two-step" data-two-step data-current="1" novalidate>
+              <div class="ts-tabs">
+                <p class="ts-tab is-active" data-tab="1"><strong>STEP 1</strong><span>Dati di contatto</span></p>
+                <p class="ts-tab" data-tab="2"><strong>STEP 2</strong><span>Riepilogo ordine</span></p>
+              </div>
+              <div class="ts-bar" aria-hidden="true"><span></span></div>
+              <fieldset class="ts-step" data-step="1">
+                <legend class="sr-only">Step 1 di 2: dati di contatto</legend>
+                <label class="sr-only" for="ordine-2-nome">Nome e cognome</label>
+                <input id="ordine-2-nome" name="name" type="text" autocomplete="name" placeholder="Nome e cognome" required>
+                <label class="sr-only" for="ordine-2-email">Email</label>
+                <input id="ordine-2-email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="Indirizzo email" required>
+                <p class="ts-error" data-error role="alert" hidden></p>
+                <button class="btn-primary" type="submit">Vai allo Step #2</button>
+              </fieldset>
+              <fieldset class="ts-step" data-step="2" hidden>
+                <legend class="sr-only">Step 2 di 2: riepilogo ordine</legend>
+                <div class="ts-summary">
+                  <div class="ts-line"><span>AI Acceleration Week<br><strong>Replay Pass</strong></span><strong>€7</strong></div>
+                  <ul class="ts-list">
+                    <li><svg aria-hidden="true"><use href="#i-check"/></svg>7 registrazioni integrali della Week</li>
+                    <li><svg aria-hidden="true"><use href="#i-check"/></svg>Start Here da 60 minuti</li>
+                    <li><svg aria-hidden="true"><use href="#i-check"/></svg>Mappa dei colli di bottiglia</li>
+                    <li><svg aria-hidden="true"><use href="#i-check"/></svg>Loop Operativo Canvas</li>
+                    <li><svg aria-hidden="true"><use href="#i-check"/></svg>Percorso consigliato in 7 giorni</li>
+                  </ul>
+                  <div class="ts-total"><span>Totale, pagamento unico</span><strong>€7</strong></div>
+                  <p class="ts-who">Accesso intestato a <strong data-who></strong></p>
+                </div>
+                <button class="btn-primary" type="submit">Completa l’ordine · €7</button>
+                <button class="ts-back" type="button" data-back>← Modifica i dati</button>
+                <p class="ts-legal">Proseguendo accetti i <a href="https://joinscalers.com/terms">Termini</a> e la <a href="https://joinscalers.com/refund-policy">Policy rimborsi</a>.</p>
+              </fieldset>
+            </form>
+            <div class="oc-secure"><span><svg aria-hidden="true"><use href="#i-lock"/></svg>Checkout <strong>sicuro</strong> e protetto</span><em>Una tantum</em></div>
+            <div class="paychips" aria-label="Metodi di pagamento"><span>VISA</span><span>MASTERCARD</span><span>AMEX</span><span>APPLE PAY</span><span>G PAY</span></div>
+          </div>
+
+          <div class="promise">
+            <div class="seal" aria-hidden="true"><div><b>€7</b><small>UNA TANTUM</small></div></div>
+            <div>
+              <h3>Pagamento unico, nessuna sorpresa.</h3>
+              <p>Paghi 7 euro una sola volta. <strong>Non ci sono abbonamenti o rinnovi automatici.</strong></p>
+            </div>
+          </div>
+          <figure class="shot"><img src="/aaw-replay/assets/case-edoardo.webp" alt="Messaggio di Edoardo Marchese sul workflow di onboarding cliente con orchestratore e agenti specialistici" width="1400" height="501" loading="lazy" decoding="async"></figure>
+          <figure class="shot"><img src="/aaw-replay/assets/proof-member.webp" alt="Commento di un membro: una sola informazione mi ha fatto svoltare in poche ore" width="1200" height="577" loading="lazy" decoding="async"></figure>
+        </aside>
+      </div>
+    </section>
+
+    <section class="sec sec-glow pad" aria-labelledby="aiuto">
+      <div class="narrow center">
+        <h2 class="sec-title" id="aiuto" style="margin-top:0">Come ti aiuta il <span class="o">Replay Pass</span>?</h2>
+      </div>
+      <div class="narrow">
+        <div class="flow">
+          <div class="flow-card"><i aria-hidden="true">🧭</i><b>Trovi il collo di bottiglia</b><p>Parti dal vincolo, non dalla tecnologia</p><span>15 minuti</span></div>
+          <div class="flow-card"><i aria-hidden="true">⚙️</i><b>Costruisci il Loop Operativo</b><p>Contesto · Piano · Esecuzione · Verifica</p><span>30 minuti</span></div>
+          <div class="flow-card"><i aria-hidden="true">✅</i><b>Prepari il primo test</b><p>Il quality gate controlla il risultato</p><span>Entro 60 minuti</span></div>
+          <p class="flow-sum">Il <span class="o">Loop Operativo</span> completo: dal task ripetitivo al <strong>primo workflow che si verifica da solo</strong></p>
+        </div>
+
+        <div class="obj">
+          <h3 class="obj-q"><i aria-hidden="true">?</i>Non hai tempo di guardare ore e ore di registrazioni?</h3>
+          <div class="obj-a">
+            <p>Parti dallo Start Here da 60 minuti e scegli un task reale. Le altre sessioni servono ad approfondire il collo di bottiglia più rilevante per te.</p>
+            <p class="o">Sono lo Start Here 60' e il Percorso 7 giorni.</p>
+            <p>Non devi svuotare l’agenda. Non ti serve un weekend libero. Ti servono 60 minuti e un task che oggi fai ancora a mano.</p>
+          </div>
+        </div>
+        <div class="obj">
+          <h3 class="obj-q"><i aria-hidden="true">?</i>Non sai programmare o ti blocchi sulla parte tecnica?</h3>
+          <div class="obj-a">
+            <p>Il percorso parte dalla logica del processo. Alcuni esempi mostrano strumenti avanzati, ma il primo Loop Operativo non richiede competenze di programmazione.</p>
+            <p class="o">È il Loop Operativo Canvas.</p>
+            <p>Non devi imparare a scrivere codice. Non devi inseguire l’ultimo tool. Compili contesto, piano, esecuzione, strumenti e criteri di riuscita, e hai il tuo primo processo pronto da testare.</p>
+          </div>
+        </div>
+        <div class="obj">
+          <h3 class="obj-q"><i aria-hidden="true">?</i>Sei stanco di essere tu a orchestrare ogni singolo passaggio?</h3>
+          <div class="obj-a">
+            <p>È pensato proprio per chi oggi è il punto di passaggio obbligato di ogni attività e vuole iniziare a delegare senza perdere controllo.</p>
+            <p class="o">È la Mappa dei colli di bottiglia.</p>
+            <p>Scegli il processo giusto da cui partire, costruisci il primo ciclo e intervieni solo sulle decisioni. Strategia, approvazione e responsabilità restano tue.</p>
+          </div>
+        </div>
+        <p class="glowbox">Qualunque cosa ti stia frenando, che sia tempo, tecnica o energia, il <span class="brand-name">Replay <span class="b">Pass</span></span> è costruito per quel problema specifico. Ogni componente esiste per <span class="u">toglierti dal ruolo di orchestratore</span>, così <strong>il lavoro avanza anche quando non sei tu a spingere ogni passaggio.</strong></p>
+      </div>
+    </section>
+
+    <section class="sec sec-ink pad" aria-label="Altre testimonianze dalla community Scalers+">
+      <div class="wrap">
+        <div class="wall">
+          <div class="qcard"><blockquote>«Ogni suo contenuto è un piccolo <em>diamante</em>.»</blockquote><cite><b>Niccolò Gianotto</b> · Community Scalers+</cite></div>
+          <div class="qcard"><blockquote>«Sono davvero info utili e <em>subito applicabili</em> quelle che condividi.»</blockquote><cite><b>Federico T.</b> · Community Scalers+</cite></div>
+          <div class="qcard"><blockquote>«Grazie al MCP su Claude i report sono diventati <em>un piacere</em>.»</blockquote><cite><b>Nicolò Tassinari</b> · Community Scalers+</cite></div>
+          <div class="qcard"><blockquote>«Questo corso mi ha svoltato la <em>velocità di generare creatives</em>.»</blockquote><cite><b>Alessandro Venturelli</b> · Personal branding e AI skills</cite></div>
+          <div class="qcard"><blockquote>«Contenuti veri di valore. <em>Filtrati alla fonte</em>.»</blockquote><cite><b>Mirko Falleri</b> · Community Scalers+</cite></div>
+          <div class="qcard"><blockquote>«Non basta essere bravo a fare Google Ads. Bisogna saper creare <em>sistemi</em> che fanno Google Ads per te.»</blockquote><cite><b>Andrea Quaranta</b> · Google Ads specialist</cite></div>
+          <div class="qcard"><blockquote>«Tra le mille informazioni che distraggono online, ci voleva proprio una <em>guida specifica</em>.»</blockquote><cite><b>Victor</b> · Membro Scalers+</cite></div>
+          <div class="qcard"><blockquote>«Io non sono un tecnico. Ma dopo quattro mesi faccio cose che mi dicono: <em>questa è fantascienza</em>.»</blockquote><cite><b>Mattia Pastrello</b> · Founder di agenzia</cite></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec sec-glow pad" aria-labelledby="riepilogo">
+      <div class="wrap">
+        <div class="stack-head">
+          <h2 id="riepilogo">Quindi sei come me: <span class="w">sei sceso dritto</span> fino in <span class="o">fondo</span></h2>
+          <p>Ti capisco. Hai poco tempo e vuoi vedere <span class="u">cosa c’è dentro</span>. Ecco tutto quello che ricevi con il <span class="brand-name">Replay <span class="b">Pass</span></span> a soli <span class="o">€7</span></p>
+        </div>
+        <div class="total">
+          <div class="total-left">
+            <i aria-hidden="true">⚡</i>
+            <div><h3>AI Acceleration <span class="b">Week</span> · Replay Pass</h3><p>Il primo workflow AI in <span class="o">meno di 60 minuti</span></p></div>
+          </div>
+          <div class="total-right">
+            <div><small>Cosa ricevi</small><b>7 replay + 3 strumenti<br>+ roadmap</b></div>
+            <div><em>Tutto a <u>soli</u></em><p class="price">€7</p></div>
+          </div>
+        </div>
+        <div class="stack-grid">
+          <article class="stack-card">
+            <div class="cover" aria-hidden="true" style="--c1:#38bdf8;--c2:#a78bfa"><span class="cv-brand">SCALERS+</span><svg class="cv-art"><use href="#i-play"/></svg><span class="cv-pre">Le 7</span><b class="cv-title">Replay</b><span class="cv-tag">REGISTRAZIONI</span></div>
+            <h3>Le 7 <span class="o">registrazioni</span> integrali</h3>
+            <p>Sette workshop su chiarezza, automazione, acquisizione, vendita, operations, prodotto e offerta. Vedi il sistema completo, non un singolo trucco.</p>
+            <div class="card-meta"><span class="chip-lock"><svg aria-hidden="true"><use href="#i-lock"/></svg>Accesso personale</span><span class="chip-green">7 sessioni</span></div>
+          </article>
+          <article class="stack-card">
+            <div class="cover" aria-hidden="true" style="--c1:#22d3ee;--c2:#4ade80"><span class="cv-brand">SCALERS+</span><svg class="cv-art"><use href="#i-bolt"/></svg><span class="cv-pre">Lo</span><b class="cv-title">Start Here</b><span class="cv-tag">QUICK START</span></div>
+            <h3>Lo Start <span class="o">Here</span> da 60 minuti</h3>
+            <p>Il percorso minimo: parti dal primo task prima di guardare ore di registrazioni. Risultato: la prima vittoria in un’ora.</p>
+            <div class="card-meta"><span class="chip-lock"><svg aria-hidden="true"><use href="#i-lock"/></svg>Accesso personale</span><span class="chip-green">60 minuti</span></div>
+          </article>
+          <article class="stack-card">
+            <div class="cover" aria-hidden="true" style="--c1:#8D4AFC;--c2:#f0abfc;--ink:#fff"><span class="cv-brand">SCALERS+</span><svg class="cv-art"><use href="#i-target"/></svg><span class="cv-pre">La</span><b class="cv-title sm">Mappa dei vincoli</b><span class="cv-tag">WORKBOOK</span></div>
+            <h3>La Mappa dei <span class="o">colli di bottiglia</span></h3>
+            <p>Scegli cosa risolvere valutando impatto, frequenza e delegabilità dei processi. Risultato: una priorità chiara.</p>
+            <div class="card-meta"><span class="chip-lock"><svg aria-hidden="true"><use href="#i-lock"/></svg>Accesso personale</span><span class="chip-green">Workbook</span></div>
+          </article>
+          <article class="stack-card">
+            <div class="cover" aria-hidden="true" style="--c1:#f472b6;--c2:#a78bfa"><span class="cv-brand">SCALERS+</span><svg class="cv-art"><use href="#i-loop"/></svg><span class="cv-pre">Il</span><b class="cv-title">Loop Canvas</b><span class="cv-tag">CANVAS</span></div>
+            <h3>Il Loop Operativo <span class="o">Canvas</span></h3>
+            <p>Disegna il workflow: contesto, piano, esecuzione, verifica e ritorno in una pagina. Risultato: un processo pronto da testare.</p>
+            <div class="card-meta"><span class="chip-lock"><svg aria-hidden="true"><use href="#i-lock"/></svg>Accesso personale</span><span class="chip-green">Canvas</span></div>
+          </article>
+          <article class="stack-card">
+            <div class="cover" aria-hidden="true" style="--c1:#4ade80;--c2:#22d3ee"><span class="cv-brand">SCALERS+</span><svg class="cv-art"><use href="#i-route"/></svg><span class="cv-pre">Il</span><b class="cv-title sm">Percorso 7 giorni</b><span class="cv-tag">ROADMAP</span></div>
+            <h3>Il Percorso <span class="o">7 giorni</span></h3>
+            <p>Consuma senza accumulare: un ordine preciso per guardare, applicare e consolidare. Risultato: avanzamento guidato.</p>
+            <div class="card-meta"><span class="chip-lock"><svg aria-hidden="true"><use href="#i-lock"/></svg>Accesso personale</span><span class="chip-green">Roadmap</span></div>
+          </article>
+          <article class="stack-card">
+            <div class="cover" aria-hidden="true" style="--c1:#c4b5fd;--c2:#8D4AFC"><span class="cv-brand">SCALERS+</span><svg class="cv-art"><use href="#i-key"/></svg><span class="cv-pre">Il tuo</span><b class="cv-title sm">Accesso personale</b><span class="cv-tag">UNA TANTUM</span></div>
+            <h3>Accesso personale, <span class="o">pagamento unico</span></h3>
+            <p>Paghi 7 euro una sola volta. Nessun abbonamento e nessun rinnovo automatico.</p>
+            <div class="card-meta"><span class="chip-lock"><svg aria-hidden="true"><use href="#i-lock"/></svg>Accesso personale</span><span class="chip-green">€7</span></div>
+          </article>
+        </div>
+
+        <div class="center">
+          <p class="inc-pill">Incluso nel tuo acquisto</p>
+          <h2 class="bonus-title">Dentro trovi le <span class="o">7 sessioni integrali</span> della<br><strong>AI Acceleration Week</strong></h2>
+        </div>
+        <div class="session-grid">
+          <article class="session-card"><div class="cover" aria-hidden="true" style="--c1:#38bdf8;--c2:#a78bfa"><span class="cv-brand">SCALERS+</span><svg class="cv-art"><use href="#i-play"/></svg><span class="cv-pre">Sessione 01</span><b class="cv-title sm">Chiarezza</b><span class="cv-tag">REPLAY</span></div><h3>Chiarezza</h3><p>Sessione 01 · Da operativo ad architetto</p></article>
+          <article class="session-card"><div class="cover" aria-hidden="true" style="--c1:#22d3ee;--c2:#4ade80"><span class="cv-brand">SCALERS+</span><svg class="cv-art"><use href="#i-play"/></svg><span class="cv-pre">Sessione 02</span><b class="cv-title sm">Automazione</b><span class="cv-tag">REPLAY</span></div><h3>Automazione</h3><p>Sessione 02 · Cosa automatizzare per primo</p></article>
+          <article class="session-card"><div class="cover" aria-hidden="true" style="--c1:#8D4AFC;--c2:#f0abfc;--ink:#fff"><span class="cv-brand">SCALERS+</span><svg class="cv-art"><use href="#i-play"/></svg><span class="cv-pre">Sessione 03</span><b class="cv-title sm">Acquisizione</b><span class="cv-tag">REPLAY</span></div><h3>Acquisizione</h3><p>Sessione 03 · Clienti senza passaparola</p></article>
+          <article class="session-card"><div class="cover" aria-hidden="true" style="--c1:#f472b6;--c2:#c084fc"><span class="cv-brand">SCALERS+</span><svg class="cv-art"><use href="#i-play"/></svg><span class="cv-pre">Sessione 04</span><b class="cv-title sm">Vendita</b><span class="cv-tag">REPLAY</span></div><h3>Vendita</h3><p>Sessione 04 · Vendere senza vendere</p></article>
+          <article class="session-card"><div class="cover" aria-hidden="true" style="--c1:#4ade80;--c2:#22d3ee"><span class="cv-brand">SCALERS+</span><svg class="cv-art"><use href="#i-play"/></svg><span class="cv-pre">Sessione 05</span><b class="cv-title sm">Operations</b><span class="cv-tag">REPLAY</span></div><h3>Operations</h3><p>Sessione 05 · Una delivery che non dipende da te</p></article>
+          <article class="session-card"><div class="cover" aria-hidden="true" style="--c1:#a78bfa;--c2:#38bdf8"><span class="cv-brand">SCALERS+</span><svg class="cv-art"><use href="#i-play"/></svg><span class="cv-pre">Sessione 06</span><b class="cv-title sm">Prodotto</b><span class="cv-tag">REPLAY</span></div><h3>Prodotto</h3><p>Sessione 06 · Prodotti slegati dal tuo tempo</p></article>
+          <article class="session-card"><div class="cover" aria-hidden="true" style="--c1:#c4b5fd;--c2:#8D4AFC"><span class="cv-brand">SCALERS+</span><svg class="cv-art"><use href="#i-play"/></svg><span class="cv-pre">Sessione 07</span><b class="cv-title sm">Offerta</b><span class="cv-tag">REPLAY</span></div><h3>Offerta</h3><p>Sessione 07 · Offerta e Claude Code</p></article>
+        </div>
+        <a class="to-program up" href="#programma">Leggi cosa c’è in ogni sessione nel programma completo <svg aria-hidden="true"><use href="#i-down"/></svg></a>
+      </div>
+    </section>
+
+    <section class="sec sec-deep pad" aria-labelledby="faq-title">
+      <div class="wrap">
+        <div class="faq-head">
+          <p class="tag-pill">❓ Hai domande?</p>
+          <h2 id="faq-title">Le <span class="o">domande più frequenti</span> sul <span class="brand-name">Replay <span class="b">Pass</span></span></h2>
+        </div>
+        <div class="faq">
+          <details open>
+            <summary>Per chi è il Replay Pass?</summary>
+            <div class="faq-body">
+              <p>Per freelancer, advertiser, copywriter, founder di agenzia e imprenditori che usano già l’AI ma senza un sistema strutturato. È pensato per chi oggi è il punto di passaggio obbligato di ogni attività e vuole iniziare a delegare senza perdere controllo.</p>
+              <p class="faq-quote"><strong>Victor, membro Scalers+, ha detto:</strong>«Tra le mille informazioni che distraggono online, ci voleva proprio una guida specifica.»</p>
+            </div>
+          </details>
+          <details>
+            <summary>Devo saper programmare?</summary>
+            <div class="faq-body"><p>No. Il percorso parte dalla logica del processo. Alcuni esempi mostrano strumenti avanzati, ma il primo Loop Operativo non richiede competenze di programmazione.</p></div>
+          </details>
+          <details>
+            <summary>Devo guardare tutte le registrazioni prima di iniziare?</summary>
+            <div class="faq-body"><p>No. Parti dallo Start Here da 60 minuti e scegli un task reale. Le altre sessioni servono ad approfondire il collo di bottiglia più rilevante per te.</p></div>
+          </details>
+          <details>
+            <summary>È adatto a freelancer e professionisti che lavorano da soli?</summary>
+            <div class="faq-body"><p>Sì. È pensato proprio per chi oggi è il punto di passaggio obbligato di ogni attività e vuole iniziare a delegare senza perdere controllo.</p></div>
+          </details>
+          <details>
+            <summary>Ricevo anche template e materiali?</summary>
+            <div class="faq-body"><p>Sì. Oltre alle sette registrazioni ricevi Start Here, Mappa dei colli di bottiglia, Loop Operativo Canvas e percorso consigliato in sette giorni.</p></div>
+          </details>
+          <details>
+            <summary>Cosa c’è in ogni sessione?</summary>
+            <div class="faq-body"><p>Ogni sessione affronta un pilastro e il collo di bottiglia che lo blocca: chiarezza, automazione, acquisizione, vendita, operations, prodotto e offerta. Trovi il dettaglio sessione per sessione nel <a href="#programma">programma</a>.</p></div>
+          </details>
+          <details>
+            <summary>Quanto durano le registrazioni?</summary>
+            <div class="faq-body"><p>Circa due ore ciascuna: sono le registrazioni integrali delle dirette, con le domande dei partecipanti. Non devi guardarle tutte: parti dallo Start Here da 60 minuti e approfondisci la sessione che riguarda il tuo collo di bottiglia.</p></div>
+          </details>
+          <details>
+            <summary>Il Replay Pass sostituisce il programma completo?</summary>
+            <div class="faq-body"><p>No. Il Replay Pass ti aiuta a scegliere il primo processo e costruire il primo ciclo. Il programma completo aggiunge affiancamento, feedback e implementazione guidata su più processi.</p></div>
+          </details>
+          <details>
+            <summary>Il prezzo è ricorrente?</summary>
+            <div class="faq-body"><p>No. Paghi 7 euro una sola volta. Non ci sono abbonamenti o rinnovi automatici.</p></div>
+          </details>
+          <details>
+            <summary>Perché costa solo 7 euro?</summary>
+            <div class="faq-body">
+              <p>Voglio che tu possa provare il metodo prima di fare un investimento più grande. Una prima vittoria crea più fiducia di cento promesse: se costruisci un workflow utile, capisci il valore del metodo sul tuo lavoro.</p>
+              <p>Il Replay Pass filtra anche chi applica. Preferisco lavorare con persone che arrivano al passo successivo avendo già testato un processo.</p>
+            </div>
+          </details>
+        </div>
+
+        <div class="pricebox final-box">
+          <div class="pricebox-row">
+            <p class="pb-price">€7<small>una tantum</small></p>
+            <p class="pb-copy">Ottieni il <strong>Replay Pass</strong> della <strong>AI Acceleration Week</strong> a soli <span class="o">€7</span></p>
+            <a class="btn-grad" href="#ordine" data-cta><strong>Ottieni il Replay Pass ➜</strong><small>Pagamento unico · Nessun abbonamento</small></a>
+          </div>
+          <div class="pricebox-foot">
+            <span><svg aria-hidden="true"><use href="#i-download"/></svg>Accesso personale</span>
+            <span><svg aria-hidden="true"><use href="#i-bolt"/></svg>Parti dallo Start Here da 60 minuti</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="foot-inner">
+      <p>Questo sito non fa parte del sito web di Facebook né di Meta Platforms, Inc. Inoltre, questo sito NON è approvato da Facebook in alcun modo. FACEBOOK è un marchio registrato di Meta Platforms, Inc.</p>
+      <hr>
+      <p class="foot-brand">AI Acceleration <span class="b">Week</span> · Replay Pass</p>
+      <p>Nota: i contenuti del Replay Pass hanno scopo formativo. Testimonianze e risultati mostrati in questa pagina provengono dai percorsi, dal mentoring e dalla community Scalers+ e non sono una garanzia di guadagno o di risultato individuale. Se hai dubbi, scrivici prima di acquistare.</p>
+      <p>© 2026 Scalers+ · Matteo Milone</p>
+      <nav aria-label="Link legali">
+        <a href="https://joinscalers.com/privacy">Privacy</a>
+        <a href="https://joinscalers.com/terms">Termini</a>
+        <a href="https://joinscalers.com/refund-policy">Rimborsi</a>
+        <a href="mailto:matteo@milonematteo.com">Contatti</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    // Link di pagamento del Replay Pass (es. https://buy.stripe.com/...). Se vuoto, l'ordine apre un'email precompilata.
+    const CHECKOUT_URL = "";
+    const CONTACT_EMAIL = "matteo@milonematteo.com";
+    const PRODUCT_NAME = "AI Acceleration Week Replay Pass";
+    const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    function checkoutHref(lead) {
+      if (CHECKOUT_URL) {
+        try {
+          const url = new URL(CHECKOUT_URL);
+          if (url.hostname === "buy.stripe.com") url.searchParams.set("prefilled_email", lead.email);
+          return url.toString();
+        } catch {
+          // URL non valido: si usa il fallback via email.
+        }
+      }
+      const subject = `${PRODUCT_NAME} a 7 euro`;
+      const body = `Ciao Matteo,\n\nvoglio accedere al Replay Pass della AI Acceleration Week (7 euro, pagamento unico).\n\nNome: ${lead.name}\nEmail: ${lead.email}\n`;
+      return `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    }
+
+    document.querySelectorAll("[data-two-step]").forEach((form) => {
+      const nameInput = form.elements.namedItem("name");
+      const emailInput = form.elements.namedItem("email");
+      const error = form.querySelector("[data-error]");
+      const who = form.querySelector("[data-who]");
+
+      const show = (step) => {
+        form.dataset.current = String(step);
+        form.querySelectorAll("[data-step]").forEach((fieldset) => {
+          fieldset.hidden = Number(fieldset.dataset.step) !== step;
+        });
+        form.querySelectorAll("[data-tab]").forEach((tab) => {
+          tab.classList.toggle("is-active", Number(tab.dataset.tab) <= step);
+        });
+      };
+
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const lead = { name: nameInput.value.trim(), email: emailInput.value.trim() };
+
+        if (form.dataset.current !== "2") {
+          const message = !lead.name
+            ? "Inserisci nome e cognome."
+            : !EMAIL_PATTERN.test(lead.email) ? "Inserisci un indirizzo email valido." : "";
+          error.textContent = message;
+          error.hidden = !message;
+          if (message) {
+            (lead.name ? emailInput : nameInput).focus();
+            return;
+          }
+          who.textContent = `${lead.name} · ${lead.email}`;
+          show(2);
+          form.querySelector('[data-step="2"] [type="submit"]').focus();
+          return;
+        }
+
+        window.location.href = checkoutHref(lead);
+      });
+
+      form.querySelector("[data-back]").addEventListener("click", () => {
+        show(1);
+        nameInput.focus();
+      });
+    });
+
+    document.addEventListener("click", (event) => {
+      if (!(event.target instanceof Element)) return;
+
+      const cta = event.target.closest("[data-cta]");
+      if (cta) {
+        event.preventDefault();
+        const ctaTop = cta.getBoundingClientRect().top;
+        const cards = [...document.querySelectorAll("[data-order]")];
+        const target = cards.reduce((best, card) => (
+          Math.abs(card.getBoundingClientRect().top - ctaTop) < Math.abs(best.getBoundingClientRect().top - ctaTop) ? card : best
+        ));
+        target.scrollIntoView({ behavior: prefersReducedMotion ? "auto" : "smooth", block: "start" });
+        const field = target.querySelector("[data-step]:not([hidden]) input, [data-step]:not([hidden]) [type='submit']");
+        window.setTimeout(() => field?.focus({ preventScroll: true }), prefersReducedMotion ? 0 : 600);
+        return;
+      }
+
+      const trigger = event.target.closest("[data-testimonial-video]");
+      if (!trigger) return;
+      const source = trigger.getAttribute("data-testimonial-video");
+      if (!source || !source.startsWith("https://www.loom.com/embed/")) return;
+
+      const iframe = document.createElement("iframe");
+      iframe.src = `${source}?autoplay=1`;
+      iframe.title = trigger.getAttribute("data-video-title") || "Testimonianza video Scalers+";
+      iframe.allow = "autoplay; fullscreen; picture-in-picture";
+      iframe.allowFullscreen = true;
+      iframe.referrerPolicy = "strict-origin-when-cross-origin";
+      trigger.replaceWith(iframe);
+      iframe.focus();
+    });
+  </script>
+</body>
+</html>
