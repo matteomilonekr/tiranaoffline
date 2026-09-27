@@ -23,8 +23,11 @@
       --text: #cbd5e0;
       --text-soft: #9aa6ba;
       --white: #ffffff;
-      --orange: #fa8943;
-      --orange-dark: #ea6d22;
+      --primary: #8D4AFC;
+      --primary-dark: #7433E6;
+      --primary-light: #A977FD;
+      --primary-tint: #F4EEFF;
+      --primary-line: #DCCBFE;
       --blue: #3b8bf6;
       --cyan: #38bdf8;
       --green: #37ca37;
@@ -49,8 +52,8 @@
     h1, h2, h3, h4, p, ul, ol, figure, blockquote { margin: 0; }
     ul, ol { padding: 0; list-style: none; }
     button, input { font: inherit; }
-    :focus-visible { outline: 3px solid var(--orange); outline-offset: 3px; }
-    ::selection { color: #fff; background: var(--orange); }
+    :focus-visible { outline: 3px solid var(--primary); outline-offset: 3px; }
+    ::selection { color: #fff; background: var(--primary); }
 
     .sr-only {
       position: absolute;
@@ -70,13 +73,14 @@
       z-index: 50;
       padding: 10px 14px;
       color: #fff;
-      background: var(--orange);
+      background: var(--primary);
       border-radius: 8px;
       transform: translateY(-160%);
     }
     .skip-link:focus { transform: none; }
 
-    .o { color: var(--orange); }
+    .o { color: var(--primary-light); }
+    .on-light .o, .paper .o, .order-card .o, .incl .o { color: var(--primary); }
     .b { color: var(--blue); }
     .w { color: #fff; }
     .u { text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
@@ -143,20 +147,20 @@
       border: 2px solid #0a0a0a;
       border-radius: 50%;
       font: 700 12px/1 var(--display);
-      box-shadow: 0 0 0 1px rgba(250, 137, 67, .45);
+      box-shadow: 0 0 0 1px rgba(141, 74, 252, .5);
     }
     .avatars span:first-child { margin-left: 0; }
-    .avatars span:nth-child(1) { background: linear-gradient(135deg, #f97316, #b45309); }
+    .avatars span:nth-child(1) { background: linear-gradient(135deg, #8D4AFC, #4c1d95); }
     .avatars span:nth-child(2) { background: linear-gradient(135deg, #3b82f6, #1e3a8a); }
     .avatars span:nth-child(3) { background: linear-gradient(135deg, #10b981, #065f46); }
-    .avatars span:nth-child(4) { background: linear-gradient(135deg, #a855f7, #581c87); }
+    .avatars span:nth-child(4) { background: linear-gradient(135deg, #06b6d4, #155e75); }
     .avatars span:nth-child(5) { background: linear-gradient(135deg, #ec4899, #9d174d); }
     .trust-copy { display: grid; line-height: 1.05; }
     .trust-copy small { color: #cbd5e0; font: 500 10px/1.2 var(--body); letter-spacing: .06em; text-transform: uppercase; }
-    .trust-copy strong { color: var(--orange); font: 800 22px/1.1 var(--display); }
+    .trust-copy strong { color: var(--primary-light); font: 800 22px/1.1 var(--display); }
     .help { justify-self: end; color: #fff; font-size: 13px; line-height: 1.45; text-align: right; }
     .help a { text-decoration: none; }
-    .help a strong { color: var(--orange); font-weight: 500; }
+    .help a strong { color: var(--primary-light); font-weight: 500; }
     .help small { display: block; color: var(--text-soft); font-size: 12px; }
 
     /* Hero */
@@ -269,7 +273,7 @@
     .cv-tag {
       margin: 6cqw 0 10cqw;
       padding: 2.2cqw 4cqw;
-      color: #03131c;
+      color: var(--ink, #03131c);
       background: var(--c1);
       border-radius: 1.6cqw;
       font: 800 6cqw/1 var(--body);
@@ -337,7 +341,7 @@
     .pb-copy strong { color: #fff; }
     .pricebox-foot { display: flex; justify-content: space-between; gap: 12px; margin-top: 14px; color: var(--text); font-size: 13px; }
     .pricebox-foot span { display: inline-flex; align-items: center; gap: 6px; }
-    .pricebox-foot svg { width: 14px; height: 14px; color: var(--orange); }
+    .pricebox-foot svg { width: 14px; height: 14px; color: var(--primary-light); }
     @container (max-width: 640px) {
       .pricebox-row { grid-template-columns: auto minmax(0, 1fr); }
       .pricebox-row .btn-grad { grid-column: 1 / -1; width: 100%; }
@@ -360,15 +364,15 @@
       color: #fff;
       text-align: center;
       text-decoration: none;
-      background: linear-gradient(100deg, #1e40af 0%, #0ea5e9 46%, #fb923c 100%);
+      background: linear-gradient(100deg, #1e40af 0%, #3b82f6 30%, #8D4AFC 72%, #b48dff 100%);
       border: 2px solid rgba(255, 255, 255, .78);
       border-radius: 10px;
-      box-shadow: 0 0 22px rgba(56, 189, 248, .45), 0 8px 24px rgba(0, 0, 0, .4);
+      box-shadow: 0 0 22px rgba(141, 74, 252, .5), 0 8px 24px rgba(0, 0, 0, .4);
       transition: transform .2s ease, box-shadow .2s ease;
     }
     .btn-grad strong { font: 800 19px/1.2 var(--body); }
     .btn-grad small { color: rgba(255, 255, 255, .92); font: 500 13px/1.2 var(--body); }
-    .btn-grad:hover { transform: translateY(-2px); box-shadow: 0 0 34px rgba(56, 189, 248, .6), 0 12px 28px rgba(0, 0, 0, .45); }
+    .btn-grad:hover { transform: translateY(-2px); box-shadow: 0 0 34px rgba(141, 74, 252, .65), 0 12px 28px rgba(0, 0, 0, .45); }
 
     /* Sales letter */
     .letter { padding-top: 64px; }
@@ -455,7 +459,7 @@
     .vid-play svg { width: 44%; height: 44%; margin-left: 8%; }
     .vid-copy { position: absolute; right: 5cqw; bottom: 4.5cqw; left: 5cqw; display: grid; gap: .8cqw; }
     .vid-copy b { color: #fff; font: 800 max(15px, 6.4cqw)/1.05 var(--display); letter-spacing: -.02em; }
-    .vid-copy b em { color: var(--orange); font-style: normal; }
+    .vid-copy b em { color: var(--primary-light); font-style: normal; }
     .vid-copy span { color: rgba(226, 232, 240, .85); font: 500 max(11px, 3cqw)/1.3 var(--body); }
     .vid-label {
       position: absolute;
@@ -492,7 +496,7 @@
     .oc-kicker { margin-top: 16px; color: #888; font: 600 12px/1.3 var(--display); letter-spacing: .06em; text-align: center; text-transform: uppercase; }
     .order-card .bundle { width: 96%; margin: 6px auto 0; }
     .oc-title { margin-top: 8px; color: var(--navy-text); font: 700 29px/1.2 var(--display); letter-spacing: -.02em; text-align: center; }
-    .oc-title span { color: var(--orange); }
+    .oc-title span { color: var(--primary); }
     .oc-sub { margin-top: 4px; color: #334155; font-size: 18px; text-align: center; }
     .oc-deal {
       display: flex;
@@ -503,12 +507,12 @@
       margin: 14px auto 16px;
       padding: 7px 14px;
       color: var(--navy-text);
-      background: #fff7ed;
-      border: 1px solid #fed7aa;
+      background: var(--primary-tint);
+      border: 1px solid var(--primary-line);
       border-radius: 999px;
       font: 600 14px/1.3 var(--display);
     }
-    .oc-deal svg { width: 15px; height: 15px; color: var(--orange); }
+    .oc-deal svg { width: 15px; height: 15px; color: var(--primary); }
     .oc-why {
       margin: 12px 0 16px;
       padding: 16px;
@@ -527,10 +531,10 @@
     .ts-tab { display: grid; gap: 2px; padding: 4px 6px 8px; color: #94a3b8; }
     .ts-tab strong { font: 700 16px/1.2 var(--display); }
     .ts-tab span { font-size: 12px; }
-    .ts-tab.is-active { color: #1c7fff; }
+    .ts-tab.is-active { color: var(--primary); }
     .ts-tab.is-active span { color: #475569; }
     .ts-bar { height: 4px; margin-bottom: 14px; background: #e2e8f0; border-radius: 2px; }
-    .ts-bar span { display: block; width: 50%; height: 100%; background: #1c7fff; border-radius: 2px; transition: width .3s ease; }
+    .ts-bar span { display: block; width: 50%; height: 100%; background: var(--primary); border-radius: 2px; transition: width .3s ease; }
     .two-step[data-current="2"] .ts-bar span { width: 100%; }
     .ts-step { display: grid; gap: 10px; margin: 0; padding: 0; border: 0; min-width: 0; }
     .ts-step[hidden] { display: none; }
@@ -543,21 +547,21 @@
       border-radius: 6px;
       font-size: 15px;
     }
-    .ts-step input:focus { outline: none; border-color: #1c7fff; box-shadow: 0 0 0 3px rgba(28, 127, 255, .18); }
+    .ts-step input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(141, 74, 252, .2); }
     .ts-error { padding: 8px 10px; color: #b91c1c; background: #fef2f2; border-radius: 6px; font-size: 13px; }
-    .btn-orange {
+    .btn-primary {
       width: 100%;
       padding: 14px 16px;
       color: #fff;
-      background: var(--orange);
+      background: var(--primary);
       border: 0;
       border-radius: 6px;
       font: 700 18px/1.2 var(--display);
       cursor: pointer;
-      box-shadow: 0 6px 16px rgba(250, 137, 67, .35);
+      box-shadow: 0 6px 16px rgba(141, 74, 252, .35);
       transition: background .2s ease, transform .2s ease;
     }
-    .btn-orange:hover { background: var(--orange-dark); transform: translateY(-1px); }
+    .btn-primary:hover { background: var(--primary-dark); transform: translateY(-1px); }
     .ts-summary { padding: 14px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 14px; }
     .ts-line { display: flex; justify-content: space-between; gap: 12px; color: #0f172a; }
     .ts-line strong { font-size: 16px; }
@@ -565,7 +569,7 @@
     .ts-list li { display: flex; gap: 7px; }
     .ts-list svg { flex: none; width: 14px; height: 14px; margin-top: 2px; color: var(--green); }
     .ts-total { display: flex; justify-content: space-between; padding-top: 10px; border-top: 1px dashed #cbd5e1; color: #0f172a; font-weight: 700; }
-    .ts-total strong { color: var(--orange-dark); font-size: 18px; }
+    .ts-total strong { color: var(--primary-dark); font-size: 18px; }
     .ts-who { margin-top: 8px; color: #64748b; font-size: 12.5px; overflow-wrap: anywhere; }
     .ts-back { padding: 2px; color: #475569; background: none; border: 0; font-size: 13px; text-decoration: underline; cursor: pointer; }
     .ts-legal { color: #64748b; font-size: 11.5px; line-height: 1.45; text-align: center; }
@@ -605,10 +609,10 @@
       place-items: center;
       color: #fff;
       text-align: center;
-      background: radial-gradient(circle at 50% 38%, #1d4ed8, #0b1739 72%);
+      background: radial-gradient(circle at 50% 38%, #8D4AFC, #2e1065 72%);
       border: 3px dashed rgba(255, 255, 255, .55);
       border-radius: 50%;
-      box-shadow: 0 0 0 5px #1e3a8a, 0 8px 18px rgba(15, 23, 42, .35);
+      box-shadow: 0 0 0 5px #5b21b6, 0 8px 18px rgba(15, 23, 42, .35);
     }
     .seal b { display: block; font: 800 25px/1 var(--display); }
     .seal small { display: block; margin-top: 3px; font: 700 8.5px/1.2 var(--body); letter-spacing: .1em; }
@@ -634,7 +638,7 @@
     .paper h2:not(:first-child) { margin-top: 56px; }
     .paper p { margin-top: 18px; color: #1e293b; font-size: 18px; line-height: 1.5; }
     .paper strong { color: var(--navy-text); }
-    .paper .lead-o { color: var(--orange); font-weight: 700; }
+    .paper .lead-o { color: var(--primary); font-weight: 700; }
     .paper-card { margin-top: 18px; padding: 32px 28px; background: #f3f3f3; border-radius: 10px; }
     .paper-card:first-of-type { margin-top: 24px; }
     .paper-card h3 { color: var(--navy-text); font: 600 clamp(23px, 2.6vw, 27px)/1.22 var(--display); }
@@ -680,7 +684,7 @@
       letter-spacing: .12em;
       text-transform: uppercase;
     }
-    .tag-pill::after { width: 7px; height: 7px; content: ""; background: var(--orange); border-radius: 50%; }
+    .tag-pill::after { width: 7px; height: 7px; content: ""; background: var(--primary-light); border-radius: 50%; }
     .center { text-align: center; }
     .sec-title { margin-top: 18px; color: #f2f2f7; font: 800 clamp(30px, 3.6vw, 38px)/1.15 var(--display); letter-spacing: -.02em; }
     .sec-title em { color: var(--blue); }
@@ -693,7 +697,7 @@
       left: 5px;
       width: 2px;
       content: "";
-      background: linear-gradient(#3b82f6, #ec4899 33%, #10b981 66%, #f97316);
+      background: linear-gradient(#3b82f6, #ec4899 33%, #10b981 66%, #8D4AFC);
       opacity: .65;
     }
     .tl-step { --c: #3b82f6; position: relative; padding-bottom: 88px; }
@@ -711,7 +715,7 @@
     }
     .tl-step:nth-child(2) { --c: #ec4899; }
     .tl-step:nth-child(3) { --c: #10b981; }
-    .tl-step:nth-child(4) { --c: #f97316; }
+    .tl-step:nth-child(4) { --c: #8D4AFC; }
     .tl-meta { display: flex; align-items: center; gap: 14px; color: var(--text); font-size: 12.5px; }
     .tl-badge {
       padding: 3px 11px;
@@ -782,7 +786,7 @@
     .means-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; align-items: center; }
     .means-row + .means-row { margin-top: 80px; }
     .means-text { display: grid; grid-template-columns: 44px 1fr; gap: 0 18px; }
-    .num-badge { display: grid; width: 44px; height: 44px; place-items: center; color: #fff; background: var(--orange); border-radius: 8px; font: 800 24px/1 var(--body); box-shadow: 0 6px 14px rgba(250, 137, 67, .35); }
+    .num-badge { display: grid; width: 44px; height: 44px; place-items: center; color: #fff; background: var(--primary); border-radius: 8px; font: 800 24px/1 var(--body); box-shadow: 0 6px 14px rgba(141, 74, 252, .35); }
     .means-text h3 { font: 500 clamp(26px, 3vw, 34px)/1.2 var(--body); }
     .means-text > div > p { margin-top: 16px; font-size: 19px; font-weight: 300; line-height: 1.45; }
     .means-text > div > p strong { font-weight: 600; }
@@ -796,8 +800,8 @@
     .x-stack span:nth-child(2) { margin-left: 40px; }
     .x-stack span:nth-child(3) { margin-left: 90px; }
     .x-stack span:nth-child(4) { margin-left: -30px; }
-    .x-stack svg { width: 12px; height: 12px; color: var(--orange); }
-    .down-arrow { display: block; width: 26px; height: 26px; margin: 22px auto 0; color: var(--orange); }
+    .x-stack svg { width: 12px; height: 12px; color: var(--primary); }
+    .down-arrow { display: block; width: 26px; height: 26px; margin: 22px auto 0; color: var(--primary); }
     .tilt { position: relative; }
     .tilt img { border-radius: 16px; box-shadow: 0 30px 60px rgba(11, 35, 77, .25); }
     .tilt .t1 { transform: rotate(-2.5deg); }
@@ -818,13 +822,13 @@
     .x-pills svg { width: 12px; height: 12px; color: var(--red); }
     .photo { margin: 36px 0; overflow: hidden; border: 4px solid #fff; border-radius: 10px; transform: rotate(-1.5deg); box-shadow: 0 24px 50px rgba(0, 0, 0, .45); }
     .choice { display: grid; grid-template-columns: 40px 1fr; gap: 16px; margin-top: 16px; padding: 22px; background: #0f1624; border: 1px solid rgba(255, 255, 255, .07); border-radius: 12px; }
-    .choice-ico { display: grid; width: 40px; height: 40px; place-items: center; background: rgba(250, 137, 67, .12); border-radius: 8px; font-size: 20px; }
+    .choice-ico { display: grid; width: 40px; height: 40px; place-items: center; background: rgba(141, 74, 252, .16); border-radius: 8px; font-size: 20px; }
     .choice h3 { margin: 0 0 6px !important; color: #fff !important; font: 600 20px/1.3 var(--body) !important; letter-spacing: 0 !important; }
     .choice p { margin: 0 !important; color: #9fb2c7 !important; font-size: 17px !important; }
 
     .incl { padding: 22px 18px 8px; color: var(--navy-text); background: #fff; border-radius: 16px; box-shadow: 0 0 42px rgba(59, 130, 246, .45); }
     .incl-head { color: #0c182a; font: 700 12px/1.2 var(--display); letter-spacing: .08em; text-align: center; text-transform: uppercase; }
-    .incl-head em { color: var(--orange); font-style: normal; }
+    .incl-head em { color: var(--primary); font-style: normal; }
     .incl-intro { color: #0c182a; font: 500 21px/1.3 var(--body); }
     .incl-item { display: grid; grid-template-columns: 70px 1fr; gap: 12px; padding: 18px 0; border-bottom: 1px solid #e5e7eb; }
     .incl-item:last-child { border-bottom: 0; }
@@ -889,7 +893,7 @@
       background: linear-gradient(transparent, rgba(148, 163, 184, .6));
     }
     .flow-card:nth-child(2) { --c: #22c55e; }
-    .flow-card:nth-child(3) { --c: #f97316; }
+    .flow-card:nth-child(3) { --c: #8D4AFC; }
     .flow-card i { display: block; font-size: 20px; font-style: normal; }
     .flow-card b { display: block; margin-top: 6px; color: #fff; font: 700 18px/1.3 var(--body); }
     .flow-card p { margin-top: 3px; color: #94a3b8; font-size: 14px; }
@@ -899,10 +903,10 @@
     .flow-sum strong { color: #fff; }
     .obj { max-width: 560px; margin: 72px auto 0; }
     .obj-q { display: flex; gap: 12px; padding: 18px 22px; color: #fff; background: rgba(15, 23, 42, .6); border: 1px solid rgba(96, 165, 250, .35); border-radius: 10px; font: 700 18px/1.35 var(--body); }
-    .obj-q i { display: grid; flex: none; width: 22px; height: 22px; place-items: center; color: #0b1020; background: var(--orange); border-radius: 50%; font: 800 13px/1 var(--body); font-style: normal; }
+    .obj-q i { display: grid; flex: none; width: 22px; height: 22px; place-items: center; color: #fff; background: var(--primary); border-radius: 50%; font: 800 13px/1 var(--body); font-style: normal; }
     .obj-a { display: grid; gap: 18px; padding: 22px 30px 0; color: var(--text); font-size: 16.5px; line-height: 1.55; }
     .obj-a .o { font-weight: 700; }
-    .glowbox { max-width: 560px; margin: 72px auto 0; padding: 24px 28px; color: var(--text); text-align: center; background: rgba(8, 12, 30, .6); border: 2px solid rgba(250, 137, 67, .7); border-radius: 10px; box-shadow: 0 0 32px rgba(250, 137, 67, .35); font-size: 17px; }
+    .glowbox { max-width: 560px; margin: 72px auto 0; padding: 24px 28px; color: var(--text); text-align: center; background: rgba(8, 12, 30, .6); border: 2px solid rgba(141, 74, 252, .75); border-radius: 10px; box-shadow: 0 0 32px rgba(141, 74, 252, .4); font-size: 17px; }
     .glowbox strong { color: #fff; }
 
     /* Wall */
@@ -920,7 +924,7 @@
       container-type: inline-size;
     }
     .qcard blockquote { color: #fff; font: 700 6.6cqw/1.22 var(--display); letter-spacing: -.01em; }
-    .qcard blockquote em { color: var(--orange); font-style: normal; }
+    .qcard blockquote em { color: var(--primary-light); font-style: normal; }
     .qcard cite { display: block; color: #94a3b8; font: 500 4.4cqw/1.3 var(--body); font-style: normal; }
     .qcard cite b { color: #e2e8f0; }
 
@@ -944,10 +948,10 @@
     .total-left i { display: grid; flex: none; width: 44px; height: 44px; place-items: center; background: #1e293b; border-radius: 8px; font-size: 22px; font-style: normal; }
     .total-left h3 { color: #fff; font: 600 23px/1.2 var(--display); }
     .total-left p { margin-top: 4px; color: var(--text); font-size: 16px; }
-    .total-right { display: flex; align-items: center; gap: 28px; padding: 16px 26px; background: linear-gradient(135deg, #3b0a0a, #230707); border: 1px solid rgba(239, 68, 68, .35); border-radius: 10px; }
+    .total-right { display: flex; align-items: center; gap: 28px; padding: 16px 26px; background: linear-gradient(135deg, #2a1152, #150a30); border: 1px solid rgba(141, 74, 252, .45); border-radius: 10px; }
     .total-right small { display: block; color: var(--text); font: 600 11px/1.2 var(--body); letter-spacing: .08em; text-transform: uppercase; }
     .total-right b { display: block; margin-top: 4px; color: #e2e8f0; font: 700 18px/1.25 var(--display); }
-    .total-right .price { color: var(--orange); font: 800 44px/1 var(--display); }
+    .total-right .price { color: var(--primary-light); font: 800 44px/1 var(--display); }
     .total-right em { color: #fff; font-size: 15px; font-style: normal; }
     .total-right em u { font-style: italic; }
     .stack-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 26px; }
@@ -1104,7 +1108,7 @@
               <div class="bundle-stand"></div>
               <div class="cover bc-1" style="--c1:#38bdf8;--c2:#a78bfa"><span class="cv-brand">SCALERS+</span><svg class="cv-art"><use href="#i-play"/></svg><span class="cv-pre">Le 7</span><b class="cv-title">Replay</b><span class="cv-tag">REGISTRAZIONI</span></div>
               <div class="cover bc-2" style="--c1:#22d3ee;--c2:#4ade80"><span class="cv-brand">SCALERS+</span><svg class="cv-art"><use href="#i-bolt"/></svg><span class="cv-pre">Lo</span><b class="cv-title">Start Here</b><span class="cv-tag">QUICK START</span></div>
-              <div class="cover bc-3" style="--c1:#fb923c;--c2:#facc15"><span class="cv-brand">SCALERS+</span><svg class="cv-art"><use href="#i-target"/></svg><span class="cv-pre">La</span><b class="cv-title sm">Mappa dei vincoli</b><span class="cv-tag">WORKBOOK</span></div>
+              <div class="cover bc-3" style="--c1:#8D4AFC;--c2:#f0abfc;--ink:#fff"><span class="cv-brand">SCALERS+</span><svg class="cv-art"><use href="#i-target"/></svg><span class="cv-pre">La</span><b class="cv-title sm">Mappa dei vincoli</b><span class="cv-tag">WORKBOOK</span></div>
               <div class="cover bc-4" style="--c1:#f472b6;--c2:#a78bfa"><span class="cv-brand">SCALERS+</span><svg class="cv-art"><use href="#i-loop"/></svg><span class="cv-pre">Il</span><b class="cv-title">Loop Canvas</b><span class="cv-tag">CANVAS</span></div>
               <div class="cover bc-5" style="--c1:#4ade80;--c2:#22d3ee"><span class="cv-brand">SCALERS+</span><svg class="cv-art"><use href="#i-route"/></svg><span class="cv-pre">Il</span><b class="cv-title sm">Percorso 7 giorni</b><span class="cv-tag">ROADMAP</span></div>
             </figure>
@@ -1234,7 +1238,7 @@
                 <div class="bundle-stand"></div>
                 <div class="cover bc-1" style="--c1:#38bdf8;--c2:#a78bfa"><span class="cv-brand">SCALERS+</span><svg class="cv-art"><use href="#i-play"/></svg><span class="cv-pre">Le 7</span><b class="cv-title">Replay</b><span class="cv-tag">REGISTRAZIONI</span></div>
                 <div class="cover bc-2" style="--c1:#22d3ee;--c2:#4ade80"><span class="cv-brand">SCALERS+</span><svg class="cv-art"><use href="#i-bolt"/></svg><span class="cv-pre">Lo</span><b class="cv-title">Start Here</b><span class="cv-tag">QUICK START</span></div>
-                <div class="cover bc-3" style="--c1:#fb923c;--c2:#facc15"><span class="cv-brand">SCALERS+</span><svg class="cv-art"><use href="#i-target"/></svg><span class="cv-pre">La</span><b class="cv-title sm">Mappa dei vincoli</b><span class="cv-tag">WORKBOOK</span></div>
+                <div class="cover bc-3" style="--c1:#8D4AFC;--c2:#f0abfc;--ink:#fff"><span class="cv-brand">SCALERS+</span><svg class="cv-art"><use href="#i-target"/></svg><span class="cv-pre">La</span><b class="cv-title sm">Mappa dei vincoli</b><span class="cv-tag">WORKBOOK</span></div>
                 <div class="cover bc-4" style="--c1:#f472b6;--c2:#a78bfa"><span class="cv-brand">SCALERS+</span><svg class="cv-art"><use href="#i-loop"/></svg><span class="cv-pre">Il</span><b class="cv-title">Loop Canvas</b><span class="cv-tag">CANVAS</span></div>
               </div>
               <h2 class="oc-title">Accedi ora per <span>€27</span></h2>
@@ -1253,7 +1257,7 @@
                   <label class="sr-only" for="ordine-email">Email</label>
                   <input id="ordine-email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="Indirizzo email" required>
                   <p class="ts-error" data-error role="alert" hidden></p>
-                  <button class="btn-orange" type="submit">Vai allo Step #2</button>
+                  <button class="btn-primary" type="submit">Vai allo Step #2</button>
                 </fieldset>
                 <fieldset class="ts-step" data-step="2" hidden>
                   <legend class="sr-only">Step 2 di 2: riepilogo ordine</legend>
@@ -1269,7 +1273,7 @@
                     <div class="ts-total"><span>Totale, pagamento unico</span><strong>€27</strong></div>
                     <p class="ts-who">Accesso intestato a <strong data-who></strong></p>
                   </div>
-                  <button class="btn-orange" type="submit">Completa l’ordine · €27</button>
+                  <button class="btn-primary" type="submit">Completa l’ordine · €27</button>
                   <button class="ts-back" type="button" data-back>← Modifica i dati</button>
                   <p class="ts-legal">Proseguendo accetti i <a href="https://joinscalers.com/terms">Termini</a> e la <a href="https://joinscalers.com/refund-policy">Policy rimborsi</a>.</p>
                 </fieldset>
@@ -1632,7 +1636,7 @@
               <div class="incl-meta"><span class="chip-lock"><svg aria-hidden="true"><use href="#i-lock"/></svg>Accesso personale</span><span class="chip-green">60 minuti</span></div>
             </div>
             <div class="incl-item">
-              <div class="cover" aria-hidden="true" style="--c1:#fb923c;--c2:#facc15"><span class="cv-brand">SCALERS+</span><svg class="cv-art"><use href="#i-target"/></svg><b class="cv-title sm">Mappa dei vincoli</b><span class="cv-tag">WORKBOOK</span></div>
+              <div class="cover" aria-hidden="true" style="--c1:#8D4AFC;--c2:#f0abfc;--ink:#fff"><span class="cv-brand">SCALERS+</span><svg class="cv-art"><use href="#i-target"/></svg><b class="cv-title sm">Mappa dei vincoli</b><span class="cv-tag">WORKBOOK</span></div>
               <div><h3>La Mappa dei <span class="o">colli di bottiglia</span></h3><p>Valuti impatto, frequenza e delegabilità dei processi. Risultato: una priorità chiara.</p></div>
               <div class="incl-meta"><span class="chip-lock"><svg aria-hidden="true"><use href="#i-lock"/></svg>Accesso personale</span><span class="chip-green">Workbook</span></div>
             </div>
@@ -1737,7 +1741,7 @@
               <div class="bundle-stand"></div>
               <div class="cover bc-1" style="--c1:#38bdf8;--c2:#a78bfa"><span class="cv-brand">SCALERS+</span><svg class="cv-art"><use href="#i-play"/></svg><span class="cv-pre">Le 7</span><b class="cv-title">Replay</b><span class="cv-tag">REGISTRAZIONI</span></div>
               <div class="cover bc-2" style="--c1:#22d3ee;--c2:#4ade80"><span class="cv-brand">SCALERS+</span><svg class="cv-art"><use href="#i-bolt"/></svg><span class="cv-pre">Lo</span><b class="cv-title">Start Here</b><span class="cv-tag">QUICK START</span></div>
-              <div class="cover bc-3" style="--c1:#fb923c;--c2:#facc15"><span class="cv-brand">SCALERS+</span><svg class="cv-art"><use href="#i-target"/></svg><span class="cv-pre">La</span><b class="cv-title sm">Mappa dei vincoli</b><span class="cv-tag">WORKBOOK</span></div>
+              <div class="cover bc-3" style="--c1:#8D4AFC;--c2:#f0abfc;--ink:#fff"><span class="cv-brand">SCALERS+</span><svg class="cv-art"><use href="#i-target"/></svg><span class="cv-pre">La</span><b class="cv-title sm">Mappa dei vincoli</b><span class="cv-tag">WORKBOOK</span></div>
               <div class="cover bc-4" style="--c1:#f472b6;--c2:#a78bfa"><span class="cv-brand">SCALERS+</span><svg class="cv-art"><use href="#i-loop"/></svg><span class="cv-pre">Il</span><b class="cv-title">Loop Canvas</b><span class="cv-tag">CANVAS</span></div>
             </div>
             <h2 class="oc-title">Accedi ora per <span>€27</span></h2>
@@ -1759,7 +1763,7 @@
                 <label class="sr-only" for="ordine-2-email">Email</label>
                 <input id="ordine-2-email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="Indirizzo email" required>
                 <p class="ts-error" data-error role="alert" hidden></p>
-                <button class="btn-orange" type="submit">Vai allo Step #2</button>
+                <button class="btn-primary" type="submit">Vai allo Step #2</button>
               </fieldset>
               <fieldset class="ts-step" data-step="2" hidden>
                 <legend class="sr-only">Step 2 di 2: riepilogo ordine</legend>
@@ -1775,7 +1779,7 @@
                   <div class="ts-total"><span>Totale, pagamento unico</span><strong>€27</strong></div>
                   <p class="ts-who">Accesso intestato a <strong data-who></strong></p>
                 </div>
-                <button class="btn-orange" type="submit">Completa l’ordine · €27</button>
+                <button class="btn-primary" type="submit">Completa l’ordine · €27</button>
                 <button class="ts-back" type="button" data-back>← Modifica i dati</button>
                 <p class="ts-legal">Proseguendo accetti i <a href="https://joinscalers.com/terms">Termini</a> e la <a href="https://joinscalers.com/refund-policy">Policy rimborsi</a>.</p>
               </fieldset>
@@ -1882,7 +1886,7 @@
             <div class="card-meta"><span class="chip-lock"><svg aria-hidden="true"><use href="#i-lock"/></svg>Accesso personale</span><span class="chip-green">60 minuti</span></div>
           </article>
           <article class="stack-card">
-            <div class="cover" aria-hidden="true" style="--c1:#fb923c;--c2:#facc15"><span class="cv-brand">SCALERS+</span><svg class="cv-art"><use href="#i-target"/></svg><span class="cv-pre">La</span><b class="cv-title sm">Mappa dei vincoli</b><span class="cv-tag">WORKBOOK</span></div>
+            <div class="cover" aria-hidden="true" style="--c1:#8D4AFC;--c2:#f0abfc;--ink:#fff"><span class="cv-brand">SCALERS+</span><svg class="cv-art"><use href="#i-target"/></svg><span class="cv-pre">La</span><b class="cv-title sm">Mappa dei vincoli</b><span class="cv-tag">WORKBOOK</span></div>
             <h3>La Mappa dei <span class="o">colli di bottiglia</span></h3>
             <p>Scegli cosa risolvere valutando impatto, frequenza e delegabilità dei processi. Risultato: una priorità chiara.</p>
             <div class="card-meta"><span class="chip-lock"><svg aria-hidden="true"><use href="#i-lock"/></svg>Accesso personale</span><span class="chip-green">Workbook</span></div>
@@ -1900,7 +1904,7 @@
             <div class="card-meta"><span class="chip-lock"><svg aria-hidden="true"><use href="#i-lock"/></svg>Accesso personale</span><span class="chip-green">Roadmap</span></div>
           </article>
           <article class="stack-card">
-            <div class="cover" aria-hidden="true" style="--c1:#facc15;--c2:#fb923c"><span class="cv-brand">SCALERS+</span><svg class="cv-art"><use href="#i-key"/></svg><span class="cv-pre">Il tuo</span><b class="cv-title sm">Accesso personale</b><span class="cv-tag">UNA TANTUM</span></div>
+            <div class="cover" aria-hidden="true" style="--c1:#c4b5fd;--c2:#8D4AFC"><span class="cv-brand">SCALERS+</span><svg class="cv-art"><use href="#i-key"/></svg><span class="cv-pre">Il tuo</span><b class="cv-title sm">Accesso personale</b><span class="cv-tag">UNA TANTUM</span></div>
             <h3>Accesso personale, <span class="o">pagamento unico</span></h3>
             <p>Paghi 27 euro una sola volta. Nessun abbonamento e nessun rinnovo automatico.</p>
             <div class="card-meta"><span class="chip-lock"><svg aria-hidden="true"><use href="#i-lock"/></svg>Accesso personale</span><span class="chip-green">€27</span></div>
@@ -1914,11 +1918,11 @@
         <div class="session-grid">
           <article class="session-card"><div class="cover" aria-hidden="true" style="--c1:#38bdf8;--c2:#a78bfa"><span class="cv-brand">SCALERS+</span><svg class="cv-art"><use href="#i-play"/></svg><span class="cv-pre">Sessione 01</span><b class="cv-title sm">Chiarezza</b><span class="cv-tag">REPLAY</span></div><h3>Chiarezza</h3><p>Workshop registrato · Sessione 01</p></article>
           <article class="session-card"><div class="cover" aria-hidden="true" style="--c1:#22d3ee;--c2:#4ade80"><span class="cv-brand">SCALERS+</span><svg class="cv-art"><use href="#i-play"/></svg><span class="cv-pre">Sessione 02</span><b class="cv-title sm">Automazione</b><span class="cv-tag">REPLAY</span></div><h3>Automazione</h3><p>Workshop registrato · Sessione 02</p></article>
-          <article class="session-card"><div class="cover" aria-hidden="true" style="--c1:#fb923c;--c2:#facc15"><span class="cv-brand">SCALERS+</span><svg class="cv-art"><use href="#i-play"/></svg><span class="cv-pre">Sessione 03</span><b class="cv-title sm">Acquisizione</b><span class="cv-tag">REPLAY</span></div><h3>Acquisizione</h3><p>Workshop registrato · Sessione 03</p></article>
-          <article class="session-card"><div class="cover" aria-hidden="true" style="--c1:#f472b6;--c2:#fb923c"><span class="cv-brand">SCALERS+</span><svg class="cv-art"><use href="#i-play"/></svg><span class="cv-pre">Sessione 04</span><b class="cv-title sm">Vendita</b><span class="cv-tag">REPLAY</span></div><h3>Vendita</h3><p>Workshop registrato · Sessione 04</p></article>
+          <article class="session-card"><div class="cover" aria-hidden="true" style="--c1:#8D4AFC;--c2:#f0abfc;--ink:#fff"><span class="cv-brand">SCALERS+</span><svg class="cv-art"><use href="#i-play"/></svg><span class="cv-pre">Sessione 03</span><b class="cv-title sm">Acquisizione</b><span class="cv-tag">REPLAY</span></div><h3>Acquisizione</h3><p>Workshop registrato · Sessione 03</p></article>
+          <article class="session-card"><div class="cover" aria-hidden="true" style="--c1:#f472b6;--c2:#c084fc"><span class="cv-brand">SCALERS+</span><svg class="cv-art"><use href="#i-play"/></svg><span class="cv-pre">Sessione 04</span><b class="cv-title sm">Vendita</b><span class="cv-tag">REPLAY</span></div><h3>Vendita</h3><p>Workshop registrato · Sessione 04</p></article>
           <article class="session-card"><div class="cover" aria-hidden="true" style="--c1:#4ade80;--c2:#22d3ee"><span class="cv-brand">SCALERS+</span><svg class="cv-art"><use href="#i-play"/></svg><span class="cv-pre">Sessione 05</span><b class="cv-title sm">Operations</b><span class="cv-tag">REPLAY</span></div><h3>Operations</h3><p>Workshop registrato · Sessione 05</p></article>
           <article class="session-card"><div class="cover" aria-hidden="true" style="--c1:#a78bfa;--c2:#38bdf8"><span class="cv-brand">SCALERS+</span><svg class="cv-art"><use href="#i-play"/></svg><span class="cv-pre">Sessione 06</span><b class="cv-title sm">Prodotto</b><span class="cv-tag">REPLAY</span></div><h3>Prodotto</h3><p>Workshop registrato · Sessione 06</p></article>
-          <article class="session-card"><div class="cover" aria-hidden="true" style="--c1:#facc15;--c2:#fb923c"><span class="cv-brand">SCALERS+</span><svg class="cv-art"><use href="#i-play"/></svg><span class="cv-pre">Sessione 07</span><b class="cv-title sm">Offerta</b><span class="cv-tag">REPLAY</span></div><h3>Offerta</h3><p>Workshop registrato · Sessione 07</p></article>
+          <article class="session-card"><div class="cover" aria-hidden="true" style="--c1:#c4b5fd;--c2:#8D4AFC"><span class="cv-brand">SCALERS+</span><svg class="cv-art"><use href="#i-play"/></svg><span class="cv-pre">Sessione 07</span><b class="cv-title sm">Offerta</b><span class="cv-tag">REPLAY</span></div><h3>Offerta</h3><p>Workshop registrato · Sessione 07</p></article>
         </div>
       </div>
     </section>
