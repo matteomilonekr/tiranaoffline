@@ -40,9 +40,22 @@
     { "source": "/tirana/refund-policy/", "destination": "/tirana/refund-policy/index.html" },
     { "source": "/admin", "destination": "/tirana/admin/index.html" },
     { "source": "/admin/", "destination": "/tirana/admin/index.html" },
-    { "source": "/((?!api|aaw26|tirana|registrazione|offerta|checkout|thank-you|ticket|privacy|refund-policy|admin).*)", "destination": "/index.html" }
+    { "source": "/start", "destination": "/start/index.html" },
+    { "source": "/start/", "destination": "/start/index.html" },
+    { "source": "/((?!api|aaw26|tirana|registrazione|offerta|checkout|thank-you|ticket|privacy|refund-policy|admin|start).*)", "destination": "/index.html" }
   ],
   "headers": [
+    {
+      "source": "/start(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" },
+        { "key": "Content-Security-Policy", "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://connect.facebook.net; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://www.facebook.com; img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com https://www.facebook.com; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com data:; frame-src https://www.loom.com; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options", "value": "DENY" },
+        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" }
+      ]
+    },
     {
       "source": "/offerta(.*)",
       "headers": [
