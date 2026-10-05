@@ -1,0 +1,1150 @@
+{
+ "source": "audio/voiceover.mp3",
+ "duration": 97.68,
+ "lines": [
+  {
+   "text": "E se ti dicessi che puoi creare motion graphics come questa senza nemmeno aprire After Effects?",
+   "start": 0.36,
+   "end": 7.38,
+   "words": [
+    {
+     "w": "E",
+     "start": 0.36,
+     "end": 0.46,
+     "conf": 0.999
+    },
+    {
+     "w": "se",
+     "start": 0.46,
+     "end": 0.62,
+     "conf": 0.982
+    },
+    {
+     "w": "ti",
+     "start": 0.62,
+     "end": 0.76,
+     "conf": 0.895
+    },
+    {
+     "w": "dicessi",
+     "start": 0.76,
+     "end": 1.55,
+     "conf": 0.985
+    },
+    {
+     "w": "che",
+     "start": 1.69,
+     "end": 1.82,
+     "conf": 0.871
+    },
+    {
+     "w": "puoi",
+     "start": 1.84,
+     "end": 2.04,
+     "conf": 0.993
+    },
+    {
+     "w": "creare",
+     "start": 2.05,
+     "end": 2.52,
+     "conf": 0.988
+    },
+    {
+     "w": "motion",
+     "start": 2.52,
+     "end": 2.9,
+     "conf": 0.053
+    },
+    {
+     "w": "graphics",
+     "start": 2.9,
+     "end": 3.48,
+     "conf": 0.791
+    },
+    {
+     "w": "come",
+     "start": 3.5,
+     "end": 3.66,
+     "conf": 0.993
+    },
+    {
+     "w": "questa",
+     "start": 3.66,
+     "end": 4.28,
+     "conf": 0.962
+    },
+    {
+     "w": "senza",
+     "start": 4.48,
+     "end": 4.9,
+     "conf": 0.969
+    },
+    {
+     "w": "nemmeno",
+     "start": 4.9,
+     "end": 5.45,
+     "conf": 1.0
+    },
+    {
+     "w": "aprire",
+     "start": 5.47,
+     "end": 6.16,
+     "conf": 1.0
+    },
+    {
+     "w": "After",
+     "start": 6.43,
+     "end": 6.82,
+     "conf": 0.974
+    },
+    {
+     "w": "Effects?",
+     "start": 6.82,
+     "end": 7.38,
+     "conf": 0.999
+    }
+   ]
+  },
+  {
+   "text": "E no, non è un MCP per After Effects.",
+   "start": 7.98,
+   "end": 11.89,
+   "words": [
+    {
+     "w": "E",
+     "start": 7.98,
+     "end": 8.06,
+     "conf": 0.999
+    },
+    {
+     "w": "no,",
+     "start": 8.06,
+     "end": 8.41,
+     "conf": 1.0
+    },
+    {
+     "w": "non",
+     "start": 8.8,
+     "end": 9.02,
+     "conf": 0.991
+    },
+    {
+     "w": "è",
+     "start": 9.02,
+     "end": 9.18,
+     "conf": 0.999
+    },
+    {
+     "w": "un",
+     "start": 9.18,
+     "end": 9.3,
+     "conf": 0.996
+    },
+    {
+     "w": "MCP",
+     "start": 9.3,
+     "end": 10.15,
+     "conf": 0.54
+    },
+    {
+     "w": "per",
+     "start": 10.57,
+     "end": 10.74,
+     "conf": 0.999
+    },
+    {
+     "w": "After",
+     "start": 10.82,
+     "end": 11.27,
+     "conf": 0.984
+    },
+    {
+     "w": "Effects.",
+     "start": 11.28,
+     "end": 11.89,
+     "conf": 0.977
+    }
+   ]
+  },
+  {
+   "text": "Questo è Claude Code.",
+   "start": 12.69,
+   "end": 14.42,
+   "words": [
+    {
+     "w": "Questo",
+     "start": 12.69,
+     "end": 13.23,
+     "conf": 0.995
+    },
+    {
+     "w": "è",
+     "start": 13.44,
+     "end": 13.56,
+     "conf": 1.0
+    },
+    {
+     "w": "Claude",
+     "start": 13.67,
+     "end": 14.09,
+     "conf": 0.999
+    },
+    {
+     "w": "Code.",
+     "start": 14.14,
+     "end": 14.42,
+     "conf": 0.416
+    }
+   ]
+  },
+  {
+   "text": "Invece di controllare After Effects, gli descrivi semplicemente quello che vuoi.",
+   "start": 15.0,
+   "end": 20.0,
+   "words": [
+    {
+     "w": "Invece",
+     "start": 15.0,
+     "end": 15.44,
+     "conf": 0.997
+    },
+    {
+     "w": "di",
+     "start": 15.44,
+     "end": 15.63,
+     "conf": 0.994
+    },
+    {
+     "w": "controllare",
+     "start": 15.64,
+     "end": 16.36,
+     "conf": 0.985
+    },
+    {
+     "w": "After",
+     "start": 16.48,
+     "end": 16.87,
+     "conf": 0.945
+    },
+    {
+     "w": "Effects,",
+     "start": 16.93,
+     "end": 17.45,
+     "conf": 0.999
+    },
+    {
+     "w": "gli",
+     "start": 17.85,
+     "end": 17.94,
+     "conf": 0.942
+    },
+    {
+     "w": "descrivi",
+     "start": 17.94,
+     "end": 18.46,
+     "conf": 0.997
+    },
+    {
+     "w": "semplicemente",
+     "start": 18.46,
+     "end": 19.2,
+     "conf": 0.986
+    },
+    {
+     "w": "quello",
+     "start": 19.2,
+     "end": 19.48,
+     "conf": 0.99
+    },
+    {
+     "w": "che",
+     "start": 19.48,
+     "end": 19.62,
+     "conf": 0.907
+    },
+    {
+     "w": "vuoi.",
+     "start": 19.62,
+     "end": 20.0,
+     "conf": 1.0
+    }
+   ]
+  },
+  {
+   "text": "Per esempio:",
+   "start": 20.79,
+   "end": 21.37,
+   "words": [
+    {
+     "w": "Per",
+     "start": 20.79,
+     "end": 20.9,
+     "conf": 0.925
+    },
+    {
+     "w": "esempio:",
+     "start": 20.9,
+     "end": 21.37,
+     "conf": 0.997
+    }
+   ]
+  },
+  {
+   "text": "“Crea una sequenza cinematografica di quindici secondi, con tipografia cinetica, transizioni fluide tra le forme, elementi 3D e movimenti di camera continui.”",
+   "start": 21.85,
+   "end": 32.32,
+   "words": [
+    {
+     "w": "“Crea",
+     "start": 21.85,
+     "end": 22.22,
+     "conf": 1.0
+    },
+    {
+     "w": "una",
+     "start": 22.22,
+     "end": 22.4,
+     "conf": 0.93
+    },
+    {
+     "w": "sequenza",
+     "start": 22.4,
+     "end": 22.9,
+     "conf": 0.989
+    },
+    {
+     "w": "cinematografica",
+     "start": 22.9,
+     "end": 23.82,
+     "conf": 0.984
+    },
+    {
+     "w": "di",
+     "start": 23.82,
+     "end": 23.99,
+     "conf": 0.977
+    },
+    {
+     "w": "quindici",
+     "start": 24.05,
+     "end": 24.5,
+     "conf": 0.986
+    },
+    {
+     "w": "secondi,",
+     "start": 24.5,
+     "end": 25.04,
+     "conf": 0.994
+    },
+    {
+     "w": "con",
+     "start": 25.36,
+     "end": 25.54,
+     "conf": 1.0
+    },
+    {
+     "w": "tipografia",
+     "start": 25.54,
+     "end": 26.22,
+     "conf": 0.99
+    },
+    {
+     "w": "cinetica,",
+     "start": 26.22,
+     "end": 27.04,
+     "conf": 0.982
+    },
+    {
+     "w": "transizioni",
+     "start": 27.08,
+     "end": 27.86,
+     "conf": 0.975
+    },
+    {
+     "w": "fluide",
+     "start": 27.86,
+     "end": 28.37,
+     "conf": 0.955
+    },
+    {
+     "w": "tra",
+     "start": 28.39,
+     "end": 28.54,
+     "conf": 0.999
+    },
+    {
+     "w": "le",
+     "start": 28.54,
+     "end": 28.66,
+     "conf": 0.987
+    },
+    {
+     "w": "forme,",
+     "start": 28.66,
+     "end": 29.17,
+     "conf": 0.997
+    },
+    {
+     "w": "elementi",
+     "start": 29.43,
+     "end": 29.94,
+     "conf": 0.996
+    },
+    {
+     "w": "3D",
+     "start": 29.94,
+     "end": 30.54,
+     "conf": 0.645
+    },
+    {
+     "w": "e",
+     "start": 30.54,
+     "end": 30.64,
+     "conf": 1.0
+    },
+    {
+     "w": "movimenti",
+     "start": 30.64,
+     "end": 31.22,
+     "conf": 0.963
+    },
+    {
+     "w": "di",
+     "start": 31.22,
+     "end": 31.38,
+     "conf": 1.0
+    },
+    {
+     "w": "camera",
+     "start": 31.4,
+     "end": 31.77,
+     "conf": 0.966
+    },
+    {
+     "w": "continui.”",
+     "start": 31.78,
+     "end": 32.32,
+     "conf": 0.969
+    }
+   ]
+  },
+  {
+   "text": "Ed è qui che diventa folle:",
+   "start": 33.25,
+   "end": 34.78,
+   "words": [
+    {
+     "w": "Ed",
+     "start": 33.25,
+     "end": 33.38,
+     "conf": 0.992
+    },
+    {
+     "w": "è",
+     "start": 33.38,
+     "end": 33.55,
+     "conf": 1.0
+    },
+    {
+     "w": "qui",
+     "start": 33.58,
+     "end": 33.77,
+     "conf": 0.875
+    },
+    {
+     "w": "che",
+     "start": 33.8,
+     "end": 33.88,
+     "conf": 0.931
+    },
+    {
+     "w": "diventa",
+     "start": 33.88,
+     "end": 34.3,
+     "conf": 0.966
+    },
+    {
+     "w": "folle:",
+     "start": 34.3,
+     "end": 34.78,
+     "conf": 1.0
+    }
+   ]
+  },
+  {
+   "text": "non genera direttamente un MP4.",
+   "start": 35.47,
+   "end": 38.37,
+   "words": [
+    {
+     "w": "non",
+     "start": 35.47,
+     "end": 35.7,
+     "conf": 1.0
+    },
+    {
+     "w": "genera",
+     "start": 35.7,
+     "end": 36.16,
+     "conf": 0.953
+    },
+    {
+     "w": "direttamente",
+     "start": 36.16,
+     "end": 37.03,
+     "conf": 0.986
+    },
+    {
+     "w": "un",
+     "start": 37.15,
+     "end": 37.28,
+     "conf": 1.0
+    },
+    {
+     "w": "MP4.",
+     "start": 37.28,
+     "end": 38.37,
+     "conf": 0.574
+    }
+   ]
+  },
+  {
+   "text": "Scrive l’animazione stessa, come codice.",
+   "start": 39.16,
+   "end": 42.62,
+   "words": [
+    {
+     "w": "Scrive",
+     "start": 39.16,
+     "end": 39.79,
+     "conf": 0.977
+    },
+    {
+     "w": "l’animazione",
+     "start": 39.8,
+     "end": 40.64,
+     "conf": 0.963
+    },
+    {
+     "w": "stessa,",
+     "start": 40.64,
+     "end": 41.24,
+     "conf": 1.0
+    },
+    {
+     "w": "come",
+     "start": 41.66,
+     "end": 42.04,
+     "conf": 0.997
+    },
+    {
+     "w": "codice.",
+     "start": 42.1,
+     "end": 42.62,
+     "conf": 0.997
+    }
+   ]
+  },
+  {
+   "text": "Ogni forma, ogni parola, ogni movimento di camera è definito matematicamente nel tempo.",
+   "start": 43.09,
+   "end": 49.89,
+   "words": [
+    {
+     "w": "Ogni",
+     "start": 43.09,
+     "end": 43.38,
+     "conf": 0.998
+    },
+    {
+     "w": "forma,",
+     "start": 43.38,
+     "end": 43.94,
+     "conf": 0.989
+    },
+    {
+     "w": "ogni",
+     "start": 44.26,
+     "end": 44.5,
+     "conf": 0.995
+    },
+    {
+     "w": "parola,",
+     "start": 44.5,
+     "end": 45.07,
+     "conf": 0.98
+    },
+    {
+     "w": "ogni",
+     "start": 45.37,
+     "end": 45.62,
+     "conf": 0.995
+    },
+    {
+     "w": "movimento",
+     "start": 45.62,
+     "end": 46.22,
+     "conf": 0.983
+    },
+    {
+     "w": "di",
+     "start": 46.22,
+     "end": 46.4,
+     "conf": 1.0
+    },
+    {
+     "w": "camera",
+     "start": 46.42,
+     "end": 46.98,
+     "conf": 0.97
+    },
+    {
+     "w": "è",
+     "start": 47.23,
+     "end": 47.36,
+     "conf": 0.874
+    },
+    {
+     "w": "definito",
+     "start": 47.36,
+     "end": 48.04,
+     "conf": 0.999
+    },
+    {
+     "w": "matematicamente",
+     "start": 48.04,
+     "end": 49.12,
+     "conf": 0.991
+    },
+    {
+     "w": "nel",
+     "start": 49.12,
+     "end": 49.37,
+     "conf": 1.0
+    },
+    {
+     "w": "tempo.",
+     "start": 49.45,
+     "end": 49.89,
+     "conf": 0.989
+    }
+   ]
+  },
+  {
+   "text": "Poi viene renderizzata fotogramma per fotogramma, e trasformata in un video.",
+   "start": 50.68,
+   "end": 56.48,
+   "words": [
+    {
+     "w": "Poi",
+     "start": 50.68,
+     "end": 50.88,
+     "conf": 1.0
+    },
+    {
+     "w": "viene",
+     "start": 50.88,
+     "end": 51.14,
+     "conf": 0.989
+    },
+    {
+     "w": "renderizzata",
+     "start": 51.14,
+     "end": 51.92,
+     "conf": 0.957
+    },
+    {
+     "w": "fotogramma",
+     "start": 51.92,
+     "end": 52.7,
+     "conf": 0.989
+    },
+    {
+     "w": "per",
+     "start": 52.71,
+     "end": 52.99,
+     "conf": 0.979
+    },
+    {
+     "w": "fotogramma,",
+     "start": 53.25,
+     "end": 54.01,
+     "conf": 0.996
+    },
+    {
+     "w": "e",
+     "start": 54.35,
+     "end": 54.42,
+     "conf": 0.023
+    },
+    {
+     "w": "trasformata",
+     "start": 54.42,
+     "end": 55.51,
+     "conf": 0.997
+    },
+    {
+     "w": "in",
+     "start": 55.69,
+     "end": 55.84,
+     "conf": 1.0
+    },
+    {
+     "w": "un",
+     "start": 55.84,
+     "end": 55.98,
+     "conf": 0.997
+    },
+    {
+     "w": "video.",
+     "start": 55.98,
+     "end": 56.48,
+     "conf": 1.0
+    }
+   ]
+  },
+  {
+   "text": "Il vecchio flusso: After Effects, livelli, keyframe, curve.",
+   "start": 57.27,
+   "end": 62.34,
+   "words": [
+    {
+     "w": "Il",
+     "start": 57.27,
+     "end": 57.38,
+     "conf": 0.967
+    },
+    {
+     "w": "vecchio",
+     "start": 57.38,
+     "end": 57.82,
+     "conf": 0.957
+    },
+    {
+     "w": "flusso:",
+     "start": 57.82,
+     "end": 58.4,
+     "conf": 1.0
+    },
+    {
+     "w": "After",
+     "start": 58.76,
+     "end": 59.08,
+     "conf": 0.995
+    },
+    {
+     "w": "Effects,",
+     "start": 59.08,
+     "end": 59.68,
+     "conf": 0.977
+    },
+    {
+     "w": "livelli,",
+     "start": 59.99,
+     "end": 60.58,
+     "conf": 1.0
+    },
+    {
+     "w": "keyframe,",
+     "start": 60.94,
+     "end": 61.58,
+     "conf": 0.404
+    },
+    {
+     "w": "curve.",
+     "start": 61.85,
+     "end": 62.34,
+     "conf": 1.0
+    }
+   ]
+  },
+  {
+   "text": "Il nuovo: prompt, codice, render, video.",
+   "start": 62.93,
+   "end": 66.83,
+   "words": [
+    {
+     "w": "Il",
+     "start": 62.93,
+     "end": 63.06,
+     "conf": 1.0
+    },
+    {
+     "w": "nuovo:",
+     "start": 63.06,
+     "end": 63.58,
+     "conf": 1.0
+    },
+    {
+     "w": "prompt,",
+     "start": 63.94,
+     "end": 64.38,
+     "conf": 0.967
+    },
+    {
+     "w": "codice,",
+     "start": 64.65,
+     "end": 65.24,
+     "conf": 0.998
+    },
+    {
+     "w": "render,",
+     "start": 65.51,
+     "end": 66.04,
+     "conf": 0.938
+    },
+    {
+     "w": "video.",
+     "start": 66.32,
+     "end": 66.83,
+     "conf": 0.997
+    }
+   ]
+  },
+  {
+   "text": "E siccome è tutto procedurale, ogni modifica è una frase.",
+   "start": 67.6,
+   "end": 72.45,
+   "words": [
+    {
+     "w": "E",
+     "start": 67.6,
+     "end": 67.7,
+     "conf": 0.997
+    },
+    {
+     "w": "siccome",
+     "start": 67.7,
+     "end": 68.35,
+     "conf": 0.965
+    },
+    {
+     "w": "è",
+     "start": 68.69,
+     "end": 68.79,
+     "conf": 0.992
+    },
+    {
+     "w": "tutto",
+     "start": 68.89,
+     "end": 69.26,
+     "conf": 0.966
+    },
+    {
+     "w": "procedurale,",
+     "start": 69.29,
+     "end": 70.1,
+     "conf": 0.996
+    },
+    {
+     "w": "ogni",
+     "start": 70.44,
+     "end": 70.66,
+     "conf": 0.995
+    },
+    {
+     "w": "modifica",
+     "start": 70.66,
+     "end": 71.37,
+     "conf": 0.995
+    },
+    {
+     "w": "è",
+     "start": 71.7,
+     "end": 71.78,
+     "conf": 0.998
+    },
+    {
+     "w": "una",
+     "start": 71.78,
+     "end": 71.94,
+     "conf": 1.0
+    },
+    {
+     "w": "frase.",
+     "start": 71.94,
+     "end": 72.45,
+     "conf": 0.981
+    }
+   ]
+  },
+  {
+   "text": "Rallenta la transizione.",
+   "start": 73.1,
+   "end": 74.86,
+   "words": [
+    {
+     "w": "Rallenta",
+     "start": 73.1,
+     "end": 73.9,
+     "conf": 1.0
+    },
+    {
+     "w": "la",
+     "start": 73.9,
+     "end": 74.05,
+     "conf": 0.999
+    },
+    {
+     "w": "transizione.",
+     "start": 74.09,
+     "end": 74.86,
+     "conf": 0.99
+    }
+   ]
+  },
+  {
+   "text": "Cambia il colore.",
+   "start": 75.57,
+   "end": 76.83,
+   "words": [
+    {
+     "w": "Cambia",
+     "start": 75.57,
+     "end": 76.05,
+     "conf": 0.97
+    },
+    {
+     "w": "il",
+     "start": 76.16,
+     "end": 76.33,
+     "conf": 1.0
+    },
+    {
+     "w": "colore.",
+     "start": 76.38,
+     "end": 76.83,
+     "conf": 0.997
+    }
+   ]
+  },
+  {
+   "text": "Aggiungi una scena.",
+   "start": 77.53,
+   "end": 78.64,
+   "words": [
+    {
+     "w": "Aggiungi",
+     "start": 77.53,
+     "end": 78.04,
+     "conf": 0.996
+    },
+    {
+     "w": "una",
+     "start": 78.04,
+     "end": 78.2,
+     "conf": 0.912
+    },
+    {
+     "w": "scena.",
+     "start": 78.2,
+     "end": 78.64,
+     "conf": 1.0
+    }
+   ]
+  },
+  {
+   "text": "Renderizza di nuovo.",
+   "start": 79.36,
+   "end": 80.55,
+   "words": [
+    {
+     "w": "Renderizza",
+     "start": 79.36,
+     "end": 79.94,
+     "conf": 0.999
+    },
+    {
+     "w": "di",
+     "start": 79.94,
+     "end": 80.06,
+     "conf": 0.999
+    },
+    {
+     "w": "nuovo.",
+     "start": 80.06,
+     "end": 80.55,
+     "conf": 0.988
+    }
+   ]
+  },
+  {
+   "text": "Quattro comandi, invece di centinaia di keyframe da spostare a mano.",
+   "start": 81.31,
+   "end": 86.17,
+   "words": [
+    {
+     "w": "Quattro",
+     "start": 81.31,
+     "end": 81.68,
+     "conf": 0.99
+    },
+    {
+     "w": "comandi,",
+     "start": 81.68,
+     "end": 82.28,
+     "conf": 0.996
+    },
+    {
+     "w": "invece",
+     "start": 82.62,
+     "end": 82.96,
+     "conf": 0.984
+    },
+    {
+     "w": "di",
+     "start": 82.96,
+     "end": 83.06,
+     "conf": 0.995
+    },
+    {
+     "w": "centinaia",
+     "start": 83.06,
+     "end": 83.7,
+     "conf": 0.95
+    },
+    {
+     "w": "di",
+     "start": 83.7,
+     "end": 83.9,
+     "conf": 0.985
+    },
+    {
+     "w": "keyframe",
+     "start": 83.95,
+     "end": 84.57,
+     "conf": 0.154
+    },
+    {
+     "w": "da",
+     "start": 84.81,
+     "end": 84.98,
+     "conf": 0.892
+    },
+    {
+     "w": "spostare",
+     "start": 84.98,
+     "end": 85.68,
+     "conf": 1.0
+    },
+    {
+     "w": "a",
+     "start": 85.68,
+     "end": 85.76,
+     "conf": 1.0
+    },
+    {
+     "w": "mano.",
+     "start": 85.76,
+     "end": 86.17,
+     "conf": 0.999
+    }
+   ]
+  },
+  {
+   "text": "Quindi: sostituisce After Effects?",
+   "start": 86.97,
+   "end": 90.36,
+   "words": [
+    {
+     "w": "Quindi:",
+     "start": 86.97,
+     "end": 87.36,
+     "conf": 0.991
+    },
+    {
+     "w": "sostituisce",
+     "start": 87.97,
+     "end": 89.12,
+     "conf": 0.982
+    },
+    {
+     "w": "After",
+     "start": 89.29,
+     "end": 89.71,
+     "conf": 0.978
+    },
+    {
+     "w": "Effects?",
+     "start": 89.75,
+     "end": 90.36,
+     "conf": 0.99
+    }
+   ]
+  },
+  {
+   "text": "Non proprio.",
+   "start": 90.7,
+   "end": 91.47,
+   "words": [
+    {
+     "w": "Non",
+     "start": 90.7,
+     "end": 90.94,
+     "conf": 0.987
+    },
+    {
+     "w": "proprio.",
+     "start": 90.94,
+     "end": 91.47,
+     "conf": 0.991
+    }
+   ]
+  },
+  {
+   "text": "Ma farlo partendo da un prompt… è pazzesco.",
+   "start": 92.05,
+   "end": 95.04,
+   "words": [
+    {
+     "w": "Ma",
+     "start": 92.05,
+     "end": 92.18,
+     "conf": 0.997
+    },
+    {
+     "w": "farlo",
+     "start": 92.18,
+     "end": 92.48,
+     "conf": 1.0
+    },
+    {
+     "w": "partendo",
+     "start": 92.48,
+     "end": 93.02,
+     "conf": 0.999
+    },
+    {
+     "w": "da",
+     "start": 93.02,
+     "end": 93.16,
+     "conf": 0.999
+    },
+    {
+     "w": "un",
+     "start": 93.16,
+     "end": 93.28,
+     "conf": 1.0
+    },
+    {
+     "w": "prompt…",
+     "start": 93.28,
+     "end": 93.7,
+     "conf": 0.205
+    },
+    {
+     "w": "è",
+     "start": 94.2,
+     "end": 94.3,
+     "conf": 1.0
+    },
+    {
+     "w": "pazzesco.",
+     "start": 94.35,
+     "end": 95.04,
+     "conf": 0.995
+    }
+   ]
+  }
+ ]
+}

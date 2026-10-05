@@ -1,0 +1,21 @@
+[
+  {"id": "c00", "seed": 11, "pause": 0.50, "text": "E se ti dicessi che puoi creare motion graphics come questa, senza nemmeno aprire After Effects?"},
+  {"id": "c01", "seed": 11, "pause": 0.70, "text": "E no, non è un MCP per After Effects.", "tts": "E no, non è un emme ci pi per After Effects."},
+  {"id": "c02", "seed": 32, "pause": 0.40, "text": "Questo è Claude Code.", "tts": "Questo è Clod Code."},
+  {"id": "c03", "seed": 11, "pause": 0.70, "text": "Invece di controllare After Effects, gli descrivi semplicemente quello che vuoi."},
+  {"id": "c04", "seed": 11, "pause": 0.85, "text": "Per esempio: \"Crea una sequenza cinematografica di quindici secondi, con tipografia cinetica, transizioni fluide tra le forme, elementi 3D e movimenti di camera continui.\"", "tts": "Per esempio: \"Crea una sequenza cinematografica di quindici secondi, con tipografia cinetica, transizioni fluide tra le forme, elementi tre di e movimenti di camera continui.\""},
+  {"id": "c05", "seed": 11, "pause": 0.70, "text": "Ed è qui che diventa folle: non genera direttamente un MP4.", "tts": "Ed è qui che diventa folle: non genera direttamente un emme pi quattro."},
+  {"id": "c06", "seed": 11, "pause": 0.40, "text": "Scrive l'animazione stessa, come codice."},
+  {"id": "c07", "seed": 11, "pause": 0.70, "text": "Ogni forma, ogni parola, ogni movimento di camera è definito matematicamente nel tempo."},
+  {"id": "c08", "seed": 11, "pause": 0.70, "text": "Poi viene renderizzata fotogramma per fotogramma, e trasformata in un video."},
+  {"id": "c09", "seed": 11, "pause": 0.50, "text": "Il vecchio flusso: After Effects, livelli, keyframe, curve."},
+  {"id": "c10", "seed": 11, "pause": 0.70, "text": "Il nuovo: prompt, codice, render, video."},
+  {"id": "c11", "seed": 11, "pause": 0.55, "text": "E siccome è tutto procedurale, ogni modifica è una frase."},
+  {"id": "c12a", "seed": 11, "pause": 0.60, "text": "Rallenta la transizione."},
+  {"id": "c12b", "seed": 11, "pause": 0.60, "text": "Cambia il colore."},
+  {"id": "c12c", "seed": 11, "pause": 0.60, "text": "Aggiungi una scena."},
+  {"id": "c12d", "seed": 11, "pause": 0.75, "text": "Renderizza di nuovo."},
+  {"id": "c13", "seed": 11, "pause": 0.70, "text": "Quattro comandi, invece di centinaia di keyframe da spostare a mano."},
+  {"id": "c14", "seed": 11, "pause": 0.50, "text": "Quindi: sostituisce After Effects? Non proprio."},
+  {"id": "c15", "seed": 11, "pause": 2.60, "text": "Ma farlo partendo da un prompt... è pazzesco."}
+]

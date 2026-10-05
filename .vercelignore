@@ -20,3 +20,6 @@ api/paypal/config.js
 api/paypal/create-order.js
 api/paypal/capture-order.js
 api/paypal/order-details.js
+
+# Motion as Code: il kit video non fa parte del sito
+motion-as-code

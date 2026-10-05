@@ -1,0 +1,26 @@
+{
+  "name": "motion-as-code",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "render": "bun scripts/render.ts video --samples auto --max-samples 12 --shutter 0.5 --crf 17 --out ../out/motion-as-code.mp4",
+    "stills": "bun scripts/render.ts stills",
+    "typecheck": "tsc --noEmit -p tsconfig.json && tsc --noEmit -p tsconfig.scripts.json"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/opentype.js": "^1.3.10",
+    "@types/three": "^0.186.0",
+    "playwright-core": "^1.63.0",
+    "vite": "^8.3.0"
+  },
+  "peerDependencies": {
+    "typescript": "^7.0.2"
+  },
+  "dependencies": {
+    "opentype.js": "^2.0.0",
+    "three": "^0.186.0"
+  }
+}
