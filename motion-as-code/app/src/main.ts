@@ -194,6 +194,8 @@ function setupPlayer() {
       loop = loop ? null : e ? [e.start, e.end] : null;
     }
     if (ev.key === 'h') ui.classList.toggle('hidden');
+    if (ev.key === 'f') { if (document.fullscreenElement) void document.exitFullscreen(); else void document.getElementById('wrap')!.requestFullscreen(); }
+    if (ev.key === 'm') audio.muted = !audio.muted;
     if (ev.key === ']') { const e = TIMELINE.find((x) => x.start > t + 0.01); if (e) seek(e.start); }
     if (ev.key === '[') { const es = TIMELINE.filter((x) => x.start < t - 0.3); const e = es[es.length - 1]; if (e) seek(e.start); }
   });
@@ -215,7 +217,7 @@ function setupPlayer() {
     if (now - fpsT > 500) { fps = (frames * 1000) / (now - fpsT); frames = 0; fpsT = now; }
     const e = TIMELINE.find((x) => t >= x.start && t < x.end);
     const l = engine.lyrics.lineAt(t);
-    info.textContent = `${t.toFixed(2)}s  beat ${engine.audio.beatAt(t).toFixed(2)}  bar ${engine.audio.barAt(t).toFixed(2)}  [${e?.id ?? '—'}]  ${fps.toFixed(0)}fps   ${l ? '“' + l.text + '”' : ''}${loop ? '  LOOP' : ''}`;
+    info.textContent = `${t.toFixed(2)}s  beat ${engine.audio.beatAt(t).toFixed(2)}  bar ${engine.audio.barAt(t).toFixed(2)}  [${e?.id ?? '—'}]  ${fps.toFixed(0)}fps   ${l ? '“' + l.text + '”' : ''}${loop ? '  LOOP' : ''}${audio.muted ? '  MUTO' : ''}`;
     requestAnimationFrame(tick);
   };
   requestAnimationFrame(tick);

@@ -1,6 +1,6 @@
 # Motion as Code
 
-**Workflow guide / starter kit.** Motion graphics fatte con il codice e guidate da una voce fuori campo, senza aprire After Effects. Copia la cartella nel tuo progetto, avvia l'anteprima, lancia il prompt demo.
+**Workflow guide / starter kit.** Motion graphics fatte con il codice e guidate da una voce fuori campo, senza aprire After Effects. Copia la cartella nel tuo progetto, avvia l'anteprima, lancia il prompt demo. Con lo stesso kit puoi fare anche il film di lancio di un prodotto in 60 secondi: struttura, prompt e regole sono nella [sezione 06](#06--launch-film-dal-prodotto-al-film-in-60-secondi).
 
 `1920×1080 · 60 fps · TypeScript + three.js · bun + Vite` · Motore visivo: [pdoom-video](https://github.com/mexicat/pdoom-video) di mexicat (MIT), vedi [Crediti](#crediti-e-licenza).
 
@@ -41,7 +41,7 @@ Restano fuori dal repository `out/` (i render), `app/node_modules/` (lo ricrea l
 **Requisiti.**
 
 - **bun** ([bun.sh](https://bun.sh)): installa i pacchetti ed esegue gli script.
-- **Google Chrome**: il renderer lo pilota in modalità headless per disegnare i fotogrammi. Va bene anche un altro Chromium, vedi [Problemi](#06--aiuto-problemi-e-crediti).
+- **Google Chrome**: il renderer lo pilota in modalità headless per disegnare i fotogrammi. Va bene anche un altro Chromium, vedi [Problemi](#07--aiuto-problemi-e-crediti).
 - **ffmpeg** con libx264: trasforma i fotogrammi in MP4 e mixa il suono.
 - **Python + [uv](https://docs.astral.sh/uv/)**: serve solo per allineare una voce nuova, rifare il mix degli effetti o generare una voce demo. I comandi qui sotto usano `uv run …`; se hai installato uv con pip, scrivi `python -m uv run …`.
 
@@ -53,7 +53,7 @@ bun install
 bunx vite
 ```
 
-Apri `http://localhost:5173` e premi spazio per far partire il video insieme alla voce. Se più avanti il render non trova Chrome, vedi [Problemi](#06--aiuto-problemi-e-crediti).
+Apri `http://localhost:5173` e premi spazio per far partire il video insieme alla voce. Se più avanti il render non trova Chrome, vedi [Problemi](#07--aiuto-problemi-e-crediti).
 
 ---
 
@@ -71,11 +71,13 @@ L'anteprima è il ciclo veloce. Modifichi il file di una tavola, la pagina si ri
 | `[` e `]` | tavola precedente / successiva |
 | `l` | loop della tavola corrente |
 | `h` | nasconde l'interfaccia |
+| `f` | schermo intero |
+| `m` | muto |
 
 Parametri dell'URL:
 
 - `?t=35` parte da 35 s.
-- `?mix=1` suona il mix con gli effetti (`out/mix.wav`, passo 4) al posto della sola voce.
+- `?mix=1` suona il mix completo (`out/mix.wav`, passo 4: voce, effetti e base musicale) al posto della sola voce.
 
 ### 2. Controlla singoli fotogrammi mentre lavori
 
@@ -102,12 +104,19 @@ bun run render
 | `--samples 4` | Bozza più veloce: nei movimenti rapidi si vedono copie a scatti. |
 | `--samples auto` | Più sotto-fotogrammi dove il movimento è veloce (default dello script). |
 | `--scale 2` | 4K, 3840×2160. |
-| `--workers 1` | Un solo Chrome alla volta (default 2). Usalo su una macchina senza GPU, vedi [Problemi](#06--aiuto-problemi-e-crediti). |
+| `--workers 1` | Un solo Chrome alla volta (default 2). Usalo su una macchina senza GPU, vedi [Problemi](#07--aiuto-problemi-e-crediti). |
 | `--from 50 --to 57` | Solo un intervallo, in secondi. |
+| `--fps 30` | 30 fotogrammi al secondo invece di 60: metà del tempo, lo standard dei film di lancio. |
 
-### 4. Aggiungi gli effetti sonori
+### 4. Suono: effetti, musica e mix
 
-In `audio/sfx` ci sono 28 effetti sonori, sintetizzati da `analysis/make_sfx.py`. In `analysis/sfx_mix.py` c'è un cue sheet di circa 570 cue, ricavato dagli stessi tempi delle parole che usano le tavole. Gli effetti si abbassano fino a 7 dB sotto la voce e il mix è normalizzato a -14 LUFS, con picchi sotto -1 dBFS. Non serve ri-renderizzare: rifai il mix, poi copi l'immagine e aggiungi l'audio.
+Tutto il suono è sintetizzato, nessun campione esterno:
+
+- **Effetti:** in `audio/sfx` ci sono 28 effetti sonori, generati da `analysis/make_sfx.py`. In `analysis/sfx_mix.py` c'è un cue sheet di circa 570 cue, ricavato dagli stessi tempi delle parole che usano le tavole.
+- **Musica:** la base a 120 bpm di `analysis/music.py` (cassa, hi-hat in levare, clap sul 2 e sul 4, basso e pad su La minore – Fa – Do – Sol) è arrangiata sugli stessi momenti. Parte sulla rivelazione, si ferma secca sul ⏎ del prompt, riparte sul taglio "folle", respira sotto le spiegazioni, resta sola col pad sulla domanda finale e viene tagliata dall'implosione.
+- **Mix:** la voce passa da un passa-alto a 80 Hz e da un compressore leggero (3:1 sopra -20 dB). Effetti e musica condividono una stanza di riverbero e si abbassano sotto la voce, fino a 7 dB gli effetti e fino a 9 dB la musica. Il mix è normalizzato a -14 LUFS, il volume a cui normalizzano Instagram e YouTube, con true peak sotto -1,5 dBTP.
+
+Non serve ri-renderizzare: rifai il mix, poi copi l'immagine e aggiungi l'audio.
 
 ```sh
 uv run --no-project --with numpy python analysis/sfx_mix.py
@@ -116,7 +125,7 @@ ffmpeg -i motion-as-code.mp4 -i mix.wav -map 0:v -map 1:a \
   -c:v copy -c:a aac -b:a 320k -shortest motion-as-code_sfx.mp4
 ```
 
-Per alzare o abbassare un effetto cambia il suo valore in dB nel cue sheet; per spostarlo cambia la sua espressione di tempo. `--list` stampa tutti i cue.
+Per alzare o abbassare un effetto cambia il suo valore in dB nel cue sheet; per spostarlo cambia la sua espressione di tempo. Per l'arrangiamento della musica modifica `arrangement()` in `music.py`, per il suo volume `MUSIC_DB` in `sfx_mix.py`. `--list` stampa tutti i cue, `--no-music` fa il mix senza base, `--stems cartella` scrive anche voce, effetti e musica separati, per rifinire il mix in un editor.
 
 ### 5. Cambia la voce
 
@@ -144,6 +153,21 @@ Le tavole trovano le loro parole per contenuto (`lineOf`, `phraseOf`, `wordOf`).
 
 I comandi sono in testa allo script e i testi in `analysis/tts/lines.json`, con le grafie che il modello legge correttamente.
 
+### 6. Taglio verticale per Reel e Shorts
+
+```sh
+python3 analysis/vertical.py
+```
+
+Prende `out/motion-as-code_sfx.mp4` e scrive `out/motion-as-code_9x16.mp4` (1080×1920), senza ri-renderizzare:
+
+- il film sta a tutta larghezza, su una copia di sé sfocata e scurita;
+- sotto, la voce diventa didascalie karaoke grandi: ogni parola si accende in arancio mentre viene detta, per chi guarda senza audio;
+- tutto il testo resta fuori dai 250 px in alto e dai 350 px in basso, dove Instagram mette i suoi pulsanti e le sue didascalie;
+- le frasi lunghe vanno a capo in pagine di due righe al massimo, mai su un articolo o una preposizione.
+
+`--video` e `--out` scelgono i file; serve solo Python 3 e un ffmpeg con libass.
+
 ---
 
 ## 04 · Riferimento: come si incastra il progetto
@@ -159,6 +183,8 @@ I comandi sono in testa allo script e i testi in `analysis/tts/lines.json`, con 
 | `app/src/scenes/*.ts` | Le nove tavole. |
 | `app/src/timeline.ts` | Quando suona ogni tavola. I tagli cadono nella pausa subito prima di ogni frase. |
 | `app/scripts/render.ts` | Renderer offline: Chrome headless → fotogrammi grezzi → ffmpeg. |
+| `analysis/sfx_mix.py`, `analysis/music.py` | Cue sheet degli effetti, base musicale e mix (voce, stanza, ducking, -14 LUFS). |
+| `analysis/vertical.py` | Il taglio verticale 1080×1920 con le didascalie karaoke. |
 | `app/public/plates/`, `app/plates.json` | Miniature delle tavole per la pellicola della tavola `frames` (`bun scripts/render.ts plates`). |
 
 ### Le nove tavole
@@ -236,7 +262,229 @@ Il prompt d'esempio letto nel video è questo: *"Crea una sequenza cinematografi
 
 ---
 
-## 06 · Aiuto: problemi e crediti
+## 06 · Launch film: dal prodotto al film in 60 secondi
+
+Lo stesso kit fa anche il film di lancio di un prodotto: 60 secondi a 1920×1080, tutto disegnato dal codice. Interfaccia, inclinazioni 3D, vetro, personaggio e suoni nascono dal codice: niente generatori di immagini o video, niente stock, niente registrazioni dello schermo. Metodo, struttura e prompt vengono dalla guida *The 60-second launch film made with Claude* di Saksham Gupta, adattati a questo kit.
+
+**Una differenza con la guida originale.** Lì l'immagine viene prima e la voce si scrive alla fine, sul montaggio. Qui comanda la voce:
+
+1. scrivi il copione insieme al beat sheet, una frase breve per beat;
+2. generalo e allinealo;
+3. ogni tavola parte sulla sua frase.
+
+Per allungare un beat allunghi la pausa nella voce, non sposti keyframe. Con la voce locale la pausa è il campo `pause` in `analysis/tts/lines.json`.
+
+### La struttura: Problema → Soluzione → Showcase → CTA
+
+Ogni secondo ha un compito. Se uno sconosciuto non capisce a cosa serve nel primo secondo, tutto il resto non conta.
+
+| Atto | 60 s | 40 s | Cosa succede | Tecniche |
+|---|---|---|---|---|
+| 1 · Problema | 0–12 | 0–8 | Apri sul dolore di chi guarda, non sul tuo logo. Tipografia cinetica su un caos visivo: carte, chiamate, riunioni che si sovrappongono, un badge che conta fino a 99+. Chiudi su una frase che nomina il dolore. | testo mascherato · glitch · camera shake · implosione |
+| 2 · Soluzione | 12–19 | 8–13 | Il caos collassa in un punto e il punto diventa il logo, con nome e promessa in una riga. La finestra del prodotto sale in 3D: è il ponte verso la demo. | morph di forme · riflesso che scorre · lettere con overshoot · tilt prospettico |
+| 3 · Showcase | 19–49 | 13–32 | Funzioni usate, mai elencate. Un cursore scrive, clicca e trascina; la camera fa un push-in di 2× su ogni azione; ogni beat porta al successivo. | typing · volo ad arco · drag con sollevamento e tilt · contatori · follow-cam · anelli di hover |
+| 4 · CTA | 49–60 | 32–40 | Tre payoff brevi, poi logo, tagline e una sola azione. Si ricollassa nel punto, così il film va in loop. | reveal mascherati · caos → ordine · lettere che salgono · loop |
+
+Il taglio da 40 secondi ha gli stessi compiti con meno funzioni: tre invece di quattro.
+
+### I riferimenti: Claude non può indovinare il tuo prodotto
+
+È il passo che quasi tutti saltano, ed è per questo che i video fatti con l'AI sembrano template. Claude non mette mai i tuoi screenshot nel film: li legge e ricostruisce ogni schermata in codice, con lo stesso layout, le stesse etichette e lo stesso tipo di dati, ma animabile. Prepara la cartella prima di aprire Claude:
+
+```text
+refs/
+  screenshots/   ← 10–20 schermate, nominate per schermata: 03-pipeline.png
+  logo.svg
+  brand.md       ← cinque righe: colori, font, un aggettivo per il feeling, cosa evitare
+  voice.mp3      ← arriva dopo
+```
+
+| Riferimento | Perché serve | Esempio |
+|---|---|---|
+| **Indispensabili** | | |
+| 10–20 screenshot | Layout, etichette, gerarchia, la forma dei tuoi dati. Uno per ogni schermata che vuoi nel film. | le schermate del prodotto |
+| Logo | La rivelazione e la card finale. SVG se ce l'hai. | icona dell'app + marchio |
+| Colori e font | Ogni fotogramma resta nel tuo brand invece del solito "viola da AI". | nero #050605, accento #A8F25A, Inter Tight |
+| Il dolore, in una riga | Diventa i primi 12 secondi. | "I team lavorano su strumenti che non si parlano" |
+| 3–5 funzioni, in ordine | Diventano lo showcase. Ordinale come una storia, non come un menù. | lead → task → portale clienti → analytics |
+| Per chi è | Tono, testi ed esempi a schermo. | titolari di agenzia |
+| Una call to action | L'ultimo fotogramma. Una sola. | "Prenota una demo" |
+| **Utili** | | |
+| Un film di riferimento | Ritmo e stile del movimento. | "un video di lancio in stile Apple" |
+| Schermate che non hai | Descrivile a parole, Claude le disegna coerenti. | il portale clienti, solo descritto |
+| Un personaggio | Qualcosa che porti la storia da un beat all'altro. | "un piccolo pet rotondo e lucido" |
+| Direzione della voce | Accento, energia, uso. | voce femminile, calda, tono da demo |
+
+> **Metti questa riga in ogni brief:** «Usa gli screenshot solo come riferimento. Non mostrarli mai. Ricostruisci ogni componente da zero, in codice.»
+
+Gli screenshot possono contenere nomi e numeri veri dei tuoi clienti: chiedi a Claude segnaposto inventati, perché gli serve solo la *forma* dei dati.
+
+### Il master prompt
+
+Sostituisci quello che sta tra [parentesi quadre]. Allega screenshot e logo nello stesso messaggio. Claude risponde con un beat sheet: correggilo, approvalo, poi scrivi «costruiscilo».
+
+```text
+Sei un motion designer senior che fa film di lancio in stile Apple. Costruisci un film di lancio di [60]
+secondi per il mio prodotto, interamente in codice, con il kit Motion as Code di questa cartella (leggi
+prima motion-as-code/README.md): niente modelli di immagini o video, niente stock, niente registrazioni
+dello schermo.
+
+PRODOTTO
+- Nome: [Nome]
+- Cos'è, in una riga: [...]
+- Per chi è: [...]
+- Il dolore di oggi: [...]
+- Il risultato: [...]
+- Call to action: [...]
+
+RIFERIMENTI (in refs/)
+- [12] screenshot del prodotto. Studiali per layout, etichette, dati e gerarchia. Usali SOLO come
+  riferimento: non mostrarne mai uno nel film. Ricostruisci ogni schermata e ogni componente da zero, in codice.
+- Schermate che non ho ancora: [...]. Disegnale coerenti con le altre.
+- Logo: [refs/logo.svg]. Colori: [sfondo #..., accento #...]. Font: [...].
+- Look: [nero, vetro con bordo nel colore d'accento, profondità 3D, accenti liquidi e glitch].
+- Feeling: [un film di lancio Apple: calmo, premium, preciso].
+- I dati a schermo devono essere inventati: [nomi, clienti, importi].
+
+STORIA: Problema → Soluzione → Showcase → CTA
+Chi guarda deve capire "[...]" entro il primo secondo della soluzione.
+1. Problema [0-12 s]: apri sul dolore, non sul logo. Tipografia cinetica e caos visivo fatto di [...].
+   Chiudi su una frase che nomina il dolore.
+2. Soluzione [12-19 s]: il caos collassa in un punto che diventa il logo; nome del prodotto + una
+   promessa in una riga; la finestra del prodotto sale in 3D.
+3. Showcase [19-49 s]: mostra [4] funzioni USATE, in quest'ordine: [...]. Un cursore causa ogni
+   reazione e ogni beat nasce dal precedente.
+4. CTA [49-60 s]: tre payoff brevi, poi logo, tagline e CTA. Chiudi sullo stesso punto, così il film va in loop.
+
+REGOLE DI MOVIMENTO
+- Una tavola per beat in app/src/scenes/, ognuna funzione pura del tempo; i tagli in app/src/timeline.ts,
+  ancorati alle frasi della voce. Non modificare app/src/engine/.
+- Niente slideshow: ogni beat cresce dal precedente. Tagli netti solo dove significano qualcosa.
+- Tipografia cinetica con reveal mascherati; morph di forme; superfici di vetro con bordo [accento];
+  grana e vignetta.
+- Una mossa di camera per azione: push-in di ~2× sul campo che si compila o sulla card trascinata,
+  segui il cursore con un leggero ritardo, poi torna indietro. Un anello di hover su ciò che il cursore
+  sta per toccare.
+- I numeri contano, le barre crescono: niente appare e basta. Tutto ciò che la voce nomina è almeno
+  26 px a schermo dopo lo zoom.
+- Easing: outExpo per gli ingressi, inOutCubic per camera e cursore, outBack per pop e barre.
+
+SUONO
+- Gli effetti nel cue sheet di analysis/sfx_mix.py, generati dagli eventi del cursore e della timeline, così
+  restano in sync se cambiano i tempi: sweep del cursore, mouse down/up a ogni click, un tick per carattere
+  scritto, pickup e drop, notifiche, tick dei contatori, whoosh sulle transizioni, boom + riser sulla
+  rivelazione del logo, carta e telefoni nel caos.
+- La base a [120] bpm di analysis/music.py dalla rivelazione in poi, riarrangiata sui nuovi beat. Una sola
+  stanza di riverbero, così tutto suona nello stesso spazio. Lascia spazio alla voce.
+
+CONSEGNE
+1. PRIMA: il beat sheet (intervallo · cosa c'è a schermo · tecnica di motion · testo a schermo · frase della
+   voce) e quale screenshot ricostruisce ogni beat dello showcase. Poi fermati e aspetta il mio OK.
+2. Poi: il copione della voce, una frase breve per beat, con i tag di ElevenLabs tra [parentesi quadre].
+3. Quando ti do la voce: allineamento, tavole, timeline, effetti e musica.
+4. Poi: 6 fotogrammi nei momenti chiave, così rivedo senza guardare tutto il film.
+```
+
+**Come usarlo bene:**
+- **Non saltare il beat sheet.** Correggere una tabella costa un messaggio; correggere un film renderizzato ne costa venti.
+- **Rivedi fotogrammi, non tutto il film:** «stills a 1.5, 12, 25, 38, 50, 58».
+- **Dopo la prima versione, una cosa per messaggio.** Le riscritture grandi rompono i tempi.
+- **Nomina quello che ti è piaciuto.** «Tieni il riflesso della rivelazione» funziona meglio di «miglioralo».
+- **Chiedi varianti, mai sovrascritture.** «Salvala come v2», su un branch git o in una copia della tavola, tiene al sicuro la versione buona.
+- **Per il taglio da 40 secondi** cambia [60] in [40] e riduci lo showcase a [3] funzioni.
+
+### Passo per passo, se preferisci il controllo alla velocità
+
+Il master prompt è la versione in un colpo solo. Questa è la versione lenta: otto prompt più piccoli, con una revisione dopo ognuno.
+
+1. **Riscaldamento (opzionale).** Chiedi uno showreel di 15 secondi come tavola del kit, con tempi fissi e ogni tecnica che Claude sa fare: tipografia cinetica con squash & stretch, morph, griglie, vetro e morph liquidi, glitch, tilt 3D, reveal mascherati, contatori, un logo sting, un effetto su ogni colpo. Poi chiedi la lista delle tecniche con il loro timestamp: dopo potrai dire «usa il riflesso di 0:07» invece di descriverlo a parole.
+2. **Brief + beat sheet + copione.** Allega screenshot e logo, racconta prodotto, dolore, storia e CTA, chiedi il beat sheet con la frase della voce per ogni beat e aspetta. La storia si blocca prima di una sola riga di codice: quasi tutti i video AI brutti sono buon codice che non racconta niente.
+3. **La voce.** Genera il copione approvato con ElevenLabs, usando i tag, oppure in locale con `analysis/tts/voice.py`. Mettilo in `audio/voiceover.mp3`, aggiorna `SCRIPT` e rilancia allineamento e analisi (passo 5 del workflow).
+4. **Costruisci.** Una tavola per beat e i tagli in `timeline.ts` sulle frasi.
+   - Dati inventati ma realistici.
+   - Nessuna dissolvenza da slideshow.
+   - Il testo detto dalla voce deve essere almeno 26 px dopo lo zoom.
+
+   Poi chiedi fotogrammi a 1.5, 12, 25, 38, 50 e 58 s.
+5. **Suono.** Gli effetti vanno nel cue sheet e nascono dagli eventi del cursore e della timeline:
+   - sweep, mouse down/up su ogni click, un tick per carattere;
+   - pickup e drop, notifiche, tick dei contatori;
+   - whoosh sui movimenti, boom + riser sul logo;
+   - carta e telefoni nel caos, glitch dove l'immagine si rompe.
+
+   La base di `music.py` parte dalla rivelazione, riarrangiata sui nuovi momenti. Il clic che senti è metà della sensazione "premium": la musica stock non si sincronizza col tuo cursore, il suono sintetizzato sì.
+6. **Camera e rifinitura (salvala come v2).**
+   - Quando un campo si compila o una card viene trascinata: push-in di ~2× su quel punto, segui il cursore con 0,1 s di ritardo, poi torna indietro.
+   - Un anello di hover nel colore d'accento su ciò che il cursore sta per toccare: entra in 0,24 s, esce in 0,22 s.
+   - Il cursore segue un percorso ad arco, con scie di motion blur, uno squash quando preme e un ripple al click.
+   - Un leggero galleggiamento a mano, ±3 px, così la camera non sembra mai bloccata.
+
+   Lo zoom dice all'occhio dove guardare: senza, una UI a 1080p è solo testo minuscolo su un grande schermo.
+7. **Un personaggio (opzionale, sempre v2).** Un piccolo pet rotondo e lucido nel colore d'accento, con un'antenna che finisce nel punto del brand.
+   - Porta tutto il film: nasce dal punto iniziale, finisce sepolto e spaventato nel caos, lo inspira e sputa il logo.
+   - Poi indica le didascalie, cavalca le card trascinate, esulta quando si cattura un lead, saluta sulla card finale e torna nel punto.
+   - Stati d'animo: felice, wow, entusiasta, preoccupato, spaventato, frastornato, calmo. Squash & stretch a ogni atterraggio.
+
+   È una funzione di canvas, non un'immagine, ed è il modo più economico per legare i beat tra loro.
+8. **Render, mix, verticale.**
+   - `bun scripts/render.ts video --fps 30`;
+   - `sfx_mix.py`, poi il mux con ffmpeg (passo 4 del workflow);
+   - `vertical.py` per i Reel;
+   - un foglio provini del montaggio (`bun scripts/render.ts sheet --cuts`).
+
+**Bonus:** «Metti tutto in una cartella che posso dare a qualcun altro: ogni prompt che ti ho dato (alla lettera, in ordine), il codice, il brand, il personaggio, gli input, la pipeline di render e un README che spiega come rifare e cambiare il film.» Questo kit è già fatto così.
+
+### La voce: scrivila per l'immagine, taggala per la voce
+
+L'immagine racconta la storia; la voce aggiunge solo quello che l'immagine non può dire, una frase breve per beat. Con ElevenLabs:
+
+- I tag sono descrizioni semplici tra parentesi quadre prima della frase: `[warm, unhurried]`, `[dry, knowing]`, `[sighs]`.
+- Le pause vengono da `…` e da `[short pause]` / `[long pause]`. Lo SSML `<break>` viene ignorato.
+- Il MAIUSCOLO enfatizza una parola. Una volta per copione basta.
+- Scrivi il nome del brand come si pronuncia. Nel kit questo lo fanno anche `SPOKEN` in `align_vo.py` e `tts` in `lines.json`.
+- Genera una ripresa lunga con `[long pause]` tra le frasi, poi chiedi la tabella frase · tempo d'inizio · tempo entro cui deve finire.
+- La forma è: dolore (frasi 1–4) → nome (5) → prova (6–11) → payoff (12–14) → brand e promessa (15). Sono gli stessi quattro atti dell'immagine.
+
+Con la voce locale (`analysis/tts/voice.py`) i tag non si leggono: la regia è la descrizione della voce in `INSTRUCT`, e il ritmo lo danno le pause di `lines.json`.
+
+### Dieci regole che il film rispetta
+
+| # | Da principiante | Da pro |
+|---|---|---|
+| 1 | Apre sul logo | Apre sul dolore di chi guarda |
+| 2 | UI registrata dallo schermo, piccola e piatta | UI ricostruita in codice dagli screenshot |
+| 3 | Una lista di funzioni | Una storia: problema → soluzione → showcase → CTA |
+| 4 | Dissolvenze tra slide | Ogni beat cresce dal precedente |
+| 5 | Camera ferma | Push-in di 2× su ogni azione, la camera segue il cursore |
+| 6 | Un arcobaleno di colori | Un solo colore d'accento: l'occhio sa dove posarsi |
+| 7 | Un loop di musica stock | Un suono per ogni click + una base che si abbassa sotto la voce |
+| 8 | Testo illeggibile sul telefono | Tutto ciò che la voce nomina è almeno 26 px |
+| 9 | Un prompt gigante, nessuna revisione | Prima il beat sheet, poi l'OK, poi si costruisce |
+| 10 | Modifica l'unica versione | Tiene la v1, costruisce la v2, confronta |
+
+**Prima di pubblicare:**
+- **Il test del primo secondo.** Mostra a uno sconosciuto il primo secondo della soluzione: sa dire a cosa serve?
+- **Il test del muto.** Quasi tutti guardano senza audio: la storia si legge lo stesso? Il taglio verticale ha le didascalie per questo.
+- **Il test del telefono.** Guardalo sul telefono, a braccio teso: leggi ogni didascalia?
+- **Solo dati inventati.** Nessun nome, email o importo reale a schermo.
+- **Una sola CTA.** La card finale chiede esattamente una cosa.
+- **Volume.** -14 LUFS e picchi sotto -1 dB: il mix del kit sta a -14 LUFS con true peak -1,5 dBTP.
+
+**Quando qualcosa non va, di' questo:**
+
+| Vedi | Scrivi a Claude |
+|---|---|
+| Sembrano slide | «Fai crescere ogni beat dal precedente. Niente dissolvenze. Tagli netti solo dove significano qualcosa.» |
+| Non si legge sul telefono | «Ogni didascalia e ogni etichetta che la voce nomina deve essere almeno 26 px dopo lo zoom della camera.» |
+| Voce e immagine vanno fuori sync | «Rilancia l'allineamento e ancora i tagli di timeline.ts alle frasi giuste. Nessuna sovrapposizione.» |
+| La UI sembra generica | «Riproduci esattamente lo screenshot 04: spaziature, etichette, ordine delle colonne.» |
+| Il render è lentissimo | «Fai la bozza con --samples 4 e --fps 30, e dividi il film in intervalli con --from/--to.» |
+
+**Per i Reel.** `python3 analysis/vertical.py` fa il taglio verticale con le didascalie karaoke (passo 6 del workflow). Un verticale re-impaginato tavola per tavola, con la UI a tutta larghezza e i close-up più stretti, richiede invece che il motore disegni in 9:16. Oggi il formato è fisso a 16:9: lo decidono `W` e `H` in `app/src/engine/gl.ts`.
+
+---
+
+## 07 · Aiuto: problemi e crediti
 
 | Problema | Prova così |
 |---|---|
@@ -262,6 +510,7 @@ Tieni quel file di licenza insieme al progetto. Le nove tavole sono nuove, scrit
 - **Font:** Archivo, IBM Plex Mono e Cormorant Garamond sono distribuiti con SIL Open Font License (`app/public/fonts/src/OFL.txt`). I font a tratto singolo EMS e Hershey arrivano dal pacchetto `hersheytext` (OFL / pubblico dominio).
 - **Voce demo:** sintetica, generata in locale con Qwen3-TTS (Qwen, Apache 2.0). Non è la voce di una persona reale.
 - **Allineamento:** [wav2vec2-large-xlsr-53-italian](https://huggingface.co/jonatasgrosman/wav2vec2-large-xlsr-53-italian) di Jonatas Grosman (Apache 2.0), esportato in ONNX int8.
-- **Effetti sonori:** sintetizzati da `analysis/make_sfx.py`, nessun campione esterno.
+- **Effetti sonori e musica:** sintetizzati da `analysis/make_sfx.py` e `analysis/music.py`, nessun campione esterno.
+- **Launch film:** struttura, prompt, regole e checklist della sezione 06 sono adattati dalla guida *The 60-second launch film made with Claude* di Saksham Gupta ([@saksham.700x](https://www.instagram.com/saksham.700x)). La guida cita lo skill onetake (licenza PolyForm Noncommercial), di cui qui non c'è codice.
 
 Se usi ElevenLabs o un altro servizio per la tua voce o per gli effetti, controlla i termini di licenza del tuo piano prima di pubblicare il video.

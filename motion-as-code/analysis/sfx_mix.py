@@ -1,11 +1,15 @@
-"""Sound design: the cue sheet and the mix -> out/mix.wav (voice + effects, -14 LUFS).
+"""Sound design: the cue sheet and the mix -> out/mix.wav (voice + effects + music bed, -14 LUFS).
 
-    uv run --no-project --with numpy python analysis/sfx_mix.py
+    uv run --no-project --with numpy python analysis/sfx_mix.py            # --no-music: voice and effects only
 
 Every cue is placed by the same word timings the plates use (data/lyrics.json): find a line or a word
 by content, then an offset. To move an effect, change its time expression; to make it louder or
-quieter, change its dB. The effects are ducked under the voice (up to DUCK_DB) and the whole mix is
-normalised to TARGET_LUFS (ITU-R BS.1770 integrated loudness), peaks kept under -1 dBFS.
+quieter, change its dB. The music bed (music.py) is arranged on the same moments (anchors()).
+
+The chain: the voice is high-passed at 80 Hz and gently compressed (3:1 above -20 dB); effects and music
+share one reverb room and are ducked under the voice (effects up to DUCK_DB, music up to MUSIC_DUCK_DB);
+the whole mix is normalised to TARGET_LUFS (ITU-R BS.1770 integrated loudness, what Instagram and YouTube
+normalise to) with true peaks under TRUE_PEAK_DB (4x oversampled).
 
 No re-render is needed after a change: rebuild the mix, then copy the picture and add the audio:
     cd out
@@ -24,8 +28,13 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 SR = 48000
 DUCK_DB = 7.0
+MUSIC_DUCK_DB = 9.0
+MUSIC_DB = -21.5  # the bed's level (about 14 LU under the voice, before ducking)
+SFX_SEND, ROOM_DB = 0.15, -6.0  # how much of the effects goes to the shared room, and the room's level
 TARGET_LUFS = -14.0
+TRUE_PEAK_DB = -1.5
 CUT_LEAD = 0.18  # as in timeline.ts
+HOLD = 0.4  # as in verdict.ts
 
 
 # ------------------------------------------------------------------ lookups (same rules as _vo.ts)
@@ -71,6 +80,25 @@ class Words:
         return max(s - CUT_LEAD, min(prev["end"] + 0.02, s - 0.02) if prev else 0)
 
 
+# ------------------------------------------------------------------ the shared moments
+def anchors(W):
+    """What the effects and the music both hit: the plates' cuts (as timeline.ts) and the moments the plates
+    time from the words (prompt.ts's enter key, verdict.ts's slam, implosion and return home)."""
+    b = {k: W.cut(q) for k, q in [
+        ("model", "Questo è Claude Code"), ("prompt", "Per esempio"), ("crazy", "Ed è qui che diventa folle"),
+        ("code", "Scrive l’animazione stessa"), ("frames", "Poi viene renderizzata"), ("pipeline", "Il vecchio flusso"),
+        ("edits", "E siccome è tutto procedurale"), ("verdict", "Quindi: sostituisce After Effects")]}
+    L5 = W.line("Crea una sequenza")
+    paz = W.word("pazzesco", W.line("farlo partendo"))
+    t_imp = min(W.duration - 0.9, max(paz["end"], paz["start"] + 0.35) + HOLD)
+    return dict(
+        b=b,
+        t_enter=min(max(max(L5["end"] + 0.18, b["crazy"] - 0.5), L5["end"] + 0.05), b["crazy"] - 0.2),
+        t_slam=paz["start"], t_imp=t_imp, t_home=min(W.duration - 0.35, t_imp + 0.45),
+        new_row=W.line("Il nuovo")["words"][0]["start"], first_cmd=W.line("Rallenta la transizione")["words"][0]["start"],
+    )
+
+
 # ------------------------------------------------------------------ the cue sheet
 def cue_sheet(W):
     """(time s, effect, gain dB, pan -1..1) for the whole video."""
@@ -92,11 +120,8 @@ def cue_sheet(W):
         for w in words:
             cue(w["start"], "tick_soft", db, pan)
 
-    end = W.duration
-    b = {k: W.cut(q) for k, q in [
-        ("model", "Questo è Claude Code"), ("prompt", "Per esempio"), ("crazy", "Ed è qui che diventa folle"),
-        ("code", "Scrive l’animazione stessa"), ("frames", "Poi viene renderizzata"), ("pipeline", "Il vecchio flusso"),
-        ("edits", "E siccome è tutto procedurale"), ("verdict", "Quindi: sostituisce After Effects")]}
+    A = anchors(W)
+    b = A["b"]
 
     # ---------------------------------------------------------------- hook
     L0, L1 = W.line("E se ti dicessi"), W.line("non è un MCP")
@@ -167,7 +192,7 @@ def cue_sheet(W):
         if fold(w["w"]) in pops:
             cue(w["start"] - 0.14, "blip", -24, 0.3)
             cue(w["start"], "tick_soft", -24, 0.3)
-    t_enter = min(max(max(L5["end"] + 0.18, T1 - 0.5), L5["end"] + 0.05), T1 - 0.2)
+    t_enter = A["t_enter"]
     cue(T1 - 1.3, "riser", -14)
     cue(t_enter, "enter", -10, 0.5)
     cue(t_enter + 0.05, "whoosh_long", -12)
@@ -179,8 +204,8 @@ def cue_sheet(W):
     cue(T0, "impact_low", -12)
     for i, w in enumerate(L6["words"][:-1]):
         cue(w["start"], "thud", -15, -0.4 + 0.2 * i)
-    cue(folle["start"], "impact_low", -9)
-    cue(folle["start"], "glitch", -14)
+    cue(folle["start"], "impact_low", -11)
+    cue(folle["start"] + 0.12, "glitch", -18)
     cue(folle["start"] + 0.35, "glitch", -16)
     cue(folle["start"], "spark", -14)
     non = L7["words"][0]
@@ -294,11 +319,7 @@ def cue_sheet(W):
     # ---------------------------------------------------------------- verdict
     T0 = b["verdict"]
     L19, L20, L21 = W.line("sostituisce After Effects"), W.line("Non proprio"), W.line("farlo partendo")
-    paz = W.word("pazzesco", L21)
-    HOLD = 0.4  # as in verdict.ts
-    t_slam = paz["start"]
-    t_imp = min(end - 0.9, max(paz["end"], t_slam + 0.35) + HOLD)
-    t_home = min(end - 0.35, t_imp + 0.45)
+    t_slam, t_imp, t_home = A["t_slam"], A["t_imp"], A["t_home"]
     cue(T0 + 0.02, "pen_line", -20)
     cue(L19["words"][0]["start"], "pop", -22)
     ticks(L19["words"][1:], -24)
@@ -308,7 +329,7 @@ def cue_sheet(W):
     cue(L20["end"] - 0.05, "pen_line", -18, 0.3)
     ticks(L21["words"][:-2], -26)
     cue(t_slam - 1.3, "riser", -14)
-    cue(t_slam, "impact_mid", -7)
+    cue(t_slam, "impact_mid", -9)
     cue(t_slam, "impact_low", -10)
     cue(t_imp - 0.3, "reverse_suck", -12)
     cue(t_imp, "sub_drop", -13)
@@ -333,20 +354,44 @@ def write_wav(path, x):
         w.writeframes(pcm.tobytes())
 
 
-# ------------------------------------------------------------------ loudness (ITU-R BS.1770-4)
-def k_weight(x):
-    """K-weighting (the two BS.1770 biquads at 48 kHz) applied in the frequency domain."""
+# ------------------------------------------------------------------ filters
+def biquad(x, b, a):
+    """A biquad (coefficients at SR) applied as its exact frequency response on a padded FFT."""
     n = len(x) + SR
-    f = np.fft.rfftfreq(n, 1 / SR)
-    z = np.exp(-2j * np.pi * f / SR)
+    z = np.exp(-2j * np.pi * np.fft.rfftfreq(n, 1 / SR) / SR)
+    h = (b[0] + b[1] * z + b[2] * z * z) / (a[0] + a[1] * z + a[2] * z * z)
+    return np.fft.irfft(np.fft.rfft(x, n=n, axis=0) * h[:, None], n=n, axis=0)[: len(x)]
 
-    def H(b, a):
-        return (b[0] + b[1] * z + b[2] * z * z) / (a[0] + a[1] * z + a[2] * z * z)
 
-    h = H([1.53512485958697, -2.69169618940638, 1.19839281085285], [1, -1.69065929318241, 0.73248077421585]) * \
-        H([1.0, -2.0, 1.0], [1, -1.99004745483398, 0.99007225036621])
-    X = np.fft.rfft(x, n=n, axis=0)
-    return np.fft.irfft(X * h[:, None], n=n, axis=0)[: len(x)]
+def highpass(x, f0, q=0.7071):
+    """Second-order high-pass (RBJ cookbook)."""
+    w = 2 * np.pi * f0 / SR
+    al, cw = np.sin(w) / (2 * q), np.cos(w)
+    b, a = [(1 + cw) / 2, -(1 + cw), (1 + cw) / 2], [1 + al, -2 * cw, 1 - al]
+    return biquad(x, [v / a[0] for v in b], [v / a[0] for v in a])
+
+
+def compress(x, thr_db=-20.0, ratio=3.0, attack=0.005, release=0.08):
+    """Feed-forward compression on the RMS level (10 ms): above thr_db, ratio:1. Gentle on a voice's peaks."""
+    hop = int(0.001 * SR)
+    m = -(-len(x) // hop)
+    pw = np.concatenate([(x ** 2).mean(axis=1), np.zeros(m * hop - len(x))]).reshape(m, hop).mean(axis=1)
+    c = np.cumsum(np.concatenate([np.zeros(10), pw]))
+    want = np.maximum(0, 10 * np.log10((c[10:] - c[:-10]) / 10 + 1e-12) - thr_db) * (1 - 1 / ratio)
+    ka, kr = 1 - np.exp(-1 / (attack * 1000)), 1 - np.exp(-1 / (release * 1000))  # per 1 ms
+    g = np.empty(m)
+    cur = 0.0
+    for i, w in enumerate(want.tolist()):
+        cur += (ka if w > cur else kr) * (w - cur)
+        g[i] = cur
+    return x * 10 ** (-np.repeat(g, hop)[: len(x)] / 20)[:, None]
+
+
+# ------------------------------------------------------------------ loudness and true peak (ITU-R BS.1770-4)
+def k_weight(x):
+    """K-weighting: the two BS.1770 biquads at 48 kHz."""
+    y = biquad(x, [1.53512485958697, -2.69169618940638, 1.19839281085285], [1, -1.69065929318241, 0.73248077421585])
+    return biquad(y, [1.0, -2.0, 1.0], [1, -1.99004745483398, 0.99007225036621])
 
 
 def integrated_lufs(x):
@@ -360,12 +405,51 @@ def integrated_lufs(x):
     return -0.691 + 10 * np.log10(ms.mean())
 
 
+def true_peaks(x, factor=4, taps=48):
+    """Per sample, the largest of its factor-x oversampled neighbours over both channels (the true peak of
+    BS.1770 annex 2: the peaks a decoder can make between the samples). Polyphase windowed-sinc interpolation."""
+    L = taps * factor
+    h = np.sinc((np.arange(L) - (L - 1) / 2) / factor) * np.kaiser(L, 8.0)
+    pk = np.abs(x).max(axis=1)
+    d = taps // 2
+    for p in range(factor):
+        hp = h[p::factor]
+        hp = hp / hp.sum()
+        for ch in range(x.shape[1]):
+            y = np.abs(np.convolve(x[:, ch], hp))[d:d + len(x)]
+            pk = np.maximum(pk, np.concatenate([y, np.zeros(len(x) - len(y))]))
+    return pk
+
+
+def limit(x, ceil_db=TRUE_PEAK_DB, attack=0.005, release=0.08):
+    """True-peak limiter: the gain each sample needs, looked ahead over `attack` (so it is down before the peak),
+    released exponentially, then ramped (moving average over `attack`) so it never steps."""
+    from numpy.lib.stride_tricks import sliding_window_view
+    n, win = len(x), max(1, int(attack * SR))
+    need = np.minimum(1.0, 10 ** (ceil_db / 20) / np.maximum(true_peaks(x), 1e-9))
+    ahead = sliding_window_view(np.concatenate([need, np.ones(win - 1)]), win).min(axis=1)
+    rel = float(np.exp(-1 / (release * SR)))
+    env = np.empty(n)
+    cur = 1.0
+    for i, g in enumerate(ahead.tolist()):
+        cur = g if g < cur else g + (cur - g) * rel
+        env[i] = cur
+    # (the average over the window before each sample is at most the gain its peak needs)
+    c = np.concatenate([[0.0], np.cumsum(np.concatenate([np.ones(win - 1), env]))])
+    ramp = (c[win:] - c[:-win]) / win
+    return x * ramp[:, None]
+
+
 # ------------------------------------------------------------------ mix
 def main():
+    import music
+
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--voice", default=os.path.join(ROOT, "audio", "voiceover.mp3"))
     ap.add_argument("--out", default=os.path.join(ROOT, "out", "mix.wav"))
     ap.add_argument("--list", action="store_true", help="print the cue sheet")
+    ap.add_argument("--no-music", action="store_true", help="voice and effects only")
+    ap.add_argument("--stems", metavar="DIR", help="also write voice.wav, effects.wav and music.wav (mix gain, before the limiter)")
     a = ap.parse_args()
 
     ly = json.load(open(os.path.join(ROOT, "data", "lyrics.json"), encoding="utf-8"))
@@ -376,7 +460,9 @@ def main():
         for t, name, db, pan in cues:
             print(f"{t:8.3f}  {name:13s} {db:+5.1f} dB  pan {pan:+.2f}")
 
-    voice = load_audio(a.voice)
+    # the voice: no rumble under 80 Hz, peaks a little tamed
+    raw = load_audio(a.voice)
+    voice = compress(highpass(raw, 80.0))
     n = len(voice)
     sfx_dir = os.path.join(ROOT, "audio", "sfx")
     bank = {}
@@ -395,7 +481,15 @@ def main():
         bus[i:i + len(s), 1] += s[:, 1] * g * gr
     bus = bus[:n]
 
-    # ducking: the voice's envelope (fast attack, slow release) pulls the effects down by up to DUCK_DB
+    # the music bed and the room it shares with the effects
+    if a.no_music:
+        bed, send = np.zeros_like(bus), np.zeros_like(bus)
+    else:
+        bed, send = music.bed(anchors(W), n)
+        bed, send = bed * 10 ** (MUSIC_DB / 20), send * 10 ** (MUSIC_DB / 20)
+    verb = music.room(bus * SFX_SEND + send) * 10 ** (ROOM_DB / 20)
+
+    # ducking: the voice's envelope (fast attack, slow release) pulls effects and music down under it
     hop = int(0.01 * SR)
     m = n // hop
     v = np.sqrt((voice[: m * hop, 0].reshape(m, hop) ** 2).mean(axis=1) + 1e-12)
@@ -407,11 +501,12 @@ def main():
         c = 0.5 if act[k] > e else 0.03  # attack ~20 ms, release ~330 ms (per 10 ms step)
         e += c * (act[k] - e)
         env[k] = e
-    duck = 10 ** (-DUCK_DB * np.repeat(env, hop) / 20)
-    duck = np.concatenate([duck, np.full(n - len(duck), duck[-1] if len(duck) else 1.0)])
-    mix = voice + bus * duck[:, None]
-
-    print(f"voice {integrated_lufs(voice):.1f} LUFS, effects {integrated_lufs(bus * duck[:, None]):.1f} LUFS (ducked)")
+    env = np.concatenate([np.repeat(env, hop), np.full(n - m * hop, env[-1] if m else 0.0)])
+    duck_fx, duck_mu = 10 ** (-DUCK_DB * env / 20)[:, None], 10 ** (-MUSIC_DUCK_DB * env / 20)[:, None]
+    fx, mu = (bus + verb) * duck_fx, bed * duck_mu
+    mix = voice + fx + mu
+    lv = integrated_lufs(voice)
+    print(f"voice {lv:.1f} LUFS · effects {integrated_lufs(fx) - lv:+.1f} LU" + ("" if a.no_music else f" · music {integrated_lufs(mu) - lv:+.1f} LU") + " (ducked, against the voice)")
 
     # to the target loudness; the limiter takes off a little, so a second pass makes up for it
     gain = 1.0
@@ -421,26 +516,12 @@ def main():
     out = limit(mix * gain)
     os.makedirs(os.path.dirname(a.out), exist_ok=True)
     write_wav(a.out, out)
-    print(f"{len(cues)} cues, {len(bank)} effects · mix {integrated_lufs(out):.1f} LUFS, peak {20 * np.log10(np.abs(out).max()):.1f} dBFS · wrote {os.path.relpath(a.out, ROOT)}")
-
-
-def limit(x, ceil_db=-1.0, attack=0.005, release=0.08):
-    """Peak limiter: the gain each sample needs, looked ahead over `attack` (so it is down before the peak),
-    released exponentially, then ramped (moving average over `attack`) so it never steps."""
-    from numpy.lib.stride_tricks import sliding_window_view
-    n, win = len(x), max(1, int(attack * SR))
-    need = np.minimum(1.0, 10 ** (ceil_db / 20) / np.maximum(np.abs(x).max(axis=1), 1e-9))
-    ahead = sliding_window_view(np.concatenate([need, np.ones(win - 1)]), win).min(axis=1)
-    rel = float(np.exp(-1 / (release * SR)))
-    env = np.empty(n)
-    cur = 1.0
-    for i, g in enumerate(ahead.tolist()):
-        cur = g if g < cur else g + (cur - g) * rel
-        env[i] = cur
-    # (the average over the window before each sample is at most the gain its peak needs)
-    c = np.concatenate([[0.0], np.cumsum(np.concatenate([np.ones(win - 1), env]))])
-    ramp = (c[win:] - c[:-win]) / win
-    return x * ramp[:, None]
+    if a.stems:
+        os.makedirs(a.stems, exist_ok=True)
+        for name, x in (("voice", voice), ("effects", fx), ("music", mu)):
+            write_wav(os.path.join(a.stems, f"{name}.wav"), x * gain)
+    print(f"{len(cues)} cues, {len(bank)} effects{'' if a.no_music else ', music bed'} · mix {integrated_lufs(out):.1f} LUFS, "
+          f"true peak {20 * np.log10(true_peaks(out).max()):.1f} dBTP · wrote {os.path.relpath(a.out, ROOT)}")
 
 
 if __name__ == "__main__":
