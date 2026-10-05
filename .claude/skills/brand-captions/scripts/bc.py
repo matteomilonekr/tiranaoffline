@@ -4,10 +4,10 @@
 Usage (python3 on macOS/Linux, python on Windows):
   bc.py doctor [--install] [--skip-model]       check the computer / install what is missing
   bc.py scan <folder>                            list the clips in a folder
-  bc.py prepare <folder> [--mode one|each] [--brand SLUG] [--language it] [--clips a.mov,b.mov]
+  bc.py prepare <folder | video> [--mode one|each] [--brand SLUG] [--language it] [--clips a.mov,b.mov]
                                                  transcribe + write the draft edit plan(s)
   bc.py render <plan.json | folder> [--all]      render the plan(s) into MP4 + preview sheet
-  bc.py frames <video> [--at 1.2,3.5,...]        contact sheet of frames (for checking a video)
+  bc.py frames <video> [--at 1.2,3.5] [--width 1080]   frames of a video (for checking it)
   bc.py brand scan <url>                         read colours, fonts, logo from a website
   bc.py brand save <draft.json> [--no-default]   create/update a brand profile
   bc.py brand list | show [SLUG] | use SLUG | sample [SLUG]
@@ -85,7 +85,11 @@ def cmd_prepare(a) -> int:
     from bclib.plan import build_plan, write_plan
     from bclib.transcribe import transcribe_clips
     folder = Path(a.folder).expanduser().resolve()
-    res = scan_folder(folder)
+    single = folder.is_file()
+    if single:  # "add captions to this video": work on that one file
+        a.clips = folder.name
+        folder = folder.parent
+    res = scan_folder(folder, include_ours=bool(a.clips))
     videos = res["videos"]
     if a.clips:
         wanted = [x.strip() for x in a.clips.split(",") if x.strip()]
@@ -104,8 +108,9 @@ def cmd_prepare(a) -> int:
     transcripts = transcribe_clips(videos, work, a.language, brand.get("vocabulary"), hint=brand.get("language"))
     plans = []
     if a.mode == "one":
-        name = a.name or folder.name
-        plan = build_plan(name, folder, videos, transcripts, brand, f"{name}.mp4")
+        name = a.name or (Path(videos[0]["file"]).stem if single or len(videos) == 1 and a.clips else folder.name)
+        output = f"{name}-edited.mp4" if (single or (a.clips and len(videos) == 1)) else f"{name}.mp4"
+        plan = build_plan(name, folder, videos, transcripts, brand, output)
         path = work / "plan.json"
         write_plan(path, plan)
         plans.append(str(path))
@@ -169,8 +174,14 @@ def cmd_frames(a) -> int:
     else:
         n = a.count
         times = [info["duration"] * (k + 0.5) / n for k in range(n)]
-    out = Path(a.out) if a.out else video.with_name(video.stem + "-frames.jpg")
-    sheet = contact_sheet(video, [(t, "") for t in times], out, info["width"] > info["height"])
+    if a.out:
+        out = Path(a.out)
+    else:
+        base = next((d / WORK_DIRNAME for d in (video.parent, video.parent.parent) if (d / WORK_DIRNAME).is_dir()),
+                    video.parent / WORK_DIRNAME)
+        base.mkdir(parents=True, exist_ok=True)
+        out = base / f"frames-{video.stem}.jpg"
+    sheet = contact_sheet(video, [(t, "") for t in times], out, info["width"] > info["height"], a.width)
     emit({"sheet": str(sheet)})
     return 0
 
@@ -269,6 +280,7 @@ def main() -> int:
     s.add_argument("video")
     s.add_argument("--at")
     s.add_argument("--count", type=int, default=8)
+    s.add_argument("--width", type=int, help="width of each frame in pixels (1080 = full size)")
     s.add_argument("--out")
     s = sub.add_parser("brand")
     s.add_argument("action", choices=["scan", "save", "list", "show", "use", "sample"])

@@ -82,6 +82,7 @@ def clip_info(path: Path) -> dict:
         "hdr": hdr,
         "codec": video.get("codec_name"),
         "created": created,
+        "ours": "brand captions" in (tags.get("comment") or "").lower(),
     }
 
 
@@ -92,7 +93,7 @@ def outputs_of(folder: Path) -> set:
         return set()
 
 
-def scan_folder(folder: Path) -> dict:
+def scan_folder(folder: Path, include_ours: bool = False) -> dict:
     folder = Path(folder).expanduser()
     if not folder.exists():
         raise BCError(f"The folder {folder} does not exist.", "Check the name or give the full path of the folder.")
@@ -109,6 +110,8 @@ def scan_folder(folder: Path) -> dict:
                 info = clip_info(p)
                 if info["duration"] < 0.3:
                     skipped.append({"file": p.name, "reason": "shorter than 0.3 seconds"})
+                elif info["ours"] and not include_ours:
+                    skipped.append({"file": p.name, "reason": "a finished video made by Brand Captions"})
                 else:
                     videos.append(info)
             except BCError as e:

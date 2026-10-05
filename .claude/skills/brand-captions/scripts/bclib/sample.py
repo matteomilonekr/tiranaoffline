@@ -15,9 +15,9 @@ PHRASES = {
     "fr": ["Voici à quoi ressemblent tes vidéos.", "Des sous-titres avec des mots en couleur.", "Tout à ton image."],
     "es": ["Así se ven tus vídeos.", "Subtítulos con palabras destacadas.", "Todo con tu estilo."],
 }
-WORDS = {"it": ("Il tuo brand", "ogni video", "Wow.", "nuovo"), "en": ("Your brand", "every video", "Wow.", "new"),
-         "nl": ("Jouw merk", "elke video", "Wow.", "nieuw"), "de": ("Deine Marke", "jedes Video", "Wow.", "neu"),
-         "fr": ("Ta marque", "chaque vidéo", "Wow.", "nouveau"), "es": ("Tu marca", "cada vídeo", "Wow.", "nuevo")}
+WORDS = {"it": ("Il tuo brand", "ogni video", "1 clic.", "nuovo"), "en": ("Your brand", "every video", "1 click.", "new"),
+         "nl": ("Jouw merk", "elke video", "1 klik.", "nieuw"), "de": ("Deine Marke", "jedes Video", "1 Klick.", "neu"),
+         "fr": ("Ta marque", "chaque vidéo", "1 clic.", "nouveau"), "es": ("Tu marca", "cada vídeo", "1 clic.", "nuevo")}
 
 
 def make_sample(brand: dict) -> Path:
@@ -34,7 +34,7 @@ def make_sample(brand: dict) -> Path:
     try:
         run([ffmpeg(), "-v", "error", "-y", "-f", "lavfi", "-i",
              f"gradients=s=1080x1920:c0=0x3d4a57:c1=0xa08f7c:c2=0x5f6f63:nb_colors=3:speed=0.02:d={dur}:r=30",
-             "-vf", "noise=alls=10:allf=t,format=yuv420p", "-c:v", "libx264", "-preset", "veryfast", clip],
+             "-vf", "format=yuv420p", "-c:v", "libx264", "-preset", "veryfast", clip],
             what="the sample background")
     except BCError:
         run([ffmpeg(), "-v", "error", "-y", "-f", "lavfi", "-i", f"color=c=0x5d6772:s=1080x1920:d={dur}:r=30",
@@ -62,7 +62,7 @@ def make_sample(brand: dict) -> Path:
     plan = {
         "version": 1, "name": "sample", "folder": str(folder), "output": "sample-edit.mp4",
         "brand": brand.get("slug", "default"), "format": "9:16",
-        "settings": {"cut": "none", "zoom_cuts": False, "captions": True},
+        "settings": {"cut": "none", "zoom_cuts": False, "captions": True, "preset": "veryfast", "crf": 23},
         "clips": [{"id": "c1", "file": "sample.mp4", "kind": "visual", "duration": dur, "trim": [0, dur],
                    "sentences": [{"id": f"c1.s{i + 1}", "text": s, "keep": True} for i, s in enumerate(marked)]}],
         "overlays": [
@@ -76,4 +76,10 @@ def make_sample(brand: dict) -> Path:
         plan["overlays"].append({"type": "endcard", "duration": 2.6})
     write_plan(work / "plan.json", plan)
     summary = render_plan(work / "plan.json")
-    return Path(summary["preview"]) if summary.get("preview") else Path(summary["output"])
+    if not summary.get("preview"):
+        raise BCError("The sample preview could not be created.")
+    # keep only the picture, next to the brand profile; the sample video is not needed
+    dest = (Path(brand["_dir"]) if brand.get("_dir") else HOME) / "sample.jpg"
+    shutil.copy2(summary["preview"], dest)
+    shutil.rmtree(folder, ignore_errors=True)
+    return dest

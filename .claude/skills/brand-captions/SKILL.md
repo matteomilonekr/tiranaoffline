@@ -1,6 +1,7 @@
 ---
 name: brand-captions
 description: Monta video da una cartella di clip grezze e consegna un MP4 finito, pronto da pubblicare o per le ads — taglia pause e ripetizioni, aggiunge sottotitoli con parole evidenziate, hook/opener, titoli, punch word, etichette ed end card nei font, colori e animazioni del brand (letti dal sito o dalla brand guide al primo avvio, poi salvati). Usa questa skill ogni volta che l'utente vuole montare, editare o sottotitolare video o clip (Reels, TikTok, Shorts, ads, talking head, demo prodotto, backstage, girato col telefono), anche se dice solo "monta i video nella cartella X", "aggiungi i sottotitoli", "fammi un reel da queste clip", "edit the videos in my launch-day folder", "caption this clip", oppure vuole cambiare stile, brand, formato o testi di un video già fatto con questa skill.
+allowed-tools: Bash(python3 ${CLAUDE_SKILL_DIR}/scripts/bc.py *) Bash(python3 "${CLAUDE_SKILL_DIR}/scripts/bc.py" *) Bash(python ${CLAUDE_SKILL_DIR}/scripts/bc.py *) Bash(python "${CLAUDE_SKILL_DIR}/scripts/bc.py" *)
 ---
 
 # Brand Captions
@@ -34,12 +35,14 @@ sta succedendo e quanto ci vuole circa. Quando uno script fallisce stampa `✗ p
 Tutto passa da un unico script. Qui sotto `BC` vuol dire:
 
 ```
-python3 "<cartella di questa skill>/scripts/bc.py"
+python3 ${CLAUDE_SKILL_DIR}/scripts/bc.py
 ```
 
-(la cartella è la "Base directory" indicata quando la skill viene caricata; su Windows usa
-`python` invece di `python3`). Ogni comando stampa i progressi e chiude con una riga
-`RESULT {…}` in JSON con i dati utili (percorsi, durate, errori).
+`${CLAUDE_SKILL_DIR}` è la cartella di questa skill (se qui non vedi un percorso vero, usa la
+"Base directory" indicata quando la skill viene caricata; metti il percorso tra virgolette se
+contiene spazi). Su Windows usa `python` invece di `python3`. Ogni comando stampa i
+progressi e chiude con una riga `RESULT {…}` in JSON con i dati utili (percorsi, durate,
+errori).
 
 ## Il flusso
 
@@ -49,8 +52,8 @@ Esegui `BC doctor`. Se chiude con `READY` vai avanti senza dire nulla.
 Se c'è qualcosa da sistemare:
 
 - **Strumenti o modello vocale mancanti** (prima volta): di' all'utente che è una
-  preparazione da fare una volta sola (2-5 minuti, circa 2 GB) ed esegui
-  `BC doctor --install` (timeout lungo, fino a 15 minuti).
+  preparazione da fare una volta sola (da 1 a 5 minuti, 1-2 GB a seconda del computer) ed
+  esegui `BC doctor --install` con il timeout massimo (10 minuti) o in background.
 - **FFmpeg mancante**: spiega che serve per lavorare sui video e proponi il comando che
   `doctor` mostra (es. `brew install ffmpeg` su Mac, `winget install --id Gyan.FFmpeg -e`
   su Windows). Chiedi prima di installare. Se il comando richiede la password del computer
@@ -64,6 +67,8 @@ Se l'utente nomina una cartella ("la cartella lancio"), trovala: percorso esatto
 corrente, poi Desktop, Download, Filmati/Movies, Documenti
 (`find ~ -maxdepth 4 -type d -iname "lancio*" 2>/dev/null | head`). Se ce ne sono diverse,
 chiedi quale. Poi `BC scan <cartella>`: elenca le clip (durata, formato, audio).
+Se l'utente indica un singolo video ("aggiungi i sottotitoli a questo video"), passa
+direttamente il file a `prepare`: il risultato sarà `<nome>-edited.mp4` accanto all'originale.
 
 ### 3. Un video o uno per clip?
 
@@ -81,10 +86,10 @@ video con tutte, o ogni clip per conto suo?". Un video = `--mode one`, uno per c
 - **Nessun brand** → fai la domanda sul brand (sito, file, brand guide…). Poi segui
   `references/brand-setup.md`: analisi del sito con `BC brand scan <url>` (o lettura dei
   file che ti dà), scelta di stile, colori, font, logo ed end card, salvataggio con
-  `BC brand save <bozza.json>`. Il salvataggio genera un video di prova e un'immagine
-  di anteprima: guardala con lo strumento Read e correggi se qualcosa non va (contrasto,
-  logo sbagliato, font poco leggibile). Poi conferma con una frase: "Colori e font sono
-  salvati, non te lo chiederò più."
+  `BC brand save ~/.brand-captions/brand-draft.json`. Il salvataggio (circa mezzo minuto)
+  crea un'immagine di anteprima (`sample` nel RESULT): guardala con lo strumento Read e
+  correggi se qualcosa non va (contrasto, logo sbagliato, font poco leggibile, numeri strani).
+  Poi conferma con una frase: "Colori e font sono salvati, non te lo chiederò più."
 - **Niente sito né file** → salva un brand minimo (`{"name": "<nome>", "style": "clean"}`):
   parte da impostazioni pulite che si possono cambiare dopo.
 
@@ -98,6 +103,8 @@ Trascrive tutte le clip con i tempi di ogni parola (la prima volta può scaricar
 vocale) e scrive la bozza di montaggio: `<cartella>/.brand-captions/plan.json` (un video)
 oppure `<cartella>/.brand-captions/plans/<clip>.json` (uno per clip). La lingua viene
 riconosciuta da sola; usa `--language it` solo se l'utente lo chiede o il risultato è sbagliato.
+Le frasi con `"note": "unsure words: …"` contengono parole capite male con buona probabilità:
+correggile in base al contesto.
 
 ### 6. Monta: qui sei il montatore
 
@@ -117,7 +124,7 @@ esatto, gli ancoraggi temporali e tutte le opzioni). L'essenziale:
 - **Sovrapposizioni**: quasi sempre un hook nei primi secondi; punch word nei momenti
   chiave (circa una ogni 6-10 secondi, non di più); etichette nelle demo di prodotto; un
   titolo fisso in alto per i video che spiegano qualcosa; l'end card se il brand ce l'ha
-  (è già nella bozza).
+  (è già nella bozza: controlla che la CTA abbia ancora senso, es. un evento già passato).
 
 Modifica il file con lo strumento Edit. Non aggiungere, dividere o unire frasi: cambia solo
 `text`, `keep`, `caption`, l'ordine delle clip, le impostazioni e le sovrapposizioni.
@@ -133,8 +140,9 @@ Il `RESULT` contiene `output` (il video finito) e `preview` (un'immagine con i m
 chiave). **Guarda sempre l'anteprima** con lo strumento Read prima di dire che hai finito:
 testi leggibili e non tagliati, nessun testo sopra un volto o sul prodotto, evidenziazioni
 giuste, hook e end card a posto. Se qualcosa non va, sistema il piano e rifai il render
-(le parti già tagliate sono in cache, il secondo render è più veloce). Per controllare un
-momento preciso: `BC frames <video> --at 3.2,7.5`.
+(le parti già tagliate sono in cache, il secondo render è più veloce). Per vedere un
+momento preciso più in grande: `BC frames <video> --at 3.2,7.5 --width 720` (immagine nella
+cartella di lavoro, mai tra le clip dell'utente).
 
 ### 8. Consegna
 

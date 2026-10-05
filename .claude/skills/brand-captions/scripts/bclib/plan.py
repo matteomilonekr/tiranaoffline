@@ -36,9 +36,13 @@ def clip_kind(tr: dict, duration: float) -> str:
 def draft_clip(cid: str, clip: dict, tr: dict) -> dict:
     sents = []
     tsents = tr.get("sentences") or []
+    words = tr.get("words") or []
     for k, s in enumerate(tsents):
         entry = {"id": f"{cid}.s{k + 1}", "t": [round(s["start"], 2), round(s["end"], 2)], "text": s["text"],
                  "keep": True}
+        unsure = [w["w"].strip(".,!?;:") for w in words[s["w0"]:s["w1"]] if w.get("p", 1.0) < 0.5]
+        if unsure:
+            entry["note"] = "unsure words: " + ", ".join(unsure[:6])
         sents.append(entry)
     # false start inside one sentence: "I show you how… I show you how I edit" → cut the first take
     for e in sents:
@@ -47,14 +51,14 @@ def draft_clip(cid: str, clip: dict, tr: dict) -> dict:
         for k in range(min(12, len(ws) // 2), 2, -1):
             if SequenceMatcher(a=nw[:k], b=nw[k:2 * k], autojunk=False).ratio() >= 0.8:
                 e["text"] = "~~" + " ".join(ws[:k]) + "~~ " + " ".join(ws[k:])
-                e["note"] = "false start cut (~~…~~)"
+                e["note"] = "; ".join(x for x in ("false start cut (~~…~~)", e.get("note")) if x)
                 break
     # false starts: a sentence repeated (in full or almost) by the next one → keep the last take
     for k in range(len(sents) - 1):
         for j in (k + 1, k + 2):
             if j < len(sents) and _similar(sents[k]["text"], sents[j]["text"]) >= 0.75:
                 sents[k]["keep"] = False
-                sents[k]["note"] = f"retake? repeated in {sents[j]['id']}"
+                sents[k]["note"] = "; ".join(x for x in (f"retake? repeated in {sents[j]['id']}", sents[k].get("note")) if x)
                 break
     kind = clip_kind(tr, clip["duration"])
     out = {"id": cid, "file": clip["file"], "kind": kind, "duration": clip["duration"]}

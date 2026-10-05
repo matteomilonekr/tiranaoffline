@@ -34,6 +34,9 @@ un talking head, un backstage. Guarda `kind`: le clip `visual` sono immagini sen
 - Correggi gli errori di trascrizione: nomi del brand e dei prodotti (anche il `vocabulary`
   del brand aiuta), numeri ("cinquemila" → "5.000" se lo stile del brand usa le cifre),
   parole straniere, punteggiatura. Mai parafrasare: deve corrispondere all'audio.
+  Le note `unsure words` indicano le parole più a rischio: correggile se il contesto lo
+  rende ovvio ("Paolo anche tu, il link nella bio" → "Provalo anche tu…"); se il dubbio
+  resta su un nome o un numero importante, chiedi all'utente nel messaggio finale.
 - **Evidenzia poco**: circa una parola ogni 2-3 sottotitoli, mai due parole vicine in frasi
   diverse. Buone candidate: numeri e quantità ("*3 secondi*"), risultati ("*via*",
   "*pulito*"), il nome del prodotto, contrasti ("non *costa*, *fa risparmiare*"), parole
@@ -97,7 +100,18 @@ abbiano senso per questo video. Puoi cambiare `cta`, `headline` o `stats` solo p
 video dentro l'overlay. Per i contenuti organici "di valore" a volte è meglio senza:
 chiedi solo se hai un dubbio reale.
 
-## 10. Controllo finale (sull'anteprima)
+## 10. Leggibilità
+
+- Girato molto chiaro, colorato o pieno di dettagli (palchi, luci, schermi): i testi senza
+  contorno (stili `clean`, `elegant`) perdono forza. Ingrandisci (`settings.caption_size`
+  1,1-1,2; `size` 1,2-1,3 per l'hook) e metti hook e punch dove l'immagine è più scura o
+  uniforme (`position`).
+- Se il colore d'accento è simile alla scena (accento viola su luci viola), evidenzia meno o
+  scegli parole che reggono anche in bianco; non cambiare il colore del brand di tua iniziativa.
+- I font molto larghi (es. Syne) vanno su più righe prima degli altri: preferisci punch e
+  hook brevi.
+
+## 11. Controllo finale (sull'anteprima)
 
 - Il testo non copre volti, mani che mostrano il prodotto o il prodotto stesso → sposta
   con `position`, o cambia `settings.caption_y` (es. 0,62) se succede sempre.

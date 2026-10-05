@@ -165,6 +165,7 @@ def _broll_inputs(brolls: List[dict], folder: Path, rdir: Path, W: int, H: int, 
         src = f"[{idx}:v]"
         idx += 1
         mode = b.get("mode", "full")
+        hold = f"tpad=stop_mode=clone:stop_duration={d + 1:.3f},"
         if mode == "pip":
             if is_img:
                 from PIL import Image
@@ -190,14 +191,14 @@ def _broll_inputs(brolls: List[dict], folder: Path, rdir: Path, W: int, H: int, 
                 ypos = {"top": 0.22, "upper": 0.30, "center": 0.40, "lower": 0.52}.get(pos, 0.30)
                 x = (W - pw) / 2.0
                 y = H * ypos - ph / 2.0
-            parts.append(f"{src}fps={fps:g},scale={pw}:{ph}:force_original_aspect_ratio=increase,crop={pw}:{ph},"
+            parts.append(f"{src}fps={fps:g},{hold}scale={pw}:{ph}:force_original_aspect_ratio=increase,crop={pw}:{ph},"
                          f"format=yuva420p[bv{j}]")
             parts.append(f"[{midx}:v]format=gray,scale={pw}:{ph}[bm{j}]")
             parts.append(f"[bv{j}][bm{j}]alphamerge,fade=t=in:st=0:d=0.18:alpha=1,"
                          f"fade=t=out:st={max(0.0, d - 0.18):.3f}:d=0.18:alpha=1,setpts=PTS-STARTPTS+{t0:.3f}/TB[bp{j}]")
         else:
             zoom = f",scale=w='iw*(1+0.06*t/{max(d, 0.1):.2f})':h=-2:eval=frame,crop={W}:{H}" if is_img else ""
-            parts.append(f"{src}fps={fps:g},scale={_even(W * 1.0)}:{_even(H * 1.0)}:force_original_aspect_ratio=increase,"
+            parts.append(f"{src}fps={fps:g},{hold}scale={_even(W * 1.0)}:{_even(H * 1.0)}:force_original_aspect_ratio=increase,"
                          f"crop={W}:{H}{zoom},format=yuva420p,setpts=PTS-STARTPTS+{t0:.3f}/TB[bp{j}]")
             x, y = 0, 0
         parts.append(f"{cur}[bp{j}]overlay={x:.0f}:{y:.0f}:enable='between(t,{t0:.3f},{t1:.3f})':eof_action=pass[bo{j}]")
@@ -241,6 +242,7 @@ def stage2(rdir: Path, intermediates: List[Path], ass_name: str, out_tmp: Path, 
             "-pix_fmt", "yuv420p", "-r", f"{fps:g}", "-g", str(int(fps * 2)),
             "-colorspace", "bt709", "-color_primaries", "bt709", "-color_trc", "bt709",
             "-c:a", "aac", "-b:a", "192k", "-ar", "48000", "-movflags", "+faststart",
+            "-metadata", "comment=Edited with Brand Captions",
             "-progress", "pipe:1", "-nostats", str(out_tmp)]
     proc = subprocess.Popen(cmd, cwd=str(rdir), stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True,
                             encoding="utf-8", errors="replace")
@@ -265,11 +267,12 @@ def stage2(rdir: Path, intermediates: List[Path], ass_name: str, out_tmp: Path, 
 # ---------------------------------------------------------------- preview
 
 
-def contact_sheet(video: Path, shots: List[tuple], out: Path, landscape: bool) -> Optional[Path]:
+def contact_sheet(video: Path, shots: List[tuple], out: Path, landscape: bool,
+                  width: Optional[int] = None) -> Optional[Path]:
     from PIL import Image, ImageDraw, ImageFont
     if not shots:
         return None
-    tw = 480 if landscape else 300
+    tw = width or (480 if landscape else 360)
     tmpdir = out.parent / "frames"
     tmpdir.mkdir(parents=True, exist_ok=True)
     thumbs = []
@@ -283,7 +286,7 @@ def contact_sheet(video: Path, shots: List[tuple], out: Path, landscape: bool) -
             continue
     if not thumbs:
         return None
-    cols = 3 if landscape else 4
+    cols = max(1, min(len(thumbs), (3 if landscape else 4) if tw <= 480 else (2 if tw <= 720 else 1)))
     rows = math.ceil(len(thumbs) / cols)
     th = thumbs[0][0].size[1]
     pad, lab = 12, 34
@@ -459,6 +462,12 @@ def render_plan(plan_path: Path) -> dict:
         except BCError as e:
             raise BCError(f"Overlay #{i + 1} ({t}): {e.message}", e.hint)
         if t in ("broll", "image"):
+            edges = sorted({round(sg.out_in, 4) for sg in tl.segments} | {round(main_end, 4)})
+            for edge in edges:
+                if 0 < start - edge <= 0.3:
+                    start = edge
+                if 0 < edge - end <= 0.3:
+                    end = edge
             brolls.append(dict(ov, start=start, end=end))
             shots.append((start + min(0.6, (end - start) / 2), f"b-roll {ov.get('file', '')}"))
             continue
@@ -471,7 +480,7 @@ def render_plan(plan_path: Path) -> dict:
         elif t == "label":
             label_events(doc, ov, style, fonts, fr, start, end)
         hc = ov.get("hide_captions", "auto")
-        if hc is True or (hc == "auto" and t in ("hook", "opener", "punch")
+        if hc is True or (hc == "auto" and t in ("hook", "opener")
                           and _duplicate(ov.get("text", ""), chunks, start, end)):
             hide.append((start, end))
         shots.append((start + min(0.55, (end - start) / 2), f"{t}: {ov.get('text', '')}"))

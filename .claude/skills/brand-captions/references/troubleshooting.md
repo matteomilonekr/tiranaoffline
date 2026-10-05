@@ -23,6 +23,8 @@ Spiega all'utente il problema in una frase semplice e fai tu il passo successivo
 | Video con colori spenti/grigi da iPhone | Era girato in HDR. | Viene convertito automaticamente se FFmpeg ha `zscale` (Homebrew sì). Altrimenti consiglia di girare in SDR o installare FFmpeg completo. |
 | Audio e sottotitoli fuori sincrono | Raro: trascrizione imprecisa su audio rumoroso. | Rifai `prepare` con il modello grande (`BC config whisper_model=large-v3-turbo`). |
 | Il testo copre un volto o il prodotto | Posizione standard non adatta a questa inquadratura. | `position`/`y` sulla sovrapposizione o `settings.caption_y`. |
+| `brand scan`: `answered with error 403` o nessun colore/font | Il sito blocca i programmi o è costruito in modo particolare. | Leggi il sito con lo strumento web, chiedi logo e colori all'utente, oppure brand minimo. |
+| Per un attimo si vede la clip sotto un b-roll | Il b-roll inizia/finisce poco dopo/prima di un taglio. | Ancoralo alla clip intera (`"at": "cX", "to": "cX"`) o a frasi più ampie. |
 
 ## Spazio su disco
 

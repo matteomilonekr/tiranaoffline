@@ -112,15 +112,15 @@ def fit_lines(lines_in: List[List[Token]], look: TextLook, max_w: float, max_lin
     return lines, look
 
 
-def fit_block(text: str, look: TextLook, max_w: float, max_lines: int = 2) -> tuple:
-    """One line if it fits (shrinking up to 35%), otherwise wrapped; returns (lines, look, height)."""
+def fit_block(text: str, look: TextLook, max_w: float, max_lines: int = 2, min_one_line: float = 0.65) -> tuple:
+    """One line if it fits (shrinking down to min_one_line), otherwise wrapped; returns (lines, look, height)."""
     lines_in = parse_marked(text)
     flat = [t for ln in lines_in for t in ln]
     if len(lines_in) == 1 and flat:
         w = block_width([flat], look)
         if w <= max_w:
             return [flat], look, look.cap
-        if w * 0.65 <= max_w:
+        if w * min_one_line <= max_w:
             lk = look.scaled(max_w / w)
             return [flat], lk, lk.cap
     lines, lk = fit_lines(lines_in, look, max_w, max_lines, 0.5)
@@ -177,7 +177,7 @@ def hook_events(doc: Doc, ov: dict, style: dict, fonts: Dict[str, Font], fr: Fra
     max_w = fr.width * float(el.get("width", 0.84))
     if role == "punch" and len(lines_in) == 1:
         lines, look, _ = fit_block(ov.get("text", "") and " ".join(t.text if not t.emph else f"*{t.text}*"
-                                                                   for t in lines_in[0]), look, max_w, 2)
+                                                                   for t in lines_in[0]), look, max_w, 2, 0.5)
     else:
         lines, look = fit_lines(lines_in, look, max_w, 4 if role != "punch" else 2, 0.5)
     x = _x_of(ov, fr)
@@ -252,7 +252,7 @@ def endcard_layout(card: dict, style: dict, fonts: Dict[str, Font], fr: Frame, l
     bg = colors["background"]
     dark_bg = contrast(bg, "#FFFFFF") > contrast(bg, "#111111")
     ink = colors["ink"] if contrast(colors["ink"], bg) >= 3 else readable_on(bg)
-    second = colors["secondary"] if contrast(colors["secondary"], bg) >= 2.2 else ink
+    second = colors["secondary"] if contrast(colors["secondary"], bg) >= 3.0 else ink
     accent = colors["accent"]
     landscape = W > H
     blocks = []

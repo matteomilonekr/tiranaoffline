@@ -26,32 +26,60 @@ class Segment:
         return self.src_out - self.src_in
 
 
-def _refine(intervals: List[Tuple[float, float]], energy, duration: float) -> List[Tuple[float, float]]:
-    """Grow cut points while there is still sound, so word endings are never chopped."""
+def _refine(intervals: List[Tuple[float, float]], energy, duration: float, split_at: Optional[float],
+            pre: float, post: float) -> List[Tuple[float, float]]:
+    """Fit cut points to the real sound (10 ms loudness frames).
+
+    Word timings from speech recognition are often a bit long at the end of a phrase, so: grow a
+    cut point while a word is still sounding, trim silence the timings left in, and cut long
+    silences hidden inside a kept part.
+    """
     if energy is None or len(energy) < 20:
         return intervals
     import numpy as np
     floor = float(np.percentile(energy, 15))
     loud = float(np.percentile(energy, 90))
-    if loud - floor < 10:  # no clear speech/silence contrast: trust the word timings
+    if loud - floor < 10:  # no clear speech/silence contrast (noise, music): trust the word timings
         return intervals
     thr = floor + 0.25 * (loud - floor)
+    sound = energy > floor + 0.15 * (loud - floor)
     hop = 0.01
     n = len(energy)
-    out = []
+    out: List[Tuple[float, float]] = []
     for a, b in intervals:
-        ia = int(a / hop)
+        ia, ib = max(0, int(a / hop)), min(n, int(b / hop))
         steps = 0
-        while ia > 0 and steps < 20 and energy[min(n - 1, ia - 1)] > thr:
+        while ia > 0 and steps < 20 and energy[ia - 1] > thr:
             ia -= 1
             steps += 1
-        ib = int(b / hop)
         steps = 0
         while ib < n - 1 and steps < 30 and energy[ib] > thr:
             ib += 1
             steps += 1
-        out.append((max(0.0, ia * hop), min(duration, ib * hop)))
-    return out
+        seg = sound[ia:ib]
+        if len(seg) == 0 or not seg.any():
+            out.append((ia * hop, ib * hop))
+            continue
+        first = ia + int(np.argmax(seg))
+        last = ia + len(seg) - 1 - int(np.argmax(seg[::-1]))
+        a2 = max(ia * hop, first * hop - pre)
+        b2 = min(ib * hop, (last + 1) * hop + post)
+        start = a2
+        if split_at is not None:
+            k, k_end = int(a2 / hop), int(b2 / hop)
+            while k < k_end:
+                if sound[k]:
+                    k += 1
+                    continue
+                j = k
+                while j < k_end and not sound[j]:
+                    j += 1
+                if (j - k) * hop > split_at + pre + post and j < k_end:
+                    out.append((start, k * hop + post))
+                    start = j * hop - pre
+                k = j
+        out.append((start, b2))
+    return [(max(0.0, x), min(duration, y)) for x, y in out if y - x > 0.05]
 
 
 def _merge(intervals: List[Tuple[float, float]], min_gap: float = 0.05) -> List[Tuple[float, float]]:
@@ -85,7 +113,7 @@ def speech_intervals(runs: List[List[dict]], dropped: List[Tuple[float, float]],
                 a = w1["s"] - pre
         raw.append((a, words[-1]["e"] + post))
         raw = [(max(0.0, x), min(duration, y)) for x, y in raw if y > x]
-        result += _merge(_refine(raw, energy, duration), 0.12)
+        result += _merge(_refine(raw, energy, duration, split_at, pre, post), 0.12)
     for zs, ze in dropped:
         clipped = []
         for a, b in result:

@@ -119,16 +119,18 @@ trascrizione nell'ordine e si ferma se il numero non torna.
 ## 4. Sovrapposizioni (`overlays`)
 
 Campi comuni: `at` (quando inizia, vedi §5), `duration` (secondi) oppure `to` (quando
-finisce), `position` (`top`, `upper`, `center`, `lower`, `bottom` o un numero 0-1 = altezza),
-`size` (moltiplicatore, 1 = normale).
+finisce), `position` (`top` 0,20 · `upper` 0,30 · `center` 0,45 · `lower` 0,58 · `bottom`
+0,62, oppure un numero 0-1 = altezza del centro del testo; i sottotitoli stanno a ≈ 0,70),
+`size` (moltiplicatore, 1 = normale), `hide_captions` (`true` = niente sottotitoli mentre
+il testo è a schermo).
 
 | `type` | Campi | Note |
 |---|---|---|
-| `hook` (o `opener`) | `text`, `at` (predef. inizio), `duration` | testo grande d'apertura. `\n` va a capo, `*parole*` evidenziate. Se ancorato a una frase dura quanto la frase (1,4-4 s). Nasconde i sottotitoli sotto se ripete le stesse parole (`hide_captions`: `auto` predef., `true`, `false`). |
+| `hook` (o `opener`) | `text`, `at` (predef. inizio), `duration` | testo grande d'apertura. `\n` va a capo, `*parole*` evidenziate. Se ancorato a una frase dura quanto la frase (1,4-4 s). Nasconde i sottotitoli mentre è a schermo se ripete le stesse parole (`hide_captions`: `auto` predef., `true`, `false`). |
 | `title` | `text`, `from` (predef. `start`), `to` (predef. `end`) | testo fisso in alto per tutta la durata (o un tratto): l'argomento del video. |
-| `punch` | `text`, `at` (meglio `cX.sY:parola`), `duration` (predef. ~1,1 s) | parola enorme che "colpisce": "Via.", "1 panno.", "Zero app." Max 1-3 parole. |
+| `punch` | `text`, `at` (meglio `cX.sY:parola`), `duration` (predef. ~1,1 s) | parola enorme che "colpisce": "Via.", "1 panno.", "Zero app." Max 1-3 parole; si rimpicciolisce per stare su una riga. I sottotitoli restano visibili (metti `hide_captions: true` se ripete esattamente la frase detta). |
 | `label` | `text`, `at`, `duration` (predef. 1,8 s), `position` o `x`/`y` (0-1), `color` (`accent`, `secondary` o `#hex`) | etichetta a pillola: nomi, materiali, passaggi, prezzi. 1-2 parole. |
-| `broll` | `file`, `at`, `duration`, `mode` (`full`/`pip`), `from` (secondo di partenza nel file), `width` (pip, 0-1), `position` (pip: `top`, `upper`, `center`, `lower`, `left`, `right`) | copre il video con un'altra clip o una foto della cartella; l'audio resta quello principale. `pip` = riquadro con angoli arrotondati (nei video orizzontali va a destra). |
+| `broll` | `file`, `at`, `duration` o `to`, `mode` (`full`/`pip`), `from` (secondo di partenza nel file), `width` (pip, 0-1), `position` (pip: `top`, `upper`, `center`, `lower`, `left`, `right`) | copre il video con un'altra clip o una foto della cartella; l'audio resta quello principale. `pip` = riquadro con angoli arrotondati (nei video orizzontali va a destra). Per coprire un'intera clip usa `"at": "cX", "to": "cX"`; inizi e fini a meno di 0,3 s da un taglio vengono allineati al taglio. La clip usata come b-roll di solito va messa `"skip": true`. |
 | `endcard` | `enabled`, `duration` (predef. 3,2 s), `cta`, `url`, `headline`, `stats` `[{"value":"5.000+","label":"clienti"}]`, `footnote`, `logo` (true/false) | scheda finale col logo; i valori mancanti vengono dal brand. |
 
 ## 5. Ancoraggi temporali

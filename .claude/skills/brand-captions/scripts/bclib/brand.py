@@ -257,9 +257,11 @@ class _Page(HTMLParser):
         self._buf = None
         self._buf_tag = None
 
-    def url(self, u: Optional[str]) -> Optional[str]:
-        if not u or u.startswith("data:"):
+    def url(self, u: Optional[str], allow_data: bool = False) -> Optional[str]:
+        if not u or (u.startswith("data:") and not allow_data):
             return None
+        if u.startswith("data:"):
+            return u
         return urllib.parse.urljoin(self.base, u.strip())
 
     def handle_starttag(self, tag, attrs):
@@ -274,7 +276,7 @@ class _Page(HTMLParser):
                 self.meta[key] = a.get("content", "")
         elif tag == "link":
             rel = a.get("rel", "").lower()
-            href = self.url(a.get("href"))
+            href = self.url(a.get("href"), allow_data="icon" in rel)
             if href and "stylesheet" in rel:
                 (self.font_links if "fonts.googleapis.com" in href else self.stylesheets).append(href)
             elif href and "icon" in rel:
@@ -328,6 +330,8 @@ class _Page(HTMLParser):
 _RULE = re.compile(r"([^{}]*)\{([^{}]*)\}")
 _COLOR = re.compile(r"#[0-9a-fA-F]{3,8}\b|rgba?\([^)]*\)|hsla?\([^)]*\)")
 _BRANDY = re.compile(r"primary|brand|accent|secondary|button|btn|cta|highlight|main|theme|link|tertiary")
+_HUE_NAME = re.compile(r"red|orange|yellow|gold|green|lime|teal|cyan|blue|navy|indigo|violet|purple|lilac|"
+                       r"lavender|pink|rose|magenta|coral|peach|mint|sky|sand|cream|ink|paper|night|sun")
 
 
 def _alpha_ok(value: str) -> bool:
@@ -363,9 +367,8 @@ def extract_colors(css_blocks: List[str]) -> dict:
                         continue
                     w = 1.0
                     if prop.startswith("--"):
-                        w = 5.0 if _BRANDY.search(prop) else 1.5
-                        if _BRANDY.search(prop):
-                            named.setdefault(prop, c)
+                        w = 5.0 if _BRANDY.search(prop) else 4.0 if _HUE_NAME.search(prop) else 1.5
+                        named.setdefault(prop, c)
                     elif "background" in prop:
                         w = 3.0
                     elif prop == "color":
@@ -396,8 +399,9 @@ def extract_colors(css_blocks: List[str]) -> dict:
         else:
             clustered.append(dict(e))
     clustered.sort(key=lambda e: -e["score"])
-    return {"brand_colors": clustered[:8], "light_neutrals": light[:3], "dark_neutrals": dark[:3],
-            "css_variables": dict(list(named.items())[:16])}
+    ranked = sorted(named.items(), key=lambda kv: (not _BRANDY.search(kv[0]), not _HUE_NAME.search(kv[0])))
+    return {"brand_colors": clustered[:10], "light_neutrals": light[:3], "dark_neutrals": dark[:3],
+            "css_variables": dict(ranked[:40])}
 
 
 def extract_fonts(css_blocks: List[tuple], font_links: List[str]) -> List[dict]:
@@ -513,7 +517,8 @@ def _find_logos(page: _Page, html: str, final_url: str) -> List[dict]:
     for size, href in sorted(page.icons, reverse=True)[:2]:
         cands.append({"url": href, "score": 3 if size >= 120 else 1, "why": f"icon {size}px"})
     if page.meta.get("og:image"):
-        cands.append({"url": page.url(page.meta["og:image"]), "score": 2, "why": "social preview image"})
+        cands.append({"url": page.url(page.meta["og:image"]), "score": 2,
+                      "why": "social preview image (usually a photo, rarely the logo)"})
     def width_of(u: str) -> int:
         m = re.search(r"[?&]width=(\d+)", u or "")
         return int(m.group(1)) if m else 10_000
@@ -539,10 +544,11 @@ def _find_logos(page: _Page, html: str, final_url: str) -> List[dict]:
 
 
 _PROOF = re.compile(
-    r"((?:\d{1,3}(?:[.,\s]\d{3})+|\d+(?:[.,]\d+)?)\s?(?:\+|%|k\b|K\b|mila|million|milioni)?)\s*"
-    r"((?:[A-Za-zÀ-ÿ'’]+\s){0,3}?(?:clienti|customers|klanten|kunden|clients|reviews?|recensioni|beoordelingen|"
-    r"sterren|stars?|stelle|ordini|orders|negozi|stores|winkels|winkelpunten|paesi|countries|anni|years|jaar|"
-    r"utenti|users|members|membri|studenti|students|downloads|aziende|companies|bedrijven|happy))", re.I)
+    r"(?<![\d:.,/])((?:\d{1,3}(?:[.,]\d{3})+|\d+(?:[.,]\d+)?)\s?(?:\+|%|k\b|K\b|mila|million|milioni)?)\s+"
+    r"((?:[A-Za-zÀ-ÿ'’]+\s)?(?:clienti|customers|klanten|kunden|clients|reviews|recensioni|beoordelingen|"
+    r"sterren|stars|stelle|ordini|orders|negozi|stores|winkels|winkelpunten|paesi|countries|anni|years|jaar|"
+    r"utenti|users|members|membri|studenti|students|downloads|aziende|companies|bedrijven|posti|seats|"
+    r"giorni|days|dagen|partecipanti|attendees|speaker|ore|hours|uur)\b)", re.I)
 
 
 def scan_website(url: str) -> dict:
@@ -561,6 +567,8 @@ def scan_website(url: str) -> dict:
     host = urllib.parse.urlparse(final).netloc.replace("www.", "")
     out_dir = SCANS_DIR / slugify(host)
     out_dir.mkdir(parents=True, exist_ok=True)
+    for old in out_dir.glob("logo-*.png"):
+        old.unlink()
 
     css_blocks = [(s, final) for s in page.styles] + [("x{" + s + "}", final) for s in page.inline]
     fetched = 0
@@ -593,22 +601,33 @@ def scan_website(url: str) -> dict:
                 raw = c["svg"].encode("utf-8")
                 if b"xmlns" not in raw[:300]:
                     raw = raw.replace(b"<svg", b'<svg xmlns="http://www.w3.org/2000/svg"', 1)
+            elif (c.get("url") or "").startswith("data:"):
+                head, _, payload = c["url"].partition(",")
+                if ";base64" in head:
+                    import base64
+                    raw = base64.b64decode(payload)
+                else:
+                    raw = urllib.parse.unquote(payload).encode("utf-8")
             else:
                 raw, _, _ = http_get(c["url"], timeout=20, max_bytes=6_000_000)
             dest = out_dir / f"logo-{i + 1}.png"
             logo_to_png(raw, dest)
-            logos.append({"file": str(dest), "source": c.get("url") or "inline svg", "why": c["why"],
+            src = c.get("url") or "inline svg"
+            logos.append({"file": str(dest), "source": "inline icon" if src.startswith("data:") else src, "why": c["why"],
                           "score": c["score"], "color": logo_color(dest)})
         except BCError:
             continue
     text = re.sub(r"<(script|style|noscript)\b.*?</\1>", " ", html, flags=re.S | re.I)
     text = htmllib.unescape(re.sub(r"<[^>]+>", " ", text))
     text = re.sub(r"\s+", " ", text)
-    proof = []
+    proof, seen = [], set()
     for m in _PROOF.finditer(text):
         snippet = m.group(0).strip()
-        if snippet not in proof:
-            proof.append(snippet)
+        if snippet.lower() in seen:
+            continue
+        seen.add(snippet.lower())
+        ctx = text[max(0, m.start() - 50):m.end() + 50].strip()
+        proof.append({"text": snippet, "context": "…" + ctx + "…"})
         if len(proof) >= 10:
             break
     result = {

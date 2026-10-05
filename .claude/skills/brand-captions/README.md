@@ -40,14 +40,18 @@ Apri Claude Code e scrivi qualcosa come:
 monta i video nella cartella lancio
 ```
 
-La prima volta la skill controlla il computer, installa ciò che manca (2-5 minuti) e ti
-chiede il sito del brand. Dalla seconda volta basta una frase.
+La prima volta la skill controlla il computer, installa ciò che manca (da 1 a 5 minuti) e
+ti chiede il sito del brand. Dalla seconda volta basta una frase.
+
+Claude Code può chiederti il permesso di eseguire i comandi della skill (`python3 …/bc.py`):
+rispondi di sì, anche con "non chiedere più" per quel comando. Durante la richiesta che
+avvia la skill i suoi comandi sono già autorizzati.
 
 ## Esempi di richieste
 
 - `monta i video nella cartella ~/Desktop/riprese-ottobre, un video unico`
 - `edita ogni clip della cartella shooting-cliente separatamente, brand: Panificio Rossi`
-- `aggiungi i sottotitoli a questo video: ~/Movies/intervista.mov`
+- `aggiungi i sottotitoli a questo video: ~/Movies/intervista.mov` (diventa `intervista-edited.mp4`)
 - `rendi i sottotitoli più grandi e togli la scheda finale`
 - `rifallo in formato 4:5 con la musica brano.mp3`
 - `nuovo cliente: il sito è www.cliente.it, poi monta la cartella cliente-reel`

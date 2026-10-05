@@ -33,10 +33,10 @@ PRESETS = {
     # Modern grotesk, lowercase, no outline, soft shadow, calm rise animation (e.g. AI Build Lab).
     "clean": {
         "case": "lower", "punctuation": "minimal", "anim": "rise", "highlight": "keywords",
-        "caption": {"font": "text", "cap": 35, "fill": "text", "emph": "accent", "stroke": None,
+        "caption": {"font": "text", "cap": 37, "fill": "text", "emph": "accent", "stroke": None,
                     "shadow": "soft", "shadow_color": "#000000", "shadow_y": 0.10, "shadow_alpha": 0.62,
                     "max_words": 4, "y": 0.69, "width": 0.80},
-        "hook": {"font": "text", "cap": 46, "fill": "text", "emph": "accent", "stroke": None, "shadow": "soft",
+        "hook": {"font": "text", "cap": 50, "fill": "text", "emph": "accent", "stroke": None, "shadow": "soft",
                  "shadow_color": "#000000", "shadow_y": 0.10, "shadow_alpha": 0.62, "y": 0.45, "width": 0.80},
         "title": {"font": "text", "cap": 40, "fill": "text", "emph": "accent", "stroke": None, "shadow": "soft",
                   "shadow_color": "#000000", "shadow_y": 0.10, "shadow_alpha": 0.62, "y": 0.085, "width": 0.80},
