@@ -1,0 +1,36 @@
+[
+ {
+  "id": "c00",
+  "seed": 11,
+  "pause": 0.4,
+  "text": "La Cina l'ha fatto di nuovo: DeepSeek ha reso pubblico il motore che fa girare la sua intelligenza artificiale.",
+  "tts": "La Cina l'ha fatto di nuovo: Dip Sik ha reso pubblico il motore che fa girare la sua intelligenza artificiale."
+ },
+ {
+  "id": "c01",
+  "seed": 11,
+  "pause": 0.3,
+  "text": "Si chiama DeepGEMM: è gratis, è open source, ed è proprio il codice con cui DeepSeek addestra e fa girare i suoi modelli.",
+  "tts": "Si chiama Dip Ghem: è gratis, è open sors, ed è proprio il codice con cui Dip Sik addestra e fa girare i suoi modelli."
+ },
+ {
+  "id": "c02",
+  "seed": 11,
+  "pause": 0.3,
+  "text": "Il bello è che gli stessi computer rispondono a molte più domande al secondo, quindi ogni risposta costa molto meno."
+ },
+ {
+  "id": "c03",
+  "seed": 11,
+  "pause": 0.4,
+  "text": "Per questo, dove Claude chiede cinquanta dollari per un milione di token, DeepSeek ne chiede meno di quattro.",
+  "tts": "Per questo, dove Clod chiede cinquanta dollari per un milione di tòchen, Dip Sik ne chiede meno di quattro."
+ },
+ {
+  "id": "c04",
+  "seed": 11,
+  "pause": 1.4,
+  "text": "Commenta GEM e ti mando il link.",
+  "tts": "Commenta Gem, e ti mando il link."
+ }
+]

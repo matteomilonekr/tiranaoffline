@@ -548,7 +548,10 @@ cd app && FILM=plugins bun scripts/render.ts video --workers 1 --samples 1 --fps
 cd out && ffmpeg -i plugins.mp4 -i plugins/mix.wav -map 0:v -map 1:a -c:v copy -c:a aac -b:a 320k -shortest plugins_sfx.mp4
 ```
 
-Nel kit ci sono due film: `films/plugins` (qui sotto) e `films/styles`, il reel dei 21 stili (sezione 09).
+Nel kit ci sono quattro film:
+- `films/plugins`, descritto qui sotto;
+- `films/styles`, il reel dei 21 stili (sezione 09);
+- `films/gem` e `films/polish`, due reel nel formato "paper night", descritti in fondo a questa sezione.
 
 ### Il reel dei plugin (`films/plugins`)
 
@@ -571,6 +574,36 @@ Un reel verticale di 65 secondi nel formato del presentatore animato dietro un b
   - il commento SENIOR e il DM con i link.
 
 La voce è sintetica (Qwen3-TTS), accelerata di 1,3× per il ritmo del reel. Per usare la tua voce, registra il testo di `script.json`, salvalo come `films/plugins/audio/voiceover.mp3` e rilancia i passi 2 e 3.
+
+### Paper night: `films/gem` e `films/polish`
+
+Due reel verticali nello stesso formato:
+- **lo stage:** un laboratorio di notte in carta, con muro di mattoni blu, finestre al chiaro di luna, pavimento di legno e luce calda;
+- **la testata:** una striscia di carta crema fissata con lo scotch, che cambia a ogni inquadratura;
+- **le didascalie:** su cartellini di carta color terracotta, in Fraunces;
+- **i personaggi:** una creatura a scatola arancione (sta per Claude, disegnata qui) e una balena di carta blu (sta per DeepSeek);
+- **la camera:** si avvicina piano e dà un colpo di zoom a ogni taglio.
+
+Il set è in comune, in `films/_paper/stage.ts`. Ogni film ha una tavola sola che taglia le sue inquadrature sulle parole.
+
+- `films/gem` (DeepGEMM, 26 s):
+  - il cartellino del prezzo morso dalla balena;
+  - la scheda del repository;
+  - il motore di DeepSeek;
+  - la macchina delle risposte;
+  - la moneta e la valanga di risposte;
+  - il tabellone dei prezzi;
+  - "commenta GEM".
+- `films/polish` (la skill di design, 33 s):
+  - il sito viola "fatto con l'IA" timbrato e fulminato;
+  - lo stampo TEMPLATE e la catena di montaggio;
+  - la gru che porta la skill;
+  - il comando;
+  - il redesign;
+  - il muro dei 61 segnali;
+  - "commenta POLISH".
+
+Prezzi, stelle e numeri vengono dai post originali: verificali prima di pubblicare.
 
 ---
 
@@ -664,6 +697,7 @@ Tieni quel file di licenza insieme al progetto. Le nove tavole sono nuove, scrit
 - **Allineamento:** [wav2vec2-large-xlsr-53-italian](https://huggingface.co/jonatasgrosman/wav2vec2-large-xlsr-53-italian) di Jonatas Grosman (Apache 2.0), esportato in ONNX int8.
 - **Effetti sonori e musica:** sintetizzati da `analysis/make_sfx.py` e `analysis/music.py`, nessun campione esterno.
 - **Reel dei plugin:** il formato riprende un reel di [@adilet.fndr](https://www.instagram.com/adilet.fndr): un presentatore animato dietro un bancone e una sezione per plugin. Tavole, disegni, testo italiano, voce e suono sono nuovi, scritti in codice per questo kit. I nomi di prodotti e repository citati appartengono ai rispettivi autori.
+- **Paper night:** il formato di `films/gem` e `films/polish` riprende due reel di [@nocodealex](https://www.instagram.com/nocodealex). Set, personaggi, testi italiani, voce e suono sono nuovi, disegnati in codice. Fraunces è distribuito con SIL Open Font License (`app/public/fonts/fraunces/OFL.txt`).
 - **Stili:** l'elenco dei venti stili riprende un reel di [@andremass.ai](https://www.instagram.com/andremass.ai) ("motion design styles you can steal"). Ricette, codice e animazioni di `app/src/styles/` sono nuovi, scritti per questo kit.
 - **Launch film:** struttura, prompt, regole e checklist della sezione 06 sono adattati dalla guida *The 60-second launch film made with Claude* di Saksham Gupta ([@saksham.700x](https://www.instagram.com/saksham.700x)). La guida cita lo skill onetake (licenza PolyForm Noncommercial), di cui qui non c'è codice.
 

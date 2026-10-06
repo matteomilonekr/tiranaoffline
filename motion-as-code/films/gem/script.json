@@ -1,0 +1,19 @@
+{
+ "script": [
+  "La Cina l'ha fatto di nuovo: DeepSeek ha reso pubblico il motore che fa girare la sua intelligenza artificiale.",
+  "Si chiama DeepGEMM: è gratis, è open source, ed è proprio il codice con cui DeepSeek addestra e fa girare i suoi modelli.",
+  "Il bello è che gli stessi computer rispondono a molte più domande al secondo, quindi ogni risposta costa molto meno.",
+  "Per questo, dove Claude chiede cinquanta dollari per un milione di token, DeepSeek ne chiede meno di quattro.",
+  "Commenta GEM e ti mando il link."
+ ],
+ "spoken": {
+  "deepseek": "dip sik",
+  "deepgemm": "dip ghem",
+  "open": "open",
+  "source": "sors",
+  "claude": "clod",
+  "token": "tochen",
+  "gem": "gem",
+  "link": "link"
+ }
+}

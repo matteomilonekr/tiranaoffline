@@ -24,6 +24,8 @@ for (const [n, f] of [['300', 'Light'], ['400', 'Regular'], ['500', 'Medium'], [
 DEFS.push({ family: 'PlexItalic-400', file: 'src/IBMPlexMono-Italic.ttf' });
 // Space Grotesk (joinscalers.com's face), for the films in that brand
 for (const wt of [300, 400, 500, 600, 700]) DEFS.push({ family: `Grotesk-${wt}`, file: `spacegrotesk/SpaceGrotesk-${wt}.ttf` });
+// Fraunces (a soft, chunky serif), for paper-label captions
+for (const wt of [700, 900]) DEFS.push({ family: `Fraunces-${wt}`, file: `fraunces/Fraunces-${wt}.ttf` });
 
 /** Convenience family names. */
 export const F = {
@@ -46,6 +48,10 @@ export const F = {
   /** Space Grotesk, weight 300..700. */
   grotesk(weight = 700): string {
     return `Grotesk-${nearest([300, 400, 500, 600, 700], weight)}`;
+  },
+  /** Fraunces, 700 or 900. */
+  fraunces(weight = 900): string {
+    return `Fraunces-${nearest([700, 900], weight)}`;
   },
 };
 
