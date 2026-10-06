@@ -7,8 +7,8 @@
 //  3. "Prima la prossima azione": the reply as the plugin makes Claude write it: the action first, in a box,
 //     then numbered steps; "massimo cinque punti" is stamped on.
 import {
-  Plate, Gestures, wordAt, terminal, card, rr, text, tick, stamp, sticky, pill, life, pop, bump, around,
-  sparkle, prog, ease, clamp, lerp, hash, measure, INK, RED, GREEN, YELLOW, PAPER, F, TAU, H,
+  Plate, Gestures, wordAt, terminal, card, rr, text, stamp, sticky, pill, life, pop, bump, around,
+  sparkle, prog, ease, lerp, hash, measure, INK, RED, GREEN, YELLOW, F, TAU, H,
   type PostOverrides,
 } from './_stage';
 
