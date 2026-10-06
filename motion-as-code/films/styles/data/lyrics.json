@@ -1,0 +1,1319 @@
+{
+ "source": "films/styles/audio/voiceover.mp3",
+ "duration": 82.208,
+ "lines": [
+  {
+   "text": "Venti stili di motion design che puoi rubare, e li fai tutti con il codice.",
+   "start": 0.25,
+   "end": 4.12,
+   "words": [
+    {
+     "w": "Venti",
+     "start": 0.25,
+     "end": 0.58,
+     "conf": 1.0
+    },
+    {
+     "w": "stili",
+     "start": 0.58,
+     "end": 0.84,
+     "conf": 0.992
+    },
+    {
+     "w": "di",
+     "start": 0.84,
+     "end": 0.92,
+     "conf": 0.789
+    },
+    {
+     "w": "motion",
+     "start": 0.92,
+     "end": 1.37,
+     "conf": 0.095
+    },
+    {
+     "w": "design",
+     "start": 1.46,
+     "end": 1.88,
+     "conf": 0.402
+    },
+    {
+     "w": "che",
+     "start": 1.88,
+     "end": 2.05,
+     "conf": 0.932
+    },
+    {
+     "w": "puoi",
+     "start": 2.07,
+     "end": 2.2,
+     "conf": 0.996
+    },
+    {
+     "w": "rubare,",
+     "start": 2.2,
+     "end": 2.77,
+     "conf": 0.997
+    },
+    {
+     "w": "e",
+     "start": 2.78,
+     "end": 2.84,
+     "conf": 1.0
+    },
+    {
+     "w": "li",
+     "start": 2.84,
+     "end": 2.94,
+     "conf": 0.992
+    },
+    {
+     "w": "fai",
+     "start": 2.94,
+     "end": 3.15,
+     "conf": 1.0
+    },
+    {
+     "w": "tutti",
+     "start": 3.16,
+     "end": 3.4,
+     "conf": 0.997
+    },
+    {
+     "w": "con",
+     "start": 3.4,
+     "end": 3.56,
+     "conf": 0.998
+    },
+    {
+     "w": "il",
+     "start": 3.56,
+     "end": 3.69,
+     "conf": 0.999
+    },
+    {
+     "w": "codice.",
+     "start": 3.71,
+     "end": 4.12,
+     "conf": 0.997
+    }
+   ]
+  },
+  {
+   "text": "Uno: Swiss style. Griglia rigorosa, caratteri bold e tanto bianco.",
+   "start": 4.51,
+   "end": 8.56,
+   "words": [
+    {
+     "w": "Uno:",
+     "start": 4.51,
+     "end": 4.82,
+     "conf": 1.0
+    },
+    {
+     "w": "Swiss",
+     "start": 4.91,
+     "end": 5.33,
+     "conf": 0.9
+    },
+    {
+     "w": "style.",
+     "start": 5.4,
+     "end": 5.83,
+     "conf": 0.483
+    },
+    {
+     "w": "Griglia",
+     "start": 5.92,
+     "end": 6.24,
+     "conf": 0.994
+    },
+    {
+     "w": "rigorosa,",
+     "start": 6.24,
+     "end": 6.84,
+     "conf": 0.986
+    },
+    {
+     "w": "caratteri",
+     "start": 6.9,
+     "end": 7.26,
+     "conf": 0.995
+    },
+    {
+     "w": "bold",
+     "start": 7.26,
+     "end": 7.66,
+     "conf": 0.96
+    },
+    {
+     "w": "e",
+     "start": 7.77,
+     "end": 7.88,
+     "conf": 0.999
+    },
+    {
+     "w": "tanto",
+     "start": 7.95,
+     "end": 8.16,
+     "conf": 0.999
+    },
+    {
+     "w": "bianco.",
+     "start": 8.16,
+     "end": 8.56,
+     "conf": 0.935
+    }
+   ]
+  },
+  {
+   "text": "Due: kinetic type. Le parole si muovono a ritmo.",
+   "start": 8.83,
+   "end": 11.39,
+   "words": [
+    {
+     "w": "Due:",
+     "start": 8.83,
+     "end": 9.16,
+     "conf": 1.0
+    },
+    {
+     "w": "kinetic",
+     "start": 9.27,
+     "end": 9.66,
+     "conf": 0.93
+    },
+    {
+     "w": "type.",
+     "start": 9.76,
+     "end": 9.97,
+     "conf": 0.308
+    },
+    {
+     "w": "Le",
+     "start": 10.24,
+     "end": 10.34,
+     "conf": 0.999
+    },
+    {
+     "w": "parole",
+     "start": 10.34,
+     "end": 10.6,
+     "conf": 0.959
+    },
+    {
+     "w": "si",
+     "start": 10.6,
+     "end": 10.72,
+     "conf": 0.809
+    },
+    {
+     "w": "muovono",
+     "start": 10.72,
+     "end": 11.02,
+     "conf": 0.992
+    },
+    {
+     "w": "a",
+     "start": 11.02,
+     "end": 11.08,
+     "conf": 0.763
+    },
+    {
+     "w": "ritmo.",
+     "start": 11.08,
+     "end": 11.39,
+     "conf": 1.0
+    }
+   ]
+  },
+  {
+   "text": "Tre: pop art. Retini, contorni neri e colori primari.",
+   "start": 11.66,
+   "end": 14.67,
+   "words": [
+    {
+     "w": "Tre:",
+     "start": 11.66,
+     "end": 11.86,
+     "conf": 0.999
+    },
+    {
+     "w": "pop",
+     "start": 12.0,
+     "end": 12.24,
+     "conf": 0.999
+    },
+    {
+     "w": "art.",
+     "start": 12.26,
+     "end": 12.48,
+     "conf": 1.0
+    },
+    {
+     "w": "Retini,",
+     "start": 12.66,
+     "end": 13.11,
+     "conf": 0.998
+    },
+    {
+     "w": "contorni",
+     "start": 13.21,
+     "end": 13.58,
+     "conf": 0.951
+    },
+    {
+     "w": "neri",
+     "start": 13.58,
+     "end": 13.91,
+     "conf": 1.0
+    },
+    {
+     "w": "e",
+     "start": 13.93,
+     "end": 13.98,
+     "conf": 1.0
+    },
+    {
+     "w": "colori",
+     "start": 13.98,
+     "end": 14.28,
+     "conf": 0.976
+    },
+    {
+     "w": "primari.",
+     "start": 14.28,
+     "end": 14.67,
+     "conf": 0.983
+    }
+   ]
+  },
+  {
+   "text": "Quattro: flat 2D. Forme piatte, niente ombre.",
+   "start": 14.95,
+   "end": 17.93,
+   "words": [
+    {
+     "w": "Quattro:",
+     "start": 14.95,
+     "end": 15.32,
+     "conf": 0.957
+    },
+    {
+     "w": "flat",
+     "start": 15.45,
+     "end": 15.81,
+     "conf": 0.999
+    },
+    {
+     "w": "2D.",
+     "start": 15.84,
+     "end": 16.28,
+     "conf": 0.663
+    },
+    {
+     "w": "Forme",
+     "start": 16.38,
+     "end": 16.68,
+     "conf": 0.947
+    },
+    {
+     "w": "piatte,",
+     "start": 16.69,
+     "end": 17.1,
+     "conf": 0.968
+    },
+    {
+     "w": "niente",
+     "start": 17.2,
+     "end": 17.58,
+     "conf": 0.958
+    },
+    {
+     "w": "ombre.",
+     "start": 17.58,
+     "end": 17.93,
+     "conf": 1.0
+    }
+   ]
+  },
+  {
+   "text": "Cinque: clay 3D. Tutto morbido, come la plastilina.",
+   "start": 18.2,
+   "end": 21.44,
+   "words": [
+    {
+     "w": "Cinque:",
+     "start": 18.2,
+     "end": 18.67,
+     "conf": 0.992
+    },
+    {
+     "w": "clay",
+     "start": 18.78,
+     "end": 19.07,
+     "conf": 0.479
+    },
+    {
+     "w": "3D.",
+     "start": 19.1,
+     "end": 19.62,
+     "conf": 0.618
+    },
+    {
+     "w": "Tutto",
+     "start": 19.73,
+     "end": 19.96,
+     "conf": 0.95
+    },
+    {
+     "w": "morbido,",
+     "start": 19.96,
+     "end": 20.45,
+     "conf": 0.997
+    },
+    {
+     "w": "come",
+     "start": 20.56,
+     "end": 20.72,
+     "conf": 0.98
+    },
+    {
+     "w": "la",
+     "start": 20.72,
+     "end": 20.88,
+     "conf": 0.999
+    },
+    {
+     "w": "plastilina.",
+     "start": 20.89,
+     "end": 21.44,
+     "conf": 0.997
+    }
+   ]
+  },
+  {
+   "text": "Sei: glassmorphism. Vetro smerigliato sopra i colori.",
+   "start": 21.71,
+   "end": 24.98,
+   "words": [
+    {
+     "w": "Sei:",
+     "start": 21.71,
+     "end": 22.09,
+     "conf": 0.997
+    },
+    {
+     "w": "glassmorphism.",
+     "start": 22.18,
+     "end": 23.11,
+     "conf": 0.786
+    },
+    {
+     "w": "Vetro",
+     "start": 23.22,
+     "end": 23.52,
+     "conf": 0.994
+    },
+    {
+     "w": "smerigliato",
+     "start": 23.52,
+     "end": 24.18,
+     "conf": 0.881
+    },
+    {
+     "w": "sopra",
+     "start": 24.26,
+     "end": 24.54,
+     "conf": 0.996
+    },
+    {
+     "w": "i",
+     "start": 24.54,
+     "end": 24.6,
+     "conf": 0.985
+    },
+    {
+     "w": "colori.",
+     "start": 24.6,
+     "end": 24.98,
+     "conf": 0.986
+    }
+   ]
+  },
+  {
+   "text": "Sette: Y2K chrome. Cromature lucide, anni Duemila.",
+   "start": 25.24,
+   "end": 28.78,
+   "words": [
+    {
+     "w": "Sette:",
+     "start": 25.24,
+     "end": 25.6,
+     "conf": 0.998
+    },
+    {
+     "w": "Y2K",
+     "start": 25.71,
+     "end": 26.54,
+     "conf": 0.345
+    },
+    {
+     "w": "chrome.",
+     "start": 26.56,
+     "end": 26.93,
+     "conf": 0.941
+    },
+    {
+     "w": "Cromature",
+     "start": 27.0,
+     "end": 27.46,
+     "conf": 0.985
+    },
+    {
+     "w": "lucide,",
+     "start": 27.46,
+     "end": 28.02,
+     "conf": 0.998
+    },
+    {
+     "w": "anni",
+     "start": 28.07,
+     "end": 28.3,
+     "conf": 0.958
+    },
+    {
+     "w": "Duemila.",
+     "start": 28.3,
+     "end": 28.78,
+     "conf": 0.999
+    }
+   ]
+  },
+  {
+   "text": "Otto: synthwave. Neon, sole a strisce e griglia all'orizzonte.",
+   "start": 29.05,
+   "end": 32.78,
+   "words": [
+    {
+     "w": "Otto:",
+     "start": 29.05,
+     "end": 29.41,
+     "conf": 1.0
+    },
+    {
+     "w": "synthwave.",
+     "start": 29.5,
+     "end": 30.3,
+     "conf": 0.439
+    },
+    {
+     "w": "Neon,",
+     "start": 30.39,
+     "end": 30.74,
+     "conf": 0.815
+    },
+    {
+     "w": "sole",
+     "start": 30.78,
+     "end": 31.14,
+     "conf": 0.989
+    },
+    {
+     "w": "a",
+     "start": 31.14,
+     "end": 31.22,
+     "conf": 1.0
+    },
+    {
+     "w": "strisce",
+     "start": 31.22,
+     "end": 31.68,
+     "conf": 0.976
+    },
+    {
+     "w": "e",
+     "start": 31.68,
+     "end": 31.76,
+     "conf": 0.998
+    },
+    {
+     "w": "griglia",
+     "start": 31.76,
+     "end": 32.17,
+     "conf": 0.986
+    },
+    {
+     "w": "all'orizzonte.",
+     "start": 32.18,
+     "end": 32.78,
+     "conf": 0.947
+    }
+   ]
+  },
+  {
+   "text": "Nove: risograph. Due inchiostri, grana e registro sfalsato.",
+   "start": 33.05,
+   "end": 36.46,
+   "words": [
+    {
+     "w": "Nove:",
+     "start": 33.05,
+     "end": 33.42,
+     "conf": 0.995
+    },
+    {
+     "w": "risograph.",
+     "start": 33.52,
+     "end": 34.08,
+     "conf": 0.994
+    },
+    {
+     "w": "Due",
+     "start": 34.13,
+     "end": 34.34,
+     "conf": 0.991
+    },
+    {
+     "w": "inchiostri,",
+     "start": 34.34,
+     "end": 34.94,
+     "conf": 0.989
+    },
+    {
+     "w": "grana",
+     "start": 34.99,
+     "end": 35.34,
+     "conf": 0.987
+    },
+    {
+     "w": "e",
+     "start": 35.39,
+     "end": 35.44,
+     "conf": 0.993
+    },
+    {
+     "w": "registro",
+     "start": 35.44,
+     "end": 35.84,
+     "conf": 1.0
+    },
+    {
+     "w": "sfalsato.",
+     "start": 35.84,
+     "end": 36.46,
+     "conf": 0.769
+    }
+   ]
+  },
+  {
+   "text": "Dieci: paper collage. Carta strappata e lettere ritagliate.",
+   "start": 36.7,
+   "end": 40.41,
+   "words": [
+    {
+     "w": "Dieci:",
+     "start": 36.7,
+     "end": 37.19,
+     "conf": 0.994
+    },
+    {
+     "w": "paper",
+     "start": 37.3,
+     "end": 37.72,
+     "conf": 0.409
+    },
+    {
+     "w": "collage.",
+     "start": 37.74,
+     "end": 38.19,
+     "conf": 0.632
+    },
+    {
+     "w": "Carta",
+     "start": 38.41,
+     "end": 38.7,
+     "conf": 0.999
+    },
+    {
+     "w": "strappata",
+     "start": 38.7,
+     "end": 39.35,
+     "conf": 0.962
+    },
+    {
+     "w": "e",
+     "start": 39.38,
+     "end": 39.48,
+     "conf": 0.999
+    },
+    {
+     "w": "lettere",
+     "start": 39.48,
+     "end": 39.84,
+     "conf": 1.0
+    },
+    {
+     "w": "ritagliate.",
+     "start": 39.84,
+     "end": 40.41,
+     "conf": 0.946
+    }
+   ]
+  },
+  {
+   "text": "Undici: glitch. Canali sfasati e segnale rotto.",
+   "start": 40.67,
+   "end": 43.58,
+   "words": [
+    {
+     "w": "Undici:",
+     "start": 40.67,
+     "end": 41.1,
+     "conf": 0.969
+    },
+    {
+     "w": "glitch.",
+     "start": 41.21,
+     "end": 41.68,
+     "conf": 0.994
+    },
+    {
+     "w": "Canali",
+     "start": 41.79,
+     "end": 42.06,
+     "conf": 0.989
+    },
+    {
+     "w": "sfasati",
+     "start": 42.06,
+     "end": 42.69,
+     "conf": 0.988
+    },
+    {
+     "w": "e",
+     "start": 42.74,
+     "end": 42.82,
+     "conf": 1.0
+    },
+    {
+     "w": "segnale",
+     "start": 42.82,
+     "end": 43.22,
+     "conf": 0.973
+    },
+    {
+     "w": "rotto.",
+     "start": 43.22,
+     "end": 43.58,
+     "conf": 1.0
+    }
+   ]
+  },
+  {
+   "text": "Dodici: particles. Migliaia di punti che diventano una forma.",
+   "start": 43.86,
+   "end": 46.84,
+   "words": [
+    {
+     "w": "Dodici:",
+     "start": 43.86,
+     "end": 44.36,
+     "conf": 0.959
+    },
+    {
+     "w": "particles.",
+     "start": 44.45,
+     "end": 45.01,
+     "conf": 0.906
+    },
+    {
+     "w": "Migliaia",
+     "start": 45.11,
+     "end": 45.46,
+     "conf": 0.978
+    },
+    {
+     "w": "di",
+     "start": 45.46,
+     "end": 45.57,
+     "conf": 0.942
+    },
+    {
+     "w": "punti",
+     "start": 45.58,
+     "end": 45.84,
+     "conf": 1.0
+    },
+    {
+     "w": "che",
+     "start": 45.84,
+     "end": 45.98,
+     "conf": 0.947
+    },
+    {
+     "w": "diventano",
+     "start": 45.98,
+     "end": 46.36,
+     "conf": 0.991
+    },
+    {
+     "w": "una",
+     "start": 46.36,
+     "end": 46.5,
+     "conf": 0.974
+    },
+    {
+     "w": "forma.",
+     "start": 46.5,
+     "end": 46.84,
+     "conf": 1.0
+    }
+   ]
+  },
+  {
+   "text": "Tredici: neobrutalism. Bordi spessi e ombre nette.",
+   "start": 47.13,
+   "end": 50.26,
+   "words": [
+    {
+     "w": "Tredici:",
+     "start": 47.13,
+     "end": 47.6,
+     "conf": 0.98
+    },
+    {
+     "w": "neobrutalism.",
+     "start": 47.68,
+     "end": 48.5,
+     "conf": 0.968
+    },
+    {
+     "w": "Bordi",
+     "start": 48.6,
+     "end": 48.9,
+     "conf": 0.997
+    },
+    {
+     "w": "spessi",
+     "start": 48.9,
+     "end": 49.38,
+     "conf": 0.992
+    },
+    {
+     "w": "e",
+     "start": 49.48,
+     "end": 49.62,
+     "conf": 1.0
+    },
+    {
+     "w": "ombre",
+     "start": 49.62,
+     "end": 49.88,
+     "conf": 0.849
+    },
+    {
+     "w": "nette.",
+     "start": 49.88,
+     "end": 50.26,
+     "conf": 0.994
+    }
+   ]
+  },
+  {
+   "text": "Quattordici: Bauhaus. Cerchio, quadrato, triangolo.",
+   "start": 50.5,
+   "end": 53.56,
+   "words": [
+    {
+     "w": "Quattordici:",
+     "start": 50.5,
+     "end": 51.14,
+     "conf": 0.989
+    },
+    {
+     "w": "Bauhaus.",
+     "start": 51.25,
+     "end": 51.87,
+     "conf": 0.468
+    },
+    {
+     "w": "Cerchio,",
+     "start": 51.95,
+     "end": 52.38,
+     "conf": 0.944
+    },
+    {
+     "w": "quadrato,",
+     "start": 52.49,
+     "end": 52.99,
+     "conf": 1.0
+    },
+    {
+     "w": "triangolo.",
+     "start": 53.07,
+     "end": 53.56,
+     "conf": 0.965
+    }
+   ]
+  },
+  {
+   "text": "Quindici: Memphis. Scarabocchi, zig-zag e coriandoli.",
+   "start": 53.84,
+   "end": 57.01,
+   "words": [
+    {
+     "w": "Quindici:",
+     "start": 53.84,
+     "end": 54.28,
+     "conf": 1.0
+    },
+    {
+     "w": "Memphis.",
+     "start": 54.45,
+     "end": 55.03,
+     "conf": 0.575
+    },
+    {
+     "w": "Scarabocchi,",
+     "start": 55.1,
+     "end": 55.72,
+     "conf": 0.836
+    },
+    {
+     "w": "zig-zag",
+     "start": 55.8,
+     "end": 56.31,
+     "conf": 0.927
+    },
+    {
+     "w": "e",
+     "start": 56.41,
+     "end": 56.48,
+     "conf": 1.0
+    },
+    {
+     "w": "coriandoli.",
+     "start": 56.48,
+     "end": 57.01,
+     "conf": 0.964
+    }
+   ]
+  },
+  {
+   "text": "Sedici: vaporwave. Rosa, azzurro e nostalgia digitale.",
+   "start": 57.3,
+   "end": 61.1,
+   "words": [
+    {
+     "w": "Sedici:",
+     "start": 57.3,
+     "end": 57.81,
+     "conf": 0.995
+    },
+    {
+     "w": "vaporwave.",
+     "start": 57.93,
+     "end": 58.87,
+     "conf": 0.433
+    },
+    {
+     "w": "Rosa,",
+     "start": 58.96,
+     "end": 59.36,
+     "conf": 0.965
+    },
+    {
+     "w": "azzurro",
+     "start": 59.36,
+     "end": 60.02,
+     "conf": 1.0
+    },
+    {
+     "w": "e",
+     "start": 60.03,
+     "end": 60.08,
+     "conf": 1.0
+    },
+    {
+     "w": "nostalgia",
+     "start": 60.08,
+     "end": 60.62,
+     "conf": 0.976
+    },
+    {
+     "w": "digitale.",
+     "start": 60.62,
+     "end": 61.1,
+     "conf": 1.0
+    }
+   ]
+  },
+  {
+   "text": "Diciassette: pixel art. Pochi pixel, tanti ricordi.",
+   "start": 61.37,
+   "end": 64.71,
+   "words": [
+    {
+     "w": "Diciassette:",
+     "start": 61.37,
+     "end": 62.14,
+     "conf": 0.99
+    },
+    {
+     "w": "pixel",
+     "start": 62.28,
+     "end": 62.64,
+     "conf": 0.492
+    },
+    {
+     "w": "art.",
+     "start": 62.64,
+     "end": 62.92,
+     "conf": 0.881
+    },
+    {
+     "w": "Pochi",
+     "start": 63.16,
+     "end": 63.44,
+     "conf": 0.992
+    },
+    {
+     "w": "pixel,",
+     "start": 63.44,
+     "end": 63.94,
+     "conf": 0.373
+    },
+    {
+     "w": "tanti",
+     "start": 64.04,
+     "end": 64.28,
+     "conf": 0.944
+    },
+    {
+     "w": "ricordi.",
+     "start": 64.28,
+     "end": 64.71,
+     "conf": 0.953
+    }
+   ]
+  },
+  {
+   "text": "Diciotto: isometric. Un mondo a cubetti, senza punto di fuga.",
+   "start": 65.0,
+   "end": 68.31,
+   "words": [
+    {
+     "w": "Diciotto:",
+     "start": 65.0,
+     "end": 65.53,
+     "conf": 0.717
+    },
+    {
+     "w": "isometric.",
+     "start": 65.62,
+     "end": 66.2,
+     "conf": 0.997
+    },
+    {
+     "w": "Un",
+     "start": 66.35,
+     "end": 66.46,
+     "conf": 0.982
+    },
+    {
+     "w": "mondo",
+     "start": 66.46,
+     "end": 66.74,
+     "conf": 1.0
+    },
+    {
+     "w": "a",
+     "start": 66.74,
+     "end": 66.86,
+     "conf": 0.985
+    },
+    {
+     "w": "cubetti,",
+     "start": 66.88,
+     "end": 67.35,
+     "conf": 0.842
+    },
+    {
+     "w": "senza",
+     "start": 67.4,
+     "end": 67.7,
+     "conf": 0.972
+    },
+    {
+     "w": "punto",
+     "start": 67.7,
+     "end": 67.92,
+     "conf": 0.987
+    },
+    {
+     "w": "di",
+     "start": 67.92,
+     "end": 68.02,
+     "conf": 0.824
+    },
+    {
+     "w": "fuga.",
+     "start": 68.02,
+     "end": 68.31,
+     "conf": 0.999
+    }
+   ]
+  },
+  {
+   "text": "Diciannove: low poly. Solo triangoli e colori piatti.",
+   "start": 68.59,
+   "end": 71.62,
+   "words": [
+    {
+     "w": "Diciannove:",
+     "start": 68.59,
+     "end": 69.24,
+     "conf": 0.977
+    },
+    {
+     "w": "low",
+     "start": 69.36,
+     "end": 69.68,
+     "conf": 0.402
+    },
+    {
+     "w": "poly.",
+     "start": 69.69,
+     "end": 69.98,
+     "conf": 0.999
+    },
+    {
+     "w": "Solo",
+     "start": 70.1,
+     "end": 70.32,
+     "conf": 0.999
+    },
+    {
+     "w": "triangoli",
+     "start": 70.32,
+     "end": 70.84,
+     "conf": 0.999
+    },
+    {
+     "w": "e",
+     "start": 70.84,
+     "end": 70.96,
+     "conf": 1.0
+    },
+    {
+     "w": "colori",
+     "start": 70.97,
+     "end": 71.25,
+     "conf": 0.978
+    },
+    {
+     "w": "piatti.",
+     "start": 71.26,
+     "end": 71.62,
+     "conf": 0.984
+    }
+   ]
+  },
+  {
+   "text": "Venti: line art. Una linea sola che disegna tutto.",
+   "start": 71.9,
+   "end": 74.75,
+   "words": [
+    {
+     "w": "Venti:",
+     "start": 71.9,
+     "end": 72.41,
+     "conf": 0.994
+    },
+    {
+     "w": "line",
+     "start": 72.42,
+     "end": 72.75,
+     "conf": 0.515
+    },
+    {
+     "w": "art.",
+     "start": 72.82,
+     "end": 73.15,
+     "conf": 1.0
+    },
+    {
+     "w": "Una",
+     "start": 73.25,
+     "end": 73.42,
+     "conf": 0.836
+    },
+    {
+     "w": "linea",
+     "start": 73.42,
+     "end": 73.64,
+     "conf": 1.0
+    },
+    {
+     "w": "sola",
+     "start": 73.64,
+     "end": 73.94,
+     "conf": 1.0
+    },
+    {
+     "w": "che",
+     "start": 73.96,
+     "end": 74.02,
+     "conf": 0.976
+    },
+    {
+     "w": "disegna",
+     "start": 74.02,
+     "end": 74.38,
+     "conf": 0.996
+    },
+    {
+     "w": "tutto.",
+     "start": 74.38,
+     "end": 74.75,
+     "conf": 1.0
+    }
+   ]
+  },
+  {
+   "text": "E il bonus: ASCII art. Un'immagine fatta di caratteri.",
+   "start": 75.08,
+   "end": 77.81,
+   "words": [
+    {
+     "w": "E",
+     "start": 75.08,
+     "end": 75.14,
+     "conf": 0.993
+    },
+    {
+     "w": "il",
+     "start": 75.14,
+     "end": 75.24,
+     "conf": 0.989
+    },
+    {
+     "w": "bonus:",
+     "start": 75.24,
+     "end": 75.66,
+     "conf": 0.937
+    },
+    {
+     "w": "ASCII",
+     "start": 75.75,
+     "end": 76.12,
+     "conf": 0.527
+    },
+    {
+     "w": "art.",
+     "start": 76.12,
+     "end": 76.3,
+     "conf": 0.823
+    },
+    {
+     "w": "Un'immagine",
+     "start": 76.57,
+     "end": 77.04,
+     "conf": 0.97
+    },
+    {
+     "w": "fatta",
+     "start": 77.04,
+     "end": 77.26,
+     "conf": 0.997
+    },
+    {
+     "w": "di",
+     "start": 77.26,
+     "end": 77.34,
+     "conf": 1.0
+    },
+    {
+     "w": "caratteri.",
+     "start": 77.34,
+     "end": 77.81,
+     "conf": 1.0
+    }
+   ]
+  },
+  {
+   "text": "Li trovi tutti nel kit: commenta STILI e te lo mando.",
+   "start": 78.2,
+   "end": 81.0,
+   "words": [
+    {
+     "w": "Li",
+     "start": 78.2,
+     "end": 78.3,
+     "conf": 0.992
+    },
+    {
+     "w": "trovi",
+     "start": 78.3,
+     "end": 78.58,
+     "conf": 0.949
+    },
+    {
+     "w": "tutti",
+     "start": 78.58,
+     "end": 78.86,
+     "conf": 0.962
+    },
+    {
+     "w": "nel",
+     "start": 78.86,
+     "end": 79.05,
+     "conf": 0.94
+    },
+    {
+     "w": "kit:",
+     "start": 79.09,
+     "end": 79.26,
+     "conf": 0.999
+    },
+    {
+     "w": "commenta",
+     "start": 79.41,
+     "end": 79.8,
+     "conf": 0.977
+    },
+    {
+     "w": "STILI",
+     "start": 79.8,
+     "end": 80.24,
+     "conf": 0.977
+    },
+    {
+     "w": "e",
+     "start": 80.34,
+     "end": 80.44,
+     "conf": 0.999
+    },
+    {
+     "w": "te",
+     "start": 80.48,
+     "end": 80.54,
+     "conf": 0.999
+    },
+    {
+     "w": "lo",
+     "start": 80.54,
+     "end": 80.66,
+     "conf": 0.999
+    },
+    {
+     "w": "mando.",
+     "start": 80.66,
+     "end": 81.0,
+     "conf": 1.0
+    }
+   ]
+  }
+ ]
+}

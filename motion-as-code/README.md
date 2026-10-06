@@ -41,7 +41,7 @@ Restano fuori dal repository `out/` (i render), `app/node_modules/` (lo ricrea l
 **Requisiti.**
 
 - **bun** ([bun.sh](https://bun.sh)): installa i pacchetti ed esegue gli script.
-- **Google Chrome**: il renderer lo pilota in modalità headless per disegnare i fotogrammi. Va bene anche un altro Chromium, vedi [Problemi](#09--aiuto-problemi-e-crediti).
+- **Google Chrome**: il renderer lo pilota in modalità headless per disegnare i fotogrammi. Va bene anche un altro Chromium, vedi [Problemi](#10--aiuto-problemi-e-crediti).
 - **ffmpeg** con libx264: trasforma i fotogrammi in MP4 e mixa il suono.
 - **Python + [uv](https://docs.astral.sh/uv/)**: serve solo per allineare una voce nuova, rifare il mix degli effetti o generare una voce demo. I comandi qui sotto usano `uv run …`; se hai installato uv con pip, scrivi `python -m uv run …`.
 
@@ -53,7 +53,7 @@ bun install
 bunx vite
 ```
 
-Apri `http://localhost:5173` e premi spazio per far partire il video insieme alla voce. Se più avanti il render non trova Chrome, vedi [Problemi](#09--aiuto-problemi-e-crediti).
+Apri `http://localhost:5173` e premi spazio per far partire il video insieme alla voce. Se più avanti il render non trova Chrome, vedi [Problemi](#10--aiuto-problemi-e-crediti).
 
 ---
 
@@ -104,7 +104,7 @@ bun run render
 | `--samples 4` | Bozza più veloce: nei movimenti rapidi si vedono copie a scatti. |
 | `--samples auto` | Più sotto-fotogrammi dove il movimento è veloce (default dello script). |
 | `--scale 2` | 4K, 3840×2160. |
-| `--workers 1` | Un solo Chrome alla volta (default 2). Usalo su una macchina senza GPU, vedi [Problemi](#09--aiuto-problemi-e-crediti). |
+| `--workers 1` | Un solo Chrome alla volta (default 2). Usalo su una macchina senza GPU, vedi [Problemi](#10--aiuto-problemi-e-crediti). |
 | `--from 50 --to 57` | Solo un intervallo, in secondi. |
 | `--fps 30` | 30 fotogrammi al secondo invece di 60: metà del tempo, lo standard dei film di lancio. |
 
@@ -548,6 +548,8 @@ cd app && FILM=plugins bun scripts/render.ts video --workers 1 --samples 1 --fps
 cd out && ffmpeg -i plugins.mp4 -i plugins/mix.wav -map 0:v -map 1:a -c:v copy -c:a aac -b:a 320k -shortest plugins_sfx.mp4
 ```
 
+Nel kit ci sono due film: `films/plugins` (qui sotto) e `films/styles`, il reel dei 21 stili (sezione 09).
+
 ### Il reel dei plugin (`films/plugins`)
 
 Un reel verticale di 65 secondi nel formato del presentatore animato dietro un bancone. Presenta quattro plugin per Claude Code (Superpowers, Karpathy skills, i-have-adhd e Claude Octopus) e chiude con "commenta SENIOR e ti mando i link in privato".
@@ -572,7 +574,69 @@ La voce è sintetica (Qwen3-TTS), accelerata di 1,3× per il ritmo del reel. Per
 
 ---
 
-## 09 · Aiuto: problemi e crediti
+## 09 · Stili: venti look pronti, più uno
+
+`app/src/styles/` è una libreria di 21 stili di motion design: i venti più usati e, come bonus, l'ASCII art. Ognuno è uno `Style` con:
+- **i suoi colori e caratteri** (`palette`, `fonts`);
+- **il suo modo di muoversi** (`motion`): l'easing degli ingressi e, se si muove a scatti, a quanti fotogrammi al secondo;
+- **il post del motore** per un fotogramma intero in quello stile (`post`): bloom, grana, aberrazione cromatica, vignettatura;
+- **tre funzioni di disegno**, pure funzioni del tempo: `ground` (lo sfondo), `title` (un titolo nello stile, con il suo ingresso) e `tile` (una scheda animata che mostra lo stile in movimento);
+- **una frase che lo descrive** (`what`) e **la ricetta** (`recipe`): cosa chiedere a Claude per ottenerlo.
+
+In una tavola:
+
+```ts
+import { style } from '@kit/styles';
+
+const s = style('risograph');
+s.ground(x, t, W, H);                                        // lo sfondo
+s.title(x, t - 0.4, 'Il mio prodotto', W / 2, H / 2, 150);   // un titolo che entra dopo 0,4 s
+return { ...s.post };                                       // il post dello stile
+```
+
+Per chiederlo a Claude basta il nome: *"rifai la tavola `model` in stile Risograph"*. Claude legge la ricetta nel file dello stile e la applica alla tavola. Due esempi di ricetta:
+- **Risograph:** due inchiostri piatti in multiply, livelli fuori registro di qualche pixel, retini e grana, animazione a 8 fps.
+- **Glassmorphism:** sfocatura dello sfondo dentro pannelli semitrasparenti con un bordo bianco sottile, movimenti lenti.
+
+| # | Stile | Cosa lo definisce | File |
+|---|---|---|---|
+| 1 | Swiss style | Griglia rigorosa, grotesk bold a sinistra, tanto bianco e un solo rosso. | `swiss.ts` |
+| 2 | Kinetic type | La tipografia è l’animazione: lettere che entrano, si allungano e pulsano a ritmo. | `kinetic.ts` |
+| 3 | Pop art | Retini Ben-Day, contorni neri spessi, colori primari e fumetti che esplodono. | `popart.ts` |
+| 4 | Flat 2D | Forme piatte a tinta unita: niente contorni, niente sfumature, niente ombre. | `flat.ts` |
+| 5 | Clay 3D | Oggetti morbidi e opachi, come plastilina, con luce da studio e rimbalzi elastici. | `clay.ts` |
+| 6 | Glassmorphism | Pannelli di vetro smerigliato che sfocano i colori vivaci che passano dietro. | `glass.ts` |
+| 7 | Y2K chrome | Metallo liquido, cromature lucide, bolle e brillantini: l’estetica del Duemila. | `y2k.ts` |
+| 8 | Synthwave | Neon, sole a strisce e griglia che corre verso l’orizzonte: una notte anni Ottanta. | `synthwave.ts` |
+| 9 | Risograph | Due inchiostri spot sovrapposti su carta, grana, fuori registro di qualche pixel. | `riso.ts` |
+| 10 | Paper collage | Carta strappata, nastro adesivo e lettere ritagliate, una diversa dall’altra. | `collage.ts` |
+| 11 | Glitch | Segnale rotto: canali RGB sfasati, fette che saltano, rumore e scanline. | `glitch.ts` |
+| 12 | Particles | Migliaia di punti di luce che vorticano e poi compongono una forma. | `particles.ts` |
+| 13 | Neobrutalism | Bordi neri spessi, ombre nette senza sfocatura, colori piatti e forti. | `neobrutal.ts` |
+| 14 | Bauhaus | Cerchio, quadrato e triangolo nei colori primari, barre nere, tipografia geometrica minuscola. | `bauhaus.ts` |
+| 15 | Memphis | Scarabocchi, zig-zag, coriandoli e forme pop: il design milanese anni Ottanta. | `memphis.ts` |
+| 16 | Vaporwave | Rosa, lilla e azzurro pastello, tramonto a strisce, colonne greche e finestre di un vecchio sistema operativo. | `vaporwave.ts` |
+| 17 | Pixel art | Pochi pixel ingranditi senza sfumatura, una palette ridotta e animazione a scatti. | `pixel.ts` |
+| 18 | Isometric | Un mondo di blocchi su una griglia a 30 gradi, senza punto di fuga. | `isometric.ts` |
+| 19 | Low poly | Solo triangoli a colore piatto, ombreggiati faccia per faccia. | `lowpoly.ts` |
+| 20 | Line art | Una sola linea nera su bianco, che non si stacca mai dal foglio. | `lineart.ts` |
+| bonus | ASCII art | L’immagine fatta di caratteri: luce e ombra diventano punti, virgole e cancelletti. | `ascii.ts` |
+
+Il reel `films/styles` li mostra tutti (82 s, 9:16). Per vederli in anteprima:
+
+```sh
+cd app && FILM=styles bun run dev
+```
+
+Il reel ha questa struttura:
+- **in alto**, la lista in due colonne: ogni nome si scrive quando la voce lo dice;
+- **sotto**, la scheda dello stile, che si gira a ogni taglio;
+- **in apertura**, un montaggio rapido di tutti gli stili;
+- **in chiusura**, il mosaico dei 21 stili e "commenta STILI".
+
+---
+
+## 10 · Aiuto: problemi e crediti
 
 | Problema | Prova così |
 |---|---|
@@ -600,6 +664,7 @@ Tieni quel file di licenza insieme al progetto. Le nove tavole sono nuove, scrit
 - **Allineamento:** [wav2vec2-large-xlsr-53-italian](https://huggingface.co/jonatasgrosman/wav2vec2-large-xlsr-53-italian) di Jonatas Grosman (Apache 2.0), esportato in ONNX int8.
 - **Effetti sonori e musica:** sintetizzati da `analysis/make_sfx.py` e `analysis/music.py`, nessun campione esterno.
 - **Reel dei plugin:** il formato riprende un reel di [@adilet.fndr](https://www.instagram.com/adilet.fndr): un presentatore animato dietro un bancone e una sezione per plugin. Tavole, disegni, testo italiano, voce e suono sono nuovi, scritti in codice per questo kit. I nomi di prodotti e repository citati appartengono ai rispettivi autori.
+- **Stili:** l'elenco dei venti stili riprende un reel di [@andremass.ai](https://www.instagram.com/andremass.ai) ("motion design styles you can steal"). Ricette, codice e animazioni di `app/src/styles/` sono nuovi, scritti per questo kit.
 - **Launch film:** struttura, prompt, regole e checklist della sezione 06 sono adattati dalla guida *The 60-second launch film made with Claude* di Saksham Gupta ([@saksham.700x](https://www.instagram.com/saksham.700x)). La guida cita lo skill onetake (licenza PolyForm Noncommercial), di cui qui non c'è codice.
 
 Se usi ElevenLabs o un altro servizio per la tua voce o per gli effetti, controlla i termini di licenza del tuo piano prima di pubblicare il video.

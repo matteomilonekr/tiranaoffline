@@ -1,0 +1,162 @@
+[
+ {
+  "id": "c00",
+  "seed": 11,
+  "pause": 0.45,
+  "text": "Venti stili di motion design che puoi rubare, e li fai tutti con il codice.",
+  "tts": "Venti stili di mòscion disàin che puoi rubare, e li fai tutti con il còdice."
+ },
+ {
+  "id": "c01",
+  "seed": 11,
+  "pause": 0.3,
+  "text": "Uno: Swiss style. Griglia rigorosa, caratteri bold e tanto bianco.",
+  "tts": "Uno: Suìss stàil. Griglia rigorosa, caratteri bold e tanto bianco."
+ },
+ {
+  "id": "c02",
+  "seed": 11,
+  "pause": 0.3,
+  "text": "Due: kinetic type. Le parole si muovono a ritmo.",
+  "tts": "Due: chinètic tàip. Le parole si muovono a ritmo."
+ },
+ {
+  "id": "c03",
+  "seed": 11,
+  "pause": 0.3,
+  "text": "Tre: pop art. Retini, contorni neri e colori primari."
+ },
+ {
+  "id": "c04",
+  "seed": 11,
+  "pause": 0.3,
+  "text": "Quattro: flat 2D. Forme piatte, niente ombre.",
+  "tts": "Quattro: flat due di. Forme piatte, niente ombre."
+ },
+ {
+  "id": "c05",
+  "seed": 11,
+  "pause": 0.3,
+  "text": "Cinque: clay 3D. Tutto morbido, come la plastilina.",
+  "tts": "Cinque: clèi tre di. Tutto morbido, come la plastilina."
+ },
+ {
+  "id": "c06",
+  "seed": 11,
+  "pause": 0.3,
+  "text": "Sei: glassmorphism. Vetro smerigliato sopra i colori.",
+  "tts": "Sei: glàss mòrfism. Vetro smerigliato sopra i colori."
+ },
+ {
+  "id": "c07",
+  "seed": 11,
+  "pause": 0.3,
+  "text": "Sette: Y2K chrome. Cromature lucide, anni Duemila.",
+  "tts": "Sette: uài tu chèi cròm. Cromature lucide, anni Duemila."
+ },
+ {
+  "id": "c08",
+  "seed": 11,
+  "pause": 0.3,
+  "text": "Otto: synthwave. Neon, sole a strisce e griglia all'orizzonte.",
+  "tts": "Otto: sìnth uèiv. Neon, sole a strisce e griglia all'orizzonte."
+ },
+ {
+  "id": "c09",
+  "seed": 11,
+  "pause": 0.3,
+  "text": "Nove: risograph. Due inchiostri, grana e registro sfalsato.",
+  "tts": "Nove: rìsograf. Due inchiostri, grana e registro sfalsato."
+ },
+ {
+  "id": "c10",
+  "seed": 11,
+  "pause": 0.3,
+  "text": "Dieci: paper collage. Carta strappata e lettere ritagliate.",
+  "tts": "Dieci: pèiper collàj. Carta strappata e lettere ritagliate."
+ },
+ {
+  "id": "c11",
+  "seed": 11,
+  "pause": 0.3,
+  "text": "Undici: glitch. Canali sfasati e segnale rotto.",
+  "tts": "Undici: glìc. Canali sfasati e segnale rotto."
+ },
+ {
+  "id": "c12",
+  "seed": 11,
+  "pause": 0.3,
+  "text": "Dodici: particles. Migliaia di punti che diventano una forma.",
+  "tts": "Dodici: pàrticols. Migliaia di punti che diventano una forma."
+ },
+ {
+  "id": "c13",
+  "seed": 11,
+  "pause": 0.3,
+  "text": "Tredici: neobrutalism. Bordi spessi e ombre nette.",
+  "tts": "Tredici: neo brutàlism. Bordi spessi e ombre nette."
+ },
+ {
+  "id": "c14",
+  "seed": 11,
+  "pause": 0.3,
+  "text": "Quattordici: Bauhaus. Cerchio, quadrato, triangolo.",
+  "tts": "Quattordici: Bàuaus. Cerchio, quadrato, triangolo."
+ },
+ {
+  "id": "c15",
+  "seed": 11,
+  "pause": 0.3,
+  "text": "Quindici: Memphis. Scarabocchi, zig-zag e coriandoli.",
+  "tts": "Quindici: Mèmfis. Scarabocchi, zig zag e coriandoli."
+ },
+ {
+  "id": "c16",
+  "seed": 11,
+  "pause": 0.3,
+  "text": "Sedici: vaporwave. Rosa, azzurro e nostalgia digitale.",
+  "tts": "Sedici: vèipor uèiv. Rosa, azzurro e nostalgia digitale."
+ },
+ {
+  "id": "c17",
+  "seed": 11,
+  "pause": 0.3,
+  "text": "Diciassette: pixel art. Pochi pixel, tanti ricordi.",
+  "tts": "Diciassette: pìxel art. Pochi pìxel, tanti ricordi."
+ },
+ {
+  "id": "c18",
+  "seed": 11,
+  "pause": 0.3,
+  "text": "Diciotto: isometric. Un mondo a cubetti, senza punto di fuga.",
+  "tts": "Diciotto: isomètric. Un mondo a cubetti, senza punto di fuga."
+ },
+ {
+  "id": "c19",
+  "seed": 11,
+  "pause": 0.3,
+  "text": "Diciannove: low poly. Solo triangoli e colori piatti.",
+  "tts": "Diciannove: lòu pòli. Solo triangoli e colori piatti."
+ },
+ {
+  "id": "c20",
+  "seed": 11,
+  "pause": 0.4,
+  "text": "Venti: line art. Una linea sola che disegna tutto.",
+  "tts": "Venti: làin art. Una linea sola che disegna tutto."
+ },
+ {
+  "id": "c21",
+  "seed": 11,
+  "pause": 0.45,
+  "text": "E il bonus: ASCII art. Un'immagine fatta di caratteri.",
+  "tts": "E il bonus: àschi art. Un'immagine fatta di caratteri."
+ },
+ {
+  "id": "c22",
+  "seed": 11,
+  "pause": 1.6,
+  "text": "Li trovi tutti nel kit: commenta STILI e te lo mando.",
+  "tts": "Li trovi tutti nel kit: commenta stili, e te lo mando."
+ }
+]
