@@ -1,6 +1,10 @@
 {
   "compilerOptions": {
-    "lib": ["ESNext", "DOM", "DOM.Iterable"],
+    "lib": [
+      "ESNext",
+      "DOM",
+      "DOM.Iterable"
+    ],
     "target": "ESNext",
     "module": "ESNext",
     "moduleDetection": "force",
@@ -12,7 +16,27 @@
     "skipLibCheck": true,
     "noFallthroughCasesInSwitch": true,
     "noImplicitOverride": true,
-    "types": ["vite/client"]
+    "types": [
+      "vite/client"
+    ],
+    "paths": {
+      "@kit/*": [
+        "./src/*"
+      ],
+      "@timeline": [
+        "./src/timeline.ts"
+      ],
+      "three": [
+        "./node_modules/@types/three"
+      ],
+      "opentype.js": [
+        "./node_modules/@types/opentype.js"
+      ]
+    }
   },
-  "include": ["src"]
+  "include": [
+    "src",
+    "../films/*/timeline.ts",
+    "../films/*/scenes"
+  ]
 }

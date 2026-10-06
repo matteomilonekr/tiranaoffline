@@ -41,7 +41,7 @@ Restano fuori dal repository `out/` (i render), `app/node_modules/` (lo ricrea l
 **Requisiti.**
 
 - **bun** ([bun.sh](https://bun.sh)): installa i pacchetti ed esegue gli script.
-- **Google Chrome**: il renderer lo pilota in modalità headless per disegnare i fotogrammi. Va bene anche un altro Chromium, vedi [Problemi](#08--aiuto-problemi-e-crediti).
+- **Google Chrome**: il renderer lo pilota in modalità headless per disegnare i fotogrammi. Va bene anche un altro Chromium, vedi [Problemi](#09--aiuto-problemi-e-crediti).
 - **ffmpeg** con libx264: trasforma i fotogrammi in MP4 e mixa il suono.
 - **Python + [uv](https://docs.astral.sh/uv/)**: serve solo per allineare una voce nuova, rifare il mix degli effetti o generare una voce demo. I comandi qui sotto usano `uv run …`; se hai installato uv con pip, scrivi `python -m uv run …`.
 
@@ -53,7 +53,7 @@ bun install
 bunx vite
 ```
 
-Apri `http://localhost:5173` e premi spazio per far partire il video insieme alla voce. Se più avanti il render non trova Chrome, vedi [Problemi](#08--aiuto-problemi-e-crediti).
+Apri `http://localhost:5173` e premi spazio per far partire il video insieme alla voce. Se più avanti il render non trova Chrome, vedi [Problemi](#09--aiuto-problemi-e-crediti).
 
 ---
 
@@ -104,7 +104,7 @@ bun run render
 | `--samples 4` | Bozza più veloce: nei movimenti rapidi si vedono copie a scatti. |
 | `--samples auto` | Più sotto-fotogrammi dove il movimento è veloce (default dello script). |
 | `--scale 2` | 4K, 3840×2160. |
-| `--workers 1` | Un solo Chrome alla volta (default 2). Usalo su una macchina senza GPU, vedi [Problemi](#08--aiuto-problemi-e-crediti). |
+| `--workers 1` | Un solo Chrome alla volta (default 2). Usalo su una macchina senza GPU, vedi [Problemi](#09--aiuto-problemi-e-crediti). |
 | `--from 50 --to 57` | Solo un intervallo, in secondi. |
 | `--fps 30` | 30 fotogrammi al secondo invece di 60: metà del tempo, lo standard dei film di lancio. |
 
@@ -152,6 +152,8 @@ Le tavole trovano le loro parole per contenuto (`lineOf`, `phraseOf`, `wordOf`).
 5. Whisper ricontrolla le righe e lo script le monta in `audio/voiceover.mp3`.
 
 I comandi sono in testa allo script e i testi in `analysis/tts/lines.json`, con le grafie che il modello legge correttamente.
+
+Per il ritmo di un reel, `assemble` accetta due opzioni. `--tighten 0.2` accorcia a 0,2 s le pause dentro ogni riga. `--tempo 1.3` accelera tutta la lettura del 30% senza alzare il tono (Rubber Band, tramite ffmpeg).
 
 ### 6. Taglio verticale per Reel e Shorts
 
@@ -517,7 +519,60 @@ Il video sorgente e la trascrizione stanno in `out/refs/` e restano fuori da git
 
 ---
 
-## 08 · Aiuto: problemi e crediti
+## 08 · Altri film: più video nello stesso kit
+
+La demo è un film fra tanti. Un film è una cartella `films/<nome>/` e la variabile `FILM=<nome>` dice ad anteprima, render e mix quale suonare. Senza `FILM` suona la demo, come sempre.
+
+| File | Cosa contiene |
+|---|---|
+| `film.json` | titolo, formato (`16x9`: 1920×1080, oppure `9x16`: 1080×1920) e fps |
+| `script.json` | le righe della voce (`script`) e la pronuncia di nomi e sigle (`spoken`), per l'allineamento |
+| `tts/lines.json` | le righe come le legge la voce sintetica, con seed e pause |
+| `audio/voiceover.mp3`, `data/` | la voce e i tempi delle sue parole |
+| `timeline.ts`, `scenes/*.ts` | il montaggio e le tavole; le tavole importano il motore da `@kit/…` |
+| `sound.py` | effetti e musica sugli stessi tempi delle tavole |
+
+```sh
+# 1. la voce (facoltativa: va bene qualsiasi voiceover.mp3). La cartella di lavoro è a parte, perché
+#    le righe hanno gli stessi nomi di quelle della demo; dentro copia ref.wav e ref.txt della voce di riferimento
+uv run --no-project --with qwen-tts --with soundfile python analysis/tts/voice.py --work analysis/tts/work/plugins --lines films/plugins/tts/lines.json lines
+uv run --no-project --with faster-whisper --with soundfile python analysis/tts/voice.py --work analysis/tts/work/plugins --lines films/plugins/tts/lines.json check
+uv run --no-project --with soundfile --with numpy python analysis/tts/voice.py --work analysis/tts/work/plugins --lines films/plugins/tts/lines.json assemble --tighten 0.2 --tempo 1.3 --out films/plugins/audio/voiceover.mp3
+# 2. i tempi delle parole e l'analisi della voce
+uv run --no-project --with onnxruntime --with numpy python analysis/align_vo.py --film plugins
+uv run --no-project --with numpy python analysis/audio_vo.py --film plugins
+# 3. anteprima, suono e render
+cd app && FILM=plugins bun run dev
+uv run --no-project --with numpy python analysis/sfx_mix.py --film plugins                 # → out/plugins/mix.wav
+cd app && FILM=plugins bun scripts/render.ts video --workers 1 --samples 1 --fps 30       # → out/plugins.mp4
+cd out && ffmpeg -i plugins.mp4 -i plugins/mix.wav -map 0:v -map 1:a -c:v copy -c:a aac -b:a 320k -shortest plugins_sfx.mp4
+```
+
+### Il reel dei plugin (`films/plugins`)
+
+Un reel verticale di 65 secondi nel formato del presentatore animato dietro un bancone. Presenta quattro plugin per Claude Code (Superpowers, Karpathy skills, i-have-adhd e Claude Octopus) e chiude con "commenta SENIOR e ti mando i link in privato".
+
+- **Il presentatore** è Matteo disegnato in codice (capelli all'indietro, barba piena, maglia nera). La bocca segue la voce, gli occhi sbattono, le mani cambiano posa sulle parole (`Gestures`).
+- **Lo stage** (`scenes/_stage.ts`) è comune a tutte le tavole:
+  - la parete a pannello forato, che cambia colore a ogni plugin;
+  - il bancone;
+  - le didascalie a pillole sul bancone: la parola detta in giallo, le parole chiave in nero;
+  - l'etichetta in alto a sinistra;
+  - la presa multipla in alto a destra, dove ogni plugin si infila quando viene nominato.
+- **Sei tavole**, una per sezione. Ognuna si apre con una tendina circolare sulla precedente.
+- **Gli oggetti di scena:**
+  - terminali e il contatore delle stelle;
+  - il cartello "la mia idea" e la specifica firmata;
+  - il semaforo dei test e la pila di mille righe che diventa cento;
+  - la bacheca delle quattro regole e il distruggidocumenti delle frasi di cortesia;
+  - il polpo con i dodici modelli e il pulsante PUBBLICA bloccato;
+  - il commento SENIOR e il DM con i link.
+
+La voce è sintetica (Qwen3-TTS), accelerata di 1,3× per il ritmo del reel. Per usare la tua voce, registra il testo di `script.json`, salvalo come `films/plugins/audio/voiceover.mp3` e rilancia i passi 2 e 3.
+
+---
+
+## 09 · Aiuto: problemi e crediti
 
 | Problema | Prova così |
 |---|---|
@@ -527,7 +582,7 @@ Il video sorgente e la trascrizione stanno in `out/refs/` e restano fuori da git
 | ffmpeg non trovato / niente libx264 | Installa una build completa di ffmpeg e verifica che `ffmpeg -version` funzioni in un terminale nuovo. |
 | Render molto lento | Usa `--samples 4` per le bozze e il comando `stills` per le singole tavole. Senza GPU (WebGL via software, SwiftShader) usa `--workers 1`: due Chrome si contenderebbero gli stessi core. |
 | Animazione fuori tempo dopo una voce nuova | Rilancia entrambi gli script di analisi. Se il testo è cambiato, aggiorna le frasi nelle chiamate `cut(...)` di `timeline.ts`. |
-| Scene module not found | Il nome del file in `timeline.ts` deve corrispondere a un file in `app/src/scenes/`. |
+| Scene module not found | Il nome del file in `timeline.ts` deve corrispondere a un file in `app/src/scenes/` (per un film, in `films/<nome>/scenes/`). |
 
 ### Crediti e licenza
 
@@ -544,6 +599,7 @@ Tieni quel file di licenza insieme al progetto. Le nove tavole sono nuove, scrit
 - **Voce demo:** sintetica, generata in locale con Qwen3-TTS (Qwen, Apache 2.0). Non è la voce di una persona reale.
 - **Allineamento:** [wav2vec2-large-xlsr-53-italian](https://huggingface.co/jonatasgrosman/wav2vec2-large-xlsr-53-italian) di Jonatas Grosman (Apache 2.0), esportato in ONNX int8.
 - **Effetti sonori e musica:** sintetizzati da `analysis/make_sfx.py` e `analysis/music.py`, nessun campione esterno.
+- **Reel dei plugin:** il formato riprende un reel di [@adilet.fndr](https://www.instagram.com/adilet.fndr): un presentatore animato dietro un bancone e una sezione per plugin. Tavole, disegni, testo italiano, voce e suono sono nuovi, scritti in codice per questo kit. I nomi di prodotti e repository citati appartengono ai rispettivi autori.
 - **Launch film:** struttura, prompt, regole e checklist della sezione 06 sono adattati dalla guida *The 60-second launch film made with Claude* di Saksham Gupta ([@saksham.700x](https://www.instagram.com/saksham.700x)). La guida cita lo skill onetake (licenza PolyForm Noncommercial), di cui qui non c'è codice.
 
 Se usi ElevenLabs o un altro servizio per la tua voce o per gli effetti, controlla i termini di licenza del tuo piano prima di pubblicare il video.

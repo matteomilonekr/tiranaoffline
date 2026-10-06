@@ -11,11 +11,16 @@ share one reverb room and are ducked under the voice (effects up to DUCK_DB, mus
 the whole mix is normalised to TARGET_LUFS (ITU-R BS.1770 integrated loudness, what Instagram and YouTube
 normalise to) with true peaks under TRUE_PEAK_DB (4x oversampled).
 
+Another film (FILM=<name>): --film <name> takes the voice and the word timings from films/<name>/ and the cue
+sheet and the music's phrases from films/<name>/sound.py (cues(W, C) and phrases(W); see films/plugins/sound.py),
+and writes out/<name>/mix.wav.
+
 No re-render is needed after a change: rebuild the mix, then copy the picture and add the audio:
     cd out
     ffmpeg -i motion-as-code.mp4 -i mix.wav -map 0:v -map 1:a -c:v copy -c:a aac -b:a 320k -shortest motion-as-code_sfx.mp4
 """
 import argparse
+import importlib.util
 import json
 import os
 import subprocess
@@ -78,6 +83,40 @@ class Words:
         prev = self.lines[i - 1] if i > 0 else None
         s = l["words"][0]["start"]
         return max(s - CUT_LEAD, min(prev["end"] + 0.02, s - 0.02) if prev else 0)
+
+
+class Cues:
+    """A cue sheet being written (what a film's sound.py fills): cue(t, name, db, pan), typing(t0, t1, n, db, pan,
+    seed), typed(text, t0, cps, db, pan, seed). `list` holds (time s, effect, gain dB, pan -1..1)."""
+    KEYS = ["key_1", "key_2", "key_3", "key_4"]
+
+    def __init__(self):
+        self.list = []
+
+    def cue(self, t, name, db, pan=0.0):
+        self.list.append((float(t), name, float(db), float(pan)))
+
+    def typing(self, t0, t1, n, db, pan=0.0, seed=0):
+        """n key strokes spread over [t0, t1] with a little human jitter."""
+        r = np.random.default_rng(seed)
+        for i in range(max(0, int(n))):
+            u = (i + 0.5) / max(1, n)
+            self.cue(t0 + (t1 - t0) * u + r.uniform(-0.012, 0.012), self.KEYS[(i + seed) % 4], db + r.uniform(-2.5, 1), pan)
+
+    def typed(self, text, t0, cps, db=-22.0, pan=0.0, seed=0, every=2):
+        """The keys of a line a terminal types at cps from t0 (a stroke every `every` characters)."""
+        self.typing(t0, t0 + len(text) / cps, max(1, len(text) // every), db, pan, seed)
+
+
+def load_film(name):
+    """films/<name>/sound.py as a module."""
+    path = os.path.join(ROOT, "films", name, "sound.py")
+    if not os.path.exists(path):
+        raise SystemExit(f"no sound design for this film: {os.path.relpath(path, ROOT)}")
+    spec = importlib.util.spec_from_file_location(f"sound_{name}", path)
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
 
 
 # ------------------------------------------------------------------ the shared moments
@@ -462,17 +501,27 @@ def main():
     import music
 
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--voice", default=os.path.join(ROOT, "audio", "voiceover.mp3"))
-    ap.add_argument("--out", default=os.path.join(ROOT, "out", "mix.wav"))
+    ap.add_argument("--film", help="another film: films/<name>/ (its voice, words and sound.py) -> out/<name>/mix.wav")
+    ap.add_argument("--voice", help="default: audio/voiceover.mp3 (a film's: films/<name>/audio/voiceover.mp3)")
+    ap.add_argument("--out", help="default: out/mix.wav (a film: out/<name>/mix.wav)")
     ap.add_argument("--list", action="store_true", help="print the cue sheet")
     ap.add_argument("--no-music", action="store_true", help="voice and effects only")
     ap.add_argument("--stems", metavar="DIR", help="also write voice.wav, effects.wav and music.wav (mix gain, before the limiter)")
     a = ap.parse_args()
+    film = load_film(a.film) if a.film else None
+    base = os.path.join(ROOT, "films", a.film) if a.film else ROOT
+    a.voice = a.voice or os.path.join(base, "audio", "voiceover.mp3")
+    a.out = a.out or os.path.join(ROOT, "out", *([a.film] if a.film else []), "mix.wav")
 
-    ly = json.load(open(os.path.join(ROOT, "data", "lyrics.json"), encoding="utf-8"))
-    au = json.load(open(os.path.join(ROOT, "data", "audio.json"), encoding="utf-8"))
+    ly = json.load(open(os.path.join(base, "data", "lyrics.json"), encoding="utf-8"))
+    au = json.load(open(os.path.join(base, "data", "audio.json"), encoding="utf-8"))
     W = Words(ly, au)
-    cues = cue_sheet(W)
+    if film:
+        C = Cues()
+        film.cues(W, C)
+        cues = sorted(C.list)
+    else:
+        cues = cue_sheet(W)
     if a.list:
         for t, name, db, pan in cues:
             print(f"{t:8.3f}  {name:13s} {db:+5.1f} dB  pan {pan:+.2f}")
@@ -481,12 +530,13 @@ def main():
     raw = load_audio(a.voice)
     voice = compress(highpass(raw, 80.0))
     n = len(voice)
-    sfx_dir = os.path.join(ROOT, "audio", "sfx")
+    sfx_dir = os.path.join(ROOT, "audio", "sfx")  # (a film's own audio/sfx/<name>.wav wins)
     bank = {}
     bus = np.zeros((n + 3 * SR, 2))
     for t, name, db, pan in cues:
         if name not in bank:
-            bank[name] = load_audio(os.path.join(sfx_dir, f"{name}.wav"))
+            own = os.path.join(base, "audio", "sfx", f"{name}.wav")
+            bank[name] = load_audio(own if film and os.path.exists(own) else os.path.join(sfx_dir, f"{name}.wav"))
         s = bank[name]
         i = int(round(t * SR))
         if i < 0 or i >= n:
@@ -502,8 +552,9 @@ def main():
     if a.no_music:
         bed, send = np.zeros_like(bus), np.zeros_like(bus)
     else:
-        bed, send = music.bed(anchors(W), n)
-        bed, send = bed * 10 ** (MUSIC_DB / 20), send * 10 ** (MUSIC_DB / 20)
+        bed, send = music.bed({}, n, film.phrases(W)) if film else music.bed(anchors(W), n)
+        mdb = getattr(film, "MUSIC_DB", MUSIC_DB)
+        bed, send = bed * 10 ** (mdb / 20), send * 10 ** (mdb / 20)
     verb = music.room(bus * SFX_SEND + send) * 10 ** (ROOM_DB / 20)
 
     # ducking: the voice's envelope pulls effects and music down under it

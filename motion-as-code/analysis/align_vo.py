@@ -8,7 +8,8 @@ them in order, which gives every word a start and an end. The boundaries are the
 audio's silences: a word that starts in a pause moves to where the voice comes back, a word that runs
 on into a pause ends where the voice stops.
 
-To use another read or another script: replace audio/voiceover.mp3, edit SCRIPT below (one entry per
+For another film: --film <name> reads films/<name>/script.json and writes its data/. For the demo
+with another read or another script: replace audio/voiceover.mp3, edit SCRIPT below (one entry per
 line of the read; the plates find lines and words by content, so keep the phrases they look up, or
 update them, see timeline.ts) and SPOKEN (how numbers, acronyms and English words are pronounced),
 then run this script and audio_vo.py again.
@@ -220,10 +221,19 @@ def refine(words, env, hop=0.01, floor_db=None):
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--audio", default=os.path.join(ROOT, "audio", "voiceover.mp3"))
+    ap.add_argument("--film", help="a film in films/<name>/: its audio, its data/ and its script.json (script, spoken)")
+    ap.add_argument("--audio")
     ap.add_argument("--model", default=os.path.join(HERE, "models", "wav2vec2-it-int8.onnx"))
-    ap.add_argument("--out", default=os.path.join(ROOT, "data", "lyrics.json"))
+    ap.add_argument("--out")
     a = ap.parse_args()
+    base = os.path.join(ROOT, "films", a.film) if a.film else ROOT
+    a.audio = a.audio or os.path.join(base, "audio", "voiceover.mp3")
+    a.out = a.out or os.path.join(base, "data", "lyrics.json")
+    if a.film:
+        cfg = json.load(open(os.path.join(base, "script.json"), encoding="utf-8"))
+        SCRIPT[:] = cfg["script"]
+        SPOKEN.clear()
+        SPOKEN.update(cfg.get("spoken", {}))
 
     if not os.path.exists(a.model):
         sys.exit(

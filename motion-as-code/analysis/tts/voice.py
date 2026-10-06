@@ -19,7 +19,8 @@
 4. check    Whisper (large-v3-turbo) transcribes every take and counts the words it did not hear as written.
 5. assemble Trims each take's silences, joins them with the pauses in lines.json (the plates cut in those
             pauses), adds a lead-in, normalises, and writes audio/voiceover.mp3. Then re-run the alignment
-            (analysis/align_vo.py) and the audio analysis (analysis/audio_vo.py).
+            (analysis/align_vo.py) and the audio analysis (analysis/audio_vo.py). For a reel's pace:
+            --tighten 0.2 shortens the pauses inside each take, --tempo 1.15 speeds the read up (same pitch).
 
 Work files go to analysis/tts/work/ (not committed). On a 4-core CPU the 1.7B models take about 5-7 s per
 second of speech; the models (a few GB each) are downloaded from Hugging Face on first use.
@@ -35,7 +36,7 @@ import unicodedata
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(os.path.dirname(HERE))
-LINES = os.path.join(HERE, "lines.json")
+LINES_PATH = os.path.join(HERE, "lines.json")  # --lines: another film's lines
 INSTRUCT = (
     "Voce maschile italiana madrelingua, sui trent'anni, calda e sicura, con un tono leggermente ironico. "
     "Narratore di video tech moderni: dizione chiara, ritmo energico ma naturale, pause brevi tra le frasi, "
@@ -46,7 +47,7 @@ LEAD = 0.30  # silence before the first line (s)
 
 
 def load_lines():
-    return json.load(open(LINES, encoding="utf-8"))
+    return json.load(open(LINES_PATH, encoding="utf-8"))
 
 
 def take(work, line, seed=None):
@@ -146,6 +147,39 @@ def trim(x, sr, thr_db=-30.0, pad=0.06):
     return x[max(0, on[0] * h - int(pad * sr)):min(len(x), (on[-1] + 1) * h + int(pad * sr))]
 
 
+def tighten(x, sr, gap, thr_db=-32.0):
+    """The pauses inside a take shortened to at most `gap` seconds (10 ms frames over thr_db below its loudest
+    are speech); the cuts fall in the middle of each pause, joined with 5 ms crossfades."""
+    import numpy as np
+
+    h = int(0.01 * sr)
+    n = len(x) // h
+    db = 20 * np.log10(np.sqrt((x[: n * h].reshape(n, h) ** 2).mean(axis=1) + 1e-12) + 1e-9)
+    quiet = db < db.max() + thr_db
+    cuts, i = [], 0
+    while i < n:
+        j = i
+        while j < n and quiet[j]:
+            j += 1
+        if j > i and (j - i) * h > gap * sr and i > 0 and j < n:
+            cuts.append((i * h + int(gap * sr / 2), j * h - int(gap * sr / 2)))
+        i = max(j, i + 1)
+    if not cuts:
+        return x
+    xf = int(0.005 * sr)
+    out, at = [], 0
+    for c0, c1 in cuts:
+        out.append(x[at:c0 + xf].copy())
+        at = c1
+    out.append(x[at:].copy())
+    y = out[0]
+    ramp = np.linspace(0, 1, xf, dtype=np.float32)
+    for seg in out[1:]:
+        y[-xf:] = y[-xf:] * (1 - ramp) + seg[:xf] * ramp
+        y = np.concatenate([y, seg[xf:]])
+    return y
+
+
 def assemble(a):
     import numpy as np
     import soundfile as sf
@@ -158,11 +192,19 @@ def assemble(a):
             parts.append(np.zeros(int(LEAD * sr), np.float32))
         assert r == sr, f"{l['id']}: {r} Hz, the others {sr} Hz"
         x = trim(x.mean(axis=1) if x.ndim > 1 else x, sr)
+        if a.tighten:
+            x = tighten(x, sr, a.tighten)
         fade = int(0.005 * sr)
         x[:fade] *= np.linspace(0, 1, fade)
         x[-fade:] *= np.linspace(1, 0, fade)
         parts += [x, np.zeros(int(l["pause"] * sr), np.float32)]
     y = np.concatenate(parts)
+    if a.tempo != 1:
+        # faster without a higher pitch (Rubber Band, through ffmpeg); the pauses shrink with the speech
+        src, dst = os.path.join(a.work, "tempo_in.wav"), os.path.join(a.work, "tempo_out.wav")
+        sf.write(src, y, sr)
+        subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", src, "-af", f"rubberband=tempo={a.tempo}:transients=mixed", dst], check=True)
+        y = sf.read(dst, dtype="float32")[0]
     # loudness: the voiced parts (50 ms blocks) to about -19 dBFS RMS, peaks under -1 dBFS
     h = int(0.05 * sr)
     n = len(y) // h
@@ -179,6 +221,7 @@ def assemble(a):
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--work", default=os.path.join(HERE, "work"), help="work folder (default analysis/tts/work)")
+    ap.add_argument("--lines", help="the lines file (default analysis/tts/lines.json; a film: films/<name>/tts/lines.json)")
     sub = ap.add_subparsers(dest="cmd", required=True)
     p = sub.add_parser("design", help="the whole script in one take, in a voice described in words")
     p.add_argument("--seed", type=int, default=7)
@@ -197,8 +240,12 @@ def main():
         p.set_defaults(fn=fn)
     p = sub.add_parser("assemble", help="join the takes into audio/voiceover.mp3")
     p.add_argument("--out", default=os.path.join(ROOT, "audio", "voiceover.mp3"))
+    p.add_argument("--tighten", type=float, default=0, help="shorten the pauses inside each take to at most this (s)")
+    p.add_argument("--tempo", type=float, default=1.0, help="speed the whole read up (1.15: 15%% faster, same pitch)")
     p.set_defaults(fn=assemble)
     a = ap.parse_args()
+    global LINES_PATH
+    LINES_PATH = a.lines or LINES_PATH
     os.makedirs(a.work, exist_ok=True)
     a.fn(a)
 

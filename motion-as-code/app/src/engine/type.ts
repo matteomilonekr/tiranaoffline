@@ -22,6 +22,8 @@ for (const wt of [400, 600]) {
 for (const [n, f] of [['300', 'Light'], ['400', 'Regular'], ['500', 'Medium'], ['600', 'SemiBold'], ['700', 'Bold']] as const)
   DEFS.push({ family: `Plex-${n}`, file: `src/IBMPlexMono-${f}.ttf` });
 DEFS.push({ family: 'PlexItalic-400', file: 'src/IBMPlexMono-Italic.ttf' });
+// Space Grotesk (joinscalers.com's face), for the films in that brand
+for (const wt of [300, 400, 500, 600, 700]) DEFS.push({ family: `Grotesk-${wt}`, file: `spacegrotesk/SpaceGrotesk-${wt}.ttf` });
 
 /** Convenience family names. */
 export const F = {
@@ -40,6 +42,10 @@ export const F = {
   mono(weight = 400, italic = false): string {
     if (italic) return 'PlexItalic-400';
     return `Plex-${nearest([300, 400, 500, 600, 700], weight)}`;
+  },
+  /** Space Grotesk, weight 300..700. */
+  grotesk(weight = 700): string {
+    return `Grotesk-${nearest([300, 400, 500, 600, 700], weight)}`;
   },
 };
 

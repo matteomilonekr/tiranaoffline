@@ -1,0 +1,88 @@
+[
+ {
+  "id": "c00",
+  "seed": 11,
+  "pause": 0.45,
+  "text": "Non fare vibe coding con Claude Code prima di aver installato questi quattro plugin.",
+  "tts": "Non fare vaib còding con Clod Code prima di aver installato questi quattro plàghin."
+ },
+ {
+  "id": "c01",
+  "seed": 11,
+  "pause": 0.25,
+  "text": "Il primo è Superpowers, quasi trecentomila stelle, e impedisce a Claude di buttarsi subito nel codice.",
+  "tts": "Il primo è Super pàuers, quasi trecentomila stelle, e impedisce a Clod di buttarsi subito nel codice."
+ },
+ {
+  "id": "c02",
+  "seed": 11,
+  "pause": 0.15,
+  "text": "Ti chiede cosa stai costruendo davvero, lo trasforma in una specifica che firmi tu,"
+ },
+ {
+  "id": "c03",
+  "seed": 11,
+  "pause": 0.45,
+  "text": "e passa il lavoro a dei subagent che scrivono prima i test: così lavora per ore senza uscire dal piano.",
+  "tts": "e passa il lavoro a dei sab éjent che scrivono prima i test: così lavora per ore senza uscire dal piano."
+ },
+ {
+  "id": "c04",
+  "seed": 11,
+  "pause": 0.2,
+  "text": "Il secondo sono le Karpathy skills: un solo file CLAUDE.md, nato da una lamentela di Andrej Karpathy:",
+  "tts": "Il secondo sono le Carpàti schils: un solo file, Clod punto emme di, nato da una lamentela di Àndrei Carpàti:"
+ },
+ {
+  "id": "c05",
+  "seed": 11,
+  "pause": 0.3,
+  "text": "i modelli scrivono mille righe quando ne basterebbero cento."
+ },
+ {
+  "id": "c06",
+  "seed": 11,
+  "pause": 0.45,
+  "text": "Quattro regole: pensa prima di scrivere codice, resta semplice, tocca solo quello che ti chiedono, e dimostra che funziona."
+ },
+ {
+  "id": "c07",
+  "seed": 11,
+  "pause": 0.25,
+  "text": "Il terzo è i-have-adhd, che impedisce a Claude di seppellire la risposta.",
+  "tts": "Il terzo è Ai hev ei di eic di, che impedisce a Clod di seppellire la risposta."
+ },
+ {
+  "id": "c08",
+  "seed": 11,
+  "pause": 0.25,
+  "text": "Niente «ottima domanda», niente «spero ti sia utile».",
+  "tts": "Niente: ottima domanda. Niente: spero ti sia utile."
+ },
+ {
+  "id": "c09",
+  "seed": 11,
+  "pause": 0.45,
+  "text": "Prima la prossima azione, passi numerati, e liste di massimo cinque punti."
+ },
+ {
+  "id": "c10",
+  "seed": 11,
+  "pause": 0.15,
+  "text": "E infine Claude Octopus: manda lo stesso compito fino a dodici altri modelli, come Codex, Copilot e Grok,",
+  "tts": "E infine Clod Òctopus: manda lo stesso compito fino a dodici altri modelli, come Còdex, Còpailot e Grok,"
+ },
+ {
+  "id": "c11",
+  "seed": 11,
+  "pause": 0.45,
+  "text": "e ti segnala ogni punto in cui non sono d'accordo, prima che tu pubblichi."
+ },
+ {
+  "id": "c12",
+  "seed": 11,
+  "pause": 1.6,
+  "text": "Se vuoi provarli tutti, commenta SENIOR e ti mando i link in privato.",
+  "tts": "Se vuoi provarli tutti, commenta sìnior, e ti mando i link in privato."
+ }
+]

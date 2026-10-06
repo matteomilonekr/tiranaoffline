@@ -54,11 +54,16 @@ def norm01(x, lo_pct=5, hi_pct=99.5):
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--audio", default=os.path.join(ROOT, "audio", "voiceover.mp3"))
-    ap.add_argument("--lyrics", default=os.path.join(ROOT, "data", "lyrics.json"))
-    ap.add_argument("--out", default=os.path.join(ROOT, "data", "audio.json"))
+    ap.add_argument("--film", help="a film in films/<name>/ (its audio and data/) instead of the demo")
+    ap.add_argument("--audio")
+    ap.add_argument("--lyrics")
+    ap.add_argument("--out")
     ap.add_argument("--bpm", type=float, default=120.0)
     a = ap.parse_args()
+    base = os.path.join(ROOT, "films", a.film) if a.film else ROOT
+    a.audio = a.audio or os.path.join(base, "audio", "voiceover.mp3")
+    a.lyrics = a.lyrics or os.path.join(base, "data", "lyrics.json")
+    a.out = a.out or os.path.join(base, "data", "audio.json")
 
     sr = 24000
     x = load_audio(a.audio, sr)

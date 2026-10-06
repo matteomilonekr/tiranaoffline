@@ -2,8 +2,9 @@
 // The preview plays the voiceover (audio/voiceover.mp3); add ?mix=1 to hear the SFX mix
 // (out/mix.wav, made by analysis/sfx_mix.py) instead.
 import { Engine, type AdaptiveSampling } from './engine/engine';
-import { PW, PH, SCALE } from './engine/gl';
-import { makeTimeline } from './timeline';
+import { PW, PH, SCALE, W, H } from './engine/gl';
+// the demo's timeline, or the film's (FILM=<name>: films/<name>/timeline.ts, see vite.config.ts)
+import { makeTimeline } from '@timeline';
 
 const params = new URLSearchParams(location.search);
 const EXPORT = params.has('export');
@@ -12,9 +13,12 @@ const FROM = params.get('t') ? parseFloat(params.get('t')!) : null;
 const AUDIO = params.has('mix') ? 'out/mix.wav' : 'audio/voiceover.mp3';
 
 const canvas = document.getElementById('c') as HTMLCanvasElement;
-// physical size: 1920x1080 times ?scale= (the page CSS keeps showing it at 1920x1080)
+// physical size: W x H (1920x1080, or 1080x1920 for a 9x16 film) times ?scale=; the page CSS shows it at W x H
 canvas.width = PW;
 canvas.height = PH;
+document.documentElement.style.setProperty('--w', `${W}px`);
+document.documentElement.style.setProperty('--h', `${H}px`);
+document.documentElement.style.setProperty('--aspect', `${W} / ${H}`);
 
 const engine = new Engine(canvas, makeTimeline);
 
@@ -96,7 +100,7 @@ function setupExport() {
     engine,
     duration: engine.duration,
     errors: engine.errors,
-    /** Output size in px (1920x1080 times scale); stream() sends frames of width*height*3 bytes (rgb24). */
+    /** Output size in px (W x H times scale); stream() sends frames of width*height*3 bytes (rgb24). */
     scale: SCALE,
     width: PW,
     height: PH,

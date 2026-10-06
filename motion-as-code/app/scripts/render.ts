@@ -10,6 +10,7 @@
 //            --samples N averages N sub-frames per frame over shutter×(1/fps): motion blur + temporal AA;
 //            --samples auto picks the count per 32x32 tile (12, 36, 108 or 324, see Engine.render; --refine frame: per frame)
 //            --workers N headless Chromes render chunks of --chunk frames into one ffmpeg, in order (see video())
+// FILM=<name> renders films/<name>/ (its format from film.json, its voice and data, out/<name>.mp4) instead of the demo.
 //   --scale N (all modes): render at N× the 1920x1080 layout (--scale 2 = true 3840x2160); stills are then saved
 //            full-res from the pixel buffer, videos are encoded at the physical size.
 // Uses the Vite dev server at --url (default http://localhost:5173); starts a private one if unreachable.
@@ -27,7 +28,13 @@ const opt = (k: string, d?: string) => { const i = argv.lastIndexOf(`--${k}`); r
 const flag = (k: string) => argv.includes(`--${k}`);
 const APP = path.resolve(import.meta.dir, '..');
 const SCALE = Math.max(1, Math.round(+opt('scale', '1')!));
-const OW = 1920 * SCALE, OH = 1080 * SCALE; // output size
+const FILM = process.env.FILM || '';
+/** Where the film's voice, data and film.json are: films/<name>/, or the kit itself for the demo. */
+const FILM_DIR = FILM ? path.join(path.resolve(APP, '..'), 'films', FILM) : path.resolve(APP, '..');
+const FORMAT: string = (FILM && existsSync(path.join(FILM_DIR, 'film.json')) ? (await Bun.file(path.join(FILM_DIR, 'film.json')).json()).format : null) ?? '16x9';
+const LW = FORMAT === '9x16' ? 1080 : 1920, LH = FORMAT === '9x16' ? 1920 : 1080; // logical size
+const OW = LW * SCALE, OH = LH * SCALE; // output size
+const OUT_NAME = FILM || 'motion-as-code';
 // --samples N (fixed) or --samples auto [--min-samples 4] [--max-samples 324] [--tol 3] [--refine tiles|frame]
 // (adaptive, see Engine.render)
 const SAMPLES = opt('samples', '1') === 'auto'
@@ -42,7 +49,8 @@ async function reachable(url: string) {
 
 async function ensureServer(): Promise<{ url: string; stop: () => void }> {
   const url = opt('url', 'http://localhost:5173')!;
-  if (await reachable(url)) return { url, stop: () => {} };
+  // (a running dev server is reused only if it plays the same film)
+  if (await reachable(url) && (await fetch(`${url}/__film`).then((r) => r.text()).catch(() => '')) === FILM) return { url, stop: () => {} };
   const port = 5300 + Math.floor(Math.random() * 500);
   // no live reload: a file saved mid-render must not reload the page
   const proc = Bun.spawn(['bunx', 'vite', '--port', String(port), '--strictPort'], { cwd: APP, stdout: 'ignore', stderr: 'ignore', env: { ...process.env, NO_HMR: '1' } });
@@ -60,7 +68,7 @@ async function openPage(url: string) {
     headless: !flag('headed'),
     args: [...PLATFORM_ARGS, '--enable-gpu-rasterization', '--ignore-gpu-blocklist', '--disable-background-timer-throttling', '--disable-renderer-backgrounding', '--disable-backgrounding-occluded-windows', ...(process.env.BROWSER_ARGS?.split(/\s+/).filter(Boolean) ?? [])],
   });
-  const page = await browser.newPage({ viewport: { width: 1920, height: 1080 }, deviceScaleFactor: 1 });
+  const page = await browser.newPage({ viewport: { width: LW, height: LH }, deviceScaleFactor: 1 });
   const logs: string[] = [];
   page.on('console', (m) => { if (m.type() === 'error' || m.type() === 'warning') logs.push(`[${m.type()}] ${m.text()}`); });
   page.on('pageerror', (e) => logs.push(`[pageerror] ${e.message}`));
@@ -69,7 +77,7 @@ async function openPage(url: string) {
   await page.waitForFunction(() => (window as any).__video?.ready || (window as any).__video?.error, null, { timeout: 120000 });
   const err = await page.evaluate(() => (window as any).__video.error);
   if (err) throw new Error(`app failed to boot:\n${err}\n${logs.join('\n')}`);
-  const size: [number, number] = await page.evaluate(() => [(window as any).__video.width ?? 1920, (window as any).__video.height ?? 1080]);
+  const size: [number, number] = await page.evaluate(() => [(window as any).__video.width, (window as any).__video.height]);
   if (size[0] !== OW || size[1] !== OH) throw new Error(`app renders ${size[0]}x${size[1]}, expected ${OW}x${OH} (--scale ${SCALE})`);
   const sceneErrors: string[] = await page.evaluate(() => (window as any).__video.errors);
   if (sceneErrors.length) console.error('SCENE ERRORS:\n' + sceneErrors.join('\n'));
@@ -85,7 +93,7 @@ async function stills(page: Page, times: number[], outDir: string) {
     if (typeof SAMPLES !== 'number') console.log(`t=${t}: ${k} sub-frames`);
     // at scale > 1 the canvas is shown downscaled on the page: save the full-res pixel buffer instead
     if (SCALE !== 1) await Bun.write(f, Buffer.from(await page.evaluate(() => (window as any).__video.png()), 'base64'));
-    else await page.screenshot({ path: f, clip: { x: 0, y: 0, width: 1920, height: 1080 } });
+    else await page.screenshot({ path: f, clip: { x: 0, y: 0, width: LW, height: LH } });
     files.push(f);
   }
   return files;
@@ -94,13 +102,14 @@ async function stills(page: Page, times: number[], outDir: string) {
 async function sheet(page: Page, times: number[], cols: number, out: string) {
   const dataUrl: string = await page.evaluate(async ({ times, cols }) => {
     const P = (window as any).__video;
-    const cw = 480, ch = 270, pad = 4, lab = 18;
+    const src = document.getElementById('c') as HTMLCanvasElement;
+    const wide = src.width >= src.height; // (a 9x16 film gets upright thumbnails)
+    const cw = wide ? 480 : 270, ch = wide ? 270 : 480, pad = 4, lab = 18;
     const rows = Math.ceil(times.length / cols);
     const cv = document.createElement('canvas');
     cv.width = cols * (cw + pad) + pad; cv.height = rows * (ch + lab + pad) + pad;
     const c = cv.getContext('2d')!;
     c.fillStyle = '#222'; c.fillRect(0, 0, cv.width, cv.height);
-    const src = document.getElementById('c') as HTMLCanvasElement;
     times.forEach((t: number, i: number) => {
       P.still(t);
       const x = pad + (i % cols) * (cw + pad), y = pad + Math.floor(i / cols) * (ch + lab + pad);
@@ -124,7 +133,7 @@ async function sheet(page: Page, times: number[], cols: number, out: string) {
 async function video(url: string, from: number, to: number, fps: number, out: string) {
   mkdirSync(path.dirname(out), { recursive: true });
   const crf = opt('crf', '16')!;
-  const audio = path.join(ROOT, 'audio/voiceover.mp3');
+  const audio = path.join(FILM_DIR, 'audio/voiceover.mp3');
   // (frames come as rgb24: the same YUV out of the scaler as from rgba, a quarter fewer bytes to move)
   const args = ['ffmpeg', '-y', '-loglevel', 'error', '-f', 'rawvideo', '-pix_fmt', 'rgb24', '-s', `${OW}x${OH}`, '-r', String(fps), '-i', 'pipe:0'];
   if (!flag('noaudio')) args.push('-ss', String(from), '-t', String(to - from), '-i', audio);
@@ -286,10 +295,10 @@ if (mode === 'video') {
   try {
     // (the duration comes from the audio analysis, as in the pages; read here from the file: a browser
     // launched and closed only to ask for it made Bun drop the render's frame socket after one frame)
-    const analysis = ['data/audio.json', 'data/audio.approx.json'].map((f) => path.join(ROOT, f)).find((f) => existsSync(f));
+    const analysis = ['data/audio.json', 'data/audio.approx.json'].map((f) => path.join(FILM_DIR, f)).find((f) => existsSync(f));
     if (!analysis) throw new Error('no data/audio.json: run the audio analysis first');
     const dur: number = (await Bun.file(analysis).json()).duration;
-    await video(url, +opt('from', '0')!, +opt('to', String(dur))!, +opt('fps', '60')!, path.resolve(opt('out', path.join(ROOT, 'out/motion-as-code.mp4'))!));
+    await video(url, +opt('from', '0')!, +opt('to', String(dur))!, +opt('fps', '60')!, path.resolve(opt('out', path.join(ROOT, `out/${OUT_NAME}.mp4`))!));
   } finally { stop(); }
   process.exit(0);
 }
@@ -303,7 +312,7 @@ try {
     }));
   } else if (mode === 'stills') {
     const times = (opt('t') ?? '0').split(',').map(Number);
-    const files = await stills(page, times, opt('out', path.join(ROOT, 'out/stills'))!);
+    const files = await stills(page, times, opt('out', path.join(ROOT, FILM ? `out/${FILM}/stills` : 'out/stills'))!);
     console.log(files.join('\n'));
   } else if (mode === 'sheet') {
     const from = +opt('from', '0')!, to = +opt('to', '10')!, n = +opt('n', '12')!;
@@ -314,7 +323,7 @@ try {
       const tl: { id: string; start: number }[] = await page.evaluate(() => (window as any).__video.timeline);
       times = tl.slice(1).flatMap((e) => [e.start - 0.1, e.start - 1 / 60, e.start + 1 / 60, e.start + 0.1]);
     }
-    const out = opt('out', path.join(ROOT, `out/sheets/sheet_${from}-${to}.png`))!;
+    const out = opt('out', path.join(ROOT, `out/${FILM ? FILM + '/' : ''}sheets/sheet_${from}-${to}.png`))!;
     await sheet(page, times, +opt('cols', '4')!, out);
     console.log(out);
   } else if (mode === 'plates') {

@@ -1,0 +1,38 @@
+{
+ "script": [
+  "Non fare vibe coding con Claude Code prima di aver installato questi quattro plugin.",
+  "Il primo è Superpowers, quasi trecentomila stelle, e impedisce a Claude di buttarsi subito nel codice.",
+  "Ti chiede cosa stai costruendo davvero, lo trasforma in una specifica che firmi tu,",
+  "e passa il lavoro a dei subagent che scrivono prima i test: così lavora per ore senza uscire dal piano.",
+  "Il secondo sono le Karpathy skills: un solo file CLAUDE.md, nato da una lamentela di Andrej Karpathy:",
+  "i modelli scrivono mille righe quando ne basterebbero cento.",
+  "Quattro regole: pensa prima di scrivere codice, resta semplice, tocca solo quello che ti chiedono, e dimostra che funziona.",
+  "Il terzo è i-have-adhd, che impedisce a Claude di seppellire la risposta.",
+  "Niente «ottima domanda», niente «spero ti sia utile».",
+  "Prima la prossima azione, passi numerati, e liste di massimo cinque punti.",
+  "E infine Claude Octopus: manda lo stesso compito fino a dodici altri modelli, come Codex, Copilot e Grok,",
+  "e ti segnala ogni punto in cui non sono d'accordo, prima che tu pubblichi.",
+  "Se vuoi provarli tutti, commenta SENIOR e ti mando i link in privato."
+ ],
+ "spoken": {
+  "vibe": "vaib",
+  "coding": "coding",
+  "claude": "clod",
+  "code": "coud",
+  "plugin": "plaghin",
+  "superpowers": "super pauers",
+  "subagent": "sab eigent",
+  "karpathy": "carpati",
+  "skills": "schils",
+  "claudemd": "clod punto emme di",
+  "andrej": "andrei",
+  "octopus": "octopus",
+  "codex": "codex",
+  "copilot": "copailot",
+  "grok": "grok",
+  "senior": "sinior",
+  "link": "link",
+  "test": "test",
+  "ihaveadhd": "ai hev ei di eic di"
+ }
+}

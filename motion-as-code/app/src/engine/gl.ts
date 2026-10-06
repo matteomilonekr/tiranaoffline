@@ -5,9 +5,11 @@ import { GLSL_COMMON } from './glsl/common';
 import { SCALE } from './scale';
 
 export { SCALE };
-/** Logical canvas: scenes lay out in these px at every output scale. */
-export const W = 1920;
-export const H = 1080;
+/** The film's format (vite.config.ts, from films/<name>/film.json): '16x9' (the default) or '9x16' (vertical). */
+export const FORMAT: string = typeof __FORMAT__ !== 'undefined' ? __FORMAT__ : '16x9';
+/** Logical canvas: scenes lay out in these px at every output scale (1920x1080, or 1080x1920 for 9x16). */
+export const W = FORMAT === '9x16' ? 1080 : 1920;
+export const H = FORMAT === '9x16' ? 1920 : 1080;
 /** Physical (output) size: the logical canvas times SCALE (`?scale=2` → 3840x2160). */
 export const PW = W * SCALE;
 export const PH = H * SCALE;
@@ -179,7 +181,7 @@ export function scaleContext2D(c: CanvasRenderingContext2D, s: number) {
 }
 
 /**
- * A 1920x1080 (logical) Canvas2D surface uploaded as an sRGB texture (decoded to linear when sampled).
+ * A W x H (logical) Canvas2D surface uploaded as an sRGB texture (decoded to linear when sampled).
  * Draw in CSS pixels with origin top-left. Call `upload()` after drawing each frame.
  * The backing canvas is SCALE times larger (`canvas.width` = w*SCALE); the context is pre-scaled
  * (see scaleContext2D), so drawing code works in logical px at every output scale.
