@@ -440,6 +440,23 @@ def limit(x, ceil_db=TRUE_PEAK_DB, attack=0.005, release=0.08):
     return x * ramp[:, None]
 
 
+def voice_envelope(voice):
+    """0..1 per sample: how much the voice is speaking (10 ms RMS against its loudest, fast attack ~20 ms,
+    slow release ~330 ms), what the ducking follows."""
+    n, hop = len(voice), int(0.01 * SR)
+    m = n // hop
+    v = np.sqrt((voice[: m * hop, 0].reshape(m, hop) ** 2).mean(axis=1) + 1e-12)
+    vdb = 20 * np.log10(v)
+    act = np.clip((vdb - (vdb.max() - 45)) / 20, 0, 1)
+    env = np.zeros(m)
+    e = 0.0
+    for k in range(m):
+        c = 0.5 if act[k] > e else 0.03
+        e += c * (act[k] - e)
+        env[k] = e
+    return np.concatenate([np.repeat(env, hop), np.full(n - m * hop, env[-1] if m else 0.0)])
+
+
 # ------------------------------------------------------------------ mix
 def main():
     import music
@@ -489,19 +506,8 @@ def main():
         bed, send = bed * 10 ** (MUSIC_DB / 20), send * 10 ** (MUSIC_DB / 20)
     verb = music.room(bus * SFX_SEND + send) * 10 ** (ROOM_DB / 20)
 
-    # ducking: the voice's envelope (fast attack, slow release) pulls effects and music down under it
-    hop = int(0.01 * SR)
-    m = n // hop
-    v = np.sqrt((voice[: m * hop, 0].reshape(m, hop) ** 2).mean(axis=1) + 1e-12)
-    vdb = 20 * np.log10(v)
-    act = np.clip((vdb - (vdb.max() - 45)) / 20, 0, 1)
-    env = np.zeros(m)
-    e = 0.0
-    for k in range(m):
-        c = 0.5 if act[k] > e else 0.03  # attack ~20 ms, release ~330 ms (per 10 ms step)
-        e += c * (act[k] - e)
-        env[k] = e
-    env = np.concatenate([np.repeat(env, hop), np.full(n - m * hop, env[-1] if m else 0.0)])
+    # ducking: the voice's envelope pulls effects and music down under it
+    env = voice_envelope(voice)
     duck_fx, duck_mu = 10 ** (-DUCK_DB * env / 20)[:, None], 10 ** (-MUSIC_DUCK_DB * env / 20)[:, None]
     fx, mu = (bus + verb) * duck_fx, bed * duck_mu
     mix = voice + fx + mu

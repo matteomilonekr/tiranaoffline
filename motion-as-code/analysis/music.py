@@ -113,8 +113,9 @@ def pad_chord(notes, dur, cents):
 
 
 # ------------------------------------------------------------------ the bed
-def bed(A, n):
-    """The music for n samples: (dry stereo, reverb send stereo)."""
+def bed(A, n, phrases=None):
+    """The music for n samples: (dry stereo, reverb send stereo). `phrases` (as arrangement() returns them)
+    replaces this video's arrangement: another edit brings its own."""
     dry = np.zeros((n + 3 * SR, 2))
     send = np.zeros_like(dry)
     pump = np.ones(len(dry))  # the kick's sidechain on the pad and the bass
@@ -135,11 +136,11 @@ def bed(A, n):
 
     pad_bus = np.zeros_like(dry)
     bass_bus = np.zeros_like(dry)
-    phrases = arrangement(A)
+    phrases = phrases if phrases is not None else arrangement(A)
     for p, (down, end, blocks) in enumerate(phrases):
         blocks = sorted(blocks)
         style_at = lambda t: next(s for s0, s in reversed(blocks) if t >= s0 - 1e-6)
-        if p in (1, 3):
+        if blocks and blocks[0][1] == "drive":
             hit(X, down, 0.22, rev=0.3)
         # beats (and their halves) from the downbeat to the stop
         nb = int(np.ceil((end - down) / (BEAT / 2)))
@@ -170,8 +171,8 @@ def bed(A, n):
                 if st["bass"]:
                     f = root * (2 if pos == 3 else 1)
                     put(bass_bus, bass_note(f, BEAT / 2 - 0.01), t, 0.42 * st["bass"])
-        # the fill into the stop: a clap roll on the last beat before the enter key
-        if p == 0:
+        # the fill into a stop: a clap roll on the last beat of a groove that stops dead just before the next phrase
+        if STYLES[blocks[-1][1]]["clap"] and p + 1 < len(phrases) and 0 < phrases[p + 1][0] - end < 1.0:
             for j in range(4):
                 hit(C, end - BEAT + j * BEAT / 4 - 0.02, 0.12 + 0.06 * j, -0.05, rev=0.35)
         # a stop is a stop: everything this phrase started is cut 25 ms after its end (the reverb rings on)

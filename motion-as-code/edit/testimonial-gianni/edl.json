@@ -1,0 +1,76 @@
+{
+  "source": "../../out/refs/matte_Dd4HnahMZXh.mp4",
+  "transcript": "../../out/refs/reel1.json",
+  "fps": 30,
+  "framings": {
+    "wide": [10, 503, 467, 305],
+    "gianni": [249, 506, 225, 280]
+  },
+  "names": { "gianni": "GIANNI CORELLI" },
+  "fix": [["la I", "l'IA"], ["ero spasso", "ero a spasso"]],
+  "music_db": -24,
+  "sections": [
+    {
+      "title": "HA FATTURATO PIÙ CHE MAI.\nE GUADAGNATO MENO.",
+      "music": "pad",
+      "segments": [
+        { "in": 5.90, "out": 12.25, "framing": "gianni" },
+        { "in": 13.55, "out": 16.50, "framing": "wide" }
+      ]
+    },
+    {
+      "title": "PRIMA DEL PERCORSO",
+      "music": "sparse",
+      "segments": [
+        { "in": 24.30, "out": 27.40, "framing": "gianni" },
+        { "in": 76.70, "out": 80.20, "framing": "wide" }
+      ]
+    },
+    {
+      "title": "LA SVOLTA",
+      "music": "light",
+      "segments": [
+        { "in": 100.48, "out": 107.40, "framing": "gianni" },
+        { "in": 207.26, "out": 209.30, "framing": "wide" },
+        { "in": 213.22, "out": 214.58, "framing": "gianni" }
+      ]
+    },
+    {
+      "title": "I RISULTATI",
+      "music": "groove",
+      "segments": [
+        { "in": 304.00, "out": 310.85, "framing": "wide" },
+        { "in": 471.34, "out": 481.12, "framing": "gianni" },
+        { "in": 496.95, "out": 503.45, "framing": "wide" }
+      ]
+    },
+    {
+      "title": "NON È STATO PAGATO\nPER DIRLO",
+      "music": "light",
+      "segments": [
+        { "in": 297.28, "out": 299.82, "framing": "gianni" },
+        { "in": 301.56, "out": 303.15, "framing": "wide" }
+      ]
+    },
+    {
+      "title": "IL MESSAGGIO",
+      "music": "light",
+      "segments": [
+        { "in": 542.08, "out": 544.86, "framing": "gianni" },
+        { "in": 852.72, "out": 855.18, "framing": "wide" }
+      ]
+    }
+  ],
+  "stickers": [
+    { "word": "pagato", "text": "PERCORSO RIPAGATO", "sub": "a metà strada" },
+    { "word": "52", "text": "52 SPECIALISTI", "sub": "in 14 reparti", "color": "violet" },
+    { "word": "COO", "text": "1 COO", "sub": "su Telegram" }
+  ],
+  "end": {
+    "dur": 3.6,
+    "brand": "SCALERS+",
+    "line": "Percorso di accelerazione 1-to-1",
+    "cta": "joinscalers.com",
+    "small": "Testimonianza individuale: non garantisce risultati analoghi."
+  }
+}

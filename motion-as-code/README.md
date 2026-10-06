@@ -41,7 +41,7 @@ Restano fuori dal repository `out/` (i render), `app/node_modules/` (lo ricrea l
 **Requisiti.**
 
 - **bun** ([bun.sh](https://bun.sh)): installa i pacchetti ed esegue gli script.
-- **Google Chrome**: il renderer lo pilota in modalità headless per disegnare i fotogrammi. Va bene anche un altro Chromium, vedi [Problemi](#07--aiuto-problemi-e-crediti).
+- **Google Chrome**: il renderer lo pilota in modalità headless per disegnare i fotogrammi. Va bene anche un altro Chromium, vedi [Problemi](#08--aiuto-problemi-e-crediti).
 - **ffmpeg** con libx264: trasforma i fotogrammi in MP4 e mixa il suono.
 - **Python + [uv](https://docs.astral.sh/uv/)**: serve solo per allineare una voce nuova, rifare il mix degli effetti o generare una voce demo. I comandi qui sotto usano `uv run …`; se hai installato uv con pip, scrivi `python -m uv run …`.
 
@@ -53,7 +53,7 @@ bun install
 bunx vite
 ```
 
-Apri `http://localhost:5173` e premi spazio per far partire il video insieme alla voce. Se più avanti il render non trova Chrome, vedi [Problemi](#07--aiuto-problemi-e-crediti).
+Apri `http://localhost:5173` e premi spazio per far partire il video insieme alla voce. Se più avanti il render non trova Chrome, vedi [Problemi](#08--aiuto-problemi-e-crediti).
 
 ---
 
@@ -104,7 +104,7 @@ bun run render
 | `--samples 4` | Bozza più veloce: nei movimenti rapidi si vedono copie a scatti. |
 | `--samples auto` | Più sotto-fotogrammi dove il movimento è veloce (default dello script). |
 | `--scale 2` | 4K, 3840×2160. |
-| `--workers 1` | Un solo Chrome alla volta (default 2). Usalo su una macchina senza GPU, vedi [Problemi](#07--aiuto-problemi-e-crediti). |
+| `--workers 1` | Un solo Chrome alla volta (default 2). Usalo su una macchina senza GPU, vedi [Problemi](#08--aiuto-problemi-e-crediti). |
 | `--from 50 --to 57` | Solo un intervallo, in secondi. |
 | `--fps 30` | 30 fotogrammi al secondo invece di 60: metà del tempo, lo standard dei film di lancio. |
 
@@ -185,6 +185,7 @@ Prende `out/motion-as-code_sfx.mp4` e scrive `out/motion-as-code_9x16.mp4` (1080
 | `app/scripts/render.ts` | Renderer offline: Chrome headless → fotogrammi grezzi → ffmpeg. |
 | `analysis/sfx_mix.py`, `analysis/music.py` | Cue sheet degli effetti, base musicale e mix (voce, stanza, ducking, -14 LUFS). |
 | `analysis/vertical.py` | Il taglio verticale 1080×1920 con le didascalie karaoke. |
+| `edit/` | Edit as code: `edit.py` monta un reel da una registrazione seguendo una EDL, `transcribe.py` fa la trascrizione con i tempi delle parole. |
 | `app/public/plates/`, `app/plates.json` | Miniature delle tavole per la pellicola della tavola `frames` (`bun scripts/render.ts plates`). |
 
 ### Le nove tavole
@@ -484,7 +485,39 @@ Con la voce locale (`analysis/tts/voice.py`) i tag non si leggono: la regia è l
 
 ---
 
-## 07 · Aiuto: problemi e crediti
+## 07 · Edit: da una registrazione a un reel
+
+Lo stesso approccio funziona anche sul girato vero, come una call, un'intervista o un talking head: il montaggio diventa codice. `edit/edit.py` legge una **EDL** in JSON e la trascrizione con i tempi di ogni parola, e produce il reel verticale finito (1080×1920).
+
+```sh
+uv run --no-project --with faster-whisper python edit/transcribe.py out/refs/call.mp4 out/refs/call.json it
+uv run --no-project --with numpy python edit/edit.py edit/testimonial-gianni/edl.json --list   # la lista dei tagli
+uv run --no-project --with numpy python edit/edit.py edit/testimonial-gianni/edl.json          # → out/testimonial-gianni.mp4
+```
+
+Nella EDL scrivi solo le scelte editoriali:
+- **le inquadrature:** ritagli del video, per esempio i due riquadri della call oppure un solo volto;
+- **le sezioni:** ognuna ha un titolo, uno stile musicale e i suoi segmenti, cioè un pezzo di sorgente (`in`/`out` in secondi) con l'inquadratura in cui mostrarlo;
+- **gli sticker:** una parola del parlato che fa comparire un'etichetta, come un numero o un risultato;
+- **la chiusura:** brand, call to action e disclaimer;
+- **le correzioni** alle parole che la trascrizione ha sentito male, per esempio `["la I", "l'IA"]`.
+
+Tutto il resto lo ricava lo strumento:
+- **i tagli** cadono nella pausa più silenziosa prima della prima parola e dopo l'ultima, mai dentro una parola, e sono allineati ai fotogrammi;
+- **le didascalie** si accendono parola per parola;
+- **le inquadrature** si alternano, larga e stretta, a ogni taglio: è quello che nasconde i jump cut;
+- **lo stile** è quello di joinscalers.com: carta crema, bordi neri e ombre nette, giallo e viola, Space Grotesk;
+- **la base musicale** è di `music.py`, arrangiata sulle sezioni;
+- **gli effetti** suonano sui cambi di sezione e sugli sticker;
+- **la voce** passa da un passa-alto e un compressore, e il mix va a -14 LUFS.
+
+`edit/testimonial-gianni/` è l'esempio: 65 secondi da una call di 14,5 minuti.
+
+Il video sorgente e la trascrizione stanno in `out/refs/` e restano fuori da git. Contengono una persona reale: chiedi il suo consenso prima di pubblicare.
+
+---
+
+## 08 · Aiuto: problemi e crediti
 
 | Problema | Prova così |
 |---|---|
