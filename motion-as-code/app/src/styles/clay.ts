@@ -36,7 +36,7 @@ function puffy(x: CanvasRenderingContext2D, ch: string, cx: number, base: number
   const tw = x.measureText(ch).width + 2 * pad, th = size * 1.35;
   const { c, x: o } = scratch(key, tw, th, SCALE);
   o.font = font(fam, size); o.textAlign = 'center'; o.textBaseline = 'alphabetic';
-  o.lineJoin = 'round'; o.lineWidth = size * 0.16; o.strokeStyle = col; o.fillStyle = col;
+  o.lineJoin = 'round'; o.lineWidth = size * 0.07; o.strokeStyle = col; o.fillStyle = col; // (thicker closes the C)
   const by = th - size * 0.22;
   o.strokeText(ch, tw / 2, by); o.fillText(ch, tw / 2, by);
   o.globalCompositeOperation = 'source-atop';

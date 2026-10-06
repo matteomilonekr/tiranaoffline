@@ -187,8 +187,10 @@ export default class Showcase extends Scene {
       const prev = k > 0 ? this.secs[k - 1]! : null;
       sx = Math.abs(Math.cos(Math.PI * clamp(lt / FLIP)));
       if (lt < FLIP / 2) {
-        draw = prev ? () => prev.s.tile(x, t - prev.start, w, h) : () => STYLES[STYLES.length - 1]!.tile(x, 2, w, h);
-        badge = prev ? String(prev.s.n) : '';
+        // the face going away: the previous style, or the montage's last card
+        const last = STYLES[Math.floor(Math.max(0, sec.start) / 0.16) % STYLES.length]!;
+        draw = prev ? () => prev.s.tile(x, t - prev.start, w, h) : () => last.tile(x, 1.4 + (t % 0.16), w, h);
+        badge = String(prev ? prev.s.n : last.n);
       } else {
         draw = () => sec.s.tile(x, lt - FLIP / 2, w, h);
         badge = String(sec.s.n);
@@ -205,7 +207,9 @@ export default class Showcase extends Scene {
     x.restore();
     // the number badge on the corner
     if (badge) {
-      const bk = k >= 0 && k < STYLES.length ? ease.outBack(clamp((t - this.secs[k]!.start - FLIP / 2) / 0.3)) : 1;
+      // in a flip the old badge goes with its card, the new one pops in once its card is up
+      const lt = k >= 0 && k < STYLES.length ? t - this.secs[k]!.start : k >= STYLES.length ? t - this.ctaStart : Infinity;
+      const bk = lt < FLIP / 2 ? sx : lt < Infinity ? ease.outBack(clamp((lt - FLIP / 2) / 0.3)) : 1;
       x.save(); x.translate(cx0 + 18, cy0 + 18); x.scale(appear * Math.max(bk, 0.001), appear * Math.max(bk, 0.001));
       x.beginPath(); x.arc(0, 0, 50, 0, Math.PI * 2); x.fillStyle = RED; x.fill(); x.lineWidth = 6; x.strokeStyle = WHITE; x.stroke();
       txt(x, badge, 0, 15, badge.length > 1 ? 40 : 46, F.grotesk(700), WHITE, { align: 'center' });

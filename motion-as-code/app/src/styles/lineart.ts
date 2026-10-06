@@ -28,7 +28,7 @@ function plant(w: number, h: number) {
   // up the stem, a leaf loop on alternating sides
   let y = base - h * 0.08, x = cx;
   for (let k = 0; k < 4; k++) {
-    const ny = y - h * 0.11, side = k % 2 ? 1 : -1, nx = cx + Math.sin(k * 1.3) * w * 0.02;
+    const ny = y - h * 0.092, side = k % 2 ? 1 : -1, nx = cx + Math.sin(k * 1.3) * w * 0.02;
     curve([x, y], [x + side * w * 0.03, (y + ny) / 2], [nx, ny]);
     const tip: Pt = [nx + side * w * (0.16 - k * 0.02), ny - h * 0.05];
     curve([nx, ny], [nx + side * w * 0.06, ny - h * 0.1], tip, 18);
@@ -96,7 +96,7 @@ export const lineart: Style = {
     const k = ease.inOutCubic(clamp(t / 1.7));
     const head = drawUpTo(x, pts, L, L[L.length - 1]! * k);
     if (k < 1) { x.fillStyle = ACCENT; x.beginPath(); x.arc(head[0], head[1], Math.max(5, w * 0.008), 0, TAU); x.fill(); }
-    script(x, t - 1.1, 'line art', w * 0.5, h * 0.13, h * 0.15, 0.9);
+    script(x, t - 1.1, 'line art', w * 0.5, h * 0.1, h * 0.13, 0.9);
     txt(x, '1 linea · 0 stacchi', w * 0.5, h * 0.96, h * 0.03, F.mono(400), INK, { align: 'center', alpha: clamp((t - 1.8) / 0.4) });
   },
 };
