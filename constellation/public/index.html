@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Scalers Constellation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600;6..72,700&display=swap">
+  <link rel="stylesheet" href="styles.css">
+  <script type="importmap">
+    { "imports": { "three": "https://cdnjs.cloudflare.com/ajax/libs/three.js/0.170.0/three.module.min.js" } }
+  </script>
+</head>
+<body>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/></symbol>
+      <symbol id="i-chevron" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></symbol>
+      <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3"/><path d="M19.5 4v4.5H15"/></symbol>
+      <symbol id="i-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2.8v2.4M12 18.8v2.4M2.8 12h2.4M18.8 12h2.4M5.5 5.5l1.7 1.7M16.8 16.8l1.7 1.7M5.5 18.5l1.7-1.7M16.8 7.2l1.7-1.7"/></symbol>
+      <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></symbol>
+      <symbol id="i-pause" viewBox="0 0 24 24"><path d="M9 6v12M15 6v12"/></symbol>
+      <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l10-6.5z"/></symbol>
+      <symbol id="i-reset" viewBox="0 0 24 24"><path d="M4.5 12a7.5 7.5 0 1 0 2.2-5.3"/><path d="M4.5 4v4.5H9"/></symbol>
+      <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+      <symbol id="i-external" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+      <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="10" rx="2"/><path d="M8.5 10.5V7.5a3.5 3.5 0 0 1 7 0v3"/></symbol>
+      <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8.5" y="8.5" width="11" height="11" rx="2"/><path d="M15.5 8.5V6a1.5 1.5 0 0 0-1.5-1.5H6A1.5 1.5 0 0 0 4.5 6v8A1.5 1.5 0 0 0 6 15.5h2.5"/></symbol>
+      <symbol id="i-layers" viewBox="0 0 24 24"><path d="M12 4l8.5 4.5L12 13 3.5 8.5z"/><path d="M3.5 12.5L12 17l8.5-4.5M3.5 16.5L12 21l8.5-4.5"/></symbol>
+    </defs>
+  </svg>
+
+  <div class="app" id="app">
+    <header class="topbar">
+      <div class="brand" aria-label="Scalers Constellation">
+        <span class="brand-mark">Scalers</span>
+        <span class="brand-product">Constellation</span>
+      </div>
+      <div class="topbar-chips">
+        <button class="chip" id="account-chip" type="button" aria-haspopup="menu">
+          <span class="dot dot-accent" aria-hidden="true"></span>
+          <span id="account-name">Demo brand</span>
+        </button>
+        <button class="chip chip-strong" id="connect-btn" type="button"></button>
+      </div>
+      <button class="chip date-chip" id="date-chip" type="button" aria-haspopup="menu">
+        <svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg>
+        <span id="date-preset"></span>
+        <span class="date-short" id="date-short"></span>
+        <span class="muted date-range" id="date-range"></span>
+        <svg class="icon icon-sm" aria-hidden="true"><use href="#i-chevron"/></svg>
+      </button>
+      <div class="topbar-icons">
+        <button class="icon-btn" id="refresh-btn" type="button"><svg class="icon" aria-hidden="true"><use href="#i-refresh"/></svg></button>
+        <button class="icon-btn" id="settings-btn" type="button"><svg class="icon" aria-hidden="true"><use href="#i-gear"/></svg></button>
+      </div>
+    </header>
+
+    <main class="stage" id="stage">
+      <canvas id="scene" aria-label="3D view of the ads"></canvas>
+      <div class="ring-labels" id="ring-labels" aria-hidden="true"></div>
+
+      <div class="stage-top">
+        <button class="stat-pill" id="stat-pill" type="button"></button>
+        <button class="chip arrange-chip" id="arrange-chip" type="button" aria-haspopup="menu">
+          <svg class="icon" aria-hidden="true"><use href="#i-sliders"/></svg>
+          <span class="muted" data-i18n="arrange.label"></span>
+          <strong id="arrange-value"></strong>
+          <svg class="icon icon-sm" aria-hidden="true"><use href="#i-chevron"/></svg>
+        </button>
+      </div>
+
+      <section class="legend" id="legend" aria-labelledby="legend-title">
+        <button class="legend-head" id="legend-toggle" type="button" aria-expanded="true">
+          <span id="legend-title"></span>
+          <svg class="icon icon-sm" aria-hidden="true"><use href="#i-chevron"/></svg>
+        </button>
+        <ul class="legend-rows" id="legend-rows"></ul>
+        <p class="legend-foot" id="legend-foot"></p>
+      </section>
+
+      <div class="view-controls">
+        <button class="icon-btn icon-btn-sm" id="pause-btn" type="button"><svg class="icon" aria-hidden="true"><use href="#i-pause"/></svg></button>
+        <button class="icon-btn icon-btn-sm" id="reset-btn" type="button"><svg class="icon" aria-hidden="true"><use href="#i-reset"/></svg></button>
+      </div>
+
+      <div class="tooltip" id="tooltip" role="status" hidden></div>
+
+      <div class="loading" id="loading" role="status" aria-live="polite">
+        <div class="loading-orbit" aria-hidden="true"><span></span><span></span><span></span></div>
+        <p id="loading-text"></p>
+      </div>
+      <div class="empty" id="empty" hidden>
+        <p class="empty-title" id="empty-title"></p>
+        <p class="empty-body" id="empty-body"></p>
+      </div>
+    </main>
+
+    <aside class="detail" id="detail" aria-labelledby="detail-title" hidden></aside>
+  </div>
+
+  <div class="popover" id="popover" role="menu" hidden></div>
+  <div class="modal-backdrop" id="modal" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" id="modal-card"></div>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

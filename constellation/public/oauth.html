@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Connecting Meta</title>
+  <style>
+    :root { color-scheme: dark; }
+    body { margin: 0; min-height: 100vh; display: grid; place-items: center; background: #0d0d0e; color: #f3f1ec; font: 14px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif; }
+    p { max-width: 44ch; text-align: center; padding: 0 16px; }
+  </style>
+</head>
+<body>
+  <p id="msg">Connecting your Meta account…</p>
+  <script>
+    // Facebook Login (client-side flow) returns the token in the URL fragment, which
+    // never reaches a server. Hand it to the local app, then go back to the view.
+    (async () => {
+      const msg = document.getElementById('msg');
+      const params = new URLSearchParams(location.hash.slice(1));
+      history.replaceState(null, '', location.pathname);
+      const token = params.get('access_token');
+      if (!token) {
+        msg.textContent = params.get('error_description') || 'Facebook did not return a token. Close this window and paste a token instead.';
+        return;
+      }
+      try {
+        const res = await fetch('/api/connect', { method: 'POST', headers: { 'Content-Type': 'application/json', 'X-Constellation': '1' }, body: JSON.stringify({ token }) });
+        if (!res.ok) throw new Error((await res.json()).error?.message || res.statusText);
+        location.replace('/');
+      } catch (err) {
+        msg.textContent = 'Meta rejected the token: ' + err.message;
+      }
+    })();
+  </script>
+</body>
+</html>
