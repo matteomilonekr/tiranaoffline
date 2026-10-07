@@ -586,7 +586,7 @@ Due reel verticali nello stesso formato:
 
 Il set è in comune, in `films/_paper/stage.ts`. Ogni film ha una tavola sola che taglia le sue inquadrature sulle parole.
 
-- `films/gem` (DeepGEMM, 26 s):
+- `films/gem` (DeepGEMM, 28 s):
   - il cartellino del prezzo morso dalla balena;
   - la scheda del repository;
   - il motore di DeepSeek;
@@ -594,7 +594,7 @@ Il set è in comune, in `films/_paper/stage.ts`. Ogni film ha una tavola sola ch
   - la moneta e la valanga di risposte;
   - il tabellone dei prezzi;
   - "commenta GEM".
-- `films/polish` (la skill di design, 33 s):
+- `films/polish` (la skill di design, 35 s):
   - il sito viola "fatto con l'IA" timbrato e fulminato;
   - lo stampo TEMPLATE e la catena di montaggio;
   - la gru che porta la skill;
