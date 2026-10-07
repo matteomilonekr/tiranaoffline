@@ -548,10 +548,13 @@ cd app && FILM=plugins bun scripts/render.ts video --workers 1 --samples 1 --fps
 cd out && ffmpeg -i plugins.mp4 -i plugins/mix.wav -map 0:v -map 1:a -c:v copy -c:a aac -b:a 320k -shortest plugins_sfx.mp4
 ```
 
-Nel kit ci sono quattro film:
+Nel kit ci sono cinque film:
 - `films/plugins`, descritto qui sotto;
 - `films/styles`, il reel dei 21 stili (sezione 09);
-- `films/gem` e `films/polish`, due reel nel formato "paper night", descritti in fondo a questa sezione.
+- `films/gem` e `films/polish`, due reel nel formato "paper night";
+- `films/coding`, altri quattro plugin su una pagina bianca con le schede scure.
+
+Gli ultimi tre sono descritti in fondo a questa sezione.
 
 ### Il reel dei plugin (`films/plugins`)
 
@@ -604,6 +607,28 @@ Il set è in comune, in `films/_paper/stage.ts`. Ogni film ha una tavola sola ch
   - "commenta POLISH".
 
 Prezzi, stelle e numeri vengono dai post originali: verificali prima di pubblicare.
+
+### Il reel «coding» (`films/coding`)
+
+Un reel verticale di 55 secondi che segue, inquadratura per inquadratura, un reel di @tessa.fairbrook. Presenta quattro plugin per Claude Code (Ponytail, OmniRoute, Graphify e Agent Skills) e chiude con "commenta CODING e ti mando i link direttamente". Tutto il film è una tavola sola, `scenes/coding.ts`, che taglia le inquadrature sulle parole; il look è in `scenes/_look.ts`.
+
+- **La pagina:** bianca, con una griglia tenue e le crocette agli incroci. Negli angoli ci sono due raggiere corallo fuori fuoco, che girano piano e cambiano posa a ogni plugin.
+- **Le didascalie:** due righe, Poppins sopra e Instrument Serif corsivo sotto. Ogni parola entra da una sfocatura grigia nel momento in cui viene detta.
+- **Le aperture:** una stella corallo a quattro punte va a fuoco con il numero del plugin, poi il nome si scrive lettera per lettera in Cormorant.
+- **Le schede:** interfacce scure con un alone corallo, che nascono da un segnaposto grigio e salgono al loro posto:
+  - il terminale e il grafico a barre di Ponytail;
+  - il giro di punti, la griglia dei provider, il carosello "Cambio modello", il limite del piano che si esaurisce e i token al mese di OmniRoute;
+  - il grafo della conoscenza e la query di Graphify;
+  - la tabella delle 24 skill, la scheda del repository e le sei fasi di Agent Skills.
+- **L'apertura del reel:** le quattro icone (disegnate qui) entrano in una griglia 2×2 e volano via, un contatore corre fino a 100x, una creaturina in pixel art entra camminando, un lampo caldo porta al bianco.
+- **Il presentatore:** nelle tre inquadrature a mezzo busto c'è Matteo disegnato, lo stesso di `films/plugins` (`presenter(…, torso)` gli allunga il busto). Dietro di lui un muro grigio, un'insegna al neon rosa scritta con un font a tratto singolo e una pianta, tutto fuori fuoco.
+
+Rispetto all'originale, il testo corregge i numeri che le fonti non confermano:
+- **Ponytail:** nel benchmark taglia il 54% delle righe di codice. I token scendono di circa il 22%, non di oltre il 50% come dice l'originale.
+- **OmniRoute:** "fino a 1,6 miliardi di token gratis al mese" è una stima dello strumento, e il testo la presenta così ("sulla carta").
+- **Agent Skills:** al posto del ritratto di una persona reale c'è la scheda del repository di Addy Osmani.
+
+Ricontrolla comunque numeri e link prima di pubblicare.
 
 ---
 
@@ -698,6 +723,7 @@ Tieni quel file di licenza insieme al progetto. Le nove tavole sono nuove, scrit
 - **Effetti sonori e musica:** sintetizzati da `analysis/make_sfx.py` e `analysis/music.py`, nessun campione esterno.
 - **Reel dei plugin:** il formato riprende un reel di [@adilet.fndr](https://www.instagram.com/adilet.fndr): un presentatore animato dietro un bancone e una sezione per plugin. Tavole, disegni, testo italiano, voce e suono sono nuovi, scritti in codice per questo kit. I nomi di prodotti e repository citati appartengono ai rispettivi autori.
 - **Paper night:** il formato di `films/gem` e `films/polish` riprende due reel di [@nocodealex](https://www.instagram.com/nocodealex). Set, personaggi, testi italiani, voce e suono sono nuovi, disegnati in codice. Fraunces è distribuito con SIL Open Font License (`app/public/fonts/fraunces/OFL.txt`).
+- **Reel «coding»:** il formato di `films/coding` riprende un reel di [@tessa.fairbrook](https://www.instagram.com/tessa.fairbrook). Schede, icone, disegni, testo italiano, voce e suono sono nuovi, scritti in codice per questo kit. Poppins e Instrument Serif sono distribuiti con SIL Open Font License (`app/public/fonts/poppins/OFL.txt`, `app/public/fonts/instrumentserif/OFL.txt`).
 - **Stili:** l'elenco dei venti stili riprende un reel di [@andremass.ai](https://www.instagram.com/andremass.ai) ("motion design styles you can steal"). Ricette, codice e animazioni di `app/src/styles/` sono nuovi, scritti per questo kit.
 - **Launch film:** struttura, prompt, regole e checklist della sezione 06 sono adattati dalla guida *The 60-second launch film made with Claude* di Saksham Gupta ([@saksham.700x](https://www.instagram.com/saksham.700x)). La guida cita lo skill onetake (licenza PolyForm Noncommercial), di cui qui non c'è codice.
 

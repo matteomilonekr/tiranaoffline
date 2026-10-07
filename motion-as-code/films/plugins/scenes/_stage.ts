@@ -297,8 +297,9 @@ function drawHand(x: CanvasRenderingContext2D, px: number, py: number, dir: numb
 }
 
 /** The presenter at t: head centre at (px, HEAD_Y); pose from `g`, mouth on the voice, blinks, a little bob.
- *  `held` draws in front of his body and behind his hands (a sign he holds up). */
-export function presenter(x: CanvasRenderingContext2D, t: number, a: AudioSample, g: Gestures, px: number, held?: () => void) {
+ *  `held` draws in front of his body and behind his hands (a sign he holds up). `torso`: how far down his
+ *  body goes, in presenter px (the counter hides it below 420; a talking-head shot needs it longer). */
+export function presenter(x: CanvasRenderingContext2D, t: number, a: AudioSample, g: Gestures, px: number, held?: () => void, torso = 420) {
   const { pose, name, since } = g.at(t);
   const s = PRESENTER_SCALE;
   const talk = clamp(a.vocal * 1.7, 0, 1);
@@ -308,12 +309,12 @@ export function presenter(x: CanvasRenderingContext2D, t: number, a: AudioSample
   local();
   // the body, behind the counter
   x.beginPath();
-  x.moveTo(-310, 420);
+  x.moveTo(-310 - (torso - 420) * 0.08, torso);
   x.lineTo(-300, 290);
   x.quadraticCurveTo(-292, 196, -196, 186);
   x.lineTo(196, 186);
   x.quadraticCurveTo(292, 196, 300, 290);
-  x.lineTo(310, 420);
+  x.lineTo(310 + (torso - 420) * 0.08, torso);
   x.closePath();
   x.fillStyle = SHIRT; x.fill(); x.lineWidth = LW; x.strokeStyle = INK; x.lineJoin = 'round'; x.stroke();
   // the head turns a little about the neck

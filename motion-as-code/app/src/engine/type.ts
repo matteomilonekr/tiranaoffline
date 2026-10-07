@@ -26,6 +26,11 @@ DEFS.push({ family: 'PlexItalic-400', file: 'src/IBMPlexMono-Italic.ttf' });
 for (const wt of [300, 400, 500, 600, 700]) DEFS.push({ family: `Grotesk-${wt}`, file: `spacegrotesk/SpaceGrotesk-${wt}.ttf` });
 // Fraunces (a soft, chunky serif), for paper-label captions
 for (const wt of [700, 900]) DEFS.push({ family: `Fraunces-${wt}`, file: `fraunces/Fraunces-${wt}.ttf` });
+// Poppins (a geometric sans) and Instrument Serif (a condensed display serif), for films/coding
+for (const [n, f] of [['500', 'Medium'], ['600', 'SemiBold'], ['700', 'Bold']] as const)
+  DEFS.push({ family: `Poppins-${n}`, file: `poppins/Poppins-${f}.ttf` });
+DEFS.push({ family: 'Instrument-400', file: 'instrumentserif/InstrumentSerif-Regular.ttf' });
+DEFS.push({ family: 'InstrumentItalic-400', file: 'instrumentserif/InstrumentSerif-Italic.ttf' });
 
 /** Convenience family names. */
 export const F = {
@@ -52,6 +57,14 @@ export const F = {
   /** Fraunces, 700 or 900. */
   fraunces(weight = 900): string {
     return `Fraunces-${nearest([700, 900], weight)}`;
+  },
+  /** Poppins, weight 500..700. */
+  poppins(weight = 600): string {
+    return `Poppins-${nearest([500, 600, 700], weight)}`;
+  },
+  /** Instrument Serif, upright or italic. */
+  instrument(italic = true): string {
+    return italic ? 'InstrumentItalic-400' : 'Instrument-400';
   },
 };
 
