@@ -106,9 +106,9 @@ export default class Coding extends Scene {
     this.shots = list;
 
     this.gest = new Gestures([
-      [c[8]! - 0.3, 'idle'], [w.infine, 'both'], [w.agent - 0.1, 'presentR'],
+      [c[8]! - 0.3, 'idle'], [w.infine, 'shrug'], [w.agent - 0.1, 'presentR'],
       [c[10]! - 0.3, 'idle'], [w.programmare, 'think'], [w.senior - 0.1, 'pointUp'],
-      [c[12]! - 0.3, 'idle'], [w.quindi, 'both'], [w.commenta - 0.1, 'pointR'], [w.link - 0.1, 'thumb'],
+      [c[12]! - 0.3, 'idle'], [w.quindi, 'shrug'], [w.commenta - 0.1, 'pointR'], [w.link - 0.1, 'thumb'],
     ]);
 
     const sp = this.sp;
@@ -211,7 +211,7 @@ export default class Coding extends Scene {
       x.restore();
     });
     // "se vuoi moltiplicare per" ... the counter ... "il tuo vibe coding"
-    say(x, t, sp.hookB!, 450, 875, { fam: F.poppins(600), size: 46 });
+    say(x, t, sp.hookB!.map((q) => ({ w: q.w, start: Math.max(q.start, w.se + 0.34) })), 450, 875, { fam: F.poppins(600), size: 46 });
     if (t > w.molt - 0.15) {
       const u = clamp((t - (w.molt - 0.15)) / Math.max(0.2, w.cento - w.molt + 0.15));
       const n = u >= 1 ? 100 : Math.min(96, 36 + 10 * Math.floor(u * 7));
@@ -631,7 +631,7 @@ export default class Coding extends Scene {
       txt(x, p, px + pw / 2, by + 290, 20, F.poppins(600), '#55585f', { align: 'center' });
       px += pw + 14;
     }
-    const v = 102.3 * ease.outCubic(clamp((t - this.w.centomila + 0.2) / 0.9));
+    const v = 102.3 * ease.inOutCubic(clamp((t - s.t0 - 0.3) / Math.max(0.5, this.w.centomila + 0.45 - s.t0 - 0.3)));
     star5(x, bx + 92, by + 410, 34); x.fillStyle = CORAL; x.fill();
     txt(x, `${v >= 100 ? Math.round(v) : v.toFixed(1).replace('.', ',')}k`, bx + 144, by + 432, 72, F.poppins(700), INK);
     txt(x, 'stelle su GitHub', bx + 400, by + 428, 26, F.poppins(500), '#8a8d94');
