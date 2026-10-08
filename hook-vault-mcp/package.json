@@ -1,0 +1,31 @@
+{
+  "name": "hook-vault-mcp",
+  "version": "0.1.0",
+  "description": "MCP server con database di ganci e reel Instagram virali divisi per nicchia, per creare contenuti LinkedIn.",
+  "type": "module",
+  "bin": {
+    "hook-vault-mcp": "src/index.js"
+  },
+  "main": "src/server.js",
+  "files": [
+    "src",
+    "data",
+    "scripts",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "start:http": "node src/index.js --http",
+    "test": "node --test test/*.test.js",
+    "import": "node scripts/import-reels.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.30.1",
+    "zod": "3.25.76"
+  },
+  "license": "UNLICENSED",
+  "private": true
+}
