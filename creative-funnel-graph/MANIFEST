@@ -27,7 +27,7 @@ public/js/textures.js
 public/js/ui.js
 public/oauth.html
 public/styles.css
-macos/ConstellationApp.swift
+macos/FunnelGraphApp.swift
 macos/Info.plist
 macos/icon.png
 macos/launcher.sh

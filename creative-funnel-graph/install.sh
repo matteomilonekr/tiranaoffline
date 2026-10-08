@@ -1,23 +1,23 @@
 #!/usr/bin/env bash
-# Scalers Constellation installer.
+# Creative Funnel Graph installer.
 #
-#   curl -fsSL https://raw.githubusercontent.com/matteomilonekr/tiranaoffline/main/constellation/install.sh | bash
+#   curl -fsSL https://raw.githubusercontent.com/matteomilonekr/tiranaoffline/main/creative-funnel-graph/install.sh | bash
 #
-# Installs into ~/.constellation, adds a "Scalers Constellation" app to ~/Applications on
-# macOS and a `constellation` command, then opens the app. No admin rights needed.
-# Options (environment): CONSTELLATION_REF=<branch>  CONSTELLATION_NO_LAUNCH=1  CONSTELLATION_PORT=4747
+# Installs into ~/.creative-funnel-graph, adds a "Creative Funnel Graph" app to ~/Applications on
+# macOS and a `creative-funnel-graph` command, then opens the app. No admin rights needed.
+# Options (environment): FUNNEL_GRAPH_REF=<branch>  FUNNEL_GRAPH_NO_LAUNCH=1  FUNNEL_GRAPH_PORT=4747
 
 set -euo pipefail
 
-APP_NAME="Scalers Constellation"
-REPO="${CONSTELLATION_REPO:-matteomilonekr/tiranaoffline}"
-REF="${CONSTELLATION_REF:-main}"
-HOME_DIR="${CONSTELLATION_HOME:-$HOME/.constellation}"
+APP_NAME="Creative Funnel Graph"
+REPO="${FUNNEL_GRAPH_REPO:-matteomilonekr/tiranaoffline}"
+REF="${FUNNEL_GRAPH_REF:-main}"
+HOME_DIR="${FUNNEL_GRAPH_HOME:-$HOME/.creative-funnel-graph}"
 APP_DIR="$HOME_DIR/app"
-PORT="${CONSTELLATION_PORT:-4747}"
+PORT="${FUNNEL_GRAPH_PORT:-4747}"
 NODE_MIN=18
 NODE_PORTABLE="22.12.0"
-RAW="https://raw.githubusercontent.com/$REPO/$REF/constellation"
+RAW="https://raw.githubusercontent.com/$REPO/$REF/creative-funnel-graph"
 
 bold() { printf '\033[1m%s\033[0m\n' "$*"; }
 note() { printf '  %s\n' "$*"; }
@@ -71,7 +71,7 @@ install_node() {
     *) die "Unsupported processor: $arch" ;;
   esac
   url="https://nodejs.org/dist/v$NODE_PORTABLE/node-v$NODE_PORTABLE-$plat-$cpu.tar.gz"
-  note "Node.js $NODE_MIN+ not found: downloading a private copy (only Constellation uses it)…"
+  note "Node.js $NODE_MIN+ not found: downloading a private copy (only Creative Funnel Graph uses it)…"
   rm -rf "$HOME_DIR/runtime"
   mkdir -p "$HOME_DIR/runtime"
   curl -fsSL "$url" | tar -xz -C "$HOME_DIR/runtime" --strip-components 1 || die "Could not download Node.js from $url"
@@ -88,7 +88,7 @@ note "Node.js: $NODE ($("$NODE" -v))"
 
 # ---------- app files ----------
 
-STAGE="$(mktemp -d "${TMPDIR:-/tmp}/constellation.XXXXXX")"
+STAGE="$(mktemp -d "${TMPDIR:-/tmp}/creative-funnel-graph.XXXXXX")"
 trap 'rm -rf "$STAGE"' EXIT
 
 SOURCE_DIR=""
@@ -117,9 +117,10 @@ fi
 [ -f "$STAGE/server.mjs" ] || die "The download looks incomplete."
 
 # Stop a running copy so the new version is what opens.
+# A stale pid file can point at an unrelated process: only stop it if it runs our server.
 if [ -f "$HOME_DIR/server.pid" ]; then
   pid="$(cat "$HOME_DIR/server.pid" 2>/dev/null || true)"
-  if [ -n "$pid" ] && kill -0 "$pid" 2>/dev/null; then
+  if [ -n "$pid" ] && kill -0 "$pid" 2>/dev/null && ps -p "$pid" -o command= 2>/dev/null | grep -qF "$APP_DIR/server.mjs"; then
     kill "$pid" 2>/dev/null || true
     sleep 0.5
   fi
@@ -138,14 +139,14 @@ note "App files: $APP_DIR (v$VERSION)"
 
 BIN_DIR="$HOME/.local/bin"
 mkdir -p "$BIN_DIR"
-cat >"$BIN_DIR/constellation" <<EOF
+cat >"$BIN_DIR/creative-funnel-graph" <<EOF
 #!/bin/sh
-exec "$NODE" "$APP_DIR/server.mjs" --port "\${CONSTELLATION_PORT:-$PORT}" --open "\$@"
+exec "$NODE" "$APP_DIR/server.mjs" --port "\${FUNNEL_GRAPH_PORT:-$PORT}" --open "\$@"
 EOF
-chmod +x "$BIN_DIR/constellation"
+chmod +x "$BIN_DIR/creative-funnel-graph"
 case ":$PATH:" in
-  *":$BIN_DIR:"*) note "Command: constellation" ;;
-  *) note "Command: $BIN_DIR/constellation (add $BIN_DIR to your PATH to type just 'constellation')" ;;
+  *":$BIN_DIR:"*) note "Command: creative-funnel-graph" ;;
+  *) note "Command: $BIN_DIR/creative-funnel-graph (add $BIN_DIR to your PATH to type just 'creative-funnel-graph')" ;;
 esac
 
 # ---------- macOS app ----------
@@ -173,15 +174,15 @@ if [ "$(uname -s)" = "Darwin" ]; then
   BUILT=0
   if xcrun --find swiftc >/dev/null 2>&1; then
     note "Building the native window (about 20 seconds)…"
-    if xcrun swiftc -O "$APP_DIR/macos/ConstellationApp.swift" -o "$APP_BUNDLE/Contents/MacOS/constellation" -framework Cocoa -framework WebKit >"$HOME_DIR/swift-build.log" 2>&1; then
+    if xcrun swiftc -O "$APP_DIR/macos/FunnelGraphApp.swift" -o "$APP_BUNDLE/Contents/MacOS/creative-funnel-graph" -framework Cocoa -framework WebKit >"$HOME_DIR/swift-build.log" 2>&1; then
       BUILT=1
     else
       warn "Native build failed, using a browser window instead. Details: $HOME_DIR/swift-build.log"
     fi
   fi
   if [ "$BUILT" != "1" ]; then
-    cp "$APP_DIR/macos/launcher.sh" "$APP_BUNDLE/Contents/MacOS/constellation"
-    chmod +x "$APP_BUNDLE/Contents/MacOS/constellation"
+    cp "$APP_DIR/macos/launcher.sh" "$APP_BUNDLE/Contents/MacOS/creative-funnel-graph"
+    chmod +x "$APP_BUNDLE/Contents/MacOS/creative-funnel-graph"
   fi
   command -v codesign >/dev/null 2>&1 && codesign --force --deep --sign - "$APP_BUNDLE" >/dev/null 2>&1 || true
   touch "$APP_BUNDLE"
@@ -189,8 +190,8 @@ if [ "$(uname -s)" = "Darwin" ]; then
 fi
 
 echo
-bold "Done. Constellation runs on this computer and only reads from Meta."
-if [ "${CONSTELLATION_NO_LAUNCH:-0}" = "1" ]; then
+bold "Done. Creative Funnel Graph runs on this computer and only reads from Meta."
+if [ "${FUNNEL_GRAPH_NO_LAUNCH:-0}" = "1" ]; then
   exit 0
 fi
 if [ -n "$APP_BUNDLE" ]; then

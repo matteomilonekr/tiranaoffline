@@ -6,8 +6,8 @@ import os from 'node:os';
 import path from 'node:path';
 
 const GOOD = 'EAAGoodTokenForTests1234567890abcdef';
-const home = fs.mkdtempSync(path.join(os.tmpdir(), 'constellation-test-'));
-process.env.CONSTELLATION_HOME = home;
+const home = fs.mkdtempSync(path.join(os.tmpdir(), 'funnel-graph-test-'));
+process.env.FUNNEL_GRAPH_HOME = home;
 delete process.env.META_ACCESS_TOKEN;
 
 const calls = [];
@@ -124,7 +124,7 @@ let base;
 async function api(pathname, { method = 'GET', body, headers = {} } = {}) {
   const res = await fetch(base + pathname, {
     method,
-    headers: { 'X-Constellation': '1', ...(body ? { 'Content-Type': 'application/json' } : {}), ...headers },
+    headers: { 'X-Funnel-Graph': '1', ...(body ? { 'Content-Type': 'application/json' } : {}), ...headers },
     body: body ? JSON.stringify(body) : undefined,
   });
   const text = await res.text();
@@ -153,10 +153,10 @@ after(async () => {
 });
 
 test('ping needs nothing; API needs the app header and a local Host', async () => {
-  assert.equal((await fetch(base + '/api/ping').then((r) => r.json())).app, 'constellation');
+  assert.equal((await fetch(base + '/api/ping').then((r) => r.json())).app, 'creative-funnel-graph');
   assert.equal((await fetch(base + '/api/status')).status, 403);
   const rebound = await new Promise((resolve) => {
-    const req = http.request(base + '/api/status', { headers: { Host: 'evil.example:80', 'X-Constellation': '1' } }, (res) => resolve(res.statusCode));
+    const req = http.request(base + '/api/status', { headers: { Host: 'evil.example:80', 'X-Funnel-Graph': '1' } }, (res) => resolve(res.statusCode));
     req.end();
   });
   assert.equal(rebound, 403);
@@ -250,6 +250,12 @@ test('image proxy only fetches from Meta CDN hosts', async () => {
   assert.equal(r.status, 400);
   const local = await fetch(base + '/img?u=' + encodeURIComponent('http://127.0.0.1:1/a.jpg'));
   assert.equal(local.status, 400);
+});
+
+test('a --port typed after the launcher default wins', async () => {
+  const { argValue } = await import('../server.mjs');
+  assert.equal(argValue(['--port', '4747', '--open', '--port', '4800'], '--port'), '4800');
+  assert.equal(argValue(['--open'], '--port'), undefined);
 });
 
 test('disconnect forgets the token', async () => {

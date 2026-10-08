@@ -2,8 +2,8 @@
 # Fallback app launcher, used when the Swift window could not be compiled: starts the
 # local server if needed, then opens the app in a chromeless browser window.
 
-HOME_DIR="${CONSTELLATION_HOME:-$HOME/.constellation}"
-PORT="${CONSTELLATION_PORT:-4747}"
+HOME_DIR="${FUNNEL_GRAPH_HOME:-$HOME/.creative-funnel-graph}"
+PORT="${FUNNEL_GRAPH_PORT:-4747}"
 URL="http://127.0.0.1:$PORT"
 
 NODE="$(cat "$HOME_DIR/node-path" 2>/dev/null)"

@@ -1,7 +1,7 @@
 // App entry: state, data loading (demo brand or live Meta through the local server),
 // model building, and wiring between the 3D scene and the DOM overlays.
 
-import { ConstellationScene } from './scene.js';
+import { FunnelGraphScene } from './scene.js';
 import { buildModel, groupStacks, placementHints, DEFAULT_SETTINGS, ARRANGEMENTS } from './model.js';
 import { computeLayout } from './layout.js';
 import { computeSignature } from './phash.js';
@@ -22,7 +22,7 @@ const $ = (id) => document.getElementById(id);
 const store = {
   get(key, fallback) {
     try {
-      const raw = localStorage.getItem('constellation:' + key);
+      const raw = localStorage.getItem('funnel-graph:' + key);
       return raw === null ? fallback : JSON.parse(raw);
     } catch {
       return fallback;
@@ -30,7 +30,7 @@ const store = {
   },
   set(key, value) {
     try {
-      localStorage.setItem('constellation:' + key, JSON.stringify(value));
+      localStorage.setItem('funnel-graph:' + key, JSON.stringify(value));
     } catch {
       // Private mode or blocked storage: settings last for this visit only.
     }
@@ -622,10 +622,10 @@ function bindChrome() {
 // ---------- boot ----------
 
 async function boot() {
-  document.title = `${BRAND.company} ${BRAND.product}`;
-  document.querySelector('.brand-mark').textContent = BRAND.company;
+  document.title = BRAND.name;
+  document.querySelector('.brand-mark').textContent = BRAND.mark;
   document.querySelector('.brand-product').textContent = BRAND.product;
-  document.querySelector('.brand').setAttribute('aria-label', `${BRAND.company} ${BRAND.product}`);
+  document.querySelector('.brand').setAttribute('aria-label', BRAND.name);
 
   const savedRange = store.get('range', null);
   if (savedRange?.preset === 'custom' && savedRange.since && savedRange.until) {
@@ -641,7 +641,7 @@ async function boot() {
   bindChrome();
 
   try {
-    scene = new ConstellationScene($('scene'), {
+    scene = new FunnelGraphScene($('scene'), {
       onHover: (card, pos) => ui.showTooltip(card, pos, currency(), $('stage')),
       onSelect: selectCard,
       onFrame: (s) => ui.positionRingLabels(s.projectRings(), state.focus, $('stage')),
@@ -673,7 +673,7 @@ async function boot() {
 boot();
 
 // Exposed for debugging from the console.
-window.__constellation = {
+window.__funnelGraph = {
   state,
   get scene() {
     return scene;

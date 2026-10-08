@@ -1,6 +1,6 @@
-// Native window for Constellation: starts the local server if needed and shows the app
+// Native window for Creative Funnel Graph: starts the local server if needed and shows the app
 // in a WKWebView. Built by install.sh with the Xcode command line tools:
-//   swiftc -O ConstellationApp.swift -o constellation -framework Cocoa -framework WebKit
+//   swiftc -O FunnelGraphApp.swift -o creative-funnel-graph -framework Cocoa -framework WebKit
 
 import Cocoa
 import WebKit
@@ -11,10 +11,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate, WKNavigationDelegate, 
     var server: Process?
 
     let env = ProcessInfo.processInfo.environment
-    lazy var port: String = env["CONSTELLATION_PORT"] ?? "4747"
+    lazy var port: String = env["FUNNEL_GRAPH_PORT"] ?? "4747"
     lazy var home: URL = {
-        if let custom = env["CONSTELLATION_HOME"] { return URL(fileURLWithPath: custom) }
-        return FileManager.default.homeDirectoryForCurrentUser.appendingPathComponent(".constellation")
+        if let custom = env["FUNNEL_GRAPH_HOME"] { return URL(fileURLWithPath: custom) }
+        return FileManager.default.homeDirectoryForCurrentUser.appendingPathComponent(".creative-funnel-graph")
     }()
     var appURL: URL { URL(string: "http://127.0.0.1:\(port)/")! }
 
@@ -26,13 +26,13 @@ final class AppDelegate: NSObject, NSApplicationDelegate, WKNavigationDelegate, 
             backing: .buffered,
             defer: false
         )
-        window.title = Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as? String ?? "Constellation"
+        window.title = Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as? String ?? "Creative Funnel Graph"
         window.titlebarAppearsTransparent = true
         window.appearance = NSAppearance(named: .darkAqua)
         window.backgroundColor = NSColor(calibratedRed: 0.05, green: 0.05, blue: 0.055, alpha: 1)
         window.minSize = NSSize(width: 720, height: 520)
         window.center()
-        window.setFrameAutosaveName("ConstellationMain")
+        window.setFrameAutosaveName("FunnelGraphMain")
 
         let config = WKWebViewConfiguration()
         webView = WKWebView(frame: .zero, configuration: config)
@@ -51,7 +51,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, WKNavigationDelegate, 
                 let log = self.home.appendingPathComponent("server.log").path
                 self.webView.loadHTMLString(
                     "<body style='background:#0d0d0e;color:#eee;font:14px -apple-system;padding:40px'>"
-                        + "<h2>Constellation could not start</h2><p>Run the installer again, or check the log at \(log).</p></body>",
+                        + "<h2>Creative Funnel Graph could not start</h2><p>Run the installer again, or check the log at \(log).</p></body>",
                     baseURL: nil
                 )
             }
@@ -81,7 +81,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, WKNavigationDelegate, 
         let saved = (try? String(contentsOf: nodeFile, encoding: .utf8))?.trimmingCharacters(in: .whitespacesAndNewlines)
         let candidates = [saved, "/opt/homebrew/bin/node", "/usr/local/bin/node", home.appendingPathComponent("runtime/bin/node").path]
         guard let node = candidates.compactMap({ $0 }).first(where: { FileManager.default.isExecutableFile(atPath: $0) }) else {
-            NSLog("Constellation: Node.js not found")
+            NSLog("Creative Funnel Graph: Node.js not found")
             return
         }
         let process = Process()
@@ -100,7 +100,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, WKNavigationDelegate, 
             try process.run()
             server = process
         } catch {
-            NSLog("Constellation: cannot start the server: \(error)")
+            NSLog("Creative Funnel Graph: cannot start the server: \(error)")
         }
     }
 
@@ -142,7 +142,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, WKNavigationDelegate, 
 
     func buildMenu() {
         let main = NSMenu()
-        let name = Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as? String ?? "Constellation"
+        let name = Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as? String ?? "Creative Funnel Graph"
 
         let appItem = NSMenuItem()
         let appMenu = NSMenu()

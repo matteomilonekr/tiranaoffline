@@ -1,4 +1,4 @@
-// Client for the local Constellation server. Every call carries a custom header, which
+// Client for the local Creative Funnel Graph server. Every call carries a custom header, which
 // browsers cannot attach cross-site without a preflight the server refuses, so other
 // web pages cannot read the user's ad data through it.
 
@@ -13,7 +13,7 @@ export class ApiError extends Error {
 
 /** True when the page runs without the local server (the published demo). */
 export function isStatic() {
-  return typeof window !== 'undefined' && window.CONSTELLATION_STATIC === true;
+  return typeof window !== 'undefined' && window.FUNNEL_GRAPH_STATIC === true;
 }
 
 async function request(path, { method = 'GET', body, timeout = 120000 } = {}) {
@@ -23,7 +23,7 @@ async function request(path, { method = 'GET', body, timeout = 120000 } = {}) {
   try {
     res = await fetch(path, {
       method,
-      headers: { 'X-Constellation': '1', ...(body ? { 'Content-Type': 'application/json' } : {}) },
+      headers: { 'X-Funnel-Graph': '1', ...(body ? { 'Content-Type': 'application/json' } : {}) },
       body: body ? JSON.stringify(body) : undefined,
       signal: ctrl.signal,
       cache: 'no-store',

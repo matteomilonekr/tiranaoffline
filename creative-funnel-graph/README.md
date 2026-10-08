@@ -1,4 +1,4 @@
-# Scalers Constellation
+# Creative Funnel Graph
 
 Tutte le ads Meta che stai facendo girare in un'unica vista 3D. Le creative che si somigliano diventano una sola card con il conteggio, e ogni card sta nel funnel in base a dove Meta ha speso: nuovi utenti, pubblico ingaggiato o clienti esistenti.
 
@@ -6,7 +6,7 @@ Gira in locale, legge Meta in sola lettura e si installa con una riga nel Termin
 
 ## Perché
 
-Andromeda raggruppa le ads con creative simili sotto la stessa entità: condividono apprendimento, delivery e costi. Trenta statiche dello stesso prodotto con inquadrature diverse contano come una. Gestione inserzioni mostra righe, e le righe nascondono quanto le ads si somigliano. Constellation le mette una accanto all'altra.
+Andromeda raggruppa le ads con creative simili sotto la stessa entità: condividono apprendimento, delivery e costi. Trenta statiche dello stesso prodotto con inquadrature diverse contano come una. Gestione inserzioni mostra righe, e le righe nascondono quanto le ads si somigliano. Creative Funnel Graph le mette una accanto all'altra.
 
 ## Cosa fa
 
@@ -26,18 +26,18 @@ Andromeda raggruppa le ads con creative simili sotto la stessa entità: condivid
 Su Mac (Apple Silicon o Intel), nel Terminale:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/matteomilonekr/tiranaoffline/main/constellation/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/matteomilonekr/tiranaoffline/main/creative-funnel-graph/install.sh | bash
 ```
 
 L'installer:
 
-1. usa Node.js 18+ se è già installato, altrimenti scarica una copia privata in `~/.constellation/runtime` (non tocca il sistema e non chiede la password);
-2. copia l'app in `~/.constellation/app`;
-3. crea **Scalers Constellation** in `~/Applications`, con finestra nativa se sono presenti gli strumenti da riga di comando di Xcode (altrimenti si apre in una finestra di Chrome, Brave o Edge, oppure in Safari);
-4. aggiunge il comando `constellation` in `~/.local/bin`;
+1. usa Node.js 18+ se è già installato, altrimenti scarica una copia privata in `~/.creative-funnel-graph/runtime` (non tocca il sistema e non chiede la password);
+2. copia l'app in `~/.creative-funnel-graph/app`;
+3. crea **Creative Funnel Graph** in `~/Applications`, con finestra nativa se sono presenti gli strumenti da riga di comando di Xcode (altrimenti si apre in una finestra di Chrome, Brave o Edge, oppure in Safari);
+4. aggiunge il comando `creative-funnel-graph` in `~/.local/bin`;
 5. apre l'app.
 
-Per aggiornare, rilancia la stessa riga. Per provare un branch: `CONSTELLATION_REF=nome-branch` prima di `bash`.
+Per aggiornare, rilancia la stessa riga. Per provare un branch: `FUNNEL_GRAPH_REF=nome-branch` prima di `bash`.
 
 Senza installer, da questa cartella:
 
@@ -70,9 +70,9 @@ In alternativa puoi impostare il token come variabile d'ambiente: `META_ACCESS_T
 ## Privacy e sicurezza
 
 - Sola lettura: tutte le chiamate a Meta sono GET. L'unica POST crea un report asincrono quando un account è troppo grande per una risposta immediata; il report legge dati e non modifica nulla.
-- Il token resta sul tuo computer in `~/.constellation/config.json` con permessi `600` e non torna mai al browser.
+- Il token resta sul tuo computer in `~/.creative-funnel-graph/config.json` con permessi `600` e non torna mai al browser.
 - Il server ascolta solo su `127.0.0.1`. Le API rispondono solo a richieste con un header dell'app e un host locale, quindi un sito esterno non può leggere i tuoi dati attraverso il server.
-- Il proxy delle immagini scarica solo dai CDN di Meta e salva la cache in `~/.constellation/cache`.
+- Il proxy delle immagini scarica solo dai CDN di Meta e salva la cache in `~/.creative-funnel-graph/cache`.
 
 ## Struttura
 

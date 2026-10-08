@@ -7,13 +7,13 @@
   <key>CFBundleDisplayName</key>
   <string>__APP_NAME__</string>
   <key>CFBundleIdentifier</key>
-  <string>com.scalers.constellation</string>
+  <string>com.creativefunnelgraph.app</string>
   <key>CFBundleVersion</key>
   <string>__VERSION__</string>
   <key>CFBundleShortVersionString</key>
   <string>__VERSION__</string>
   <key>CFBundleExecutable</key>
-  <string>constellation</string>
+  <string>creative-funnel-graph</string>
   <key>CFBundleIconFile</key>
   <string>AppIcon</string>
   <key>CFBundlePackageType</key>

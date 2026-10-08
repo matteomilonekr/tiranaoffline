@@ -1,4 +1,4 @@
-// Local settings: the Meta token and a few preferences, stored in ~/.constellation with
+// Local settings: the Meta token and a few preferences, stored in ~/.creative-funnel-graph with
 // owner-only permissions. Environment variables override the file.
 
 import fs from 'node:fs';
@@ -8,7 +8,7 @@ import path from 'node:path';
 export const DEFAULT_API_VERSION = 'v25.0';
 
 export function homeDir() {
-  return process.env.CONSTELLATION_HOME || path.join(os.homedir(), '.constellation');
+  return process.env.FUNNEL_GRAPH_HOME || path.join(os.homedir(), '.creative-funnel-graph');
 }
 
 export function cacheDir() {

@@ -21,5 +21,5 @@ api/paypal/create-order.js
 api/paypal/capture-order.js
 api/paypal/order-details.js
 
-# Constellation e' un'app locale (Node), non fa parte del sito.
-constellation
+# Creative Funnel Graph e' un'app locale (Node), non fa parte del sito.
+creative-funnel-graph

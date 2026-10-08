@@ -25,7 +25,7 @@
         return;
       }
       try {
-        const res = await fetch('/api/connect', { method: 'POST', headers: { 'Content-Type': 'application/json', 'X-Constellation': '1' }, body: JSON.stringify({ token }) });
+        const res = await fetch('/api/connect', { method: 'POST', headers: { 'Content-Type': 'application/json', 'X-Funnel-Graph': '1' }, body: JSON.stringify({ token }) });
         if (!res.ok) throw new Error((await res.json()).error?.message || res.statusText);
         location.replace('/');
       } catch (err) {

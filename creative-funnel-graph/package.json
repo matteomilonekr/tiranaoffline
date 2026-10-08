@@ -1,11 +1,11 @@
 {
-  "name": "constellation",
+  "name": "creative-funnel-graph",
   "version": "1.0.0",
   "description": "See every Meta ad you run in one 3D view: look-alike creatives stacked, every ad placed in the funnel by where Meta spent on it. Runs locally, read-only.",
   "type": "module",
   "private": true,
   "bin": {
-    "constellation": "server.mjs"
+    "creative-funnel-graph": "server.mjs"
   },
   "scripts": {
     "start": "node server.mjs --open",

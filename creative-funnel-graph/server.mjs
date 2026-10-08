@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Constellation local server. Serves the app on 127.0.0.1 and reads Meta's Marketing API
+// Creative Funnel Graph local server. Serves the app on 127.0.0.1 and reads Meta's Marketing API
 // with the user's token. No dependencies: Node 18 or newer.
 //
 //   node server.mjs [--port 4747] [--open]
@@ -62,7 +62,7 @@ function metaFail(res, err) {
     const status = err.kind === 'token' ? 401 : err.kind === 'permission' ? 403 : err.kind === 'rate' ? 429 : err.kind === 'param' ? 400 : 502;
     return fail(res, status, err.message, err.kind, err.code);
   }
-  console.error('[constellation]', err);
+  console.error('[funnel-graph]', err);
   return fail(res, 500, err.message || 'Unexpected error');
 }
 
@@ -282,18 +282,18 @@ export function createServer() {
     } catch {
       return fail(res, 400, 'Bad request');
     }
-    if (url.pathname === '/api/ping') return json(res, 200, { ok: true, app: 'constellation', version: VERSION });
+    if (url.pathname === '/api/ping') return json(res, 200, { ok: true, app: 'creative-funnel-graph', version: VERSION });
     if (!trusted(req)) return fail(res, 403, 'Forbidden');
     try {
       if (url.pathname.startsWith('/api/')) {
-        if (req.headers['x-constellation'] !== '1') return fail(res, 403, 'Missing app header');
+        if (req.headers['x-funnel-graph'] !== '1') return fail(res, 403, 'Missing app header');
         return await handleApi(req, res, url);
       }
       if (url.pathname === '/img' && req.method === 'GET') return await proxyImage(url.searchParams.get('u') || '', res);
       if (req.method !== 'GET' && req.method !== 'HEAD') return fail(res, 405, 'Method not allowed');
       return serveStatic(req, res, url.pathname);
     } catch (err) {
-      console.error('[constellation]', err.message);
+      console.error('[funnel-graph]', err.message);
       if (!res.headersSent) fail(res, 500, err.message);
     }
   });
@@ -302,18 +302,28 @@ export function createServer() {
 function openBrowser(url) {
   const cmd = process.platform === 'darwin' ? 'open' : process.platform === 'win32' ? 'cmd' : 'xdg-open';
   const args = process.platform === 'win32' ? ['/c', 'start', '', url] : [url];
+  const fallback = () => console.log(`Open ${url} in your browser.`);
   try {
-    spawn(cmd, args, { stdio: 'ignore', detached: true }).unref();
+    const child = spawn(cmd, args, { stdio: 'ignore', detached: true });
+    // A missing launcher (no xdg-open) is reported asynchronously; it must not stop the server.
+    child.on('error', fallback);
+    child.unref();
   } catch {
-    // No browser launcher available; the URL is printed anyway.
+    fallback();
   }
+}
+
+/** Reads `--name value`; the last occurrence wins, so flags typed after a wrapper's defaults apply. */
+export function argValue(argv, name) {
+  const i = argv.lastIndexOf(name);
+  return i >= 0 ? argv[i + 1] : undefined;
 }
 
 async function alreadyRunning(port) {
   try {
     const r = await fetch(`http://127.0.0.1:${port}/api/ping`, { signal: AbortSignal.timeout(1500) });
     const body = await r.json();
-    return body.app === 'constellation';
+    return body.app === 'creative-funnel-graph';
   } catch {
     return false;
   }
@@ -321,19 +331,15 @@ async function alreadyRunning(port) {
 
 async function main() {
   const argv = process.argv.slice(2);
-  const arg = (name) => {
-    const i = argv.indexOf(name);
-    return i >= 0 ? argv[i + 1] : undefined;
-  };
-  const port = Number(arg('--port') || process.env.PORT || 4747);
-  const host = arg('--host') || '127.0.0.1';
+  const port = Number(argValue(argv, '--port') || process.env.PORT || 4747);
+  const host = argValue(argv, '--host') || '127.0.0.1';
   const open = argv.includes('--open');
   const url = `http://127.0.0.1:${port}`;
 
   const server = createServer();
   server.on('error', async (err) => {
     if (err.code === 'EADDRINUSE' && (await alreadyRunning(port))) {
-      console.log(`Constellation is already running at ${url}`);
+      console.log(`Creative Funnel Graph is already running at ${url}`);
       if (open) openBrowser(url);
       process.exit(0);
     }
@@ -342,7 +348,7 @@ async function main() {
   });
   const pidFile = path.join(homeDir(), 'server.pid');
   server.listen(port, host, () => {
-    console.log(`Constellation ${VERSION} running at ${url} (read-only, data stays on this computer)`);
+    console.log(`Creative Funnel Graph ${VERSION} running at ${url} (read-only, data stays on this computer)`);
     try {
       fs.mkdirSync(homeDir(), { recursive: true, mode: 0o700 });
       fs.writeFileSync(pidFile, String(process.pid));
@@ -367,7 +373,7 @@ async function main() {
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   const major = Number(process.versions.node.split('.')[0]);
   if (major < 18) {
-    console.error('Constellation needs Node.js 18 or newer.');
+    console.error('Creative Funnel Graph needs Node.js 18 or newer.');
     process.exit(1);
   }
   main();

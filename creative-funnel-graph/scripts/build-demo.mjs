@@ -34,7 +34,7 @@ ${css}
 <script type="importmap">
 ${importMap}
 </script>
-<script>window.CONSTELLATION_STATIC = true;</script>
+<script>window.FUNNEL_GRAPH_STATIC = true;</script>
 ${body}
 <script type="module" src="js/main.js"></script>
 `;

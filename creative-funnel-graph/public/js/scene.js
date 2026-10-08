@@ -1,4 +1,4 @@
-// The 3D constellation: one billboard per creative stack, a glowing ring per group, a
+// The 3D funnel graph: one billboard per creative stack, a glowing ring per group, a
 // wireframe funnel of meridians, and an orbit camera that eases between the overview
 // and a focused ring. Depth of field is faked per card by mixing a sharp texture with a
 // tiny blurred twin, so it stays cheap on laptops and phones.
@@ -57,7 +57,7 @@ function srgbVec(hex) {
 
 const damp = (current, target, rate, dt) => current + (target - current) * (1 - Math.exp(-rate * dt));
 
-export class ConstellationScene {
+export class FunnelGraphScene {
   /**
    * @param {HTMLCanvasElement} canvas
    * @param {{onHover?:Function, onSelect?:Function, onFrame?:Function, onInteract?:Function}} hooks
