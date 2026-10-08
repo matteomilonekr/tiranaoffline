@@ -1,0 +1,1044 @@
+[
+  {
+    "id": "h001",
+    "type": "contrarian",
+    "niches": [],
+    "text": "Smetti di [azione comune]. Non è quello che ti fa [risultato desiderato].",
+    "example": "Smetti di pubblicare tutti i giorni. Non è quello che ti porta clienti.",
+    "source": "curated"
+  },
+  {
+    "id": "h002",
+    "type": "contrarian",
+    "niches": [],
+    "text": "\"[Convinzione diffusa]\" è il consiglio più costoso che abbia mai seguito.",
+    "example": "\"Fai tutto da solo finché puoi\" è il consiglio più costoso che abbia mai seguito.",
+    "source": "curated"
+  },
+  {
+    "id": "h003",
+    "type": "contrarian",
+    "niches": [],
+    "text": "Opinione impopolare: [opinione netta].",
+    "example": "Opinione impopolare: la maggior parte delle aziende non ha bisogno di un nuovo sito.",
+    "source": "curated"
+  },
+  {
+    "id": "h004",
+    "type": "contrarian",
+    "niches": [],
+    "text": "Tutti parlano di [trend]. Quasi nessuno parla di [cosa conta davvero].",
+    "example": "Tutti parlano di AI. Quasi nessuno parla dei processi su cui metterla.",
+    "source": "curated"
+  },
+  {
+    "id": "h005",
+    "type": "contrarian",
+    "niches": [],
+    "text": "[Pratica diffusa] non è morta. È morto il modo in cui la fai.",
+    "example": "La cold email non è morta. È morto il modo in cui la scrivi.",
+    "source": "curated"
+  },
+  {
+    "id": "h006",
+    "type": "lista",
+    "niches": [],
+    "text": "[Numero] cose che avrei voluto sapere prima di [traguardo].",
+    "example": "7 cose che avrei voluto sapere prima di assumere il primo dipendente.",
+    "source": "curated"
+  },
+  {
+    "id": "h007",
+    "type": "lista",
+    "niches": [],
+    "text": "Ho analizzato [numero] [elementi]. Questi [numero] schemi tornano sempre.",
+    "example": "Ho analizzato 214 post virali. Questi 5 schemi tornano sempre.",
+    "source": "curated"
+  },
+  {
+    "id": "h008",
+    "type": "lista",
+    "niches": [],
+    "text": "[Numero] domande da farti prima di [decisione].",
+    "example": "5 domande da farti prima di alzare i prezzi.",
+    "source": "curated"
+  },
+  {
+    "id": "h009",
+    "type": "lista",
+    "niches": [],
+    "text": "[Numero] segnali che [situazione problematica] (il terzo è il più sottovalutato).",
+    "example": "6 segnali che il tuo team è sovraccarico (il terzo è il più sottovalutato).",
+    "source": "curated"
+  },
+  {
+    "id": "h010",
+    "type": "storia",
+    "niches": [],
+    "text": "Nel [anno] ho [evento negativo]. È stata la cosa migliore che mi potesse capitare.",
+    "example": "Nel 2021 ho perso il cliente che valeva il 60% del fatturato. È stata la cosa migliore che mi potesse capitare.",
+    "source": "curated"
+  },
+  {
+    "id": "h011",
+    "type": "storia",
+    "niches": [],
+    "text": "[Tempo] fa [situazione di partenza]. Oggi [situazione attuale]. Ecco cosa è cambiato.",
+    "example": "Due anni fa lavoravo 70 ore a settimana. Oggi 35, con il doppio dei margini. Ecco cosa è cambiato.",
+    "source": "curated"
+  },
+  {
+    "id": "h012",
+    "type": "storia",
+    "niches": [],
+    "text": "Ieri un [persona] mi ha detto: \"[frase]\". Non ci ho dormito.",
+    "example": "Ieri un cliente mi ha detto: \"Pensavo foste più cari\". Non ci ho dormito.",
+    "source": "curated"
+  },
+  {
+    "id": "h013",
+    "type": "storia",
+    "niches": [],
+    "text": "La prima volta che [esperienza], ho sbagliato tutto.",
+    "example": "La prima volta che ho presentato un'offerta da 20.000 €, ho sbagliato tutto.",
+    "source": "curated"
+  },
+  {
+    "id": "h014",
+    "type": "errore",
+    "niches": [],
+    "text": "L'errore che vedo fare al [percentuale] dei [target]: [errore].",
+    "example": "L'errore che vedo fare al 90% dei freelance: vendere ore invece di risultati.",
+    "source": "curated"
+  },
+  {
+    "id": "h015",
+    "type": "errore",
+    "niches": [],
+    "text": "Ho buttato [cifra o tempo] per un solo errore. Te lo racconto così non lo fai tu.",
+    "example": "Ho buttato 18.000 € in ads per un solo errore. Te lo racconto così non lo fai tu.",
+    "source": "curated"
+  },
+  {
+    "id": "h016",
+    "type": "errore",
+    "niches": [],
+    "text": "Se [comportamento], stai lasciando [risultato] sul tavolo.",
+    "example": "Se rispondi ai lead dopo 24 ore, stai lasciando metà delle vendite sul tavolo.",
+    "source": "curated"
+  },
+  {
+    "id": "h017",
+    "type": "errore",
+    "niches": [],
+    "text": "Il problema non è [problema percepito]. È [problema reale].",
+    "example": "Il problema non è il prezzo. È che il cliente non ha capito cosa compra.",
+    "source": "curated"
+  },
+  {
+    "id": "h018",
+    "type": "segreto",
+    "niches": [],
+    "text": "Quello che nessuno ti dice su [argomento]:",
+    "example": "Quello che nessuno ti dice sul passare da freelance ad agenzia:",
+    "source": "curated"
+  },
+  {
+    "id": "h019",
+    "type": "segreto",
+    "niches": [],
+    "text": "Ti mostro [risorsa interna] che usiamo per [risultato]. Nessun filtro.",
+    "example": "Ti mostro lo script che usiamo per chiudere call da 5.000 €. Nessun filtro.",
+    "source": "curated"
+  },
+  {
+    "id": "h020",
+    "type": "segreto",
+    "niches": [],
+    "text": "[Numero] cose che i [esperti] sanno e non dicono mai in pubblico.",
+    "example": "4 cose che i recruiter sanno e non dicono mai in pubblico.",
+    "source": "curated"
+  },
+  {
+    "id": "h021",
+    "type": "segreto",
+    "niches": [],
+    "text": "Dietro [risultato visibile] c'è [lavoro invisibile].",
+    "example": "Dietro ogni post \"virale\" che vedi qui c'è un foglio Excel molto noioso.",
+    "source": "curated"
+  },
+  {
+    "id": "h022",
+    "type": "risultato",
+    "niches": [],
+    "text": "Da [punto A] a [punto B] in [tempo]. Senza [cosa che il lettore pensa serva].",
+    "example": "Da 0 a 40 clienti in 9 mesi. Senza fare una sola ads.",
+    "source": "curated"
+  },
+  {
+    "id": "h023",
+    "type": "risultato",
+    "niches": [],
+    "text": "[Risultato numerico] con [risorsa minima]. Ecco il processo, passo per passo.",
+    "example": "112 lead qualificati con 3 post a settimana. Ecco il processo, passo per passo.",
+    "source": "curated"
+  },
+  {
+    "id": "h024",
+    "type": "risultato",
+    "niches": [],
+    "text": "Questo [asset] ha generato [risultato]. L'ho scritto in [tempo].",
+    "example": "Questo post ha generato 23 call di vendita. L'ho scritto in 20 minuti.",
+    "source": "curated"
+  },
+  {
+    "id": "h025",
+    "type": "risultato",
+    "niches": [],
+    "text": "[Cliente] ha ottenuto [risultato] in [tempo]. Abbiamo cambiato una sola cosa.",
+    "example": "Un e-commerce di cosmetica ha raddoppiato il tasso di conversione in 6 settimane. Abbiamo cambiato una sola cosa.",
+    "source": "curated"
+  },
+  {
+    "id": "h026",
+    "type": "domanda",
+    "niches": [],
+    "text": "Se domani [evento], [conseguenza per il lettore]?",
+    "example": "Se domani LinkedIn chiudesse, quanti clienti ti resterebbero?",
+    "source": "curated"
+  },
+  {
+    "id": "h027",
+    "type": "domanda",
+    "niches": [],
+    "text": "Perché [risultato desiderato] per alcuni arriva in [tempo] e per altri mai?",
+    "example": "Perché alcuni freelance raddoppiano le tariffe in un anno e altri mai?",
+    "source": "curated"
+  },
+  {
+    "id": "h028",
+    "type": "domanda",
+    "niches": [],
+    "text": "Quanto ti costa davvero [abitudine]?",
+    "example": "Quanto ti costa davvero rispondere alle email alle 23?",
+    "source": "curated"
+  },
+  {
+    "id": "h029",
+    "type": "domanda",
+    "niches": [],
+    "text": "Sai qual è la differenza tra [A] e [B]? Non è [risposta ovvia].",
+    "example": "Sai qual è la differenza tra un freelance e un imprenditore? Non è il fatturato.",
+    "source": "curated"
+  },
+  {
+    "id": "h030",
+    "type": "come-fare",
+    "niches": [],
+    "text": "Come [risultato] in [tempo] (senza [ostacolo]).",
+    "example": "Come scrivere un post LinkedIn in 15 minuti (senza fissare il foglio bianco).",
+    "source": "curated"
+  },
+  {
+    "id": "h031",
+    "type": "come-fare",
+    "niches": [],
+    "text": "Il metodo in [numero] passi che uso per [risultato]:",
+    "example": "Il metodo in 4 passi che uso per trasformare un reel in un post LinkedIn:",
+    "source": "curated"
+  },
+  {
+    "id": "h032",
+    "type": "come-fare",
+    "niches": [],
+    "text": "Ecco come farei [obiettivo] se ripartissi da zero oggi.",
+    "example": "Ecco come troverei i primi 10 clienti se ripartissi da zero oggi.",
+    "source": "curated"
+  },
+  {
+    "id": "h033",
+    "type": "come-fare",
+    "niches": [],
+    "text": "Ruba questo [template] per [risultato].",
+    "example": "Ruba questo template per rispondere alle obiezioni sul prezzo.",
+    "source": "curated"
+  },
+  {
+    "id": "h034",
+    "type": "confronto",
+    "niches": [],
+    "text": "[Approccio A] vs [approccio B]. Uno ti fa [beneficio], l'altro ti fa [costo].",
+    "example": "Vendere ore vs vendere progetti. Uno ti fa crescere, l'altro ti fa stancare.",
+    "source": "curated"
+  },
+  {
+    "id": "h035",
+    "type": "confronto",
+    "niches": [],
+    "text": "Prima: [situazione]. Dopo: [situazione]. In mezzo: [una decisione].",
+    "example": "Prima: 40 preventivi al mese, 4 chiusi. Dopo: 10 preventivi, 6 chiusi. In mezzo: una sola domanda in call.",
+    "source": "curated"
+  },
+  {
+    "id": "h036",
+    "type": "confronto",
+    "niches": [],
+    "text": "Chi [comportamento A] vs chi [comportamento B].",
+    "example": "Chi pubblica per piacere vs chi pubblica per vendere.",
+    "source": "curated"
+  },
+  {
+    "id": "h037",
+    "type": "confronto",
+    "niches": [],
+    "text": "Cosa pensavo a [età] su [argomento] vs cosa penso oggi.",
+    "example": "Cosa pensavo a 25 anni sui soldi vs cosa penso oggi.",
+    "source": "curated"
+  },
+  {
+    "id": "h038",
+    "type": "avvertimento",
+    "niches": [],
+    "text": "Se stai per [azione], fermati e leggi questo.",
+    "example": "Se stai per assumere il tuo primo commerciale, fermati e leggi questo.",
+    "source": "curated"
+  },
+  {
+    "id": "h039",
+    "type": "avvertimento",
+    "niches": [],
+    "text": "Non [azione] prima di aver [condizione].",
+    "example": "Non lanciare un corso prima di averlo venduto a 10 persone.",
+    "source": "curated"
+  },
+  {
+    "id": "h040",
+    "type": "avvertimento",
+    "niches": [],
+    "text": "[Target]: questo [cambiamento] vi riguarda più di quanto pensiate.",
+    "example": "Agenzie: questo cambio dell'algoritmo vi riguarda più di quanto pensiate.",
+    "source": "curated"
+  },
+  {
+    "id": "h041",
+    "type": "avvertimento",
+    "niches": [],
+    "text": "Attenzione a [rischio] che sembra [cosa innocua].",
+    "example": "Attenzione al cliente che sembra perfetto in call.",
+    "source": "curated"
+  },
+  {
+    "id": "h042",
+    "type": "curiosita",
+    "niches": [],
+    "text": "Ho fatto [esperimento] per [tempo]. Il risultato non era quello che mi aspettavo.",
+    "example": "Ho pubblicato un post al giorno per 90 giorni. Il risultato non era quello che mi aspettavo.",
+    "source": "curated"
+  },
+  {
+    "id": "h043",
+    "type": "curiosita",
+    "niches": [],
+    "text": "Questa [cosa piccola] ha cambiato [risultato grande].",
+    "example": "Questa frase in fondo alla proposta ha cambiato il nostro tasso di chiusura.",
+    "source": "curated"
+  },
+  {
+    "id": "h044",
+    "type": "curiosita",
+    "niches": [],
+    "text": "C'è un motivo se [fenomeno osservato]. E non è quello che pensi.",
+    "example": "C'è un motivo se i post più semplici fanno più commenti. E non è quello che pensi.",
+    "source": "curated"
+  },
+  {
+    "id": "h045",
+    "type": "curiosita",
+    "niches": [],
+    "text": "[Numero] [aziende] su [numero] fanno questo. Pochissime sanno perché funziona.",
+    "example": "9 aziende su 10 che crescono più veloce fanno questo. Pochissime sanno perché funziona.",
+    "source": "curated"
+  },
+  {
+    "id": "h046",
+    "type": "identificazione",
+    "niches": [],
+    "text": "Se sei un [target] e [situazione], questo post è per te.",
+    "example": "Se sei un consulente e lavori ancora a ore, questo post è per te.",
+    "source": "curated"
+  },
+  {
+    "id": "h047",
+    "type": "identificazione",
+    "niches": [],
+    "text": "[Target], fermatevi un secondo.",
+    "example": "Founder, fermatevi un secondo.",
+    "source": "curated"
+  },
+  {
+    "id": "h048",
+    "type": "identificazione",
+    "niches": [],
+    "text": "Questo è per chi [situazione specifica] e [sensazione].",
+    "example": "Questo è per chi ha un buon prodotto e la sensazione che nessuno lo veda.",
+    "source": "curated"
+  },
+  {
+    "id": "h049",
+    "type": "identificazione",
+    "niches": [],
+    "text": "Se hai [caratteristica], probabilmente ti è già successo: [situazione].",
+    "example": "Se hai un'agenzia, probabilmente ti è già successo: il cliente sparisce dopo il preventivo.",
+    "source": "curated"
+  },
+  {
+    "id": "h050",
+    "type": "risultato",
+    "niches": [
+      "business-coaching"
+    ],
+    "text": "Il mio cliente [nome] fatturava [cifra]. Dopo [tempo] insieme, [nuova cifra]. Non abbiamo toccato il marketing.",
+    "example": "Il mio cliente Luca fatturava 8.000 € al mese. Dopo 4 mesi insieme, 21.000 €. Non abbiamo toccato il marketing.",
+    "source": "curated"
+  },
+  {
+    "id": "h051",
+    "type": "contrarian",
+    "niches": [
+      "business-coaching"
+    ],
+    "text": "Il tuo business non ha un problema di clienti. Ha un problema di [problema reale].",
+    "example": "Il tuo business non ha un problema di clienti. Ha un problema di offerta.",
+    "source": "curated"
+  },
+  {
+    "id": "h052",
+    "type": "domanda",
+    "niches": [
+      "business-coaching"
+    ],
+    "text": "Se il tuo business dipende da te per l'[percentuale], è davvero un business?",
+    "example": "Se il tuo business dipende da te per l'80%, è davvero un business?",
+    "source": "curated"
+  },
+  {
+    "id": "h053",
+    "type": "errore",
+    "niches": [
+      "business-coaching"
+    ],
+    "text": "Il motivo numero 1 per cui i coach non riempiono i programmi: [motivo].",
+    "example": "Il motivo numero 1 per cui i coach non riempiono i programmi: parlano del metodo invece che del risultato.",
+    "source": "curated"
+  },
+  {
+    "id": "h054",
+    "type": "come-fare",
+    "niches": [
+      "business-coaching"
+    ],
+    "text": "Come strutturerei un programma da [prezzo] se partissi oggi.",
+    "example": "Come strutturerei un programma da 3.000 € se partissi oggi.",
+    "source": "curated"
+  },
+  {
+    "id": "h055",
+    "type": "contrarian",
+    "niches": [
+      "marketing"
+    ],
+    "text": "Il tuo funnel non converte perché [motivo non tecnico].",
+    "example": "Il tuo funnel non converte perché la tua promessa è identica a quella di altri 40 competitor.",
+    "source": "curated"
+  },
+  {
+    "id": "h056",
+    "type": "risultato",
+    "niches": [
+      "marketing"
+    ],
+    "text": "Abbiamo abbassato il costo per lead del [percentuale] cambiando solo [elemento].",
+    "example": "Abbiamo abbassato il costo per lead del 47% cambiando solo i primi 3 secondi del video.",
+    "source": "curated"
+  },
+  {
+    "id": "h057",
+    "type": "lista",
+    "niches": [
+      "marketing"
+    ],
+    "text": "[Numero] hook che hanno fatto più di [metrica] nelle nostre campagne.",
+    "example": "5 hook che hanno fatto più di 1.000 lead nelle nostre campagne.",
+    "source": "curated"
+  },
+  {
+    "id": "h058",
+    "type": "errore",
+    "niches": [
+      "marketing"
+    ],
+    "text": "Stai misurando [metrica di vanità]. Dovresti misurare [metrica reale].",
+    "example": "Stai misurando il CTR. Dovresti misurare il costo per cliente acquisito.",
+    "source": "curated"
+  },
+  {
+    "id": "h059",
+    "type": "segreto",
+    "niches": [
+      "marketing"
+    ],
+    "text": "Le ads che funzionano oggi non sembrano ads. Ecco [numero] esempi.",
+    "example": "Le ads che funzionano oggi non sembrano ads. Ecco 3 esempi.",
+    "source": "curated"
+  },
+  {
+    "id": "h060",
+    "type": "storia",
+    "niches": [
+      "vendite"
+    ],
+    "text": "Ho perso una trattativa da [cifra] per una sola frase. Eccola.",
+    "example": "Ho perso una trattativa da 60.000 € per una sola frase. Eccola.",
+    "source": "curated"
+  },
+  {
+    "id": "h061",
+    "type": "come-fare",
+    "niches": [
+      "vendite"
+    ],
+    "text": "Lo script di [numero] domande che usiamo in ogni call di scoperta.",
+    "example": "Lo script di 7 domande che usiamo in ogni call di scoperta.",
+    "source": "curated"
+  },
+  {
+    "id": "h062",
+    "type": "contrarian",
+    "niches": [
+      "vendite"
+    ],
+    "text": "Il follow-up non è insistere. È [ridefinizione].",
+    "example": "Il follow-up non è insistere. È portare qualcosa di nuovo ogni volta.",
+    "source": "curated"
+  },
+  {
+    "id": "h063",
+    "type": "errore",
+    "niches": [
+      "vendite"
+    ],
+    "text": "\"Ci devo pensare\" non è un'obiezione. È il sintomo di [problema].",
+    "example": "\"Ci devo pensare\" non è un'obiezione. È il sintomo di una call condotta male.",
+    "source": "curated"
+  },
+  {
+    "id": "h064",
+    "type": "risultato",
+    "niches": [
+      "vendite"
+    ],
+    "text": "Tasso di chiusura dal [X]% al [Y]% in [tempo]. Abbiamo eliminato [cosa].",
+    "example": "Tasso di chiusura dal 18% al 41% in un trimestre. Abbiamo eliminato la presentazione.",
+    "source": "curated"
+  },
+  {
+    "id": "h065",
+    "type": "risultato",
+    "niches": [
+      "ai-tech"
+    ],
+    "text": "Ho automatizzato [attività] con l'AI. Mi ha restituito [ore] ore a settimana.",
+    "example": "Ho automatizzato il reporting ai clienti con l'AI. Mi ha restituito 6 ore a settimana.",
+    "source": "curated"
+  },
+  {
+    "id": "h066",
+    "type": "lista",
+    "niches": [
+      "ai-tech"
+    ],
+    "text": "[Numero] prompt che uso ogni giorno (e che nessuno nel mio team conosceva).",
+    "example": "5 prompt che uso ogni giorno (e che nessuno nel mio team conosceva).",
+    "source": "curated"
+  },
+  {
+    "id": "h067",
+    "type": "contrarian",
+    "niches": [
+      "ai-tech"
+    ],
+    "text": "L'AI non è il problema della tua azienda. Il problema sono [cosa].",
+    "example": "L'AI non è il problema della tua azienda. Il problema sono i processi che nessuno ha mai scritto.",
+    "source": "curated"
+  },
+  {
+    "id": "h068",
+    "type": "confronto",
+    "niches": [
+      "ai-tech"
+    ],
+    "text": "Stesso compito: [tempo A] a mano, [tempo B] con [strumento]. Ecco il flusso.",
+    "example": "Stesso compito: 3 ore a mano, 11 minuti con Claude. Ecco il flusso.",
+    "source": "curated"
+  },
+  {
+    "id": "h069",
+    "type": "avvertimento",
+    "niches": [
+      "ai-tech"
+    ],
+    "text": "Prima di comprare l'ennesimo tool AI, fai questo esercizio da [tempo].",
+    "example": "Prima di comprare l'ennesimo tool AI, fai questo esercizio da 10 minuti.",
+    "source": "curated"
+  },
+  {
+    "id": "h070",
+    "type": "risultato",
+    "niches": [
+      "personal-branding"
+    ],
+    "text": "[Numero] follower non mi hanno portato clienti. [Numero più piccolo] persone giuste sì.",
+    "example": "30.000 follower non mi hanno portato clienti. 400 persone giuste sì.",
+    "source": "curated"
+  },
+  {
+    "id": "h071",
+    "type": "contrarian",
+    "niches": [
+      "personal-branding"
+    ],
+    "text": "Il personal branding non è parlare di te. È [ridefinizione].",
+    "example": "Il personal branding non è parlare di te. È far capire a chi servi che sai risolvere il suo problema.",
+    "source": "curated"
+  },
+  {
+    "id": "h072",
+    "type": "come-fare",
+    "niches": [
+      "personal-branding"
+    ],
+    "text": "Il sistema con cui scrivo [numero] post a settimana in [tempo].",
+    "example": "Il sistema con cui scrivo 5 post a settimana in 2 ore.",
+    "source": "curated"
+  },
+  {
+    "id": "h073",
+    "type": "storia",
+    "niches": [
+      "personal-branding"
+    ],
+    "text": "Il post con cui ho trovato il mio cliente più grande aveva [numero] like.",
+    "example": "Il post con cui ho trovato il mio cliente più grande aveva 14 like.",
+    "source": "curated"
+  },
+  {
+    "id": "h074",
+    "type": "domanda",
+    "niches": [
+      "personal-branding"
+    ],
+    "text": "Se qualcuno leggesse solo i tuoi ultimi [numero] post, capirebbe cosa vendi?",
+    "example": "Se qualcuno leggesse solo i tuoi ultimi 10 post, capirebbe cosa vendi?",
+    "source": "curated"
+  },
+  {
+    "id": "h075",
+    "type": "storia",
+    "niches": [
+      "imprenditoria"
+    ],
+    "text": "Il giorno in cui ho quasi chiuso l'azienda avevo [cifra] sul conto.",
+    "example": "Il giorno in cui ho quasi chiuso l'azienda avevo 3.400 € sul conto.",
+    "source": "curated"
+  },
+  {
+    "id": "h076",
+    "type": "lista",
+    "niches": [
+      "imprenditoria"
+    ],
+    "text": "[Numero] lezioni da [numero] anni di impresa che non trovi nei libri.",
+    "example": "8 lezioni da 10 anni di impresa che non trovi nei libri.",
+    "source": "curated"
+  },
+  {
+    "id": "h077",
+    "type": "contrarian",
+    "niches": [
+      "imprenditoria"
+    ],
+    "text": "Non ti serve un'idea migliore. Ti serve [cosa].",
+    "example": "Non ti serve un'idea migliore. Ti serve una distribuzione migliore.",
+    "source": "curated"
+  },
+  {
+    "id": "h078",
+    "type": "errore",
+    "niches": [
+      "imprenditoria"
+    ],
+    "text": "L'errore più caro che ho fatto da founder? [errore].",
+    "example": "L'errore più caro che ho fatto da founder? Assumere per anzianità invece che per risultati.",
+    "source": "curated"
+  },
+  {
+    "id": "h079",
+    "type": "confronto",
+    "niches": [
+      "imprenditoria"
+    ],
+    "text": "Fatturato vs margine: perché [cifra] di fatturato possono valere meno di [cifra minore].",
+    "example": "Fatturato vs margine: perché 1 milione di fatturato può valere meno di 300.000 €.",
+    "source": "curated"
+  },
+  {
+    "id": "h080",
+    "type": "contrarian",
+    "niches": [
+      "agenzie-freelance"
+    ],
+    "text": "Il tuo problema non è trovare clienti. È trovare [tipo di clienti] e dire no agli altri.",
+    "example": "Il tuo problema non è trovare clienti. È trovare clienti che pagano il giusto e dire no agli altri.",
+    "source": "curated"
+  },
+  {
+    "id": "h081",
+    "type": "risultato",
+    "niches": [
+      "agenzie-freelance"
+    ],
+    "text": "Abbiamo lasciato andare [numero] clienti. Il fatturato è salito del [percentuale].",
+    "example": "Abbiamo lasciato andare 4 clienti. Il fatturato è salito del 30%.",
+    "source": "curated"
+  },
+  {
+    "id": "h082",
+    "type": "come-fare",
+    "niches": [
+      "agenzie-freelance"
+    ],
+    "text": "Come passare da [modello A] a [modello B] senza perdere clienti.",
+    "example": "Come passare dalle ore al retainer senza perdere clienti.",
+    "source": "curated"
+  },
+  {
+    "id": "h083",
+    "type": "errore",
+    "niches": [
+      "agenzie-freelance"
+    ],
+    "text": "Il preventivo non si perde sul prezzo. Si perde [quando].",
+    "example": "Il preventivo non si perde sul prezzo. Si perde nei primi 5 minuti della call.",
+    "source": "curated"
+  },
+  {
+    "id": "h084",
+    "type": "identificazione",
+    "niches": [
+      "agenzie-freelance"
+    ],
+    "text": "Freelance, se lavorate ancora [modello], leggete fino in fondo.",
+    "example": "Freelance, se lavorate ancora a ore, leggete fino in fondo.",
+    "source": "curated"
+  },
+  {
+    "id": "h085",
+    "type": "risultato",
+    "niches": [
+      "finanza"
+    ],
+    "text": "Con [cifra] al mese per [anni] anni avresti [cifra finale]. Ecco i conti.",
+    "example": "Con 300 € al mese per 20 anni avresti circa 120.000 €. Ecco i conti.",
+    "source": "curated"
+  },
+  {
+    "id": "h086",
+    "type": "contrarian",
+    "niches": [
+      "finanza"
+    ],
+    "text": "Risparmiare non ti renderà ricco. [Cosa] sì.",
+    "example": "Risparmiare non ti renderà ricco. Aumentare quanto vale un'ora del tuo lavoro sì.",
+    "source": "curated"
+  },
+  {
+    "id": "h087",
+    "type": "errore",
+    "niches": [
+      "finanza"
+    ],
+    "text": "L'errore che fanno quasi tutti i [target] al primo anno: [errore].",
+    "example": "L'errore che fanno quasi tutti i freelance al primo anno: non mettere da parte le tasse.",
+    "source": "curated"
+  },
+  {
+    "id": "h088",
+    "type": "lista",
+    "niches": [
+      "finanza"
+    ],
+    "text": "[Numero] numeri che ogni [target] dovrebbe guardare ogni mese.",
+    "example": "5 numeri che ogni imprenditore dovrebbe guardare ogni mese.",
+    "source": "curated"
+  },
+  {
+    "id": "h089",
+    "type": "domanda",
+    "niches": [
+      "finanza"
+    ],
+    "text": "Quanti mesi resisteresti se domani [evento]?",
+    "example": "Quanti mesi resisteresti se domani le entrate si azzerassero?",
+    "source": "curated"
+  },
+  {
+    "id": "h090",
+    "type": "storia",
+    "niches": [
+      "produttivita"
+    ],
+    "text": "Per [tempo] ho [abitudine]. Ecco cosa è successo alla mia [area].",
+    "example": "Per 30 giorni ho bloccato le mattine senza riunioni. Ecco cosa è successo alla mia settimana.",
+    "source": "curated"
+  },
+  {
+    "id": "h091",
+    "type": "contrarian",
+    "niches": [
+      "produttivita"
+    ],
+    "text": "Non hai un problema di tempo. Hai un problema di [cosa].",
+    "example": "Non hai un problema di tempo. Hai un problema di priorità.",
+    "source": "curated"
+  },
+  {
+    "id": "h092",
+    "type": "lista",
+    "niches": [
+      "produttivita"
+    ],
+    "text": "Le [numero] regole con cui proteggo [risorsa].",
+    "example": "Le 4 regole con cui proteggo la mia agenda.",
+    "source": "curated"
+  },
+  {
+    "id": "h093",
+    "type": "confronto",
+    "niches": [
+      "produttivita"
+    ],
+    "text": "Essere occupati vs essere produttivi: [differenza].",
+    "example": "Essere occupati vs essere produttivi: il primo riempie la giornata, il secondo sposta i numeri.",
+    "source": "curated"
+  },
+  {
+    "id": "h094",
+    "type": "come-fare",
+    "niches": [
+      "produttivita"
+    ],
+    "text": "Come pianifico la settimana in [tempo] la domenica sera.",
+    "example": "Come pianifico la settimana in 20 minuti la domenica sera.",
+    "source": "curated"
+  },
+  {
+    "id": "h095",
+    "type": "segreto",
+    "niches": [
+      "carriera"
+    ],
+    "text": "Cosa guarda davvero un recruiter nei primi [numero] secondi di un CV.",
+    "example": "Cosa guarda davvero un recruiter nei primi 7 secondi di un CV.",
+    "source": "curated"
+  },
+  {
+    "id": "h096",
+    "type": "storia",
+    "niches": [
+      "carriera"
+    ],
+    "text": "Ho chiesto un aumento del [percentuale]. Me l'hanno dato. Ecco cosa ho detto.",
+    "example": "Ho chiesto un aumento del 25%. Me l'hanno dato. Ecco cosa ho detto.",
+    "source": "curated"
+  },
+  {
+    "id": "h097",
+    "type": "errore",
+    "niches": [
+      "carriera"
+    ],
+    "text": "La risposta che fa perdere più colloqui: [risposta].",
+    "example": "La risposta che fa perdere più colloqui: \"Il mio difetto? Sono troppo perfezionista.\"",
+    "source": "curated"
+  },
+  {
+    "id": "h098",
+    "type": "contrarian",
+    "niches": [
+      "carriera"
+    ],
+    "text": "Il CV perfetto non esiste. Esiste [cosa].",
+    "example": "Il CV perfetto non esiste. Esiste il CV giusto per quella posizione.",
+    "source": "curated"
+  },
+  {
+    "id": "h099",
+    "type": "avvertimento",
+    "niches": [
+      "carriera"
+    ],
+    "text": "Prima di accettare un'offerta, fai queste [numero] domande.",
+    "example": "Prima di accettare un'offerta, fai queste 4 domande.",
+    "source": "curated"
+  },
+  {
+    "id": "h100",
+    "type": "contrarian",
+    "niches": [
+      "leadership"
+    ],
+    "text": "Il tuo team non ha un problema di motivazione. Ha un problema di [cosa].",
+    "example": "Il tuo team non ha un problema di motivazione. Ha un problema di chiarezza.",
+    "source": "curated"
+  },
+  {
+    "id": "h101",
+    "type": "storia",
+    "niches": [
+      "leadership"
+    ],
+    "text": "La riunione in cui ho capito di essere io il collo di bottiglia.",
+    "example": "La riunione in cui ho capito di essere io il collo di bottiglia.",
+    "source": "curated"
+  },
+  {
+    "id": "h102",
+    "type": "lista",
+    "niches": [
+      "leadership"
+    ],
+    "text": "[Numero] frasi che un buon manager non dice mai.",
+    "example": "6 frasi che un buon manager non dice mai.",
+    "source": "curated"
+  },
+  {
+    "id": "h103",
+    "type": "come-fare",
+    "niches": [
+      "leadership"
+    ],
+    "text": "Come delego un progetto senza doverlo poi rifare: [numero] passaggi.",
+    "example": "Come delego un progetto senza doverlo poi rifare: 3 passaggi.",
+    "source": "curated"
+  },
+  {
+    "id": "h104",
+    "type": "domanda",
+    "niches": [
+      "leadership"
+    ],
+    "text": "Se domani sparissi per [tempo], il tuo team cosa farebbe?",
+    "example": "Se domani sparissi per due settimane, il tuo team cosa farebbe?",
+    "source": "curated"
+  },
+  {
+    "id": "h105",
+    "type": "risultato",
+    "niches": [
+      "ecommerce"
+    ],
+    "text": "Conversion rate dal [X]% al [Y]% cambiando [elemento].",
+    "example": "Conversion rate dall'1,2% al 2,9% cambiando la scheda prodotto.",
+    "source": "curated"
+  },
+  {
+    "id": "h106",
+    "type": "errore",
+    "niches": [
+      "ecommerce"
+    ],
+    "text": "Stai guardando il ROAS. Dovresti guardare [metrica].",
+    "example": "Stai guardando il ROAS. Dovresti guardare il margine per ordine dopo resi e spedizioni.",
+    "source": "curated"
+  },
+  {
+    "id": "h107",
+    "type": "lista",
+    "niches": [
+      "ecommerce"
+    ],
+    "text": "[Numero] cose che i brand da [fatturato] fanno diversamente.",
+    "example": "5 cose che i brand da 10 milioni fanno diversamente.",
+    "source": "curated"
+  },
+  {
+    "id": "h108",
+    "type": "contrarian",
+    "niches": [
+      "ecommerce"
+    ],
+    "text": "Il tuo e-commerce non ha un problema di traffico. Ha un problema di [cosa].",
+    "example": "Il tuo e-commerce non ha un problema di traffico. Ha un problema di offerta.",
+    "source": "curated"
+  },
+  {
+    "id": "h109",
+    "type": "segreto",
+    "niches": [
+      "ecommerce"
+    ],
+    "text": "Ho visto i numeri di [numero] e-commerce italiani. Ecco cosa hanno in comune quelli che crescono.",
+    "example": "Ho visto i numeri di 40 e-commerce italiani. Ecco cosa hanno in comune quelli che crescono.",
+    "source": "curated"
+  },
+  {
+    "id": "h110",
+    "type": "risultato",
+    "niches": [
+      "immobiliare"
+    ],
+    "text": "Ho comprato il mio primo immobile con [cifra]. Ecco come ho fatto i conti.",
+    "example": "Ho comprato il mio primo immobile con 15.000 €. Ecco come ho fatto i conti.",
+    "source": "curated"
+  },
+  {
+    "id": "h111",
+    "type": "errore",
+    "niches": [
+      "immobiliare"
+    ],
+    "text": "L'errore che fa perdere soldi a chi investe nel mattone: [errore].",
+    "example": "L'errore che fa perdere soldi a chi investe nel mattone: guardare il prezzo e non il rendimento netto.",
+    "source": "curated"
+  },
+  {
+    "id": "h112",
+    "type": "contrarian",
+    "niches": [
+      "immobiliare"
+    ],
+    "text": "L'immobile più bello raramente è il miglior investimento.",
+    "example": "L'immobile più bello raramente è il miglior investimento.",
+    "source": "curated"
+  },
+  {
+    "id": "h113",
+    "type": "lista",
+    "niches": [
+      "immobiliare"
+    ],
+    "text": "[Numero] domande da fare prima di firmare una proposta d'acquisto.",
+    "example": "7 domande da fare prima di firmare una proposta d'acquisto.",
+    "source": "curated"
+  },
+  {
+    "id": "h114",
+    "type": "confronto",
+    "niches": [
+      "immobiliare"
+    ],
+    "text": "Affitto breve vs affitto lungo: i numeri veri di [periodo].",
+    "example": "Affitto breve vs affitto lungo: i numeri veri di 12 mesi.",
+    "source": "curated"
+  }
+]

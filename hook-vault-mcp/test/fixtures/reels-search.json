@@ -1,0 +1,43 @@
+{
+  "success": true,
+  "credits_remaining": 100,
+  "credits_charged": 1,
+  "reels": [
+    {
+      "id": "1",
+      "shortcode": "AAA111",
+      "url": "https://www.instagram.com/reel/AAA111/",
+      "caption": "3 errori che ti costano clienti #marketing #business\n\nIl primo è il più comune.",
+      "video_view_count": 120000,
+      "like_count": 4800,
+      "comment_count": 200,
+      "video_duration": 41.2,
+      "is_video": true,
+      "product_type": "clips",
+      "taken_at": "2026-09-01T10:00:00.000Z",
+      "owner": { "username": "creator_uno", "full_name": "Creator Uno", "is_verified": true },
+      "clips_music_attribution_info": { "song_name": "Original audio", "artist_name": "creator_uno", "uses_original_audio": true }
+    },
+    {
+      "id": "2",
+      "shortcode": "BBB222",
+      "url": "https://www.instagram.com/reel/BBB222/",
+      "caption": "Why most agencies stay small",
+      "video_view_count": 3000,
+      "like_count": 90,
+      "comment_count": 10,
+      "video_duration": 25,
+      "is_video": true,
+      "taken_at": "2026-08-01T10:00:00.000Z",
+      "owner": { "username": "creator_due", "is_verified": false }
+    },
+    {
+      "id": "3",
+      "shortcode": "CCC333",
+      "caption": "",
+      "is_video": false,
+      "owner": { "username": "foto" }
+    }
+  ],
+  "next_page": null
+}

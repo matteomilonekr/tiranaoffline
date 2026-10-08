@@ -1,0 +1,93 @@
+[
+  {
+    "id": "business-coaching",
+    "name": "Business & Coaching",
+    "description": "Coach, consulenti e formatori che vendono competenze e programmi.",
+    "linkedin_audience": "Founder e professionisti che vogliono crescere senza lavorare di più.",
+    "search_queries": ["business coach", "coaching business tips", "business coach italia"]
+  },
+  {
+    "id": "marketing",
+    "name": "Marketing & Advertising",
+    "description": "Ads, funnel, contenuti, brand e acquisizione clienti.",
+    "linkedin_audience": "Marketing manager, founder e titolari di PMI che comprano traffico.",
+    "search_queries": ["marketing tips", "facebook ads strategy", "marketing digitale"]
+  },
+  {
+    "id": "vendite",
+    "name": "Vendite & B2B",
+    "description": "Sales, closing, prospecting, outbound e trattative.",
+    "linkedin_audience": "Sales manager, SDR, founder che vendono servizi ad alto ticket.",
+    "search_queries": ["sales tips", "how to close clients", "tecniche di vendita"]
+  },
+  {
+    "id": "ai-tech",
+    "name": "AI & Tecnologia",
+    "description": "Intelligenza artificiale, tool, automazioni e produttività tecnica.",
+    "linkedin_audience": "Professionisti e aziende che vogliono usare l'AI per lavorare meglio.",
+    "search_queries": ["ai tools for business", "chatgpt tips", "intelligenza artificiale"]
+  },
+  {
+    "id": "personal-branding",
+    "name": "Personal Branding & Creator",
+    "description": "Crescita organica, contenuti, audience e posizionamento personale.",
+    "linkedin_audience": "Professionisti che vogliono diventare il riferimento del loro settore.",
+    "search_queries": ["personal branding", "content creator tips", "personal branding linkedin"]
+  },
+  {
+    "id": "imprenditoria",
+    "name": "Imprenditoria & Startup",
+    "description": "Fondare, scalare e gestire un'azienda: lezioni, errori, numeri.",
+    "linkedin_audience": "Founder, aspiranti imprenditori e investitori.",
+    "search_queries": ["entrepreneur advice", "startup founder lessons", "imprenditore"]
+  },
+  {
+    "id": "agenzie-freelance",
+    "name": "Agenzie & Freelance",
+    "description": "Agenzie di servizi, freelance, acquisizione clienti e pricing.",
+    "linkedin_audience": "Titolari di agenzia e freelance che vogliono clienti migliori e margini più alti.",
+    "search_queries": ["agency owner tips", "freelance clients", "smma agency"]
+  },
+  {
+    "id": "finanza",
+    "name": "Finanza & Investimenti",
+    "description": "Finanza personale, investimenti, risparmio e soldi in azienda.",
+    "linkedin_audience": "Professionisti e imprenditori che vogliono gestire meglio il denaro.",
+    "search_queries": ["personal finance tips", "investing for beginners", "finanza personale"]
+  },
+  {
+    "id": "produttivita",
+    "name": "Produttività & Mindset",
+    "description": "Abitudini, focus, gestione del tempo e mentalità.",
+    "linkedin_audience": "Manager e professionisti sotto pressione che vogliono più risultati con meno caos.",
+    "search_queries": ["productivity tips", "mindset motivation", "produttività"]
+  },
+  {
+    "id": "carriera",
+    "name": "Carriera & Lavoro",
+    "description": "Colloqui, CV, aumenti di stipendio, cambio lavoro e HR.",
+    "linkedin_audience": "Dipendenti, candidati e recruiter.",
+    "search_queries": ["career advice", "job interview tips", "colloquio di lavoro"]
+  },
+  {
+    "id": "leadership",
+    "name": "Leadership & Management",
+    "description": "Gestione dei team, delega, cultura aziendale e decisioni.",
+    "linkedin_audience": "Manager, team leader e founder con persone da guidare.",
+    "search_queries": ["leadership tips", "management advice", "leadership aziendale"]
+  },
+  {
+    "id": "ecommerce",
+    "name": "E-commerce & DTC",
+    "description": "Shopify, brand DTC, conversion rate, prodotti e marketplace.",
+    "linkedin_audience": "Founder e marketer di brand e-commerce.",
+    "search_queries": ["ecommerce tips", "shopify store", "ecommerce italia"]
+  },
+  {
+    "id": "immobiliare",
+    "name": "Immobiliare",
+    "description": "Real estate, investimenti immobiliari, agenti e affitti.",
+    "linkedin_audience": "Investitori, agenti immobiliari e proprietari.",
+    "search_queries": ["real estate investing", "real estate agent tips", "investimenti immobiliari"]
+  }
+]
