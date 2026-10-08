@@ -38,6 +38,7 @@ test("ogni gancio del database ha tipo, nicchie valide ed esempio", () => {
 test("estrae il gancio dalla prima riga senza hashtag", () => {
   assert.equal(extractHook("3 errori che ti costano clienti #marketing #business\n\naltro"), "3 errori che ti costano clienti");
   assert.equal(extractHook("#solo #hashtag\nVera prima riga"), "Vera prima riga");
+  assert.equal(extractHook("𝟏𝟎𝟏 𝐉𝐨𝐛 𝐐𝐮𝐞𝐬𝐭𝐢𝐨𝐧𝐬"), "101 Job Questions");
   const long = "Questa è una frase iniziale abbastanza lunga da essere tagliata. " + "parole ".repeat(40);
   assert.equal(extractHook(long), "Questa è una frase iniziale abbastanza lunga da essere tagliata.");
 });
@@ -76,8 +77,18 @@ test("la trascrizione sostituisce il gancio della caption", () => {
   const text = extractTranscript(fixture("transcript.json"));
   const next = applyTranscript(v, text);
   assert.equal(next.hook_source, "transcript");
-  assert.equal(next.hook, "Smetti di inseguire clienti che non ti pagano.");
+  assert.equal(next.hook, "Smetti di inseguire clienti che non ti pagano. Ecco perché il tuo funnel non converte.");
   assert.ok(next.hook_types.includes("contrarian"));
+  assert.equal(next.transcript_language, "it");
+});
+
+test("una trascrizione in alfabeto non latino non sostituisce il gancio", () => {
+  const v = normalizeReel(extractReels(fixture("reels-search.json"))[1], { niche: "vendite" });
+  const next = applyTranscript(v, "हेलो, हाँ जी सर। सर, प्रपोजल भेजा था आपको, क्या हो रहा है सर? first order");
+  assert.equal(next.hook, "Why most agencies stay small");
+  assert.equal(next.hook_source, "caption");
+  assert.equal(next.transcript_language, "other");
+  assert.equal(next.language, "en");
 });
 
 test("compila i segnaposto ignorando maiuscole e accenti", () => {

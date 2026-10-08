@@ -4,7 +4,7 @@ Server MCP per creare contenuti LinkedIn partendo da ciò che funziona su Instag
 Dà a Claude (o a qualsiasi client MCP) accesso a:
 
 - **Database di ganci**: 114 template in italiano con `[segnaposto]` ed esempio già compilato, divisi in 12 tipi (contro-intuitivo, lista, storia, errore, risultato, domanda…) e in 13 nicchie.
-- **Database di reel Instagram reali** divisi per nicchia: views, like, commenti, durata, creator, gancio estratto (dalla trascrizione del parlato quando disponibile) e tipo di gancio. Vedi [Dati inclusi](#dati-inclusi).
+- **Database di 677 reel Instagram reali** divisi per nicchia (circa 50 per nicchia, 83 sopra le 100.000 views): views, like, commenti, durata, creator, gancio estratto (dalla trascrizione del parlato per 69 reel) e tipo di gancio. Vedi [Dati inclusi](#dati-inclusi).
 - **Strumenti LinkedIn**: brief per post di testo, caroselli e video, trasformazione di un reel in post, punteggio dell'apertura prima del "…altro".
 - **Ampliamento del database** via [ScrapeCreators](https://scrapecreators.com): nuove ricerche per nicchia, import di singoli reel, trascrizioni.
 
@@ -102,12 +102,13 @@ I file in `data/` sono il database di partenza, in sola lettura:
 
 - `niches.json`: 13 nicchie con pubblico LinkedIn e ricerche Instagram predefinite.
 - `hooks.json`: 114 template scritti a mano (50 universali + 5 per nicchia). Sono template, non statistiche: le prove di performance vengono dai reel.
-- `videos.json`: reel raccolti con la ricerca reel di ScrapeCreators (risultati indicizzati da Google) a ottobre 2026.
+- `videos.json`: 677 reel raccolti a ottobre 2026 con la ricerca reel di ScrapeCreators (risultati indicizzati da Google), 3 ricerche × 2 pagine per nicchia. 86 hanno la trascrizione del parlato (i più visti di ogni nicchia, sotto i 2 minuti). 620 sono in inglese e 35 in italiano: i reel mostrano cosa funziona a livello globale, i template di gancio sono già in italiano.
 
 Limiti da conoscere:
 
 - Le views della ricerca reel sono quelle restituite da Instagram al momento della raccolta e cambiano nel tempo. Il campione è quello trovato dalle ricerche per parola chiave, non l'intero Instagram.
-- Il tipo di gancio è assegnato con regole (italiano e inglese), non da un modello: va letto come etichetta indicativa.
+- Il tipo di gancio è assegnato con regole (italiano e inglese), non da un modello: va letto come etichetta indicativa. Circa il 40% dei reel ha un tipo riconosciuto; gli altri hanno caption descrittive più che ganci.
+- La ricerca per parola chiave porta anche qualche reel fuori tema o in altre lingue (hindi, arabo…). Le trascrizioni in alfabeti non latini restano salvate ma non sostituiscono il gancio della caption.
 - I punti di troncamento del "…altro" (circa 140 caratteri su mobile, 210 su desktop) sono indicativi e LinkedIn li modifica nel tempo.
 
 Per aggiornare il database incluso con risposte grezze di ScrapeCreators salvate su file:

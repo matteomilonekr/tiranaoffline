@@ -106,6 +106,11 @@ const EN_WORDS = new Set(
 
 /** Stima grezza della lingua (it, en o altro) contando parole funzionali. */
 export function detectLanguage(text) {
+  // Testi in alfabeti non latini (hindi, arabo, tamil...) non sono né it né en,
+  // anche se contengono qualche parola inglese.
+  const letters = String(text || "").match(/\p{L}/gu) ?? [];
+  const latin = letters.filter((c) => /\p{Script=Latin}/u.test(c)).length;
+  if (letters.length > 0 && latin / letters.length < 0.6) return "other";
   const words = String(text || "")
     .toLowerCase()
     .replace(/[^\p{L}\s']/gu, " ")
@@ -130,7 +135,9 @@ export function detectLanguage(text) {
  */
 export function extractHook(text, maxLength = 180) {
   if (!text) return "";
+  // NFKC riporta a lettere normali i caratteri "decorativi" (𝐉𝐨𝐛 → Job).
   const lines = String(text)
+    .normalize("NFKC")
     .split(/\r?\n/)
     .map((l) => l.trim())
     .filter((l) => l && !/^([#@][\p{L}\p{N}_.]+\s*)+$/u.test(l));
@@ -202,17 +209,44 @@ export function normalizeReel(raw, meta = {}) {
   };
 }
 
-/** Aggiorna gancio e tipi quando arriva la trascrizione del video. */
+/**
+ * Il gancio parlato: le prime frasi della trascrizione, finché non si arriva
+ * ad almeno ~60 caratteri (una frase sola come "Excuse me guys." non basta).
+ */
+export function extractSpokenHook(transcript, minLength = 60, maxLength = 220) {
+  const sentences = String(transcript || "")
+    .normalize("NFKC")
+    .replace(/\s+/g, " ")
+    .trim()
+    .split(/(?<=[.!?…])\s+/u)
+    .filter(Boolean);
+  let hook = "";
+  for (const sentence of sentences.slice(0, 3)) {
+    const next = hook ? `${hook} ${sentence}` : sentence;
+    if (hook && next.length > maxLength) break;
+    hook = next;
+    if (hook.length >= minLength) break;
+  }
+  if (hook.length > maxLength) hook = hook.slice(0, maxLength).replace(/\s+\S*$/, "") + "…";
+  return hook;
+}
+
+/**
+ * Aggiorna gancio e tipi quando arriva la trascrizione del video. Se il parlato
+ * non è in italiano o inglese, la trascrizione resta ma il gancio della caption
+ * non viene sostituito.
+ */
 export function applyTranscript(video, transcript) {
   if (!transcript) return video;
-  const spokenHook = extractHook(transcript.replace(/([.!?])\s+/g, "$1\n"), 200);
-  const next = { ...video, transcript };
-  if (spokenHook) {
+  const transcriptLanguage = detectLanguage(transcript);
+  const next = { ...video, transcript, transcript_language: transcriptLanguage };
+  const spokenHook = extractSpokenHook(transcript);
+  const usable = spokenHook && detectLanguage(spokenHook) !== "other";
+  if (usable && (transcriptLanguage === "it" || transcriptLanguage === "en")) {
     next.hook = spokenHook;
     next.hook_source = "transcript";
     next.hook_types = classifyHook(spokenHook).map((c) => c.type);
-    const lang = detectLanguage(transcript);
-    if (lang === "it" || lang === "en") next.language = lang;
+    next.language = transcriptLanguage;
   }
   return next;
 }
@@ -234,6 +268,7 @@ export function mergeVideo(existing, incoming) {
     hook: incoming.transcript ? incoming.hook : existing.transcript ? existing.hook : incoming.hook,
     hook_source: incoming.transcript ? incoming.hook_source : existing.transcript ? existing.hook_source : incoming.hook_source,
     hook_types: incoming.transcript ? incoming.hook_types : existing.transcript ? existing.hook_types : incoming.hook_types,
+    language: !incoming.transcript && existing.transcript ? existing.language : incoming.language,
     collected_at: existing.collected_at,
   };
 }

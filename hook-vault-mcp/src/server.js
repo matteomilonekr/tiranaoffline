@@ -86,7 +86,11 @@ export function createServer(deps = {}) {
       result({
         niches: store.listNiches(),
         hook_types: HOOK_TYPES.map(({ id, label, description }) => ({ id, label, description })),
-        totals: { hooks: store.hooks.length, videos: store.videos.length },
+        totals: {
+          hooks: store.hooks.length,
+          universal_hooks: store.hooks.filter((h) => h.niches.length === 0).length,
+          videos: store.videos.length,
+        },
         scrapecreators_configured: scraper.configured,
       })
     )

@@ -148,7 +148,7 @@ export class Store {
         name: n.name,
         description: n.description,
         linkedin_audience: n.linkedin_audience,
-        hooks: this.hooks.filter((h) => h.niches.includes(n.id)).length,
+        niche_hooks: this.hooks.filter((h) => h.niches.includes(n.id)).length,
         videos: videos.length,
         videos_with_transcript: videos.filter((v) => v.transcript).length,
         median_views: this.nicheMedians.get(n.id) ?? null,
