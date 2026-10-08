@@ -1,0 +1,25 @@
+{
+  "name": "linkedin-mcp",
+  "version": "1.0.0",
+  "description": "MCP server per creare e pubblicare contenuti su LinkedIn (post, immagini, carousel PDF, video, articoli, sondaggi, bozze).",
+  "type": "module",
+  "bin": {
+    "linkedin-mcp": "src/index.js",
+    "linkedin-mcp-cli": "src/cli.js"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "auth": "node src/cli.js auth",
+    "status": "node src/cli.js status",
+    "publish-due": "node src/cli.js publish-due",
+    "test": "node --test test/*.test.mjs"
+  },
+  "engines": {
+    "node": ">=20.12"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.1",
+    "zod": "^4.4.3"
+  }
+}
