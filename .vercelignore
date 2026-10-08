@@ -20,3 +20,7 @@ api/paypal/config.js
 api/paypal/create-order.js
 api/paypal/capture-order.js
 api/paypal/order-details.js
+
+# Skill per agenti AI (Claude Code): non servono al deploy
+.claude
+skills-lock.json
