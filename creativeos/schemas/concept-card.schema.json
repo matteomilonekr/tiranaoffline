@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "creativeos/concept-card.schema.json",
+  "title": "ConceptCard",
+  "description": "Unita' di lavoro che passa fra gli agenti: dal concept alla creative in test. Ogni campo indica il tool che lo produce.",
+  "type": "object",
+  "required": ["concept_id", "origin", "state", "arc", "hook"],
+  "properties": {
+    "concept_id": { "type": "string" },
+    "origin": {
+      "enum": ["account_winner", "db_ads", "libreria", "competitor", "generate_hooks", "season"],
+      "description": "account_winner = import_performance; db_ads = search_db_ads; libreria = search_library_ads; competitor = ingest_ads; generate_hooks = esplorazione; season = list_season_concepts."
+    },
+    "state": { "enum": ["seed", "analizzato", "in_test", "validato", "ritirato"] },
+    "source_ad_id": { "type": "string", "description": "ad_id clonabile con duplicate_creative o fidelity_test." },
+    "arc": { "type": "string", "pattern": "^ARC-[1-7]$" },
+    "mechanic": { "type": "string", "description": "Da list_creative_mechanics." },
+    "hook_tactic": { "type": "string", "description": "Da list_hook_tactics." },
+    "visual_format": { "type": "string", "description": "Da list_visual_formats." },
+    "awareness": { "type": "string" },
+    "hook": { "type": "string" },
+    "headline": { "type": "string" },
+    "body": { "type": "string" },
+    "cta": { "type": "string" },
+    "preflight": {
+      "type": "object",
+      "properties": {
+        "esito": { "type": "string" },
+        "decision_id": { "type": "string" }
+      }
+    },
+    "formula": { "type": "object", "description": "palette, grid, typography, imagery da teardown_creative o ad_analysis." },
+    "visual_prompt": { "type": "object", "description": "Output di build_visual_prompt o generate_variants." },
+    "controlled_variable": { "enum": ["baseline", "hook", "layout", "palette", "imagery", "engine"] },
+    "engine": { "type": "string", "description": "Alias di registry/engines.json." },
+    "creatives": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "url": { "type": "string" },
+          "placement": { "enum": ["meta_feed", "meta_story"] },
+          "verdetto": { "enum": ["PASS", "REWORK", "KILL"] },
+          "scorecard": { "type": "object" }
+        }
+      }
+    },
+    "test": {
+      "type": "object",
+      "properties": {
+        "ad_set": { "type": "string" },
+        "rank": { "type": "integer" },
+        "meta_ad_ids": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "evidence": { "type": "object", "description": "Spesa, reach, metriche o scorecard che giustificano lo stato." }
+  }
+}

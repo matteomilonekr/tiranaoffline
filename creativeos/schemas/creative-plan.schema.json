@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "creativeos/creative-plan.schema.json",
+  "title": "CreativePlan",
+  "description": "Output del Planner e input dell'Orchestratore: un DAG di passi, ognuno assegnato a un agente e a un tool del registro.",
+  "type": "object",
+  "required": ["plan_id", "slug", "objective", "brief", "reference_image", "portfolio", "budget", "steps"],
+  "properties": {
+    "plan_id": { "type": "string", "pattern": "^cp-[0-9]{8}-[a-z0-9-]+$" },
+    "slug": { "type": "string", "description": "Tenant AI_Ads, es. scalers." },
+    "objective": { "type": "string" },
+    "brief": {
+      "type": "object",
+      "required": ["brand", "prodotto", "mercato", "obiettivo"],
+      "properties": {
+        "brand": { "type": "string" },
+        "nicchia": { "type": "string" },
+        "mercato": { "enum": ["it", "ww"] },
+        "prodotto": { "type": "string" },
+        "obiettivo": { "type": "string" },
+        "offerta": { "type": "object", "description": "Solo valori dichiarati dal cliente. Vuota = nessun prezzo, percentuale o data nel copy." },
+        "awareness": { "enum": ["Unaware", "Problem-Aware", "Solution-Aware", "Product-Aware", "Most Aware"] }
+      }
+    },
+    "reference_image": { "type": "string", "description": "Moodboard o asset di brand, URL https o data URI. Obbligatoria per ogni render." },
+    "portfolio": {
+      "type": "object",
+      "required": ["exploit", "iterate", "explore"],
+      "properties": {
+        "exploit": { "type": "number", "minimum": 0, "maximum": 1 },
+        "iterate": { "type": "number", "minimum": 0, "maximum": 1 },
+        "explore": { "type": "number", "minimum": 0, "maximum": 1 }
+      }
+    },
+    "budget": {
+      "type": "object",
+      "required": ["max_usd"],
+      "properties": {
+        "max_usd": { "type": "number", "minimum": 0 },
+        "max_brandsearch_credits": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "engines": {
+      "type": "object",
+      "description": "Motori ammessi e route scelte. I modelli explicit_only vanno nominati qui per poter partire.",
+      "properties": {
+        "allowed": { "type": "array", "items": { "type": "string" } },
+        "routes": { "type": "array", "items": { "type": "string" } },
+        "tournament": { "type": "boolean" }
+      }
+    },
+    "steps": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "agent", "tool", "lane", "depends_on", "cost", "consent"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^S[0-9]{2}$" },
+          "agent": { "type": "string" },
+          "tool": { "type": "string", "description": "Nome del tool AI_Ads senza prefisso, oppure server:tool per i satelliti." },
+          "lane": { "enum": ["sistema", "exploit", "plan", "explore", "produzione", "learn"] },
+          "depends_on": { "type": "array", "items": { "type": "string" } },
+          "inputs": { "type": "object" },
+          "fan_out": { "type": "string", "description": "Riferimento a un output precedente su cui iterare, es. S04.concepts[*]." },
+          "cost": { "enum": ["C0", "C1", "C2", "C3", "C4"] },
+          "est_usd": { "type": "number", "minimum": 0 },
+          "consent": { "enum": ["nessuno", "budget", "esplicito", "chiave"] },
+          "gate": { "type": "string", "description": "Gate da applicare all'output: preflight, quality, fidelity." },
+          "on_fail": { "enum": ["stop", "skip", "rework", "fallback_engine", "human"] }
+        }
+      }
+    },
+    "outputs": { "type": "array", "items": { "type": "string" } }
+  }
+}
