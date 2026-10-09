@@ -7,7 +7,7 @@ import { buildStacks, aggregateMetrics, SENSITIVITY } from './stacks.js';
 import { FUNNEL_LEVELS, funnelContext, classifyFunnel } from './funnel.js';
 import { daysBetween } from './format.js';
 
-export const ARRANGEMENTS = ['funnel', 'format', 'angle', 'persona', 'creator', 'hook', 'campaign'];
+export const ARRANGEMENTS = ['funnel', 'format', 'angle', 'persona', 'creator', 'hook', 'campaign', 'matrix'];
 
 // Reference categorical palette, dark steps, fixed order (validated for CVD separation).
 export const GROUP_COLORS = ['#3987e5', '#d95926', '#199e70', '#c98500', '#d55181', '#008300', '#9085e9', '#e66767'];

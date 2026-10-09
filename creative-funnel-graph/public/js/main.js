@@ -14,6 +14,7 @@ import { t, setLanguage, detectLanguage, localeFor, applyStatic } from './i18n.j
 import * as fmt from './format.js';
 import * as ui from './ui.js';
 import { renderDetail, closeDetail } from './detail.js';
+import { MatrixView, matrixDefaults, validThresholds } from './matrix.js';
 import { openConnectModal, openInstallModal, openSettingsModal } from './modals.js';
 import { BRAND } from './brand.js';
 
@@ -82,6 +83,7 @@ const state = {
 };
 
 let scene = null;
+let matrix = null;
 
 // ---------- helpers ----------
 
@@ -291,7 +293,10 @@ async function buildArtwork(cards) {
       }
     }
     const aspect = rep.creative?.aspect || (source.naturalWidth || source.width) / (source.naturalHeight || source.height) || 0.8;
-    state.artwork.set(artKey(s), buildCardCanvases(source, { aspect, count: s.count, dashed: s.funnel.method !== 'segments', width }));
+    const art = buildCardCanvases(source, { aspect, count: s.count, dashed: s.funnel.method !== 'segments', width });
+    // The matrix draws the creative itself, at its own size.
+    art.source = source;
+    state.artwork.set(artKey(s), art);
   });
   const byStack = new Map();
   for (const c of cards) byStack.set(c.stack.id, state.artwork.get(artKey(c.stack)));
@@ -304,6 +309,11 @@ function artKey(stack) {
 
 async function rebuildView() {
   const model = state.model;
+  const isMatrix = state.arrangement === 'matrix';
+  document.body.classList.toggle('matrix-mode', isMatrix);
+  $('matrix').hidden = !isMatrix;
+  scene?.setPaused(isMatrix);
+  if (isMatrix) return showMatrix();
   state.groups = groupStacks(model, state.arrangement);
   if (state.focus && !state.groups.some((g) => g.key === state.focus && g.count > 0)) state.focus = null;
   const layout = computeLayout(state.groups, {
@@ -319,6 +329,31 @@ async function rebuildView() {
     scene.setFocus(state.focus);
   }
   ui.buildRingLabels(state.groups, pickGroup);
+  renderOverlays();
+  ui.setEmpty(model.stacks.length === 0);
+}
+
+/** Spend × ROAS: the creatives on two axes, split by the lines the user sets for this account. */
+async function showMatrix() {
+  const model = state.model;
+  state.groups = [];
+  state.focus = null;
+  ui.setLoading(t('load.building'));
+  await buildArtwork(model.stacks.map((stack) => ({ stack, h: 1 })));
+  const sources = new Map(model.stacks.map((s) => [s.id, state.artwork.get(artKey(s))?.source]));
+  const defaults = matrixDefaults(model.stacks);
+  const saved = store.get('matrix:' + state.accountId, null);
+  if (!matrix) {
+    matrix = new MatrixView($('matrix'), {
+      t,
+      money: (v) => fmt.money(v, currency()),
+      roas: fmt.roas,
+      onSelect: (stack) => openDetail(stack, null),
+      onChange: (th) => store.set('matrix:' + state.accountId, th),
+    });
+  }
+  matrix.setData({ stacks: model.stacks, thresholds: validThresholds(saved) ? saved : defaults, defaults, sources });
+  matrix.setSelected(state.selected);
   renderOverlays();
   ui.setEmpty(model.stacks.length === 0);
 }
@@ -357,18 +392,24 @@ function selectCard(card) {
     if (!$('detail').hidden) closeDrawer();
     return;
   }
-  state.selected = card.stack.id;
-  scene?.setSelected(state.selected);
   if (state.focus !== card.group) {
     state.focus = card.group;
     scene?.setFocus(state.focus);
     renderOverlays();
   }
-  const group = state.groups.find((g) => g.key === card.group) || null;
+  openDetail(card.stack, state.groups.find((g) => g.key === card.group) || null);
+}
+
+function openDetail(stack, group) {
+  state.selected = stack.id;
+  scene?.setSelected(state.selected);
+  matrix?.setSelected(state.selected);
   const stage = $('stage');
   if (stage.clientWidth > 900) scene?.setInsetRight(Math.min(460, stage.clientWidth));
+  // On a wide screen the matrix makes room for the drawer instead of sitting beneath it.
+  $('matrix').classList.toggle('beside-detail', stage.clientWidth > 900);
   renderDetail($('detail'), {
-    stack: card.stack,
+    stack,
     group,
     model: state.model,
     live: !isDemo(),
@@ -381,6 +422,8 @@ function selectCard(card) {
 function closeDrawer() {
   state.selected = null;
   scene?.setSelected(null);
+  matrix?.setSelected(null);
+  $('matrix').classList.remove('beside-detail');
   scene?.setInsetRight(0);
   closeDetail($('detail'));
 }
@@ -472,10 +515,19 @@ function openAccountMenu() {
 }
 
 function openArrangeMenu() {
-  const item = (a) => ({ label: t('arr.' + a), checked: state.arrangement === a, onSelect: () => setArrangement(a) });
+  const item = (a) => ({ label: t('arr.' + a), sub: a === 'matrix' ? t('arr.matrixSub') : undefined, checked: state.arrangement === a, onSelect: () => setArrangement(a) });
+  const some = (list) => list.filter((a) => ARRANGEMENTS.includes(a)).map(item);
+  const detected = some(['format', 'angle', 'persona', 'creator', 'hook']);
+  const campaign = some(['campaign']);
   ui.openMenu(
     $('arrange-chip'),
-    [{ heading: t('arrange.title') }, item('funnel'), { separator: true }, { heading: t('arrange.detected') }, ...['format', 'angle', 'persona', 'creator', 'hook'].map(item), { separator: true }, item('campaign')],
+    [
+      { heading: t('arrange.title') },
+      item('funnel'),
+      ...(detected.length ? [{ separator: true }, { heading: t('arrange.detected') }, ...detected] : []),
+      ...(campaign.length ? [{ separator: true }, ...campaign] : []),
+      ...(ARRANGEMENTS.includes('matrix') ? [{ separator: true }, { heading: t('arrange.performance') }, item('matrix')] : []),
+    ],
     { align: 'right' },
   );
 }
@@ -569,6 +621,12 @@ function applyLanguage(code) {
   applyStatic();
   updateControlLabels();
   renderHeader();
+  // The matrix writes its labels once; build it again in the new language.
+  if (matrix) {
+    matrix.destroy();
+    matrix = null;
+    if (state.arrangement === 'matrix' && state.model) showMatrix().then(() => ui.setLoading(null));
+  }
 }
 
 function updateControlLabels() {
@@ -680,7 +738,15 @@ window.__funnelGraph = {
   },
   DEMO_ACCOUNT,
   select(stackId) {
+    if (state.arrangement === 'matrix') {
+      const stack = state.model?.stacks.find((s) => s.id === stackId) || state.model?.stacks[0];
+      if (stack) openDetail(stack, null);
+      return;
+    }
     const card = state.layout?.cards.find((c) => c.stack.id === stackId) || state.layout?.cards[0];
     if (card) selectCard(card);
+  },
+  get matrix() {
+    return matrix;
   },
 };

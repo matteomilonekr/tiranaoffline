@@ -307,6 +307,12 @@ export class FunnelGraphScene {
     this._applyViewGoal(false);
   }
 
+  /** Stops drawing while another view covers the stage. */
+  setPaused(paused) {
+    this.paused = !!paused;
+    this._last = performance.now();
+  }
+
   /** Keeps the scene centred in the part of the stage a side panel leaves visible. */
   setInsetRight(px) {
     this.insetRight = Math.max(0, px || 0);
@@ -456,7 +462,7 @@ export class FunnelGraphScene {
 
   _loop(now) {
     this._raf = requestAnimationFrame((t) => this._loop(t));
-    if (document.hidden) return;
+    if (document.hidden || this.paused) return;
     const dt = Math.min(0.05, (now - this._last) / 1000);
     this._last = now;
 
