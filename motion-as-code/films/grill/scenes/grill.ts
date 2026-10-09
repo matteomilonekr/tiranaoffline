@@ -247,7 +247,8 @@ export default class Grill extends Scene {
     for (const [kind2, id, t0, tgt, col] of marks) {
       if (kind2 === 'qs') { // ticks for the questions answered
         const g = (A as Record<string, Box>)['grill-me-d'];
-        if (g) for (let i = 0; i < 4; i++) { const tq = t0 + i * 0.5; if (t >= tq) sticker(x, t, tq, `D${i + 1} ✓`, g.x + 80 + i * 150, g.y + 50, { fill: GREEN, size: 24, rot: (i % 2 ? 0.05 : -0.05) }); }
+        const ti = (A as Record<string, Box>)['grill-me'];
+        if (g && ti) for (let i = 0; i < 4; i++) { const tq = t0 + i * 0.5; if (t >= tq) sticker(x, t, tq, `D${i + 1} ✓`, ti.x + ti.w + 90 + i * 120, ti.y + ti.h / 2 - 4, { fill: GREEN, size: 24, rot: (i % 2 ? 0.05 : -0.05) }); }
         continue;
       }
       const b = (A as Record<string, Box>)[kind2 === 'sticker' ? tgt! : id];
@@ -255,7 +256,7 @@ export default class Grill extends Scene {
       if (kind2 === 'circle') circleMark(x, t, t0, b.x + b.w / 2, b.y + b.h / 2, b.w, b.h);
       else if (kind2 === 'underline') underline(x, t, t0, b.x, b.y + b.h, b.w, col ?? '#e2603a');
       else if (kind2 === 'box') boxMark(x, t, t0, b.x, b.y, b.w, b.h);
-      else if (kind2 === 'sticker') sticker(x, t, t0, id, Math.min(W - 200, b.x + b.w + 40), b.y + b.h / 2 - 6, { fill: col ?? RED, size: 30, rot: -0.06 });
+      else if (kind2 === 'sticker') { const sw = id.length * 18 + 34; sticker(x, t, t0, id, Math.min(W - 70 - sw / 2, b.x + b.w + 24 + sw / 2), b.y + b.h / 2 - 6, { fill: col ?? RED, size: 30, rot: -0.06 }); }
     }
     // the parade along the bottom of the card
     for (let i = 0; i < 5; i++) critter(x, ((i * 230 + t * 40) % (W + 200)) - 100, H - 6, 4, t, { walk: true, hat: (['cap', 'beanie', 'cap', 'hard', 'cap'] as const)[i], a: [BLUE, RED, GREEN, YELLOW, PURPLE][i] });
@@ -691,7 +692,7 @@ export default class Grill extends Scene {
     x.fillStyle = INK; x.fillRect(170, 310, 14, FLOOR - 310); x.fillRect(896, 310, 14, FLOOR - 310);
     box(x, 200, 560, 680, 24, '#a8743f', 3, 3);
     [RED, BLUE, GREEN, YELLOW, PURPLE, ORANGE].forEach((c, i) => { box(x, 230 + i * 108, 470, 70, 90, '#fffdf7', 10, 3); box(x, 226 + i * 108, 456, 78, 26, c, 4, 3); });
-    critter(x, 540, FLOOR - 80, 13, t, { hat: 'beanie', a: RED });
+    critter(x, 540, FLOOR - 205, 13, t, { hat: 'beanie', a: RED });
     box(x, 160, FLOOR - 230, 760, 230, '#c48b52', 6, LW);
     const e = pop(t, this.w.ufficiale, 0.35, 2.4);
     at(x, 890, 150, e, -0.2, () => {

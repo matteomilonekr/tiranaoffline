@@ -8,7 +8,7 @@
   "Così Matt Pocock ha creato una skill che si chiama grill-me.",
   "Prima di scrivere una sola riga, l'IA ti fa una domanda dopo l'altra,",
   "finché ogni parte del piano non è chiara.",
-  "Poi c'è tdd, che scrive prima un test che fallisce, e poi lo fa passare.",
+  "Poi c'è tdd: scrive prima un test che fallisce, e poi lo fa passare.",
   "C'è diagnosing-bugs, un ciclo di debug passo per passo.",
   "E c'è improve-codebase-architecture,",
   "che analizza tutto il progetto e ti dà un report visivo di cosa sistemare.",
