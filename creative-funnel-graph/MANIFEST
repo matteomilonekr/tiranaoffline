@@ -18,6 +18,7 @@ public/js/i18n.js
 public/js/layout.js
 public/js/main.js
 public/js/matrix.js
+public/js/matrix3d.js
 public/js/modals.js
 public/js/model.js
 public/js/naming.js

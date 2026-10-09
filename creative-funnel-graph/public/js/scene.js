@@ -5,6 +5,7 @@
 
 import * as THREE from 'three';
 import { meridianProfile } from './layout.js';
+import { MatrixWorld } from './matrix3d.js';
 
 const CARD_VERT = /* glsl */ `
 varying vec2 vUv;
@@ -19,11 +20,19 @@ uniform sampler2D uSoft;
 uniform float uBlur;
 uniform float uDim;
 uniform float uOpacity;
+uniform float uBorderOn;
+uniform vec3 uBorder;
+uniform vec4 uFrame;
+uniform vec2 uBorderW;
 varying vec2 vUv;
 void main() {
   vec4 a = texture2D(uSharp, vUv);
   vec4 b = texture2D(uSoft, vUv);
   vec4 c = mix(a, b, clamp(uBlur, 0.0, 1.0));
+  // A coloured frame around the creative, in the card's margin (the matrix's quadrant).
+  vec2 out2 = max((uFrame.xy - vUv) / uBorderW, (vUv - uFrame.zw) / uBorderW);
+  float outside = max(out2.x, out2.y);
+  if (uBorderOn > 0.5 && outside > 0.0 && outside < 1.0) c = vec4(uBorder, 1.0);
   float l = dot(c.rgb, vec3(0.299, 0.587, 0.114));
   c.rgb = mix(c.rgb, vec3(l), uDim * 0.6) * (1.0 - uDim * 0.5);
   float alpha = c.a * uOpacity;
@@ -86,9 +95,13 @@ export class FunnelGraphScene {
     this.autoRotate = !window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
     this.interactUntil = 0;
 
-    this.view = { yaw: 0.55, pitch: 0.3, dist: 16, ty: 0.3 };
+    this.view = { yaw: 0.55, pitch: 0.3, dist: 16, tx: 0, ty: 0.3, tz: 0 };
     this.goal = { ...this.view };
     this.userZoom = 1;
+    this.mode = 'funnel';
+    this.matrixWorld = null;
+    this.insets = { top: 0, right: 0, bottom: 0 };
+    this.swayT = 0;
 
     this._tmpRight = new THREE.Vector3();
     this._tmpUp = new THREE.Vector3();
@@ -115,6 +128,14 @@ export class FunnelGraphScene {
   setData(layout, artwork) {
     this._clear();
     this.layout = layout;
+    if (this.mode === 'matrix') {
+      // Back from the matrix: the funnel's own framing, not the matrix's zoom.
+      this.userZoom = 1;
+      this._pitchTouched = false;
+    }
+    this.mode = 'funnel';
+    this.goal.tx = this.goal.tz = 0;
+    this.goal.yaw = this.view.yaw;
 
     // Meridians: the funnel's wireframe.
     const profile = meridianProfile(layout.rings);
@@ -184,10 +205,57 @@ export class FunnelGraphScene {
       this.rings.push({ ring, line, glow, lineOpacity: 0.5, glowOpacity: 0 });
     }
 
-    // Cards.
-    for (const card of layout.cards) {
-      const art = artwork.get(card.stack.id);
-      if (!art) continue;
+    for (const card of layout.cards) this._addCard(card, artwork.get(card.stack.id), null);
+
+    this.appearStart = performance.now();
+    this._applyViewGoal(true);
+  }
+
+  /**
+   * The Spend × ROAS box: the same cards, placed by spend, ROAS and funnel lane. `opts` as
+   * MatrixWorld takes them; `colors` also frames each card in its quadrant's colour.
+   */
+  setMatrix(opts, artwork) {
+    const entering = this.mode !== 'matrix';
+    this._clear();
+    this.layout = null;
+    this.mode = 'matrix';
+    this.focusKey = opts.focus || null;
+    this.colors = opts.colors;
+    this.matrixWorld = new MatrixWorld(opts);
+    this.matrixWorld.setFocus(this.focusKey);
+    this.world.add(this.matrixWorld.group);
+    for (const card of this.matrixWorld.cards) this._addCard(card, artwork.get(card.stack.id), this.colors[card.group]);
+    if (entering) {
+      this.userZoom = 1;
+      this._pitchTouched = false;
+      this.goal.yaw = this.view.yaw = 0.26;
+      this.goal.pitch = this.view.pitch = 0.12;
+      this.swayT = 0;
+      this.appearStart = performance.now();
+    }
+    this._applyViewGoal(entering);
+  }
+
+  /** The matrix's lines moved: planes, quadrants and card frames follow. */
+  setMatrixLines(lines) {
+    const mw = this.matrixWorld;
+    if (!mw) return;
+    mw.setLines(lines);
+    this._refreshBorders();
+    if (this.focusKey) this._applyViewGoal(false);
+  }
+
+  _refreshBorders() {
+    for (const mesh of this.cards) {
+      const hex = this.colors?.[mesh.userData.card.group];
+      if (hex) mesh.material.uniforms.uBorder.value.copy(srgbVec(hex));
+    }
+  }
+
+  _addCard(card, art, borderHex) {
+    {
+      if (!art) return;
       const sharp = new THREE.CanvasTexture(art.sharp);
       sharp.anisotropy = this.maxAniso;
       sharp.minFilter = THREE.LinearMipmapLinearFilter;
@@ -198,7 +266,25 @@ export class FunnelGraphScene {
       const mat = new THREE.ShaderMaterial({
         vertexShader: CARD_VERT,
         fragmentShader: CARD_FRAG,
-        uniforms: { uSharp: { value: sharp }, uSoft: { value: soft }, uBlur: { value: 0.6 }, uDim: { value: 0 }, uOpacity: { value: 0 } },
+        uniforms: {
+          uSharp: { value: sharp },
+          uSoft: { value: soft },
+          uBlur: { value: 0.6 },
+          uDim: { value: 0 },
+          uOpacity: { value: 0 },
+          uBorderOn: { value: borderHex ? 1 : 0 },
+          uBorder: { value: srgbVec(borderHex || '#ffffff') },
+          // The creative's rectangle inside the card canvas, in UV (y up), and the frame's width.
+          uFrame: {
+            value: new THREE.Vector4(
+              art.frame.x / art.outW,
+              1 - (art.frame.y + art.frame.h) / art.outH,
+              (art.frame.x + art.frame.w) / art.outW,
+              1 - art.frame.y / art.outH,
+            ),
+          },
+          uBorderW: { value: new THREE.Vector2((art.frame.x * 0.85) / art.outW, (art.frame.x * 0.85) / art.outH) },
+        },
         transparent: true,
         depthWrite: false,
         side: THREE.DoubleSide,
@@ -216,12 +302,13 @@ export class FunnelGraphScene {
       this.world.add(mesh);
       this.cards.push(mesh);
     }
-
-    this.appearStart = performance.now();
-    this._applyViewGoal(true);
   }
 
   _clear() {
+    if (this.matrixWorld) {
+      this.matrixWorld.dispose();
+      this.matrixWorld = null;
+    }
     for (const obj of [...this.world.children]) {
       this.world.remove(obj);
       if (obj.geometry && obj.geometry !== this.plane) obj.geometry.dispose();
@@ -243,6 +330,7 @@ export class FunnelGraphScene {
   setFocus(key) {
     this.focusKey = key ?? null;
     this.userZoom = 1;
+    this.matrixWorld?.setFocus(this.focusKey);
     this._applyViewGoal(false);
   }
 
@@ -258,21 +346,49 @@ export class FunnelGraphScene {
     this.focusKey = null;
     this.userZoom = 1;
     this._pitchTouched = false;
-    this.goal.yaw = this.view.yaw - (((this.view.yaw - 0.55) % (Math.PI * 2)) + Math.PI * 2) % (Math.PI * 2);
-    this.goal.pitch = 0.3;
+    this.matrixWorld?.setFocus(null);
+    const home = this.mode === 'matrix' ? 0.26 : 0.55;
+    this.goal.yaw = this.view.yaw - (((this.view.yaw - home) % (Math.PI * 2)) + Math.PI * 2) % (Math.PI * 2);
+    this.goal.pitch = this.mode === 'matrix' ? 0.12 : 0.3;
+    this.swayT = 0;
     this._applyViewGoal(false);
+  }
+
+  /** Zoom by a factor, toward the centre (the buttons). */
+  zoomBy(factor) {
+    this._zoomTo(this.userZoom / factor);
+    this._interacted();
+  }
+
+  /** The part of the canvas the overlays leave free: width and height in pixels. */
+  _visible() {
+    const { top, right, bottom } = this.insets;
+    return { w: Math.max(1, this.width - right), h: Math.max(1, this.height - top - bottom) };
   }
 
   _fitDistance(halfW, halfH) {
     const vfov = THREE.MathUtils.degToRad(this.camera.fov);
-    const hfov = 2 * Math.atan(Math.tan(vfov / 2) * this.camera.aspect);
-    return Math.max(halfW / Math.tan(hfov / 2), halfH / Math.tan(vfov / 2));
+    const tan = Math.tan(vfov / 2);
+    const { w, h } = this._visible();
+    return Math.max(halfW / (tan * (w / this.height)), halfH / (tan * (h / this.height)));
   }
 
   _applyViewGoal(instant) {
+    if (this.mode === 'matrix' && this.matrixWorld) {
+      const f = this.matrixWorld.frame(this.focusKey);
+      // The frame is measured on the box's front face, half its depth nearer than its centre.
+      this.goal.dist = (this._fitDistance(f.halfW, f.halfH) + this.matrixWorld.box.D) * this.userZoom;
+      this.goal.tx = f.cx;
+      this.goal.ty = f.cy;
+      this.goal.tz = 0;
+      if (!this._pitchTouched) this.goal.pitch = this.focusKey ? 0.08 : 0.12;
+      if (instant) Object.assign(this.view, this.goal);
+      return;
+    }
     const rings = this.layout?.rings || [];
     if (!rings.length) return;
-    const narrow = this.camera.aspect < 0.85;
+    const vis = this._visible();
+    const narrow = vis.w / vis.h < 0.85;
     if (this.focusKey) {
       const ring = rings.find((r) => r.key === this.focusKey);
       if (ring) {
@@ -307,24 +423,28 @@ export class FunnelGraphScene {
     this._applyViewGoal(false);
   }
 
-  /** Stops drawing while another view covers the stage. */
-  setPaused(paused) {
-    this.paused = !!paused;
-    this._last = performance.now();
-  }
-
   /** Keeps the scene centred in the part of the stage a side panel leaves visible. */
   setInsetRight(px) {
-    this.insetRight = Math.max(0, px || 0);
+    this.setInsets({ ...this.insets, right: Math.max(0, px || 0) });
+  }
+
+  /** Overlays covering the stage's top, right and bottom: the scene centres in what is left. */
+  setInsets({ top = 0, right = 0, bottom = 0 }) {
+    const next = { top: Math.max(0, top), right: Math.max(0, right), bottom: Math.max(0, bottom) };
+    if (next.top === this.insets.top && next.right === this.insets.right && next.bottom === this.insets.bottom) return;
+    this.insets = next;
     this._updateProjection();
     this._applyViewGoal(false);
   }
 
   _updateProjection() {
-    const inset = this.insetRight || 0;
-    const visible = Math.max(1, this.width - inset);
-    this.camera.aspect = visible / this.height;
-    if (inset > 0) this.camera.setViewOffset(visible + inset, this.height, inset, 0, this.width, this.height);
+    const { top, right, bottom } = this.insets;
+    // The whole canvas keeps its own aspect (nothing stretches); the view window shifts so
+    // the scene's centre lands in the middle of the free part.
+    this.camera.aspect = this.width / this.height;
+    const ox = right / 2;
+    const oy = (bottom - top) / 2;
+    if (ox || oy) this.camera.setViewOffset(this.width, this.height, ox, oy, this.width, this.height);
     else this.camera.clearViewOffset();
     this.camera.updateProjectionMatrix();
   }
@@ -338,53 +458,97 @@ export class FunnelGraphScene {
     let moved = 0;
     let pinchStart = 0;
     let pinchZoom = 1;
+    let panning = false;
+    const setPointer = (e) => {
+      const rect = c.getBoundingClientRect();
+      this.pointer.set(((e.clientX - rect.left) / rect.width) * 2 - 1, -((e.clientY - rect.top) / rect.height) * 2 + 1);
+      this.pointerPx = { x: e.clientX - rect.left, y: e.clientY - rect.top };
+    };
+
+    c.addEventListener('contextmenu', (e) => {
+      if (this.mode === 'matrix') e.preventDefault();
+    });
 
     c.addEventListener('pointerdown', (e) => {
       c.setPointerCapture(e.pointerId);
       pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+      setPointer(e);
       if (pointers.size === 1) {
         downAt = { x: e.clientX, y: e.clientY };
         moved = 0;
+        // In the matrix: a line's plane or tag drags that line; right button or Shift pans.
+        panning = this.mode === 'matrix' && (e.button === 2 || e.shiftKey);
+        if (this.mode === 'matrix' && !panning && !this._pick()) {
+          const handle = this._pickHandle();
+          if (handle) {
+            this.lineDrag = { kind: handle.object.userData.line, plane: new THREE.Plane(new THREE.Vector3(0, 0, 1), -handle.point.z) };
+            c.classList.add('dragging-line');
+          }
+        }
       } else if (pointers.size === 2) {
         const [a, b] = [...pointers.values()];
         pinchStart = Math.hypot(a.x - b.x, a.y - b.y);
         pinchZoom = this.userZoom;
+        this.lineDrag = null;
+        c.classList.remove('dragging-line');
       }
       this._interacted();
     });
 
     c.addEventListener('pointermove', (e) => {
-      const rect = c.getBoundingClientRect();
-      this.pointer.set(((e.clientX - rect.left) / rect.width) * 2 - 1, -((e.clientY - rect.top) / rect.height) * 2 + 1);
-      this.pointerPx = { x: e.clientX - rect.left, y: e.clientY - rect.top };
+      setPointer(e);
       this.pointerInside = true;
       const prev = pointers.get(e.pointerId);
       if (!prev) return;
       const dx = e.clientX - prev.x;
       const dy = e.clientY - prev.y;
       pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+      if (this.lineDrag && pointers.size === 1) {
+        this.raycaster.setFromCamera(this.pointer, this.camera);
+        const p = this.raycaster.ray.intersectPlane(this.lineDrag.plane, this._tmpV);
+        if (p) this.hooks.onLines?.(this.matrixWorld.lineAt(this.lineDrag.kind, p), false);
+        moved += Math.abs(dx) + Math.abs(dy);
+        this._interacted();
+        return;
+      }
       if (pointers.size === 2) {
         const [a, b] = [...pointers.values()];
         const d = Math.hypot(a.x - b.x, a.y - b.y);
         if (pinchStart > 0) this._zoomTo(pinchZoom * (pinchStart / Math.max(1, d)));
+        // Two fingers moving together pan the matrix.
+        if (this.mode === 'matrix') this._pan(dx / 2, dy / 2);
         moved += 10;
         return;
       }
       moved += Math.abs(dx) + Math.abs(dy);
+      if (panning && moved > 2) {
+        c.classList.add('dragging');
+        this._pan(dx, dy);
+        this._interacted();
+        return;
+      }
       if (moved > 4) {
         c.classList.add('dragging');
         this.goal.yaw -= dx * 0.0055;
         this.view.yaw -= dx * 0.0055;
-        this.goal.pitch = Math.max(-0.15, Math.min(0.95, this.goal.pitch + dy * 0.0035));
+        this.goal.pitch = Math.max(this.mode === 'matrix' ? -0.35 : -0.15, Math.min(this.mode === 'matrix' ? 1.2 : 0.95, this.goal.pitch + dy * 0.0035));
         if (Math.abs(dy) > 0) this._pitchTouched = true;
         this._interacted();
       }
     });
 
     const end = (e) => {
-      const wasClick = pointers.size === 1 && moved <= 6 && downAt;
+      const wasClick = pointers.size === 1 && moved <= 6 && downAt && !this.lineDrag;
+      if (this.lineDrag) {
+        this.lineDrag = null;
+        c.classList.remove('dragging-line');
+        this.hooks.onLines?.(this.matrixWorld?.lines, true);
+      }
       pointers.delete(e.pointerId);
-      if (pointers.size === 0) c.classList.remove('dragging');
+      if (pointers.size === 0) {
+        c.classList.remove('dragging');
+        panning = false;
+      }
       if (wasClick && e.type === 'pointerup') {
         const hit = this._pick();
         this.hooks.onSelect?.(hit ? hit.userData.card : null);
@@ -405,8 +569,21 @@ export class FunnelGraphScene {
       'wheel',
       (e) => {
         e.preventDefault();
+        setPointer(e);
         const factor = Math.exp(e.deltaY * (e.ctrlKey ? 0.01 : 0.0012));
+        const before = this.userZoom;
         this._zoomTo(this.userZoom * factor);
+        // In the matrix the zoom heads for the point under the cursor.
+        if (this.mode === 'matrix') {
+          this.raycaster.setFromCamera(this.pointer, this.camera);
+          const p = this.raycaster.ray.intersectPlane(this._zPlane || (this._zPlane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0)), this._tmpV);
+          if (p) {
+            const k = 1 - this.userZoom / before;
+            this.goal.tx += (p.x - this.goal.tx) * k;
+            this.goal.ty += (p.y - this.goal.ty) * k;
+            this._clampTarget();
+          }
+        }
         this._interacted();
       },
       { passive: false },
@@ -415,8 +592,39 @@ export class FunnelGraphScene {
 
   _zoomTo(z) {
     const before = this.userZoom;
-    this.userZoom = Math.max(0.35, Math.min(2.2, z));
+    // The matrix holds many small cards: it zooms in further.
+    this.userZoom = Math.max(this.mode === 'matrix' ? 0.12 : 0.35, Math.min(2.2, z));
     this.goal.dist *= this.userZoom / before;
+  }
+
+  /** Moves the point the camera orbits by a drag of dx, dy pixels, in the screen's plane. */
+  _pan(dx, dy) {
+    const vfov = THREE.MathUtils.degToRad(this.camera.fov);
+    const k = (2 * this.view.dist * Math.tan(vfov / 2)) / this.height;
+    this._tmpRight.setFromMatrixColumn(this.camera.matrixWorld, 0);
+    this._tmpUp.setFromMatrixColumn(this.camera.matrixWorld, 1);
+    for (const t of [this.goal, this.view]) {
+      t.tx += -this._tmpRight.x * dx * k + this._tmpUp.x * dy * k;
+      t.ty += -this._tmpRight.y * dx * k + this._tmpUp.y * dy * k;
+      t.tz += -this._tmpRight.z * dx * k + this._tmpUp.z * dy * k;
+    }
+    this._clampTarget();
+  }
+
+  _clampTarget() {
+    if (!this.matrixWorld) return;
+    const { W, H, D } = this.matrixWorld.box;
+    for (const t of [this.goal, this.view]) {
+      t.tx = Math.max(-W / 2 - 1, Math.min(W / 2 + 1, t.tx));
+      t.ty = Math.max(-0.5, Math.min(H + 0.5, t.ty));
+      t.tz = Math.max(-D / 2, Math.min(D / 2, t.tz));
+    }
+  }
+
+  _pickHandle() {
+    if (!this.matrixWorld) return null;
+    this.raycaster.setFromCamera(this.pointer, this.camera);
+    return this.raycaster.intersectObjects(this.matrixWorld.handles, false)[0] || null;
   }
 
   _interacted() {
@@ -462,31 +670,50 @@ export class FunnelGraphScene {
 
   _loop(now) {
     this._raf = requestAnimationFrame((t) => this._loop(t));
-    if (document.hidden || this.paused) return;
+    if (document.hidden) return;
     const dt = Math.min(0.05, (now - this._last) / 1000);
     this._last = now;
 
+    const matrix = this.mode === 'matrix';
     if (this.autoRotate && now > this.interactUntil) {
-      this.goal.yaw += dt * 0.07;
-      this.view.yaw += dt * 0.07;
+      if (matrix) {
+        // The matrix sways a little either side of its front instead of turning round.
+        const before = Math.sin(this.swayT * 0.21) * 0.24;
+        this.swayT += dt;
+        const step = Math.sin(this.swayT * 0.21) * 0.24 - before;
+        this.goal.yaw += step;
+        this.view.yaw += step;
+      } else {
+        this.goal.yaw += dt * 0.07;
+        this.view.yaw += dt * 0.07;
+      }
     }
     this.view.yaw = damp(this.view.yaw, this.goal.yaw, 6, dt);
     this.view.pitch = damp(this.view.pitch, this.goal.pitch, 4, dt);
     this.view.dist = damp(this.view.dist, this.goal.dist, 3.6, dt);
+    this.view.tx = damp(this.view.tx, this.goal.tx, 3.6, dt);
     this.view.ty = damp(this.view.ty, this.goal.ty, 3.6, dt);
+    this.view.tz = damp(this.view.tz, this.goal.tz, 3.6, dt);
 
-    const { yaw, pitch, dist, ty } = this.view;
-    this.camera.position.set(Math.sin(yaw) * Math.cos(pitch) * dist, ty + Math.sin(pitch) * dist, Math.cos(yaw) * Math.cos(pitch) * dist);
-    this.camera.lookAt(0, ty, 0);
+    const { yaw, pitch, dist, tx, ty, tz } = this.view;
+    this.camera.position.set(tx + Math.sin(yaw) * Math.cos(pitch) * dist, ty + Math.sin(pitch) * dist, tz + Math.cos(yaw) * Math.cos(pitch) * dist);
+    this.camera.lookAt(tx, ty, tz);
     this.camera.updateMatrixWorld();
 
     // Hover picking, once per frame.
     if (this.pointerInside && this.cards.length) {
-      const hit = this.canvas.classList.contains('dragging') ? null : this._pick();
+      const busy = this.canvas.classList.contains('dragging') || !!this.lineDrag;
+      const hit = busy ? null : this._pick();
       if (hit !== this.hovered) {
         this.hovered = hit;
         this.canvas.classList.toggle('pointing', !!hit);
         this.hooks.onHover?.(hit ? hit.userData.card : null, hit ? this.projectCard(hit) : null);
+      }
+      if (matrix && !busy) {
+        const handle = hit ? null : this._pickHandle();
+        const kind = handle?.object.userData.line;
+        this.canvas.classList.toggle('resize-x', kind === 'spend');
+        this.canvas.classList.toggle('resize-y', kind === 'roas');
       }
     }
 
@@ -506,7 +733,7 @@ export class FunnelGraphScene {
       let opacity;
       if (!this.focusKey) {
         const camDist = this._tmpV.set(card.x, card.y, card.z).distanceTo(this.camera.position);
-        blur = Math.max(0, Math.min(0.7, (Math.abs(camDist - focusDist) / (focusDist * 0.42)) - 0.2));
+        blur = Math.max(0, Math.min(matrix ? 0.3 : 0.7, (Math.abs(camDist - focusDist) / (focusDist * (matrix ? 0.6 : 0.42))) - 0.2));
         dim = 0;
         opacity = 0.97;
       } else if (inGroup) {

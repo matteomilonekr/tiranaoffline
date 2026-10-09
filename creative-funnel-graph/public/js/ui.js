@@ -180,7 +180,7 @@ export function positionRingLabels(projected, focusKey, stage) {
 
 // ---------- tooltip ----------
 
-export function showTooltip(card, pos, currency, stage) {
+export function showTooltip(card, pos, currency, stage, extra = null) {
   const tip = $('tooltip');
   if (!card || !pos) {
     tip.hidden = true;
@@ -197,6 +197,7 @@ export function showTooltip(card, pos, currency, stage) {
   const note = s.funnel?.method === 'delivery' ? t('tt.delivery') : s.funnel?.method === 'names' ? t('tt.names') : null;
   tip.replaceChildren(
     h('div', { class: 'tt-name', text: s.rep.name || s.rep.id }),
+    extra ? h('div', { class: 'tt-quad', style: { color: extra.color }, text: extra.text }) : null,
     ...rows.map(([k, v]) => h('div', { class: 'tt-row' }, k, h('b', { text: v }))),
     note ? h('div', { class: 'tt-note', text: note }) : null,
     h('div', { class: 'tt-note', text: t('tt.click') }),

@@ -11,7 +11,6 @@ import {
   quadrantOf,
   summarizeQuadrants,
   matrixScales,
-  relaxCards,
 } from '../public/js/matrix.js';
 import { aggregateMetrics } from '../public/js/stacks.js';
 
@@ -98,16 +97,4 @@ test('the axes hold still while a line moves inside them, and grow for a line se
     assert.ok(x >= 0 && x <= 800 && y >= 0 && y <= 400);
   }
   assert.ok(a.xTicks.length >= 3 && a.yTicks[0] === 0);
-});
-
-test('relaxing keeps cards inside the plot and near their point', () => {
-  const cards = Array.from({ length: 30 }, (_, i) => ({ px: 200 + (i % 3), py: 100, cx: 200 + (i % 3), cy: 100, w: 20, h: 25 }));
-  relaxCards(cards, 400, 200);
-  for (const c of cards) {
-    assert.ok(c.cx >= c.w / 2 && c.cx <= 400 - c.w / 2);
-    assert.ok(c.cy >= c.h / 2 && c.cy <= 200 - c.h / 2);
-    assert.ok(Math.hypot(c.cx - c.px, c.cy - c.py) <= Math.max(c.w, c.h) * 1.6 + 1e-6);
-  }
-  const spread = new Set(cards.map((c) => `${Math.round(c.cx)},${Math.round(c.cy)}`));
-  assert.ok(spread.size > 10);
 });

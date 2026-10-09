@@ -14,7 +14,9 @@ import { t, setLanguage, detectLanguage, localeFor, applyStatic } from './i18n.j
 import * as fmt from './format.js';
 import * as ui from './ui.js';
 import { renderDetail, closeDetail } from './detail.js';
-import { MatrixView, matrixDefaults, validThresholds } from './matrix.js';
+import { MatrixView, matrixDefaults, validThresholds, QUADRANT_COLORS } from './matrix.js';
+import { FUNNEL_LEVELS } from './funnel.js';
+import { BOX, TALL_BOX } from './matrix3d.js';
 import { openConnectModal, openInstallModal, openSettingsModal } from './modals.js';
 import { BRAND } from './brand.js';
 
@@ -293,10 +295,7 @@ async function buildArtwork(cards) {
       }
     }
     const aspect = rep.creative?.aspect || (source.naturalWidth || source.width) / (source.naturalHeight || source.height) || 0.8;
-    const art = buildCardCanvases(source, { aspect, count: s.count, dashed: s.funnel.method !== 'segments', width });
-    // The matrix draws the creative itself, at its own size.
-    art.source = source;
-    state.artwork.set(artKey(s), art);
+    state.artwork.set(artKey(s), buildCardCanvases(source, { aspect, count: s.count, dashed: s.funnel.method !== 'segments', width }));
   });
   const byStack = new Map();
   for (const c of cards) byStack.set(c.stack.id, state.artwork.get(artKey(c.stack)));
@@ -312,7 +311,6 @@ async function rebuildView() {
   const isMatrix = state.arrangement === 'matrix';
   document.body.classList.toggle('matrix-mode', isMatrix);
   $('matrix').hidden = !isMatrix;
-  scene?.setPaused(isMatrix);
   if (isMatrix) return showMatrix();
   state.groups = groupStacks(model, state.arrangement);
   if (state.focus && !state.groups.some((g) => g.key === state.focus && g.count > 0)) state.focus = null;
@@ -327,35 +325,104 @@ async function rebuildView() {
   if (scene) {
     scene.setData(layout, artwork);
     scene.setFocus(state.focus);
+    updateInsets();
   }
   ui.buildRingLabels(state.groups, pickGroup);
   renderOverlays();
   ui.setEmpty(model.stacks.length === 0);
 }
 
-/** Spend × ROAS: the creatives on two axes, split by the lines the user sets for this account. */
+/**
+ * Spend × ROAS in 3D: the same scene, the creatives in a box by spend, ROAS and funnel lane,
+ * cut into quadrants by the two lines the user sets for this account.
+ */
 async function showMatrix() {
   const model = state.model;
   state.groups = [];
-  state.focus = null;
+  if (!['scale', 'boost', 'fix', 'cut'].includes(state.focus)) state.focus = null;
   ui.setLoading(t('load.building'));
-  await buildArtwork(model.stacks.map((stack) => ({ stack, h: 1 })));
-  const sources = new Map(model.stacks.map((s) => [s.id, state.artwork.get(artKey(s))?.source]));
+  const artwork = await buildArtwork(model.stacks.map((stack) => ({ stack, h: 1 })));
   const defaults = matrixDefaults(model.stacks);
   const saved = store.get('matrix:' + state.accountId, null);
+  const lines = validThresholds(saved) ? saved : defaults;
   if (!matrix) {
     matrix = new MatrixView($('matrix'), {
       t,
       money: (v) => fmt.money(v, currency()),
       roas: fmt.roas,
-      onSelect: (stack) => openDetail(stack, null),
-      onChange: (th) => store.set('matrix:' + state.accountId, th),
+      onLines: (th, commit) => {
+        scene?.setMatrixLines(th);
+        if (commit) store.set('matrix:' + state.accountId, th);
+      },
+      onQuadrant: (q) => {
+        state.focus = q;
+        scene?.setFocus(q);
+      },
     });
   }
-  matrix.setData({ stacks: model.stacks, thresholds: validThresholds(saved) ? saved : defaults, defaults, sources });
-  matrix.setSelected(state.selected);
+  matrix.setData({ stacks: model.stacks, thresholds: lines, defaults, quadrant: state.focus });
+  const stage = $('stage');
+  state.matrixTall = stage.clientWidth < stage.clientHeight * 0.8;
+  scene?.setMatrix(
+    {
+      stacks: model.stacks,
+      box: state.matrixTall ? TALL_BOX : BOX,
+      lines,
+      focus: state.focus,
+      colors: QUADRANT_COLORS,
+      lanes: FUNNEL_LEVELS.map((l) => ({ key: l.key, label: t('level.' + l.key), color: l.color })),
+      money: matrix.money,
+      roas: fmt.roas,
+      names: Object.fromEntries(['scale', 'boost', 'fix', 'cut'].map((q) => [q, t('mx.q.' + q)])),
+      axis: { spend: t('mx.axis.spend'), roas: t('mx.axis.roas') },
+    },
+    artwork,
+  );
+  scene?.setSelected(state.selected);
+  ui.buildRingLabels([], pickGroup);
   renderOverlays();
+  updateInsets();
   ui.setEmpty(model.stacks.length === 0);
+}
+
+/** A quadrant pressed again, Esc or the pill: back to the whole matrix. */
+function clearQuadrant() {
+  if (state.arrangement === 'matrix' && matrix && state.focus) matrix.showOnly(state.focus);
+  else if (state.focus) pickGroup(state.focus);
+}
+
+/**
+ * Tells the scene which parts of the stage the overlays cover: the drawer on a wide
+ * screen and, in the matrix, its controls on top and its summary at the side or beneath.
+ */
+function updateInsets() {
+  if (!scene) return;
+  const stage = $('stage').getBoundingClientRect();
+  const drawer = !$('detail').hidden && stage.width > 900 ? Math.min(460, stage.width) : 0;
+  if (state.arrangement !== 'matrix') {
+    scene.setInsets({ top: 0, right: drawer, bottom: 0 });
+    return;
+  }
+  const root = $('matrix');
+  const controls = root.querySelector('.mx-controls')?.getBoundingClientRect();
+  const summary = root.querySelector('.mx-summary')?.getBoundingClientRect();
+  if (!controls || !summary) return;
+  const beside = summary.top < stage.top + stage.height / 2;
+  // Beneath the box on a phone, the summary also leaves a row for the zoom buttons.
+  const bottom = beside ? 0 : Math.max(0, stage.bottom - summary.top + 44);
+  // A phone turned (or a window resized) past portrait gets the box that fits it.
+  const tall = stage.width < stage.height * 0.8;
+  if (state.matrixTall !== undefined && tall !== state.matrixTall && state.model) {
+    state.matrixTall = tall;
+    showMatrix().then(() => ui.setLoading(null));
+    return;
+  }
+  scene.setInsets({
+    top: Math.max(0, controls.bottom - stage.top + 4),
+    right: Math.max(drawer, beside ? stage.right - summary.left + 4 : 0),
+    bottom,
+  });
+  $('stage').style.setProperty('--mx-bottom', Math.max(0, bottom - 40) + 'px');
 }
 
 function renderOverlays() {
@@ -392,6 +459,8 @@ function selectCard(card) {
     if (!$('detail').hidden) closeDrawer();
     return;
   }
+  // In the matrix a card opens its detail; the quadrant in view stays as it is.
+  if (state.arrangement === 'matrix') return openDetail(card.stack, null);
   if (state.focus !== card.group) {
     state.focus = card.group;
     scene?.setFocus(state.focus);
@@ -403,11 +472,6 @@ function selectCard(card) {
 function openDetail(stack, group) {
   state.selected = stack.id;
   scene?.setSelected(state.selected);
-  matrix?.setSelected(state.selected);
-  const stage = $('stage');
-  if (stage.clientWidth > 900) scene?.setInsetRight(Math.min(460, stage.clientWidth));
-  // On a wide screen the matrix makes room for the drawer instead of sitting beneath it.
-  $('matrix').classList.toggle('beside-detail', stage.clientWidth > 900);
   renderDetail($('detail'), {
     stack,
     group,
@@ -417,15 +481,14 @@ function openDetail(stack, group) {
     loadDetail: detailFor,
     onClose: closeDrawer,
   });
+  updateInsets();
 }
 
 function closeDrawer() {
   state.selected = null;
   scene?.setSelected(null);
-  matrix?.setSelected(null);
-  $('matrix').classList.remove('beside-detail');
-  scene?.setInsetRight(0);
   closeDetail($('detail'));
+  updateInsets();
 }
 
 async function previewFor(ad, width) {
@@ -623,7 +686,6 @@ function applyLanguage(code) {
   renderHeader();
   // The matrix writes its labels once; build it again in the new language.
   if (matrix) {
-    matrix.destroy();
     matrix = null;
     if (state.arrangement === 'matrix' && state.model) showMatrix().then(() => ui.setLoading(null));
   }
@@ -637,6 +699,10 @@ function updateControlLabels() {
   pause.querySelector('use').setAttribute('href', paused ? '#i-play' : '#i-pause');
   $('reset-btn').title = t('ctl.reset');
   $('reset-btn').setAttribute('aria-label', t('ctl.reset'));
+  for (const [id, key] of [['zoom-in-btn', 'ctl.zoomIn'], ['zoom-out-btn', 'ctl.zoomOut']]) {
+    $(id).title = t(key);
+    $(id).setAttribute('aria-label', t(key));
+  }
 }
 
 function bindChrome() {
@@ -646,19 +712,22 @@ function bindChrome() {
   $('connect-btn').addEventListener('click', openConnect);
   $('settings-btn').addEventListener('click', openSettings);
   $('refresh-btn').addEventListener('click', () => load({ refresh: true }));
-  $('stat-pill').addEventListener('click', () => {
-    if (state.focus) pickGroup(state.focus);
-  });
+  $('stat-pill').addEventListener('click', clearQuadrant);
+  $('zoom-in-btn').addEventListener('click', () => scene?.zoomBy(1.4));
+  $('zoom-out-btn').addEventListener('click', () => scene?.zoomBy(1 / 1.4));
   $('pause-btn').addEventListener('click', () => {
     scene?.setAutoRotate(!scene.autoRotate);
     updateControlLabels();
   });
   $('reset-btn').addEventListener('click', () => {
+    if (state.arrangement === 'matrix' && matrix?.only) matrix.showOnly(matrix.only);
     state.focus = null;
     closeDrawer();
     scene?.resetView();
     renderOverlays();
   });
+  new ResizeObserver(() => updateInsets()).observe($('stage'));
+  new ResizeObserver(() => updateInsets()).observe($('matrix'));
   const legend = $('legend');
   $('legend-toggle').addEventListener('click', () => {
     const collapsed = legend.classList.toggle('collapsed');
@@ -673,7 +742,7 @@ function bindChrome() {
   document.addEventListener('keydown', (e) => {
     if (e.key !== 'Escape' || !$('modal').hidden || !$('popover').hidden) return;
     if (!$('detail').hidden) closeDrawer();
-    else if (state.focus) pickGroup(state.focus);
+    else clearQuadrant();
   });
 }
 
@@ -700,8 +769,10 @@ async function boot() {
 
   try {
     scene = new FunnelGraphScene($('scene'), {
-      onHover: (card, pos) => ui.showTooltip(card, pos, currency(), $('stage')),
+      onHover: (card, pos) =>
+        ui.showTooltip(card, pos, currency(), $('stage'), state.arrangement === 'matrix' && card ? { text: `${t('mx.q.' + card.group)} · ${t('mx.do.' + card.group)}`, color: QUADRANT_COLORS[card.group] } : null),
       onSelect: selectCard,
+      onLines: (th, commit) => matrix?.setThresholds(th, commit),
       onFrame: (s) => ui.positionRingLabels(s.projectRings(), state.focus, $('stage')),
       onInteract: () => ui.showTooltip(null),
     });
