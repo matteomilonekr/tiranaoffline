@@ -548,14 +548,15 @@ cd app && FILM=plugins bun scripts/render.ts video --workers 1 --samples 1 --fps
 cd out && ffmpeg -i plugins.mp4 -i plugins/mix.wav -map 0:v -map 1:a -c:v copy -c:a aac -b:a 320k -shortest plugins_sfx.mp4
 ```
 
-Nel kit ci sono sei film:
+Nel kit ci sono sette film:
 - `films/plugins`, descritto qui sotto;
 - `films/styles`, il reel dei 21 stili (sezione 09);
 - `films/gem` e `films/polish`, due reel nel formato "paper night";
 - `films/coding`, altri quattro plugin su una pagina bianca con le schede scure;
-- `films/grill`, le skill di Matt Pocock su uno schermo diviso, con creaturine in pixel art sopra.
+- `films/grill`, le skill di Matt Pocock su uno schermo diviso, con creaturine in pixel art sopra;
+- `films/youtube`, le undici skill per un canale YouTube, su carta crema con capitoli corallo e scuri.
 
-Gli ultimi quattro sono descritti in fondo a questa sezione.
+Gli ultimi cinque sono descritti in fondo a questa sezione.
 
 ### Il reel dei plugin (`films/plugins`)
 
@@ -646,6 +647,35 @@ Rispetto all'originale, il testo corregge due cose controllate su github.com/mat
 - **I comandi:** per Claude Code è `claude plugin install mattpocock-skills@claude-plugins-official`; per Cursor e gli altri agenti è `npx skills@latest add mattpocock/skills`; poi `/setup-matt-pocock-skills` una volta per progetto. Codex ha un suo comando, scritto nella pagina sotto la linea.
 
 Al posto del creator originale, nelle inquadrature a mezzo busto c'è Matteo disegnato.
+
+### Il reel «youtube» (`films/youtube`)
+
+Un reel verticale di 42 secondi che segue, inquadratura per inquadratura, un reel di @ai.nxtlvl sulla YouTube Agent Skill: undici skill per Claude che lavorano a un canale YouTube. Chiude con "commenta YOUTUBE e ti mando la guida completa in privato". Una tavola sola, `scenes/youtube.ts`, taglia 16 inquadrature sulle parole; il look è in `scenes/_soft.ts`.
+
+- **Tre capitoli di colore:**
+  - carta crema con aloni pastello, griglia e crocette per l'apertura e le singole skill;
+  - un capitolo corallo con la raggiera per "sono undici";
+  - un capitolo scuro con un pianeta che sorge per la viralità.
+- **Le didascalie:** Poppins in basso, con la parola detta in una pillola corallo (scura sul corallo). Le parole già dette restano piene, quelle in arrivo sono chiare.
+- **I titoli:** Poppins più una parola in Instrument Serif corsivo corallo, ognuna entra da una sfocatura. Sopra ogni skill c'è il suo comando in una pillola scura (`/yt-script`, `/yt-package`, `/yt-edit`, `/yt-comment`, `/yt-plan`).
+- **Le schede**, tutte disegnate qui:
+  - il canale che passa da "Manuale" a "Claude" riga per riga, con il timbro "100% GRATIS";
+  - le carte degli hook a ventaglio;
+  - titoli e copertine;
+  - il montaggio con i tagli segnati;
+  - i commenti con le risposte in bozza;
+  - il calendario di ottobre;
+  - la ricerca nella nicchia, l'analisi del video più virale, l'albero che lo rifà con la tua voce;
+  - il cronometro dei dieci secondi;
+  - il commento che si scrive da solo.
+- **Le icone:** la scintilla e il tasto play sono disegnati qui, non sono i loghi dei marchi.
+
+Rispetto all'originale, il testo segue quello che dice il README del repository (ottobre 2026):
+- **Montaggio e commenti:** le skill non montano i video e non rispondono da sole. Preparano la lista dei tagli e scrivono le risposte in bozza.
+- **Pubblicazione:** non pubblicano niente. Per questo c'è una frase in più: "scrive lei, carichi tu".
+- **Le 21 formule per gli hook:** sono un numero del repository, non verificato.
+
+Scegli tu il link da mandare in DM.
 
 ---
 
@@ -742,6 +772,7 @@ Tieni quel file di licenza insieme al progetto. Le nove tavole sono nuove, scrit
 - **Paper night:** il formato di `films/gem` e `films/polish` riprende due reel di [@nocodealex](https://www.instagram.com/nocodealex). Set, personaggi, testi italiani, voce e suono sono nuovi, disegnati in codice. Fraunces è distribuito con SIL Open Font License (`app/public/fonts/fraunces/OFL.txt`).
 - **Reel «coding»:** il formato di `films/coding` riprende un reel di [@tessa.fairbrook](https://www.instagram.com/tessa.fairbrook). Schede, icone, disegni, testo italiano, voce e suono sono nuovi, scritti in codice per questo kit. Poppins e Instrument Serif sono distribuiti con SIL Open Font License (`app/public/fonts/poppins/OFL.txt`, `app/public/fonts/instrumentserif/OFL.txt`).
 - **Reel «grill»:** il formato di `films/grill` riprende un reel di [@piyush.glitch](https://www.instagram.com/piyush.glitch). Creaturine, scene, pagine, testo italiano, voce e suono sono nuovi, disegnati in codice per questo kit.
+- **Reel «youtube»:** il formato di `films/youtube` riprende un reel di [@ai.nxtlvl](https://www.instagram.com/ai.nxtlvl). Schede, icone, testo italiano, voce e suono sono nuovi, disegnati in codice per questo kit. YouTube e Claude sono marchi dei rispettivi proprietari; le icone del film non sono i loro loghi.
 - **Stili:** l'elenco dei venti stili riprende un reel di [@andremass.ai](https://www.instagram.com/andremass.ai) ("motion design styles you can steal"). Ricette, codice e animazioni di `app/src/styles/` sono nuovi, scritti per questo kit.
 - **Launch film:** struttura, prompt, regole e checklist della sezione 06 sono adattati dalla guida *The 60-second launch film made with Claude* di Saksham Gupta ([@saksham.700x](https://www.instagram.com/saksham.700x)). La guida cita lo skill onetake (licenza PolyForm Noncommercial), di cui qui non c'è codice.
 
