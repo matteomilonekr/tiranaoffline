@@ -43,7 +43,7 @@ def cues(W, C):
     shots = [T("stelle") - 0.1, c[1], T("che", c[1]) - 0.15, c[2], c[3], T("stupida") - 0.35, c[4], T("spiegato") - 0.15,
              c[5], T("grill-me", c[5]) - 0.4, c[6], T("domanda") - 0.3, c[7], c[8], c[9], T("ciclo") - 0.15, c[10],
              T("analizza") - 0.2, T("report") - 0.3, c[12], c[13], c[14], T("aggiorna") - 0.25, c[15], c[16],
-             T("mattpocock/skills", c[16]) + 0.3, c[17], T("volta") - 0.25, T("pronto") - 0.2, c[18]]
+             min(T("mattpocock/skills", c[16]) - 0.2, T("npx") + 2.4), c[17], T("volta") - 0.25, T("pronto") - 0.2, c[18]]
     for s in shots:
         C.cue(s - 0.02, "whoosh_short", -16, 0.0)
     # the stars counter runs up, then the buckets fill
@@ -113,7 +113,7 @@ def cues(W, C):
     C.cue(c[15] + 0.45, "pop", -12, 0.4)
     C.typed("npx skills@latest add mattpocock/skills", T("npx") - 0.2, 30, -18, 0.0, seed=8)
     C.cue(c[16] + 0.4, "pop", -13, 0.3)
-    f0 = T("mattpocock/skills", c[16]) + 0.3
+    f0 = min(T("mattpocock/skills", c[16]) - 0.2, T("npx") + 2.4)
     for k in range(5):
         C.cue(f0 + 0.1 + k * 0.2, "blip", -14, 0.2)
     C.typed("/setup-matt-pocock-skills", c[17] + 0.2, 32, -18, 0.0, seed=10)

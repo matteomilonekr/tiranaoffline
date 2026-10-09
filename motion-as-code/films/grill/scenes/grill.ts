@@ -70,7 +70,7 @@ export default class Grill extends Scene {
       S('tdd', c[8]!), S('bugs', c[9]!), S('loop', w.ciclo - 0.15),
       S('arch', c[10]!), S('city', w.analizza - 0.2), S('report', w.report - 0.3),
       S('clock', c[12]!), S('term', c[13]!), S('market', c[14]!), S('robot', w.aggiorna - 0.25),
-      S('agents', c[15]!), S('npx', c[16]!), S('folder', w.repo2 + 0.05),
+      S('agents', c[15]!), S('npx', c[16]!), S('folder', Math.min(w.repo2 - 0.2, w.npx + 2.4)),
       S('setup', c[17]!), S('mountain', w.volta - 0.25), S('rocket', w.pronto - 0.2),
       S('phone', c[18]!),
     ];
