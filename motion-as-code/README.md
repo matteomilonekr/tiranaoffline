@@ -548,13 +548,14 @@ cd app && FILM=plugins bun scripts/render.ts video --workers 1 --samples 1 --fps
 cd out && ffmpeg -i plugins.mp4 -i plugins/mix.wav -map 0:v -map 1:a -c:v copy -c:a aac -b:a 320k -shortest plugins_sfx.mp4
 ```
 
-Nel kit ci sono cinque film:
+Nel kit ci sono sei film:
 - `films/plugins`, descritto qui sotto;
 - `films/styles`, il reel dei 21 stili (sezione 09);
 - `films/gem` e `films/polish`, due reel nel formato "paper night";
-- `films/coding`, altri quattro plugin su una pagina bianca con le schede scure.
+- `films/coding`, altri quattro plugin su una pagina bianca con le schede scure;
+- `films/grill`, le skill di Matt Pocock su uno schermo diviso, con creaturine in pixel art sopra.
 
-Gli ultimi tre sono descritti in fondo a questa sezione.
+Gli ultimi quattro sono descritti in fondo a questa sezione.
 
 ### Il reel dei plugin (`films/plugins`)
 
@@ -629,6 +630,22 @@ Rispetto all'originale, il testo corregge i numeri che le fonti non confermano:
 - **Agent Skills:** al posto del ritratto di una persona reale c'è la scheda del repository di Addy Osmani.
 
 Ricontrolla comunque numeri e link prima di pubblicare.
+
+### Il reel «grill» (`films/grill`)
+
+Un reel verticale di circa un minuto che segue, inquadratura per inquadratura, un reel di @piyush.glitch sulle skill di Matt Pocock (grill-me, tdd, diagnosing-bugs, improve-codebase-architecture). Chiude con "commenta GRILL e ti mando il repo in privato". Una tavola sola, `scenes/grill.ts`, taglia 31 inquadrature sulle parole; il look è in `scenes/_pix.ts`.
+
+- **Lo schermo diviso:** sopra la linea c'è un palco illustrato (raggiera crema, lucine, pavimento beige) dove le creaturine in pixel art recitano ogni idea. Sotto c'è Matteo disegnato in una stanza con lampada, oppure la pagina del repository con cerchi, sottolineature e adesivi disegnati a mano.
+- **Le didascalie:** maiuscole bianche in IBM Plex Mono su una pillola scura, a cavallo della linea. Le parole non ancora dette restano più chiare.
+- **Le creaturine:** sono disegnate qui, cella per cella (16×9), con sei cappelli: berretto, cuffia, cappello da chef, tocco, elmetto e parrucca da giudice.
+- **Le scene:** il tabellone delle stelle, il museo, l'interrogatorio, il tribunale, la gru che costruisce la cosa sbagliata, la griglia con il piano, il terminale con le domande, la lavagna del test che fallisce e poi passa, il ciclo del debug, la città del codice scansionata, il report, il cronometro, il marketplace, il braccio robotico, la cartella che si riempie, la montagna e il razzo, il telefono con il commento.
+- **Le pagine** sotto la linea sono illustrazioni del repository, non screenshot.
+
+Rispetto all'originale, il testo corregge due cose controllate su github.com/mattpocock/skills (ottobre 2026):
+- **Le stelle:** oltre 280.000, non 265.000.
+- **I comandi:** per Claude Code è `claude plugin install mattpocock-skills@claude-plugins-official`; per Cursor e gli altri agenti è `npx skills@latest add mattpocock/skills`; poi `/setup-matt-pocock-skills` una volta per progetto. Codex ha un suo comando, scritto nella pagina sotto la linea.
+
+Al posto del creator originale, nelle inquadrature a mezzo busto c'è Matteo disegnato.
 
 ---
 
@@ -724,6 +741,7 @@ Tieni quel file di licenza insieme al progetto. Le nove tavole sono nuove, scrit
 - **Reel dei plugin:** il formato riprende un reel di [@adilet.fndr](https://www.instagram.com/adilet.fndr): un presentatore animato dietro un bancone e una sezione per plugin. Tavole, disegni, testo italiano, voce e suono sono nuovi, scritti in codice per questo kit. I nomi di prodotti e repository citati appartengono ai rispettivi autori.
 - **Paper night:** il formato di `films/gem` e `films/polish` riprende due reel di [@nocodealex](https://www.instagram.com/nocodealex). Set, personaggi, testi italiani, voce e suono sono nuovi, disegnati in codice. Fraunces è distribuito con SIL Open Font License (`app/public/fonts/fraunces/OFL.txt`).
 - **Reel «coding»:** il formato di `films/coding` riprende un reel di [@tessa.fairbrook](https://www.instagram.com/tessa.fairbrook). Schede, icone, disegni, testo italiano, voce e suono sono nuovi, scritti in codice per questo kit. Poppins e Instrument Serif sono distribuiti con SIL Open Font License (`app/public/fonts/poppins/OFL.txt`, `app/public/fonts/instrumentserif/OFL.txt`).
+- **Reel «grill»:** il formato di `films/grill` riprende un reel di [@piyush.glitch](https://www.instagram.com/piyush.glitch). Creaturine, scene, pagine, testo italiano, voce e suono sono nuovi, disegnati in codice per questo kit.
 - **Stili:** l'elenco dei venti stili riprende un reel di [@andremass.ai](https://www.instagram.com/andremass.ai) ("motion design styles you can steal"). Ricette, codice e animazioni di `app/src/styles/` sono nuovi, scritti per questo kit.
 - **Launch film:** struttura, prompt, regole e checklist della sezione 06 sono adattati dalla guida *The 60-second launch film made with Claude* di Saksham Gupta ([@saksham.700x](https://www.instagram.com/saksham.700x)). La guida cita lo skill onetake (licenza PolyForm Noncommercial), di cui qui non c'è codice.
 
