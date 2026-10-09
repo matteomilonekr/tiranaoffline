@@ -1,0 +1,54 @@
+{
+  "version": "1.0.0",
+  "note": "Soglie e regole dell'orchestratore. Le soglie dei gate sono i default del server AI_Ads 4.3.1; portafoglio, kill e scale sono default proposti da calibrare sui dati del cliente.",
+  "portfolio": {
+    "description": "Ripartizione del budget di render per corsia.",
+    "exploit": 0.7,
+    "iterate": 0.2,
+    "explore": 0.1
+  },
+  "gates": {
+    "quality_gate_default": { "composite_min": 7.0, "thumb_stop_min": 7, "clarity_min": 8, "typography_min": 7, "kill_below_composite": 5.0 },
+    "create_meta_creatives_standard": { "composite_min": 8, "thumb_stop_min": 8, "clarity_min": 8, "typography_min": 8, "max_reworks": 2 },
+    "fidelity_test": { "pass_min": 7.0, "max_rounds": 2, "then": "KILL" },
+    "preflight_copy": { "pass_value": "render", "on_no_answer": "revisione_umana" }
+  },
+  "budget": {
+    "default_run_max_usd": 15,
+    "default_brandsearch_max_credits": 300,
+    "analyze_ad_max_cost_usd": 2,
+    "analyze_ads_batch_safety_factor": 3.0,
+    "stop_when_ledger_below_usd": 0.5
+  },
+  "performance": {
+    "description": "Regole di codice applicate dopo import_performance. Jev non decide kill o scale.",
+    "min_spend_for_decision_eur": 30,
+    "min_days_live": 3,
+    "kill": [
+      { "if": "spend >= 2 * target_cpa AND purchases == 0" },
+      { "if": "days_live >= 5 AND ctr < 0.5 * account_median_ctr" }
+    ],
+    "scale": [
+      { "if": "days_live >= 3 AND roas >= 1.2 * target_roas AND purchases >= 3" }
+    ],
+    "iterate": [
+      { "if": "ctr >= account_median_ctr AND roas < target_roas", "action": "generate_variants sull'asse hook o offerta" },
+      { "if": "ctr < account_median_ctr AND roas >= target_roas", "action": "generate_variants sull'asse imagery o layout" }
+    ]
+  },
+  "concept_lifecycle": {
+    "states": ["seed", "analizzato", "in_test", "validato", "ritirato"],
+    "server_states": ["seed", "analizzato", "validato", "ritirato"],
+    "transitions": [
+      { "from": "seed", "to": "analizzato", "by": "analyze_ad | teardown_creative | analyze_creative" },
+      { "from": "analizzato", "to": "in_test", "by": "rank_for_test + pubblicazione approvata" },
+      { "from": "in_test", "to": "validato", "by": "regola scale" },
+      { "from": "in_test", "to": "ritirato", "by": "regola kill" },
+      { "from": "validato", "to": "ritirato", "by": "fatica: ctr -30% su 7 giorni rispetto ai primi 7" }
+    ],
+    "note": "in_test e' uno stato dell'orchestratore: il server conosce solo seed, analizzato, validato, ritirato."
+  },
+  "brand_rules": {
+    "scalers": { "no_prezzi": true }
+  }
+}

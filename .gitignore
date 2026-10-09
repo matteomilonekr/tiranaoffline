@@ -12,3 +12,6 @@ npm-debug.log*
 !.env.example
 !public/tirana/assets/testimonial-*.jpg
 !public/tirana/assets/workshop-builder-pass-whatsapp.jpg
+
+# CreativeOS: output dei run (piani, ledger)
+creativeos/runs/

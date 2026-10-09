@@ -20,3 +20,7 @@ api/paypal/config.js
 api/paypal/create-order.js
 api/paypal/capture-order.js
 api/paypal/order-details.js
+
+# CreativeOS: documentazione e agenti, non servono al deploy
+creativeos
+.claude

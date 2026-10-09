@@ -1,0 +1,130 @@
+{
+  "version": "1.0.0",
+  "verified_on": "2026-10-09",
+  "note": "Router dei motori immagine. Gli id sono quelli di list_image_models (AI_Ads 4.3.1). Gli alias sono i nomi usati dal team.",
+  "placements": {
+    "meta_feed": { "aspect_ratio": "4:5", "size": "1024x1280", "resolution": "2K" },
+    "meta_story": { "aspect_ratio": "9:16", "size": "1024x1792", "resolution": "2K" }
+  },
+  "engines": [
+    {
+      "alias": "gpt-image-2",
+      "id": "openai/gpt-image-2",
+      "family": "GPT Image",
+      "provider": "OpenAI diretto, fallback automatico su OpenRouter (403/429)",
+      "strength": "Testo in-image preciso, layout controllato",
+      "feed_4_5": "nativo",
+      "story_9_16": "nativo",
+      "explicit_only": false,
+      "requires_env": ["OPENAI_API_KEY", "OPENROUTER_API_KEY"],
+      "default": true
+    },
+    {
+      "alias": "gpt-image-2.5-flare",
+      "id": "openai/gpt-image-2.5-flare",
+      "family": "GPT Image 2.5",
+      "provider": "Atlas Cloud",
+      "strength": "Qualita' sopra GPT Image 2, latenza dimezzata, size libera, edit con reference",
+      "feed_4_5": "nativo",
+      "story_9_16": "nativo",
+      "explicit_only": true,
+      "requires_env": ["ATLASCLOUD_API_KEY"],
+      "default": false
+    },
+    {
+      "alias": "gpt-image-2.5-sunburst",
+      "id": "openai/gpt-image-2.5-sunburst",
+      "family": "GPT Image 2.5",
+      "provider": "Atlas Cloud",
+      "strength": "Variante premium: edit piu' controllati, fino a 16 reference, piu' lenta",
+      "feed_4_5": "nativo",
+      "story_9_16": "nativo",
+      "explicit_only": true,
+      "requires_env": ["ATLASCLOUD_API_KEY"],
+      "default": false
+    },
+    {
+      "alias": "nano-banana-2",
+      "id": "google/gemini-3.1-flash-image",
+      "family": "Nano Banana",
+      "provider": "OpenRouter",
+      "strength": "Veloce, buon rapporto costo/qualita'. Alternativa indicata da fidelity_test se il default non risponde",
+      "feed_4_5": "nativo",
+      "story_9_16": "nativo",
+      "explicit_only": false,
+      "requires_env": ["OPENROUTER_API_KEY"],
+      "default": false
+    },
+    {
+      "alias": "nano-banana-pro",
+      "id": "google/gemini-3-pro-image",
+      "family": "Nano Banana",
+      "provider": "OpenRouter",
+      "strength": "Massima qualita' Google per hero creative e fotorealismo di prodotto",
+      "feed_4_5": "nativo",
+      "story_9_16": "nativo",
+      "explicit_only": false,
+      "requires_env": ["OPENROUTER_API_KEY"],
+      "default": false
+    }
+  ],
+  "fallbacks": [
+    { "id": "bytedance-seed/seedream-5-0-pro", "use": "Fotorealismo prodotto e lifestyle" },
+    { "id": "bytedance-seed/seedream-5-0-lite", "use": "Batch economici di esplorazione" },
+    { "id": "microsoft/mai-image-2.5-pro", "use": "Stories 9:16; sul feed 4:5 il server instrada su GPT Image 2" },
+    { "id": "luma/uni-1", "use": "Stories 9:16 con molto testo; non supporta il feed 4:5" }
+  ],
+  "routes": [
+    {
+      "id": "R1-explore-draft",
+      "when": { "lane": "explore", "stage": "draft" },
+      "primary": "nano-banana-2",
+      "alternates": ["gpt-image-2.5-flare"],
+      "fallback": "bytedance-seed/seedream-5-0-lite",
+      "why": "Molti concept nuovi a basso costo: serve velocita', non rifinitura."
+    },
+    {
+      "id": "R2-exploit-clone",
+      "when": { "lane": "exploit", "tools": ["duplicate_creative", "fidelity_test"] },
+      "primary": "gpt-image-2",
+      "alternates": ["gpt-image-2.5-flare"],
+      "fallback": "nano-banana-2",
+      "why": "Il clone deve riprodurre testo e griglia dell'originale: precisione del testo prima di tutto."
+    },
+    {
+      "id": "R3-production-feed",
+      "when": { "lane": "produzione", "placement": "meta_feed" },
+      "primary": "gpt-image-2",
+      "alternates": ["gpt-image-2.5-flare", "nano-banana-pro"],
+      "fallback": "nano-banana-2",
+      "why": "Feed 4:5 con copy in-image: GPT Image 2 e' il default del server."
+    },
+    {
+      "id": "R4-production-story",
+      "when": { "lane": "produzione", "placement": "meta_story" },
+      "primary": "gpt-image-2.5-flare",
+      "alternates": ["nano-banana-2", "gpt-image-2"],
+      "fallback": "microsoft/mai-image-2.5-pro",
+      "why": "Size libera, 9:16 nativo, latenza bassa per volumi di Stories."
+    },
+    {
+      "id": "R5-hero-final",
+      "when": { "stage": "hero" },
+      "primary": "gpt-image-2.5-sunburst",
+      "alternates": ["nano-banana-pro"],
+      "fallback": "gpt-image-2",
+      "why": "Creative finali e foto prodotto rifinite con piu' reference di brand."
+    }
+  ],
+  "engine_tournament": {
+    "description": "Per un concept nuovo lo stesso visual prompt gira su tre motori e il motore diventa la variabile controllata. Vince chi passa il quality_gate con composite piu' alto; a parita' vince il piu' economico.",
+    "contenders": ["gpt-image-2", "gpt-image-2.5-flare", "nano-banana-2"],
+    "max_concepts_per_run": 3,
+    "tie_breaker": "costo"
+  },
+  "rules": [
+    "Ogni chiamata porta reference_image (moodboard o asset di brand). allow_no_reference solo con motivazione scritta nel piano.",
+    "I modelli explicit_only partono solo se il piano li nomina: il server li tiene chiusi senza ATLASCLOUD_API_KEY.",
+    "Se il primario fallisce per provider (403, 429, timeout) si passa all'alternate successivo, poi al fallback. Un fallimento di contenuto (gate KILL) non cambia motore."
+  ]
+}

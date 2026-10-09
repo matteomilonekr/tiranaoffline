@@ -1,0 +1,89 @@
+{
+  "version": "1.0.0",
+  "server": {
+    "name": "AI_Ads",
+    "prefix": "mcp__AI_Ads__",
+    "version_verified": "4.3.1",
+    "verified_on": "2026-10-09",
+    "note": "Elenco ricavato dagli schemi esposti dal server e da health(). Se il server aggiunge o rinomina un tool, aggiorna questo file: il test tests/creativeos-registry.test.mjs confronta registro e agenti."
+  },
+  "cost_classes": {
+    "C0": "Gratis: cataloghi, ricerche su DB, logica deterministica.",
+    "C1": "Micro: decisione Jev, frazioni di centesimo per voce.",
+    "C2": "Vision: analisi Gemini 3.8 Flash, centesimi per creative (batch circa 0,0105 USD per ad).",
+    "C3": "Render: generazione immagini, consuma credito OpenRouter, OpenAI o Atlas Cloud.",
+    "C4": "Crediti dati: BrandSearch, 1 credito per riga restituita."
+  },
+  "consent_levels": {
+    "nessuno": "Il tool parte senza conferma.",
+    "budget": "Parte solo se il ledger dell'orchestratore ha budget residuo per la stima del passo.",
+    "esplicito": "Serve un si' umano registrato nel piano: il tool ha un parametro di consenso (consenti_costo o consenti_crediti) che l'orchestratore passa a true solo dopo la conferma.",
+    "chiave": "Scrittura sulla libreria condivisa: serve anche chiave_libreria."
+  },
+  "agents": [
+    "orchestrator",
+    "planner",
+    "intel-scout",
+    "performance-analyst",
+    "concept-strategist",
+    "copy-guard",
+    "visual-director",
+    "render-producer",
+    "qa-gate",
+    "test-learning"
+  ],
+  "tools": [
+    { "name": "health", "agent": "orchestrator", "also": ["planner"], "lane": "sistema", "cost": "C0", "consent": "nessuno", "decision": null, "purpose": "Stato del server: DB, modelli, chiavi, blocchi di produzione. Primo passo di ogni run." },
+    { "name": "explain_decision", "agent": "orchestrator", "also": ["copy-guard", "test-learning", "performance-analyst"], "lane": "sistema", "cost": "C0", "consent": "nessuno", "decision": null, "purpose": "Legge dal registro decisioni domande, risposte, soglie e azione di D1-D7." },
+
+    { "name": "list_verticals", "agent": "planner", "also": ["concept-strategist"], "lane": "plan", "cost": "C0", "consent": "nessuno", "decision": null, "purpose": "Verticali con vocabolario dedicato. Un verticale fuori elenco fa fallire generate_hooks." },
+    { "name": "list_image_models", "agent": "visual-director", "also": ["planner"], "lane": "produzione", "cost": "C0", "consent": "nessuno", "decision": null, "purpose": "Catalogo dei 16 modelli immagine con forze e casi d'uso. Base del model router." },
+
+    { "name": "list_arcs", "agent": "concept-strategist", "also": ["planner"], "lane": "plan", "cost": "C0", "consent": "nessuno", "decision": null, "purpose": "I 7 Full Arc narrativi con template di hook. Primo vincolo strutturale del concept." },
+    { "name": "list_creative_mechanics", "agent": "concept-strategist", "also": ["planner"], "lane": "plan", "cost": "C0", "consent": "nessuno", "decision": null, "purpose": "Le 8 meccaniche strutturali (Implied Answer, Reframe, Trojan Horse...) per stadio di consapevolezza." },
+    { "name": "list_hook_tactics", "agent": "concept-strategist", "also": [], "lane": "plan", "cost": "C0", "consent": "nessuno", "decision": null, "purpose": "Le 33 tattiche di hook con trigger e confusioni tipiche. Si sceglie l'angolo prima di generare." },
+    { "name": "list_voice_patterns", "agent": "concept-strategist", "also": [], "lane": "plan", "cost": "C0", "consent": "nessuno", "decision": null, "purpose": "25 template di hook nativi in 10 cluster, per copy che suona come un post." },
+    { "name": "list_visual_formats", "agent": "visual-director", "also": ["concept-strategist"], "lane": "plan", "cost": "C0", "consent": "nessuno", "decision": null, "purpose": "70 formati visivi con fit di funnel e medium. Si sceglie dopo il concept, prima del prompt." },
+    { "name": "search_concepts", "agent": "concept-strategist", "also": [], "lane": "plan", "cost": "C0", "consent": "nessuno", "decision": null, "purpose": "104 concept curati dei 7 archi, gia' validati." },
+    { "name": "list_season_concepts", "agent": "concept-strategist", "also": [], "lane": "plan", "cost": "C0", "consent": "nessuno", "decision": null, "purpose": "Concept stagionali con evidenze di spesa, stato seed/analizzato/validato/ritirato." },
+    { "name": "generate_hooks", "agent": "concept-strategist", "also": [], "lane": "explore", "cost": "C0", "consent": "nessuno", "decision": null, "purpose": "Generazione combinatoria arco x verticale, riproducibile con seed. Puo' produrre cifre e segnaposto: passa sempre da copy-guard." },
+    { "name": "choose_concepts", "agent": "concept-strategist", "also": ["planner"], "lane": "plan", "cost": "C1", "consent": "nessuno", "decision": "D2", "purpose": "D2: Jev sceglie 3-5 concept della libreria per il brief." },
+    { "name": "plan_season_creatives", "agent": "concept-strategist", "also": [], "lane": "plan", "cost": "C1", "consent": "nessuno", "decision": "D2-D4", "purpose": "Piano stagionale da brief e offerta dichiarata: D2, riempimento segnaposto, D3/D4, input pronto per create_meta_creatives." },
+
+    { "name": "search_db_ads", "agent": "intel-scout", "also": ["concept-strategist"], "lane": "exploit", "cost": "C0", "consent": "nessuno", "decision": null, "purpose": "2622 concept del DB ads con formula visiva, scorecard e ad_id clonabile." },
+    { "name": "search_library_ads", "agent": "intel-scout", "also": [], "lane": "exploit", "cost": "C0", "consent": "nessuno", "decision": null, "purpose": "Libreria condivisa stagionale (BFCM 2025, 1.893 ads) ordinata per spesa UE." },
+    { "name": "list_ads", "agent": "intel-scout", "also": ["performance-analyst"], "lane": "exploit", "cost": "C0", "consent": "nessuno", "decision": null, "purpose": "Ads ingerite del tenant con signed url." },
+    { "name": "ingest_ads", "agent": "intel-scout", "also": [], "lane": "exploit", "cost": "C4", "consent": "esplicito", "decision": null, "purpose": "Estrae ads competitor da BrandSearch su Supabase con immagine nel bucket. Senza consenti_crediti si ferma prima della rete." },
+    { "name": "ingest_season", "agent": "intel-scout", "also": [], "lane": "exploit", "cost": "C4", "consent": "chiave", "decision": "D1", "purpose": "Carica una pagina di slice stagionale nella libreria condivisa con triage D1. Solo slug libreria, chiamate in sequenza." },
+    { "name": "triage_ads", "agent": "intel-scout", "also": [], "lane": "exploit", "cost": "C1", "consent": "nessuno", "decision": "D1", "purpose": "D1: etichetta meccanica d'offerta, segnali e consapevolezza; sceglie su quali ads spendere analisi vision." },
+    { "name": "analyze_ad", "agent": "intel-scout", "also": [], "lane": "exploit", "cost": "C2", "consent": "budget", "decision": null, "purpose": "Teardown di una ad ingerita: prompt_json, master_prompt, master_idea, master_concept in ad_analysis." },
+    { "name": "analyze_ads_batch", "agent": "intel-scout", "also": [], "lane": "exploit", "cost": "C2", "consent": "esplicito", "decision": null, "purpose": "Stessa analisi su 1-200 ads a meta' prezzo via Batch API Google, asincrona. Senza consenti_costo e' un preventivo." },
+
+    { "name": "analyze_creative", "agent": "performance-analyst", "also": ["qa-gate"], "lane": "exploit", "cost": "C2", "consent": "budget", "decision": null, "purpose": "Analisi Creative OS di una creative con performance osservate: ipotesi, miglioramenti, prompt di rework." },
+    { "name": "analyze_creatives_batch", "agent": "performance-analyst", "also": [], "lane": "exploit", "cost": "C2", "consent": "budget", "decision": null, "purpose": "Audit batch solo su testo (il batch Gemini su OpenRouter rifiuta le immagini). Max 50 per submit." },
+    { "name": "import_performance", "agent": "test-learning", "also": ["performance-analyst"], "lane": "learn", "cost": "C0", "consent": "nessuno", "decision": "D7", "purpose": "D7: importa metriche giornaliere lette dal connettore Meta in sola lettura. Kill e scale restano regole di codice." },
+
+    { "name": "preflight_copy", "agent": "copy-guard", "also": [], "lane": "produzione", "cost": "C1", "consent": "nessuno", "decision": "D3-D4", "purpose": "D3/D4: blocchi deterministici su prezzi, percentuali, date non dichiarate, poi Jev su hook, brand fit, claim. Fail-closed." },
+
+    { "name": "build_visual_prompt", "agent": "visual-director", "also": [], "lane": "produzione", "cost": "C0", "consent": "nessuno", "decision": null, "purpose": "Formula + hook + prodotto + reference -> visual prompt JSON per placement." },
+    { "name": "generate_variants", "agent": "visual-director", "also": [], "lane": "produzione", "cost": "C0", "consent": "nessuno", "decision": null, "purpose": "Varianti a variabile controllata (hook, layout, palette, imagery). L'elemento 0 e' la baseline." },
+    { "name": "expand_batch", "agent": "visual-director", "also": [], "lane": "produzione", "cost": "C0", "consent": "nessuno", "decision": null, "purpose": "Espande i job nei visual prompt senza generare: review prima della spesa." },
+    { "name": "plan_meta_creatives", "agent": "visual-director", "also": ["planner"], "lane": "produzione", "cost": "C0", "consent": "nessuno", "decision": null, "purpose": "Piano del bundle Meta (feed 4:5 e Stories 9:16) con prompt, safe zone, modello e fallback, prima di spendere." },
+
+    { "name": "create_meta_creatives", "agent": "render-producer", "also": [], "lane": "produzione", "cost": "C3", "consent": "budget", "decision": "D3-D4", "purpose": "Percorso standard: preflight, generazione, analisi, gate (>=8) e fino a 2 rework. Solo i PASS escono approvati." },
+    { "name": "generate_batch", "agent": "render-producer", "also": [], "lane": "explore", "cost": "C3", "consent": "budget", "decision": null, "purpose": "Pipeline parallela fino a 50 job, gate opzionale. Non fa preflight: gli hook devono arrivare gia' approvati." },
+    { "name": "generate_image", "agent": "render-producer", "also": [], "lane": "produzione", "cost": "C3", "consent": "budget", "decision": null, "purpose": "Singola immagine da visual prompt. Instrada su OpenAI, OpenRouter, Atlas Cloud o Luma secondo il modello." },
+    { "name": "duplicate_creative", "agent": "render-producer", "also": [], "lane": "exploit", "cost": "C3", "consent": "budget", "decision": null, "purpose": "Clone Ads: formula di una ad analizzata su prodotto nuovo, anche dalla libreria condivisa." },
+
+    { "name": "teardown_creative", "agent": "qa-gate", "also": ["performance-analyst"], "lane": "produzione", "cost": "C2", "consent": "budget", "decision": null, "purpose": "Analisi forense a 11 layer, scorecard a 8 assi e visual_prompt replicabile." },
+    { "name": "quality_gate", "agent": "qa-gate", "also": [], "lane": "produzione", "cost": "C0", "consent": "nessuno", "decision": null, "purpose": "Applica soglie a una scorecard: PASS, REWORK o KILL." },
+    { "name": "fidelity_test", "agent": "qa-gate", "also": [], "lane": "exploit", "cost": "C3", "consent": "budget", "decision": null, "purpose": "Rigenera dal master_prompt e confronta con l'originale: >=7 PASS, poi REWORK max 2 round, poi KILL." },
+
+    { "name": "rank_for_test", "agent": "test-learning", "also": [], "lane": "learn", "cost": "C1", "consent": "nessuno", "decision": "D6", "purpose": "D6: ordina le approved_creatives e propone ad set da 3-5 per la matrice di test." }
+  ],
+  "satellites": [
+    { "server": "Meta_Agent", "tools": ["top_performer_copy", "creative_intelligence", "competitor_analysis", "trend_analyzer", "creative_velocity", "v3_search_meta_ads", "analyze_paid_ad"], "agent": "intel-scout", "role": "Intelligence di mercato e competitor prima dell'ingest a pagamento. analyze_paid_ad costa crediti." },
+    { "server": "Meta", "tools": ["insights in sola lettura del connettore Meta Ads", "ads_creative_upload_local_image", "ads_finalize_local_ad_image_upload"], "agent": "test-learning", "role": "Lettura metriche per import_performance (D7) e upload degli asset approvati, solo dopo un si' umano." },
+    { "server": "Magnific", "tools": ["images_upscale", "design_auto_resize", "brand_kit_get"], "agent": "render-producer", "role": "Post-produzione delle creative approvate: upscale, resize multi-formato, reference di brand." }
+  ]
+}

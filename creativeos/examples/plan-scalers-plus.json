@@ -1,0 +1,61 @@
+{
+  "plan_id": "cp-20261009-scalers-plus-q4",
+  "slug": "scalers",
+  "objective": "Nuovo ciclo creativo Meta per Scalers+: scalare i concept che gia' convertono e testare 3 concept nuovi, senza prezzi nel copy.",
+  "brief": {
+    "brand": "Scalers",
+    "nicchia": "formazione marketing e AI per agenzie e freelance",
+    "mercato": "it",
+    "prodotto": "Scalers+ (community, corso Claude Code 2.0, Live Workshop)",
+    "obiettivo": "iscrizioni a Scalers+",
+    "offerta": {},
+    "awareness": "Problem-Aware"
+  },
+  "reference_image": "https://REPLACE-WITH-SCALERS-MOODBOARD.example/moodboard.png",
+  "portfolio": { "exploit": 0.7, "iterate": 0.2, "explore": 0.1 },
+  "budget": { "max_usd": 15, "max_brandsearch_credits": 100 },
+  "engines": {
+    "allowed": ["gpt-image-2", "gpt-image-2.5-flare", "gpt-image-2.5-sunburst", "nano-banana-2", "nano-banana-pro"],
+    "routes": ["R1-explore-draft", "R2-exploit-clone", "R3-production-feed", "R4-production-story"],
+    "tournament": true
+  },
+  "steps": [
+    { "id": "S01", "agent": "orchestrator", "tool": "health", "lane": "sistema", "depends_on": [], "cost": "C0", "consent": "nessuno", "on_fail": "stop" },
+
+    { "id": "S02", "agent": "test-learning", "tool": "Meta:insights", "lane": "exploit", "depends_on": ["S01"], "cost": "C0", "consent": "nessuno", "inputs": { "range": "last_30d", "level": "ad", "mode": "sola lettura" }, "on_fail": "skip" },
+    { "id": "S03", "agent": "test-learning", "tool": "import_performance", "lane": "learn", "depends_on": ["S02"], "cost": "C0", "consent": "nessuno", "inputs": { "rows": "S02.rows", "fonte": "meta-mcp" }, "on_fail": "skip" },
+    { "id": "S04", "agent": "performance-analyst", "tool": "analyze_creative", "lane": "exploit", "depends_on": ["S03"], "fan_out": "S03.winners[0:3]", "cost": "C2", "est_usd": 0.15, "consent": "budget", "inputs": { "goal": "iscrizioni", "placement": "meta_feed" }, "on_fail": "skip" },
+
+    { "id": "S05", "agent": "intel-scout", "tool": "search_db_ads", "lane": "exploit", "depends_on": ["S01"], "cost": "C0", "consent": "nessuno", "inputs": { "query": "corso", "meccanica": "testimonial", "limit": 20, "preview_images": 3 }, "on_fail": "skip" },
+    { "id": "S06", "agent": "intel-scout", "tool": "Meta_Agent:top_performer_copy", "lane": "exploit", "depends_on": ["S01"], "cost": "C1", "consent": "nessuno", "inputs": { "niche": "formazione marketing", "limit": 50 }, "on_fail": "skip" },
+    { "id": "S07", "agent": "intel-scout", "tool": "ingest_ads", "lane": "exploit", "depends_on": ["S06"], "cost": "C4", "consent": "esplicito", "inputs": { "brand_id": "REPLACE-WITH-COMPETITOR-DOMAIN", "limit": 50, "max_credits": 100, "filters": { "eu_countries": "IT", "languages": "it", "sort_by": "eu_total_spend" } }, "on_fail": "skip" },
+    { "id": "S08", "agent": "intel-scout", "tool": "triage_ads", "lane": "exploit", "depends_on": ["S07"], "cost": "C1", "consent": "nessuno", "inputs": { "market": "it", "top_k": 3 }, "on_fail": "skip" },
+    { "id": "S09", "agent": "intel-scout", "tool": "analyze_ad", "lane": "exploit", "depends_on": ["S08"], "fan_out": "S08.scelte[*]", "cost": "C2", "est_usd": 0.6, "consent": "budget", "inputs": { "max_cost_usd": 2 }, "on_fail": "skip" },
+
+    { "id": "S10", "agent": "concept-strategist", "tool": "list_creative_mechanics", "lane": "plan", "depends_on": ["S01"], "cost": "C0", "consent": "nessuno", "inputs": { "awareness": "Problem-Aware" } },
+    { "id": "S11", "agent": "concept-strategist", "tool": "search_concepts", "lane": "plan", "depends_on": ["S01"], "cost": "C0", "consent": "nessuno", "inputs": { "vertical": "meta-ads", "formato": "static" } },
+    { "id": "S12", "agent": "concept-strategist", "tool": "generate_hooks", "lane": "explore", "depends_on": ["S10"], "cost": "C0", "consent": "nessuno", "inputs": { "arc": "ARC-3", "vertical": "meta-ads", "count": 3, "formato": "static", "seed": 42 } },
+    { "id": "S13", "agent": "concept-strategist", "tool": "generate_hooks", "lane": "explore", "depends_on": ["S10"], "cost": "C0", "consent": "nessuno", "inputs": { "arc": "ARC-4", "vertical": "meta-ads", "count": 2, "formato": "static", "seed": 42 } },
+
+    { "id": "S14", "agent": "copy-guard", "tool": "preflight_copy", "lane": "produzione", "depends_on": ["S04", "S09", "S11", "S12", "S13"], "cost": "C1", "consent": "nessuno", "gate": "preflight", "inputs": { "offer": {}, "brand_rules": { "no_prezzi": true } }, "on_fail": "human" },
+
+    { "id": "S15", "agent": "visual-director", "tool": "build_visual_prompt", "lane": "produzione", "depends_on": ["S14"], "fan_out": "S14.render[*]", "cost": "C0", "consent": "nessuno", "inputs": { "placement": "meta_feed" } },
+    { "id": "S16", "agent": "visual-director", "tool": "generate_variants", "lane": "produzione", "depends_on": ["S15"], "cost": "C0", "consent": "nessuno", "inputs": { "count": 3 } },
+    { "id": "S17", "agent": "visual-director", "tool": "expand_batch", "lane": "produzione", "depends_on": ["S16"], "cost": "C0", "consent": "nessuno", "on_fail": "stop" },
+
+    { "id": "S18", "agent": "qa-gate", "tool": "fidelity_test", "lane": "exploit", "depends_on": ["S09"], "fan_out": "S09.analizzate[0:2]", "cost": "C3", "est_usd": 0.8, "consent": "budget", "gate": "fidelity", "inputs": { "max_round": 2 }, "on_fail": "skip" },
+    { "id": "S19", "agent": "render-producer", "tool": "duplicate_creative", "lane": "exploit", "depends_on": ["S18", "S14"], "fan_out": "S18.pass[*]", "cost": "C3", "est_usd": 1.2, "consent": "budget", "inputs": { "product": "Scalers+", "model": "gpt-image-2", "size": "1024x1280" }, "on_fail": "fallback_engine" },
+    { "id": "S20", "agent": "render-producer", "tool": "generate_batch", "lane": "explore", "depends_on": ["S17"], "cost": "C3", "est_usd": 3.0, "consent": "esplicito", "gate": "quality", "inputs": { "gate": true, "concurrency": 3, "tournament": ["gpt-image-2", "gpt-image-2.5-flare", "nano-banana-2"] }, "on_fail": "fallback_engine" },
+    { "id": "S21", "agent": "render-producer", "tool": "create_meta_creatives", "lane": "produzione", "depends_on": ["S04", "S14"], "fan_out": "S14.render[account_winner]", "cost": "C3", "est_usd": 4.0, "consent": "budget", "gate": "quality", "inputs": { "placements": ["meta_feed", "meta_story"], "variants_per_placement": 2, "max_reworks": 2 }, "on_fail": "rework" },
+
+    { "id": "S22", "agent": "qa-gate", "tool": "quality_gate", "lane": "produzione", "depends_on": ["S19", "S20", "S21"], "cost": "C0", "consent": "nessuno", "gate": "quality" },
+    { "id": "S23", "agent": "test-learning", "tool": "rank_for_test", "lane": "learn", "depends_on": ["S22"], "cost": "C1", "consent": "nessuno", "inputs": { "per_ad_set": 4 } },
+    { "id": "S24", "agent": "test-learning", "tool": "Meta:ads_creative_upload_local_image", "lane": "learn", "depends_on": ["S23"], "cost": "C0", "consent": "esplicito", "on_fail": "human" }
+  ],
+  "outputs": [
+    "Matrice di test: ad set da 4 creative, ordinate da rank_for_test",
+    "ConceptCard aggiornate (seed -> analizzato -> in_test)",
+    "Ledger dei costi e registro decisioni D1-D7",
+    "Richiamo pianificato: import_performance dopo 3 e 7 giorni"
+  ]
+}
