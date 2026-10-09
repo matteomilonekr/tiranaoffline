@@ -9,6 +9,7 @@ Architettura completa con diagrammi: [ARCHITECTURE.md](ARCHITECTURE.md).
 | Percorso | Contenuto |
 |---|---|
 | `creativeos/ARCHITECTURE.md` | Strati, corsie, stati, router dei motori, costi, rischi |
+| `creativeos/architettura.html` | La stessa architettura come pagina con i diagrammi: si apre con doppio clic nel browser |
 | `creativeos/registry/tools.json` | I 38 tool AI Ads con agente responsabile, corsia, classe di costo, consenso e decisione D1-D7 |
 | `creativeos/registry/engines.json` | Motori, route per fase e placement, fallback, torneo |
 | `creativeos/registry/rules.json` | Soglie dei gate, portafoglio 70/20/10, regole kill/scale, ciclo di vita dei concept |
