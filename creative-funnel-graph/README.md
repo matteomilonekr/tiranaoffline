@@ -13,6 +13,8 @@ Andromeda raggruppa le ads con creative simili sotto la stessa entità: condivid
 - Mostra tutte le creative attive fianco a fianco, al posto di una tabella da scorrere.
 - Raggruppa le ads con la stessa creativa in una card con il conteggio (`12×`), così i doppioni si vedono subito.
 - Riorganizza la vista per formato, angolo, persona, creator, hook (rilevati dai nomi delle ads) o campagna.
+- Riorganizza per **tipologia di asset** (statiche, video, UGC, caroselli), **tipologia di UGC** (unboxing, reveal / prima-dopo, testimonianza, routine / GRWM, tutorial, reaction, POV, intervista) e **offerta** (BOGO, sconto %, sconto in valuta, bundle, abbonamento, spedizione gratuita, omaggio, garanzia, evento promo, solo urgenza), lette dal tipo di creativa, dal nome dell'ad e dal copy.
+- Nella somiglianza creativa, **Troppo simili**: i gruppi di creative con lo stesso creator, lo stesso gancio, lo stesso testo o la stessa immagine (scegli quali criteri devono condividere), evidenziati nella mappa 3D e nel dettaglio di ogni creativa.
 - Posiziona ogni ad nel funnel in base a dove Meta ha speso:
   - **Top of funnel**: nuovi utenti (prospecting)
   - **Middle of funnel**: pubblico ingaggiato, frequenza ancora bassa

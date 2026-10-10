@@ -4,6 +4,7 @@
 import { FunnelGraphScene } from './scene.js';
 import { buildModel, groupStacks, placementHints, summarize, DEFAULT_SETTINGS, ARRANGEMENTS, GROUP_COLORS } from './model.js';
 import { similarityMap, familyName, separate, SIM_MODES } from './similarity.js';
+import { overlap, OVERLAP_CRITERIA } from './overlap.js';
 import { computeLayout } from './layout.js';
 import { computeSignature } from './phash.js';
 import { buildCardCanvases, placeholderCanvas } from './textures.js';
@@ -89,6 +90,13 @@ const state = {
   failedImages: 0,
   simMode: SIM_MODES.includes(store.get('simMode', 'all')) ? store.get('simMode', 'all') : 'all',
   similarity: new Map(),
+  // "Too similar": the criteria picked, the groups they give, the group in view.
+  ovCriteria: (() => {
+    const saved = store.get('ovCriteria', ['hook', 'copy']);
+    return Array.isArray(saved) ? saved.filter((c) => OVERLAP_CRITERIA.includes(c)) : ['hook', 'copy'];
+  })(),
+  overlap: null,
+  ovGroup: null,
 };
 
 let scene = null;
@@ -291,6 +299,8 @@ function handleError(err) {
 async function rebuildModel() {
   state.model = buildModel(state.snapshot, { signatures: state.signatures, settings: state.settings });
   state.similarity = new Map();
+  state.overlap = null;
+  state.ovGroup = null;
   await rebuildView();
 }
 
@@ -415,6 +425,26 @@ function similarityFor(mode = state.simMode) {
   return state.similarity.get(mode);
 }
 
+/** The creatives too alike to test against each other, for the criteria picked. */
+function overlapFor() {
+  const key = state.ovCriteria.join(',');
+  if (!state.overlap || state.overlap.key !== key) state.overlap = { key, ...overlap(state.model.stacks, state.signatures, state.ovCriteria) };
+  return state.overlap;
+}
+
+/** Shows one group of too-alike creatives in the map (or none), each pair tied by a line. */
+function showOverlapGroup(index) {
+  const ov = overlapFor();
+  const group = index === null ? null : ov.groups[index];
+  state.ovGroup = group ? index : null;
+  if (group) state.focus = null;
+  const ids = group ? new Set(group.stacks.map((s) => s.id)) : null;
+  scene?.setFocus(state.focus);
+  scene?.setHighlight(ids, group?.pairs || []);
+  renderSimPanel();
+  renderOverlays();
+}
+
 /**
  * Creative similarity in 3D: alike creatives close, different ones apart, in families named
  * by what most of their spend shares. The legend lists the families; one picked is zoomed to.
@@ -444,6 +474,7 @@ async function showSimilarity() {
   const artwork = await buildArtwork(model.stacks.map((stack) => ({ stack, h: 1 })));
   scene?.setCloud({ cards, links: map.links, families: state.groups.map((g) => ({ key: g.key, label: g.label, color: g.color })) }, artwork);
   scene?.setFocus(state.focus);
+  if (state.ovGroup !== null) showOverlapGroup(state.ovGroup < overlapFor().groups.length ? state.ovGroup : null);
   scene?.setSelected(state.selected);
   ui.buildRingLabels([], pickGroup);
   renderSimPanel();
@@ -474,7 +505,70 @@ function renderSimPanel() {
   panel.replaceChildren(
     ui.h('div', { class: 'sim-row-top' }, ui.h('span', { class: 'mx-label', text: t('sim.label') }), ui.h('div', { class: 'segmented', role: 'group', 'aria-label': t('sim.label') }, ...buttons)),
     ui.h('p', { class: 'mx-hint', text: t('sim.hint.' + state.simMode) }),
+    overlapSection(),
   );
+}
+
+/** "Too similar": criteria to pick (same creator, hook, copy, image) and the groups they give. */
+function overlapSection() {
+  const ov = overlapFor();
+  const crit = OVERLAP_CRITERIA.map((c) =>
+    ui.h(
+      'button',
+      {
+        type: 'button',
+        'aria-pressed': String(state.ovCriteria.includes(c)),
+        onclick: () => {
+          const on = state.ovCriteria.includes(c);
+          state.ovCriteria = on ? state.ovCriteria.filter((x) => x !== c) : OVERLAP_CRITERIA.filter((x) => x === c || state.ovCriteria.includes(x));
+          store.set('ovCriteria', state.ovCriteria);
+          showOverlapGroup(null);
+          updateInsets();
+        },
+      },
+      t('ov.crit.' + c),
+      ui.h('small', { text: String(ov.counts[c] ? countWith(ov, c) : 0) }),
+    ),
+  );
+  const max = 12;
+  const cur = currency();
+  const groups = ov.groups.slice(0, max).map((g, i) =>
+    ui.h(
+      'button',
+      { type: 'button', class: 'ov-group', 'aria-pressed': String(state.ovGroup === i), onclick: () => showOverlapGroup(state.ovGroup === i ? null : i) },
+      ui.h('b', { text: overlapTitle(g) }),
+      ui.h('span', { text: t('ov.group', { n: g.stacks.length, spend: fmt.money(g.spend, cur) }) }),
+    ),
+  );
+  if (ov.groups.length > max) groups.push(ui.h('span', { class: 'ov-more', text: t('ov.more', { n: ov.groups.length - max }) }));
+  let note = null;
+  if (!state.ovCriteria.length) note = t('ov.pick');
+  else if (state.ovCriteria.includes('creator') && !state.model.stacks.some((s) => s.tags?.creator)) note = t('ov.noCreator');
+  else if (!ov.groups.length) note = t('ov.none');
+  return ui.h(
+    'div',
+    { class: 'ov' },
+    ui.h('div', { class: 'ov-crit', role: 'group', 'aria-label': t('ov.title') }, ui.h('span', { class: 'mx-label', title: t('ov.hint'), text: t('ov.title') }), ...crit),
+    groups.length ? ui.h('div', { class: 'ov-groups' }, ...groups) : null,
+    // The why once, while nothing is picked; then only what is missing.
+    note || state.ovGroup === null ? ui.h('p', { class: 'mx-hint', text: note || t('ov.hint') }) : null,
+  );
+}
+
+/** How many creatives share a criterion with at least one other. */
+function countWith(ov, c) {
+  let n = 0;
+  for (const list of ov.byStack.values()) if (list.some((o) => o.shared.includes(c))) n++;
+  return n;
+}
+
+/** A group's name: the creator, else the hook line, of its biggest creative. */
+function overlapTitle(g) {
+  const top = g.stacks[0];
+  if (g.shared.includes('creator') && top.tags?.creator) return top.tags.creator;
+  const c = top.rep.creative || {};
+  const line = c.hookLine || c.title || top.rep.name || '';
+  return line.length > 40 ? line.slice(0, 39) + '…' : line;
 }
 
 /** A quadrant pressed again, Esc or the pill: back to the whole matrix. */
@@ -558,6 +652,11 @@ function renderOverlays() {
 
 function pickGroup(key) {
   state.focus = state.focus === key ? null : key;
+  if (state.ovGroup !== null) {
+    state.ovGroup = null;
+    scene?.setHighlight(null);
+    if (state.arrangement === 'similarity') renderSimPanel();
+  }
   scene?.setFocus(state.focus);
   renderOverlays();
 }
@@ -569,6 +668,8 @@ function selectCard(card) {
   }
   // In the matrix a card opens its detail; the quadrant in view stays as it is.
   if (state.arrangement === 'matrix') return openDetail(card.stack, null);
+  // With a group of too-alike creatives in view, a card opens its detail and the group stays.
+  if (state.ovGroup !== null && state.arrangement === 'similarity') return openDetail(card.stack, state.groups.find((g) => g.key === card.group) || null);
   if (state.focus !== card.group) {
     state.focus = card.group;
     scene?.setFocus(state.focus);
@@ -591,6 +692,7 @@ function openDetail(stack, group) {
     loadDetail: detailFor,
     onClose: closeDrawer,
     similar,
+    overlap: index >= 0 ? (overlapFor().byStack.get(stack.id) || []).slice(0, 5) : [],
     onPick: (other) => openDetail(other, null),
   });
   updateInsets();
@@ -694,15 +796,18 @@ function openAccountMenu() {
 }
 
 function openArrangeMenu() {
-  const item = (a) => ({ label: t('arr.' + a), sub: a === 'matrix' || a === 'similarity' ? t(`arr.${a}Sub`) : undefined, checked: state.arrangement === a, onSelect: () => setArrangement(a) });
+  const withSub = ['matrix', 'similarity', 'asset', 'ugc', 'offer'];
+  const item = (a) => ({ label: t('arr.' + a), sub: withSub.includes(a) ? t(`arr.${a}Sub`) : undefined, checked: state.arrangement === a, onSelect: () => setArrangement(a) });
   const some = (list) => list.filter((a) => ARRANGEMENTS.includes(a)).map(item);
   const detected = some(['format', 'angle', 'persona', 'creator', 'hook']);
+  const creative = some(['asset', 'ugc', 'offer']);
   const campaign = some(['campaign']);
   ui.openMenu(
     $('arrange-chip'),
     [
       { heading: t('arrange.title') },
       item('funnel'),
+      ...(creative.length ? [{ separator: true }, { heading: t('arrange.creative') }, ...creative] : []),
       ...(detected.length ? [{ separator: true }, { heading: t('arrange.detected') }, ...detected] : []),
       ...(campaign.length ? [{ separator: true }, ...campaign] : []),
       ...(ARRANGEMENTS.includes('matrix') || ARRANGEMENTS.includes('similarity') ? [{ separator: true }, { heading: t('arrange.performance') }, ...some(['similarity', 'matrix'])] : []),
@@ -715,6 +820,7 @@ async function setArrangement(a) {
   if (!ARRANGEMENTS.includes(a) || a === state.arrangement) return;
   state.arrangement = a;
   state.focus = null;
+  state.ovGroup = null;
   store.set('arrangement', a);
   closeDrawer();
   await rebuildView();
@@ -861,6 +967,7 @@ function bindChrome() {
   document.addEventListener('keydown', (e) => {
     if (e.key !== 'Escape' || !$('modal').hidden || !$('popover').hidden) return;
     if (!$('detail').hidden) closeDrawer();
+    else if (state.ovGroup !== null && state.arrangement === 'similarity') showOverlapGroup(null);
     else clearQuadrant();
   });
 }

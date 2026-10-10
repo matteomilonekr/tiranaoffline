@@ -6,8 +6,13 @@ import { parseAdNames, DIMENSIONS } from './naming.js';
 import { buildStacks, aggregateMetrics, SENSITIVITY } from './stacks.js';
 import { FUNNEL_LEVELS, funnelContext, classifyFunnel } from './funnel.js';
 import { daysBetween } from './format.js';
+import { kindOf, ASSET_TYPES, UGC_TYPES } from './kinds.js';
+import { detectOffer, OFFER_KEYS } from './offers.js';
 
-export const ARRANGEMENTS = ['funnel', 'format', 'angle', 'persona', 'creator', 'hook', 'campaign', 'similarity', 'matrix'];
+export const ARRANGEMENTS = ['funnel', 'format', 'angle', 'persona', 'creator', 'hook', 'campaign', 'asset', 'ugc', 'offer', 'similarity', 'matrix'];
+
+// Read from the creative and its copy rather than from the ad name, so always there.
+export const DERIVED = ['asset', 'ugc', 'offer'];
 
 // Reference categorical palette, dark steps, fixed order (validated for CVD separation).
 export const GROUP_COLORS = ['#3987e5', '#d95926', '#199e70', '#c98500', '#d55181', '#008300', '#9085e9', '#e66767'];
@@ -26,7 +31,7 @@ export const DEFAULT_SETTINGS = {
 
 function majorityTags(ads) {
   const out = {};
-  for (const dim of DIMENSIONS) {
+  for (const dim of [...DIMENSIONS, ...DERIVED]) {
     const weights = new Map();
     for (const ad of ads) {
       const v = ad.tags?.[dim];
@@ -65,10 +70,24 @@ export function buildModel(snapshot, options = {}) {
   ads.forEach((a, i) => {
     a.tags = tags[i];
   });
+  // Asset type, UGC format and offer: tags that ship with the data, else the creative and copy.
+  for (const a of ads) {
+    const kind = kindOf(a);
+    const offer = OFFER_KEYS.includes(a.tags.offer) ? { key: a.tags.offer, text: '' } : detectOffer([a.creative?.title, a.creative?.body, a.name].filter(Boolean).join(' \n '));
+    a.offerText = offer.text;
+    a.tags = {
+      ...a.tags,
+      asset: kind.asset,
+      ugc: kind.ugc,
+      offer: offer.key,
+      source: { ...(a.tags.source || {}), asset: kind.source.asset, ugc: kind.source.ugc, offer: a.tags.offer ? 'tag' : offer.text ? 'copy' : null },
+    };
+  }
 
   const stacks = buildStacks(ads, signatures, SENSITIVITY[settings.sensitivity] || SENSITIVITY.normal);
   for (const s of stacks) {
     s.tags = majorityTags(s.ads);
+    s.offerText = s.ads.find((a) => a.tags.offer === s.tags.offer && a.offerText)?.offerText || '';
     s.campaigns = [...new Set(s.ads.map((a) => a.campaign?.name).filter(Boolean))];
     s.adsets = [...new Set(s.ads.map((a) => a.adset?.name).filter(Boolean))];
   }
@@ -125,6 +144,7 @@ function valueFor(stack, arrangement) {
  * @returns {Array<{key, label, labelKey, color, stacks, count, adCount, spend, roas, estimated}>}
  */
 export function groupStacks(model, arrangement = 'funnel') {
+  if (KEYED[arrangement]) return keyedGroups(model, arrangement);
   if (arrangement === 'funnel') {
     return FUNNEL_LEVELS.map((lvl) =>
       summarize({
@@ -176,6 +196,40 @@ export function groupStacks(model, arrangement = 'funnel') {
     );
   }
   return groups;
+}
+
+// Arrangements with a fixed set of values, named by i18n key ("asset.ugc", "offer.bogo").
+const KEYED = { asset: ASSET_TYPES, ugc: UGC_TYPES, offer: OFFER_KEYS };
+export const ASSET_COLORS = { static: '#3987e5', video: '#d95926', ugc: '#199e70', carousel: '#c98500' };
+
+/** Groups for a keyed arrangement: by spend, the asset types in their own order and colours, "none" and "other" last. */
+function keyedGroups(model, arrangement) {
+  const byKey = new Map();
+  for (const s of model.stacks) {
+    const v = s.tags?.[arrangement] || 'none';
+    if (!byKey.has(v)) byKey.set(v, []);
+    byKey.get(v).push(s);
+  }
+  const muted = (v) => v === 'none' || v === 'other';
+  const order = KEYED[arrangement];
+  const ranked = [...byKey.entries()]
+    .map(([value, stacks]) => ({ value, stacks, spend: stacks.reduce((t, s) => t + s.metrics.spend, 0) }))
+    .sort((a, b) =>
+      muted(a.value) - muted(b.value) ||
+      (arrangement === 'asset' ? order.indexOf(a.value) - order.indexOf(b.value) : 0) ||
+      b.spend - a.spend ||
+      b.stacks.length - a.stacks.length,
+    );
+  let color = 0;
+  return ranked.map((g) =>
+    summarize({
+      key: 'k:' + g.value,
+      label: null,
+      labelKey: `${arrangement}.${g.value}`,
+      color: g.value === 'none' ? '#55534e' : g.value === 'other' ? MUTED_COLOR : arrangement === 'asset' ? ASSET_COLORS[g.value] : GROUP_COLORS[color++ % GROUP_COLORS.length],
+      stacks: g.stacks,
+    }),
+  );
 }
 
 /** Depth hints for the layout: funnel depth in funnel mode, a spend rank otherwise. */

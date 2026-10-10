@@ -369,6 +369,8 @@ export class FunnelGraphScene {
     }
     this.families = [];
     this.links = null;
+    this.highlight = null;
+    this.overlapLines = null;
     for (const obj of [...this.world.children]) {
       this.world.remove(obj);
       if (obj.geometry && obj.geometry !== this.plane) obj.geometry.dispose();
@@ -396,6 +398,38 @@ export class FunnelGraphScene {
 
   setSelected(stackId) {
     this.selectedId = stackId ?? null;
+  }
+
+  /**
+   * Picks out a set of cards in the similarity map (creatives too alike to test against each
+   * other), ties each pair with a red line and frames them; null lets go.
+   * @param {Set<string>|null} ids stack ids
+   * @param {Array<[string, string]>} pairs stack id pairs to tie
+   */
+  setHighlight(ids, pairs = []) {
+    this.highlight = ids?.size ? ids : null;
+    if (this.overlapLines) {
+      this.world.remove(this.overlapLines);
+      this.overlapLines.geometry.dispose();
+      this.overlapLines.material.dispose();
+      this.overlapLines = null;
+    }
+    if (this.highlight && this.mode === 'cloud') {
+      const at = new Map(this.cards.map((m) => [m.userData.card.stack.id, m.userData.card]));
+      const pos = [];
+      for (const [a, b] of pairs) {
+        const p = at.get(a);
+        const q = at.get(b);
+        if (p && q) pos.push(p.x, p.y, p.z, q.x, q.y, q.z);
+      }
+      const geo = new THREE.BufferGeometry();
+      geo.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
+      this.overlapLines = new THREE.LineSegments(geo, new THREE.LineBasicMaterial({ color: 0xe8605a, transparent: true, opacity: 0.9, depthWrite: false }));
+      this.overlapLines.renderOrder = 2;
+      this.world.add(this.overlapLines);
+    }
+    this.userZoom = 1;
+    this._applyViewGoal(false);
   }
 
   setAutoRotate(on) {
@@ -435,7 +469,17 @@ export class FunnelGraphScene {
 
   _applyViewGoal(instant) {
     if (this.mode === 'cloud') {
-      const fam = this.focusKey ? this.families.find((f) => f.key === this.focusKey) : null;
+      let fam = this.focusKey ? this.families.find((f) => f.key === this.focusKey) : null;
+      if (this.highlight) {
+        const members = this.cards.map((m) => m.userData.card).filter((c) => this.highlight.has(c.stack.id));
+        const center = new THREE.Vector3();
+        for (const c of members) center.add(new THREE.Vector3(c.x, c.y, c.z));
+        center.divideScalar(Math.max(1, members.length));
+        let r = 0.8;
+        for (const c of members) r = Math.max(r, center.distanceTo(new THREE.Vector3(c.x, c.y, c.z)) + c.h / 2);
+        // Framed wide enough to show where the group sits, not only its cards.
+        fam = { center, r: Math.max(3.4, r * 1.3) };
+      }
       const center = fam ? fam.center : new THREE.Vector3();
       const r = fam ? Math.max(2.2, fam.r) : this.reach;
       this.goal.dist = (this._fitDistance(r, r) + r * 0.25) * this.userZoom;
@@ -810,13 +854,13 @@ export class FunnelGraphScene {
     for (const mesh of this.cards) {
       const d = mesh.userData;
       const card = d.card;
-      const inGroup = !this.focusKey || card.group === this.focusKey;
+      const inGroup = this.highlight ? this.highlight.has(card.stack.id) : !this.focusKey || card.group === this.focusKey;
       const isHover = mesh === this.hovered;
       const isSelected = card.stack.id === this.selectedId;
       let blur;
       let dim;
       let opacity;
-      if (!this.focusKey) {
+      if (!this.focusKey && !this.highlight) {
         const camDist = this._tmpV.set(card.x, card.y, card.z).distanceTo(this.camera.position);
         const soft = this.mode !== 'funnel';
         blur = Math.max(0, Math.min(soft ? 0.3 : 0.7, (Math.abs(camDist - focusDist) / (focusDist * (soft ? 0.6 : 0.42))) - 0.2));
@@ -868,8 +912,8 @@ export class FunnelGraphScene {
     }
 
     // The map: a family in focus keeps its name bright; the links fade behind it.
-    for (const f of this.families || []) f.label.material.opacity = damp(f.label.material.opacity, !this.focusKey || this.focusKey === f.key ? 1 : 0.25, 5, dt);
-    if (this.links) this.links.material.opacity = damp(this.links.material.opacity, this.focusKey ? 0.45 : 1, 5, dt);
+    for (const f of this.families || []) f.label.material.opacity = damp(f.label.material.opacity, this.highlight ? 0.1 : !this.focusKey || this.focusKey === f.key ? 1 : 0.25, 5, dt);
+    if (this.links) this.links.material.opacity = damp(this.links.material.opacity, this.highlight ? 0.15 : this.focusKey ? 0.45 : 1, 5, dt);
 
     this.renderer.render(this.scene, this.camera);
     this.hooks.onFrame?.(this);

@@ -15,6 +15,7 @@ public/js/detail.js
 public/js/format.js
 public/js/funnel.js
 public/js/i18n.js
+public/js/kinds.js
 public/js/layout.js
 public/js/main.js
 public/js/matrix.js
@@ -22,6 +23,8 @@ public/js/matrix3d.js
 public/js/modals.js
 public/js/model.js
 public/js/naming.js
+public/js/offers.js
+public/js/overlap.js
 public/js/phash.js
 public/js/scene.js
 public/js/similarity.js

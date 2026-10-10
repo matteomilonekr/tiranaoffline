@@ -692,3 +692,20 @@ textarea.input { resize: vertical; min-height: 70px; font-family: ui-monospace, 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
 }
+
+/* ---------- too similar (in the similarity panel) ---------- */
+
+.ov { display: grid; gap: 6px; padding-top: 6px; border-top: 1px solid var(--line); }
+.ov-crit { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.ov-crit button { display: inline-flex; align-items: baseline; gap: 5px; padding: 4px 10px; border-radius: 999px; border: 1px solid var(--line-strong); background: none; color: var(--ink-2); font-size: 12px; cursor: pointer; }
+.ov-crit button small { color: var(--ink-3); font-size: 11px; font-variant-numeric: tabular-nums; }
+.ov-crit button[aria-pressed="true"] { border-color: rgba(232, 96, 90, 0.7); background: rgba(232, 96, 90, 0.16); color: var(--ink); }
+.ov-groups { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 2px; scrollbar-width: thin; }
+.ov-group { display: grid; gap: 1px; flex: 0 0 auto; max-width: 230px; padding: 5px 10px; border-radius: 8px; border: 1px solid var(--line); background: rgba(0, 0, 0, 0.22); text-align: left; font-size: 11.5px; cursor: pointer; color: var(--ink); }
+.ov-group b { font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ov-group span { color: var(--ink-3); white-space: nowrap; }
+.ov-group:hover { background: var(--hover); }
+.ov-group[aria-pressed="true"] { border-color: #e8605a; box-shadow: inset 0 0 0 1px #e8605a; }
+.ov-more { align-self: center; flex: 0 0 auto; color: var(--ink-3); font-size: 11.5px; padding: 0 6px; }
+.ov-chips { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 3px; }
+.ov-chip { padding: 1px 7px; border-radius: 999px; background: rgba(232, 96, 90, 0.16); color: #f2aaa5; font-size: 10.5px; }

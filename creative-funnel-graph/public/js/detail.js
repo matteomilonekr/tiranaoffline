@@ -61,7 +61,8 @@ const RETENTION_LABELS = ['0s', '1s', '2s', '3s', '4s', '5s', '6s', '7s', '8s', 
  * @param {HTMLElement} drawer
  * @param {{stack:Object, group:Object|null, model:Object, live:boolean, preview:(ad:Object, width:number)=>Promise<HTMLElement>,
  *          loadDetail:(ads:Object[])=>Promise<Object>, onClose:Function,
- *          similar?:Array<{stack:Object, sim:number}>, onPick?:(stack:Object)=>void}} ctx
+ *          similar?:Array<{stack:Object, sim:number}>, overlap?:Array<{stack:Object, shared:string[]}>,
+ *          onPick?:(stack:Object)=>void}} ctx
  */
 export function renderDetail(drawer, ctx) {
   const { stack, model } = ctx;
@@ -142,6 +143,31 @@ export function renderDetail(drawer, ctx) {
     body.appendChild(section(t('d.similar'), t('d.similarSub'), h('ul', { class: 'ad-list sim-list' }, ...rows)));
   }
 
+  // The ones too alike to test against it: same creator, hook, copy or image.
+  if (ctx.overlap?.length) {
+    const rows = ctx.overlap.map(({ stack: other, shared }) => {
+      const thumb = h('span', { class: 'sim-thumb' });
+      ctx.preview(other.rep, 72).then((node) => node && thumb.appendChild(node));
+      return h(
+        'li',
+        {},
+        h(
+          'button',
+          { type: 'button', class: 'sim-row', onclick: () => ctx.onPick?.(other) },
+          thumb,
+          h(
+            'span',
+            { class: 'al-name' },
+            other.rep.name || other.rep.id,
+            h('span', { class: 'ov-chips' }, ...shared.map((c) => h('span', { class: 'ov-chip', text: t('ov.crit.' + c) }))),
+          ),
+          h('span', { class: 'al-num', text: fmt.money(other.metrics.spend, currency) }),
+        ),
+      );
+    });
+    body.appendChild(section(t('d.overlap'), t('d.overlapSub'), h('ul', { class: 'ad-list sim-list' }, ...rows)));
+  }
+
   // Daily + placements + video arrive async.
   const dailySlot = h('div', {}, h('div', { class: 'skeleton' }));
   const placementSlot = h('div', {}, h('div', { class: 'skeleton', style: { height: '90px' } }));
@@ -195,6 +221,17 @@ export function renderDetail(drawer, ctx) {
     return h('span', { class: 'tag' }, h('span', { text: t('arr.' + dim) }), h('b', { text: value }), srcLabel ? h('span', { text: srcLabel }) : null);
   }).filter(Boolean);
   if (tags.length) body.appendChild(section(t('d.tags'), null, h('div', { class: 'tags' }, ...tags)));
+
+  // Asset type, UGC format and offer, read from the creative and its copy.
+  const srcText = (src) => (src === 'copy' ? t('d.src.copy') : src === 'creative' ? t('d.src.creative') : src === 'name' ? t('d.src.name') : src === 'tag' ? t('d.src.tag') : null);
+  const kindTag = (dim, value, extra) =>
+    h('span', { class: 'tag' }, h('span', { text: t('arr.' + dim) }), h('b', { text: t(`${dim}.${value}`) + (extra ? ` · “${extra}”` : '') }), srcText(rep.tags?.source?.[dim]) ? h('span', { text: srcText(rep.tags?.source?.[dim]) }) : null);
+  const kinds = [
+    stack.tags?.asset ? kindTag('asset', stack.tags.asset) : null,
+    stack.tags?.ugc ? kindTag('ugc', stack.tags.ugc) : null,
+    stack.tags?.offer ? kindTag('offer', stack.tags.offer, stack.offerText) : null,
+  ].filter(Boolean);
+  if (kinds.length) body.appendChild(section(t('d.kind'), null, h('div', { class: 'tags' }, ...kinds)));
 
   // Members.
   if (stack.count > 1) {
