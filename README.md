@@ -11,6 +11,7 @@ Landing page, pagina offerta e checkout dell'evento di Tirana con Stripe Checkou
 - `/ticket?token=...`: biglietto personalizzato condivisibile, senza dati bancari
 - `/privacy`: informativa privacy dell’evento e del checkout
 - `/refund-policy`: policy di rimborso, cancellazione e condizioni di acquisto
+- `/call`: VSL call funnel per agenzie, freelancer e coach (candidatura, calendario, `/call/confermata`, `/call/non-idoneo`). Dettagli in [`docs/call-funnel/`](docs/call-funnel/README.md)
 
 ## Catalogo attivo
 
