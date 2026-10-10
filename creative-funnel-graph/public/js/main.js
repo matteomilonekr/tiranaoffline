@@ -3,7 +3,7 @@
 
 import { FunnelGraphScene } from './scene.js';
 import { buildModel, groupStacks, placementHints, summarize, DEFAULT_SETTINGS, ARRANGEMENTS, GROUP_COLORS } from './model.js';
-import { similarityMap, familyName, separate, SIM_MODES } from './similarity.js';
+import { similarityMap, familyName, separate, gridFamilies, SIM_MODES } from './similarity.js';
 import { overlap, OVERLAP_CRITERIA } from './overlap.js';
 import { computeLayout } from './layout.js';
 import { computeSignature } from './phash.js';
@@ -469,9 +469,11 @@ async function showSimilarity() {
     const aspect = Math.max(0.56, Math.min(1.5, stack.rep.creative?.aspect || 0.8));
     return { stack, x: 0, y: 0, z: 0, w: h * aspect, h, group: keyOf.get(map.family[i]) };
   });
-  // Neighbours stay neighbours, but no card hides another.
+  // Neighbours stay neighbours, but no card hides another; by concept, each concept apart.
   const P = Float64Array.from(map.positions);
-  separate(P, cards.map((c) => Math.max(c.w, c.h) / 2));
+  const half = cards.map((c) => Math.max(c.w, c.h) / 2);
+  if (map.familyConcept) gridFamilies(P, map.family, half);
+  else separate(P, half);
   cards.forEach((c, i) => Object.assign(c, { x: P[i * 3], y: P[i * 3 + 1], z: P[i * 3 + 2] }));
   const artwork = await buildArtwork(model.stacks.map((stack) => ({ stack, h: 1 })));
   scene?.setCloud({ cards, links: map.links, families: state.groups.map((g) => ({ key: g.key, label: g.label, color: g.color })) }, artwork);

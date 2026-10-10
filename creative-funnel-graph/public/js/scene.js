@@ -286,6 +286,9 @@ export class FunnelGraphScene {
     // Framed on where most cards are: a lone outlier may sit outside the first view.
     const radii = cloud.cards.map((c) => Math.hypot(c.x, c.y, c.z) + c.h / 2).sort((a, b) => a - b);
     this.reach = Math.max(1, radii[Math.floor((radii.length - 1) * 0.94)] || 1);
+    // Its width (whatever way it is turned) and height apart: a flat grid of concepts fills the screen.
+    this.reachW = Math.max(1, ...cloud.cards.map((c) => Math.hypot(c.x, c.z) + c.w / 2));
+    this.reachH = Math.max(1, ...cloud.cards.map((c) => Math.abs(c.y) + c.h / 2));
     if (entering) {
       this.userZoom = 1;
       this._pitchTouched = false;
@@ -482,7 +485,9 @@ export class FunnelGraphScene {
       }
       const center = fam ? fam.center : new THREE.Vector3();
       const r = fam ? Math.max(2.2, fam.r) : this.reach;
-      this.goal.dist = (this._fitDistance(r, r) + r * 0.25) * this.userZoom;
+      // The whole map: its full width and height, with room for the cards nearest the camera.
+      const [rw, rh] = fam ? [r, r] : [Math.min(this.reach * 1.4, this.reachW || r), Math.min(this.reach * 1.4, this.reachH || r)];
+      this.goal.dist = (this._fitDistance(rw, rh) * (fam ? 1 : 1.12) + Math.min(rw, rh) * 0.25) * this.userZoom;
       this.goal.tx = center.x;
       this.goal.ty = center.y;
       this.goal.tz = center.z;

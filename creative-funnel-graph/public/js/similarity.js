@@ -319,11 +319,17 @@ export function similarityMap(stacks, signatures, { mode = 'all', radius = 7 } =
     c[3]++;
   }
   for (const c of centers) for (let a = 0; a < 3; a++) c[a] /= c[3] || 1;
-  // By concept the families are set apart further: each is one idea, not a gradient.
-  const [apart, tight] = mode === 'concept' ? [2.3, 0.45] : [1.6, 0.6];
-  for (let i = 0; i < n; i++) {
-    const c = centers[label[i]];
-    for (let a = 0; a < 3; a++) P[i * 3 + a] = c[a] * apart + (P[i * 3 + a] - c[a]) * tight;
+  // By concept each family keeps its own shape, half size; gridFamilies() places them once the cards' sizes are known.
+  if (mode === 'concept') {
+    for (let i = 0; i < n; i++) {
+      const c = centers[label[i]];
+      for (let a = 0; a < 3; a++) P[i * 3 + a] = c[a] + (P[i * 3 + a] - c[a]) * 0.5;
+    }
+  } else {
+    for (let i = 0; i < n; i++) {
+      const c = centers[label[i]];
+      for (let a = 0; a < 3; a++) P[i * 3 + a] = c[a] * 1.6 + (P[i * 3 + a] - c[a]) * 0.6;
+    }
   }
   // Centre and scale to the radius the scene expects.
   const c = [0, 0, 0];
@@ -349,6 +355,48 @@ export function similarityMap(stacks, signatures, { mode = 'all', radius = 7 } =
     }
   }
   return { positions: P, family: label, families: count, familyConcept: concepts, neighbors, links, D };
+}
+
+/**
+ * By concept each family is one idea, not a point on a gradient: each family's cards are
+ * spread so none hides another, then the families sit in a grid facing the camera, apart by
+ * the widest of them, the concepts with most creatives first, top left.
+ * @param {Float64Array} P positions, changed in place
+ * @param {Int32Array} family each card's family
+ * @param {number[]} size each card's half extent
+ */
+export function gridFamilies(P, family, size) {
+  const k = family.length ? Math.max(...family) + 1 : 0;
+  const members = Array.from({ length: k }, () => []);
+  family.forEach((f, i) => members[f].push(i));
+  let widest = 0.5;
+  const local = members.map((idx) => {
+    const sub = new Float64Array(idx.length * 3);
+    idx.forEach((i, j) => sub.set(P.subarray(i * 3, i * 3 + 3), j * 3));
+    // Its shape kept, at the size its cards need: about the disc their areas fill.
+    const c = [0, 0, 0];
+    for (let j = 0; j < idx.length; j++) for (let a = 0; a < 3; a++) c[a] += sub[j * 3 + a] / idx.length;
+    let r = 0;
+    for (let j = 0; j < idx.length; j++) r = Math.max(r, Math.hypot(sub[j * 3] - c[0], sub[j * 3 + 1] - c[1], sub[j * 3 + 2] - c[2]));
+    const need = 1.1 * Math.sqrt(idx.reduce((t, i) => t + size[i] * size[i], 0));
+    const k2 = r > 0 ? need / r : 1;
+    for (let j = 0; j < idx.length; j++) for (let a = 0; a < 3; a++) sub[j * 3 + a] = (sub[j * 3 + a] - c[a]) * k2;
+    separate(sub, idx.map((i) => size[i]));
+    for (let j = 0; j < idx.length; j++) widest = Math.max(widest, Math.hypot(sub[j * 3], sub[j * 3 + 1], sub[j * 3 + 2]) + size[idx[j]]);
+    return sub;
+  });
+  const cols = Math.max(1, Math.ceil(Math.sqrt(k * 1.6)));
+  const rows = Math.ceil(k / cols);
+  const step = widest * 2 + 1;
+  members.forEach((idx, f) => {
+    const col = f % cols;
+    const row = Math.floor(f / cols);
+    const inRow = row === rows - 1 ? k - row * cols : cols;
+    const at = [(col - (inRow - 1) / 2) * step, ((rows - 1) / 2 - row) * step, 0];
+    idx.forEach((i, j) => {
+      for (let a = 0; a < 3; a++) P[i * 3 + a] = at[a] + local[f][j * 3 + a];
+    });
+  });
 }
 
 /** By concept, a family is a concept: the seven with most creatives, then the rest together (null). */
