@@ -455,10 +455,12 @@ async function showSimilarity() {
   await nextFrame();
   const map = similarityFor();
   const fams = Array.from({ length: map.families }, (_, f) => model.stacks.filter((_, i) => map.family[i] === f));
-  const order = fams.map((stacks, f) => ({ f, spend: stacks.reduce((t, s) => t + s.metrics.spend, 0) })).sort((a, b) => b.spend - a.spend);
+  // By spend; by concept, "other concepts" last whatever it spent.
+  const rest = (f) => (map.familyConcept && !map.familyConcept[f] ? 1 : 0);
+  const order = fams.map((stacks, f) => ({ f, spend: stacks.reduce((t, s) => t + s.metrics.spend, 0) })).sort((a, b) => rest(a.f) - rest(b.f) || b.spend - a.spend);
   const keyOf = new Map(order.map((o, rank) => [o.f, 'f' + rank]));
   state.groups = order.map((o, rank) =>
-    summarize({ key: 'f' + rank, label: familyName(fams[o.f], t('sim.mixed')), labelKey: null, color: GROUP_COLORS[rank % GROUP_COLORS.length], stacks: fams[o.f] }),
+    summarize({ key: 'f' + rank, label: familyLabel(map, o.f, fams[o.f]), labelKey: null, color: GROUP_COLORS[rank % GROUP_COLORS.length], stacks: fams[o.f] }),
   );
   if (state.focus && !state.groups.some((g) => g.key === state.focus)) state.focus = null;
   const maxSpend = Math.max(1, ...model.stacks.map((s) => s.metrics.spend));
@@ -483,7 +485,14 @@ async function showSimilarity() {
   ui.setEmpty(model.stacks.length === 0);
 }
 
-/** The similarity's mode: all of it, the look alone, or the message alone. */
+/** A family's name: its concept when the map is by concept, else what most of its spend shares. */
+function familyLabel(map, f, stacks) {
+  if (!map.familyConcept) return familyName(stacks, t('sim.mixed'));
+  const key = map.familyConcept[f];
+  return key ? t('concept.' + key) : t('sim.otherConcepts');
+}
+
+/** The similarity's mode: all of it, the look alone, the message alone, or the concept. */
 function renderSimPanel() {
   const panel = $('sim-panel');
   const buttons = SIM_MODES.map((mode) =>
@@ -796,11 +805,11 @@ function openAccountMenu() {
 }
 
 function openArrangeMenu() {
-  const withSub = ['matrix', 'similarity', 'asset', 'ugc', 'offer'];
+  const withSub = ['matrix', 'similarity', 'asset', 'ugc', 'concept', 'offer'];
   const item = (a) => ({ label: t('arr.' + a), sub: withSub.includes(a) ? t(`arr.${a}Sub`) : undefined, checked: state.arrangement === a, onSelect: () => setArrangement(a) });
   const some = (list) => list.filter((a) => ARRANGEMENTS.includes(a)).map(item);
   const detected = some(['format', 'angle', 'persona', 'creator', 'hook']);
-  const creative = some(['asset', 'ugc', 'offer']);
+  const creative = some(['asset', 'ugc', 'concept', 'offer']);
   const campaign = some(['campaign']);
   ui.openMenu(
     $('arrange-chip'),

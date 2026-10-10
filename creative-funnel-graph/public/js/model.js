@@ -8,11 +8,12 @@ import { FUNNEL_LEVELS, funnelContext, classifyFunnel } from './funnel.js';
 import { daysBetween } from './format.js';
 import { kindOf, ASSET_TYPES, UGC_TYPES } from './kinds.js';
 import { detectOffer, OFFER_KEYS } from './offers.js';
+import { conceptOf, CONCEPTS } from './concepts.js';
 
-export const ARRANGEMENTS = ['funnel', 'format', 'angle', 'persona', 'creator', 'hook', 'campaign', 'asset', 'ugc', 'offer', 'similarity', 'matrix'];
+export const ARRANGEMENTS = ['funnel', 'format', 'angle', 'persona', 'creator', 'hook', 'campaign', 'asset', 'ugc', 'concept', 'offer', 'similarity', 'matrix'];
 
 // Read from the creative and its copy rather than from the ad name, so always there.
-export const DERIVED = ['asset', 'ugc', 'offer'];
+export const DERIVED = ['asset', 'ugc', 'offer', 'concept'];
 
 // Reference categorical palette, dark steps, fixed order (validated for CVD separation).
 export const GROUP_COLORS = ['#3987e5', '#d95926', '#199e70', '#c98500', '#d55181', '#008300', '#9085e9', '#e66767'];
@@ -70,17 +71,19 @@ export function buildModel(snapshot, options = {}) {
   ads.forEach((a, i) => {
     a.tags = tags[i];
   });
-  // Asset type, UGC format and offer: tags that ship with the data, else the creative and copy.
+  // Asset type, UGC format, offer and concept: tags that ship with the data, else the creative and copy.
   for (const a of ads) {
     const kind = kindOf(a);
     const offer = OFFER_KEYS.includes(a.tags.offer) ? { key: a.tags.offer, text: '' } : detectOffer([a.creative?.title, a.creative?.body, a.name].filter(Boolean).join(' \n '));
     a.offerText = offer.text;
+    const concept = conceptOf({ ...a, tags: { ...a.tags, ugc: kind.ugc, offer: offer.key } });
     a.tags = {
       ...a.tags,
       asset: kind.asset,
       ugc: kind.ugc,
       offer: offer.key,
-      source: { ...(a.tags.source || {}), asset: kind.source.asset, ugc: kind.source.ugc, offer: a.tags.offer ? 'tag' : offer.text ? 'copy' : null },
+      concept: concept.concept,
+      source: { ...(a.tags.source || {}), asset: kind.source.asset, ugc: kind.source.ugc, offer: a.tags.offer ? 'tag' : offer.text ? 'copy' : null, concept: concept.source },
     };
   }
 
@@ -199,7 +202,7 @@ export function groupStacks(model, arrangement = 'funnel') {
 }
 
 // Arrangements with a fixed set of values, named by i18n key ("asset.ugc", "offer.bogo").
-const KEYED = { asset: ASSET_TYPES, ugc: UGC_TYPES, offer: OFFER_KEYS };
+const KEYED = { asset: ASSET_TYPES, ugc: UGC_TYPES, offer: OFFER_KEYS, concept: CONCEPTS };
 export const ASSET_COLORS = { static: '#3987e5', video: '#d95926', ugc: '#199e70', carousel: '#c98500' };
 
 /** Groups for a keyed arrangement: by spend, the asset types in their own order and colours, "none" and "other" last. */

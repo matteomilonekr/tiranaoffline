@@ -8,7 +8,7 @@
 
 import { hamming, colorDistance } from './stacks.js';
 
-export const SIM_MODES = ['all', 'visual', 'message'];
+export const SIM_MODES = ['all', 'visual', 'message', 'concept'];
 const MIX = { all: { visual: 0.5, message: 0.5 }, visual: { visual: 1, message: 0 }, message: { visual: 0, message: 1 } };
 const TAG_WEIGHTS = { angle: 0.4, format: 0.25, hook: 0.2, persona: 0.15 };
 const STOP = new Set(
@@ -87,7 +87,12 @@ export function distanceMatrix(feats, mode = 'all') {
     const message = 0.7 * tag + 0.3 * copy[p];
     const v = visual[p];
     let d;
-    if (v === null) d = message;
+    // By concept: the same idea (a before/after, a comparison…) first, the message inside it.
+    if (mode === 'concept') {
+      const a = feats[i].tags.concept;
+      const b = feats[j].tags.concept;
+      d = 0.8 * (!a || !b ? 0.5 : a === b ? 0 : 1) + 0.2 * message;
+    } else if (v === null) d = message;
     else d = (mix.visual * v + mix.message * message) / (mix.visual + mix.message);
     D[i * n + j] = D[j * n + i] = d;
   });
@@ -304,7 +309,7 @@ export function similarityMap(stacks, signatures, { mode = 'all', radius = 7 } =
   const D = distanceMatrix(features(stacks, signatures), mode);
   const P = n > 3 ? refine(mds3(D, n), D, n) : new Float64Array(n * 3).map((_, i) => (i % 3 === 0 ? i : 0));
   const k = Math.max(2, Math.min(8, Math.round(Math.sqrt(n / 2.2))));
-  const { label, count } = families(P, n, Math.min(k, n));
+  const { label, count, concepts } = mode === 'concept' ? conceptFamilies(stacks) : { ...families(P, n, Math.min(k, n)), concepts: null };
   // Each family drawn tighter around its centre, and the centres further apart: alike
   // creatives close, families apart, the order inside a family kept.
   const centers = Array.from({ length: count }, () => [0, 0, 0, 0]);
@@ -314,9 +319,11 @@ export function similarityMap(stacks, signatures, { mode = 'all', radius = 7 } =
     c[3]++;
   }
   for (const c of centers) for (let a = 0; a < 3; a++) c[a] /= c[3] || 1;
+  // By concept the families are set apart further: each is one idea, not a gradient.
+  const [apart, tight] = mode === 'concept' ? [2.3, 0.45] : [1.6, 0.6];
   for (let i = 0; i < n; i++) {
     const c = centers[label[i]];
-    for (let a = 0; a < 3; a++) P[i * 3 + a] = c[a] * 1.6 + (P[i * 3 + a] - c[a]) * 0.6;
+    for (let a = 0; a < 3; a++) P[i * 3 + a] = c[a] * apart + (P[i * 3 + a] - c[a]) * tight;
   }
   // Centre and scale to the radius the scene expects.
   const c = [0, 0, 0];
@@ -341,5 +348,19 @@ export function similarityMap(stacks, signatures, { mode = 'all', radius = 7 } =
       links.push([i, nb.index, nb.sim]);
     }
   }
-  return { positions: P, family: label, families: count, neighbors, links, D };
+  return { positions: P, family: label, families: count, familyConcept: concepts, neighbors, links, D };
+}
+
+/** By concept, a family is a concept: the seven with most creatives, then the rest together (null). */
+function conceptFamilies(stacks) {
+  const count = new Map();
+  for (const s of stacks) count.set(s.tags?.concept || 'other', (count.get(s.tags?.concept || 'other') || 0) + 1);
+  const ranked = [...count].sort((a, b) => (a[0] === 'other') - (b[0] === 'other') || b[1] - a[1]).map(([c]) => c);
+  const own = ranked.length > 8 ? ranked.slice(0, 7) : ranked;
+  const concepts = ranked.length > 8 ? [...own, null] : own;
+  const label = Int32Array.from(stacks, (s) => {
+    const f = own.indexOf(s.tags?.concept || 'other');
+    return f >= 0 ? f : own.length;
+  });
+  return { label, count: concepts.length, concepts };
 }

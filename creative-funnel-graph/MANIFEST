@@ -9,6 +9,7 @@ public/index.html
 public/js/api.js
 public/js/brand.js
 public/js/charts.js
+public/js/concepts.js
 public/js/demo/demo-data.js
 public/js/demo/painter.js
 public/js/detail.js

@@ -1,12 +1,12 @@
 // Creatives too alike to test against each other: the same creator, the same hook line,
-// the same copy or near the same picture. Two creatives overlap on a criterion when they
+// the same copy, near the same picture or the same concept. Two creatives overlap on a criterion when they
 // share it; a group is every creative tied to another by all the chosen criteria at once.
 // Pure module, no DOM.
 
 import { hamming, colorDistance } from './stacks.js';
 import { words } from './similarity.js';
 
-export const OVERLAP_CRITERIA = ['creator', 'hook', 'copy', 'visual'];
+export const OVERLAP_CRITERIA = ['creator', 'hook', 'copy', 'visual', 'concept'];
 
 // The picture: looser than a stack (40 bits, 32 colour), which already merged near-copies.
 const VISUAL_BITS = 72;
@@ -46,6 +46,7 @@ export function overlapFeatures(stacks, signatures = new Map()) {
     const hook = norm(hookLine(rep));
     return {
       creator: s.tags?.creator ? String(s.tags.creator).toLowerCase().trim() : null,
+      concept: s.tags?.concept && s.tags.concept !== 'other' ? s.tags.concept : null,
       hook,
       hookWords: new Set(hook.split(' ').filter((w) => w.length > 1)),
       copy: words(rep.creative?.body || ''),
@@ -61,6 +62,7 @@ export function sharedCriteria(a, b) {
   if (a.hook && (a.hook === b.hook || (a.hookWords.size >= 2 && b.hookWords.size >= 2 && share(a.hookWords, b.hookWords) >= HOOK_SHARE))) out.push('hook');
   if (a.copy.size >= COPY_MIN_WORDS && b.copy.size >= COPY_MIN_WORDS && share(a.copy, b.copy) >= COPY_SHARE) out.push('copy');
   if (a.sig && b.sig && hamming(a.sig.bits, b.sig.bits) <= VISUAL_BITS && colorDistance(a.sig.grid, b.sig.grid) <= VISUAL_COLOR) out.push('visual');
+  if (a.concept && a.concept === b.concept) out.push('concept');
   return out;
 }
 

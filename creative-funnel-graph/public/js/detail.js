@@ -222,13 +222,15 @@ export function renderDetail(drawer, ctx) {
   }).filter(Boolean);
   if (tags.length) body.appendChild(section(t('d.tags'), null, h('div', { class: 'tags' }, ...tags)));
 
-  // Asset type, UGC format and offer, read from the creative and its copy.
-  const srcText = (src) => (src === 'copy' ? t('d.src.copy') : src === 'creative' ? t('d.src.creative') : src === 'name' ? t('d.src.name') : src === 'tag' ? t('d.src.tag') : null);
+  // Asset type, UGC format, concept and offer, read from the creative and its copy.
+  const srcText = (src) =>
+    src === 'copy' ? t('d.src.copy') : src === 'creative' ? t('d.src.creative') : src === 'name' ? t('d.src.name') : src === 'tag' ? t('d.src.tag') : src === 'ugc' ? t('d.src.ugc') : null;
   const kindTag = (dim, value, extra) =>
     h('span', { class: 'tag' }, h('span', { text: t('arr.' + dim) }), h('b', { text: t(`${dim}.${value}`) + (extra ? ` · “${extra}”` : '') }), srcText(rep.tags?.source?.[dim]) ? h('span', { text: srcText(rep.tags?.source?.[dim]) }) : null);
   const kinds = [
     stack.tags?.asset ? kindTag('asset', stack.tags.asset) : null,
     stack.tags?.ugc ? kindTag('ugc', stack.tags.ugc) : null,
+    stack.tags?.concept ? kindTag('concept', stack.tags.concept) : null,
     stack.tags?.offer ? kindTag('offer', stack.tags.offer, stack.offerText) : null,
   ].filter(Boolean);
   if (kinds.length) body.appendChild(section(t('d.kind'), null, h('div', { class: 'tags' }, ...kinds)));

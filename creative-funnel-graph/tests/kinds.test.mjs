@@ -107,3 +107,36 @@ test('the model tags asset, UGC and offer and groups them by spend, none last', 
   const bogo = model.stacks.find((s) => s.tags.offer === 'bogo');
   assert.equal(bogo.offerText, 'buy one get one');
 });
+
+import { conceptOf, CONCEPTS } from '../public/js/concepts.js';
+import { similarityMap } from '../public/js/similarity.js';
+
+test('concept: a shipped tag, then the UGC format, the copy, the angle and format of the name', () => {
+  const ad = (tags, title = '', body = '') => ({ name: '', creative: { title, body }, tags });
+  assert.equal(conceptOf(ad({ concept: 'versus' }, 'Before and after')).concept, 'versus');
+  assert.equal(conceptOf(ad({ ugc: 'reveal' })).concept, 'before_after');
+  assert.equal(conceptOf(ad({}, 'Before & after 30 days')).concept, 'before_after');
+  assert.equal(conceptOf(ad({}, 'Ozempic vs Obvi')).concept, 'versus');
+  assert.equal(conceptOf(ad({}, 'Tired of bloating?')).concept, 'problem_solution');
+  assert.equal(conceptOf(ad({ angle: 'Transformation' }, 'Look at her now')).concept, 'before_after');
+  assert.equal(conceptOf(ad({ format: 'Native screenshot' }, 'hey')).concept, 'native');
+  assert.equal(conceptOf(ad({ offer: 'bogo' }, 'Buy one get one')).concept, 'offer');
+  assert.deepEqual(conceptOf(ad({}, 'Meet the gummy')), { concept: 'other', source: null });
+  assert.ok(CONCEPTS.includes('before_after') && CONCEPTS.at(-1) === 'other');
+});
+
+test('similarity by concept: one family per concept, alike concepts close', () => {
+  const s = (id, concept, spend = 100) => ({ id, rep: { id, name: id, creative: { title: id, body: '' } }, ads: [{ id }], tags: { concept, angle: 'x' }, metrics: { spend } });
+  const stacks = [s('a', 'before_after'), s('b', 'before_after'), s('c', 'before_after'), s('d', 'versus'), s('e', 'versus'), s('f', 'testimonial'), s('g', 'testimonial')];
+  const map = similarityMap(stacks, new Map(), { mode: 'concept' });
+  assert.deepEqual(map.familyConcept, ['before_after', 'versus', 'testimonial']);
+  assert.deepEqual([...map.family], [0, 0, 0, 1, 1, 2, 2]);
+  const d = (i, j) => Math.hypot(...[0, 1, 2].map((k) => map.positions[i * 3 + k] - map.positions[j * 3 + k]));
+  assert.ok(d(0, 1) < d(0, 3) && d(3, 4) < d(3, 5), 'the same concept sits closer');
+  assert.equal(similarityMap(stacks, new Map(), { mode: 'all' }).familyConcept, null);
+  // Over eight concepts, the seventh and later share the last family.
+  const many = CONCEPTS.slice(0, 10).map((c, i) => s('x' + i, c));
+  const wide = similarityMap(many, new Map(), { mode: 'concept' });
+  assert.equal(wide.familyConcept.length, 8);
+  assert.equal(wide.familyConcept.at(-1), null);
+});
