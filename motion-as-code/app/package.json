@@ -7,6 +7,7 @@
     "dev": "vite",
     "render": "bun scripts/render.ts video --samples auto --max-samples 12 --shutter 0.5 --crf 17 --out ../out/motion-as-code.mp4",
     "stills": "bun scripts/render.ts stills",
+    "test": "bun test src/fx",
     "typecheck": "tsc --noEmit -p tsconfig.json && tsc --noEmit -p tsconfig.scripts.json"
   },
   "devDependencies": {

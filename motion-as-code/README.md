@@ -41,7 +41,7 @@ Restano fuori dal repository `out/` (i render), `app/node_modules/` (lo ricrea l
 **Requisiti.**
 
 - **bun** ([bun.sh](https://bun.sh)): installa i pacchetti ed esegue gli script.
-- **Google Chrome**: il renderer lo pilota in modalità headless per disegnare i fotogrammi. Va bene anche un altro Chromium, vedi [Problemi](#10--aiuto-problemi-e-crediti).
+- **Google Chrome**: il renderer lo pilota in modalità headless per disegnare i fotogrammi. Va bene anche un altro Chromium, vedi [Problemi](#11--aiuto-problemi-e-crediti).
 - **ffmpeg** con libx264: trasforma i fotogrammi in MP4 e mixa il suono.
 - **Python + [uv](https://docs.astral.sh/uv/)**: serve solo per allineare una voce nuova, rifare il mix degli effetti o generare una voce demo. I comandi qui sotto usano `uv run …`; se hai installato uv con pip, scrivi `python -m uv run …`.
 
@@ -53,7 +53,7 @@ bun install
 bunx vite
 ```
 
-Apri `http://localhost:5173` e premi spazio per far partire il video insieme alla voce. Se più avanti il render non trova Chrome, vedi [Problemi](#10--aiuto-problemi-e-crediti).
+Apri `http://localhost:5173` e premi spazio per far partire il video insieme alla voce. Se più avanti il render non trova Chrome, vedi [Problemi](#11--aiuto-problemi-e-crediti).
 
 ---
 
@@ -104,7 +104,7 @@ bun run render
 | `--samples 4` | Bozza più veloce: nei movimenti rapidi si vedono copie a scatti. |
 | `--samples auto` | Più sotto-fotogrammi dove il movimento è veloce (default dello script). |
 | `--scale 2` | 4K, 3840×2160. |
-| `--workers 1` | Un solo Chrome alla volta (default 2). Usalo su una macchina senza GPU, vedi [Problemi](#10--aiuto-problemi-e-crediti). |
+| `--workers 1` | Un solo Chrome alla volta (default 2). Usalo su una macchina senza GPU, vedi [Problemi](#11--aiuto-problemi-e-crediti). |
 | `--from 50 --to 57` | Solo un intervallo, in secondi. |
 | `--fps 30` | 30 fotogrammi al secondo invece di 60: metà del tempo, lo standard dei film di lancio. |
 
@@ -548,15 +548,16 @@ cd app && FILM=plugins bun scripts/render.ts video --workers 1 --samples 1 --fps
 cd out && ffmpeg -i plugins.mp4 -i plugins/mix.wav -map 0:v -map 1:a -c:v copy -c:a aac -b:a 320k -shortest plugins_sfx.mp4
 ```
 
-Nel kit ci sono sette film:
+Nel kit ci sono otto film:
 - `films/plugins`, descritto qui sotto;
 - `films/styles`, il reel dei 21 stili (sezione 09);
 - `films/gem` e `films/polish`, due reel nel formato "paper night";
 - `films/coding`, altri quattro plugin su una pagina bianca con le schede scure;
 - `films/grill`, le skill di Matt Pocock su uno schermo diviso, con creaturine in pixel art sopra;
-- `films/youtube`, le undici skill per un canale YouTube, su carta crema con capitoli corallo e scuri.
+- `films/youtube`, le undici skill per un canale YouTube, su carta crema con capitoli corallo e scuri;
+- `films/showreel`, lo showreel dei blocchi `fx`, solo musica, tagliato sulla griglia a 120 bpm.
 
-Gli ultimi cinque sono descritti in fondo a questa sezione.
+`gem`, `polish`, `coding`, `grill` e `youtube` sono descritti in fondo a questa sezione, `showreel` nella sezione 10.
 
 ### Il reel dei plugin (`films/plugins`)
 
@@ -741,7 +742,114 @@ Il reel ha questa struttura:
 
 ---
 
-## 10 · Aiuto: problemi e crediti
+## 10 · Lista Opus 5.5: ricette e blocchi `fx`
+
+[awesome-opus5-5-videos](https://github.com/yihui-dev/awesome-opus5-5-videos) (licenza MIT) raccoglie 513 video virali fatti chiedendo a Claude Opus 5.5 di scrivere l'animazione come codice, ognuno con il prompt del suo creator. 317 sono motion graphics. Da quella lista il kit prende due cose:
+- uno strumento per scaricarla e usarla;
+- undici blocchi nuovi per fare quello che quei prompt chiedono più spesso.
+
+### Lo strumento: `analysis/opus55.py`
+
+```bash
+python3 analysis/opus55.py fetch                                # scarica la lista in out/refs/opus55/ (fuori da git)
+python3 analysis/opus55.py stats                                # categorie, tecnologie, quali blocchi servono a quanti prompt
+python3 analysis/opus55.py list --cat motion --q logo           # cerca: --cat motion|explainer|3d|interactive, --tag gsap, --q parola
+python3 analysis/opus55.py show himanshutwtxs-882858            # il prompt, il creator, i link, i blocchi che servono
+python3 analysis/opus55.py adapt <slug> --film nome --sec 15    # un brief in italiano da incollare in Claude Code
+```
+
+`adapt` mette insieme quattro cose:
+- il prompt del creator, citato con il suo nome;
+- le regole del kit (funzione pura di t, cartella del film, foglio provini, credito nel README);
+- i blocchi `fx` da usare;
+- un avviso quando il prompt nomina marchi, personaggi o persone reali.
+
+La lista resta in `out/`, fuori da git: i prompt appartengono ai loro autori.
+
+### Cosa chiedono i 317 prompt di motion graphics
+
+- **Un terzo è lo stesso prompt.** Circa 103 chiedono "uno showreel di 15 secondi che mostri che motion designer incredibile sei", con varianti di durata, formato e tema.
+- **Tempo musicale.** 120 bpm, tagli su battute e battiti, qualcosa che arriva a ogni battito, stagger di un sedicesimo (125 ms).
+- **Molle "premium".** Molle in forma chiusa con meno del 2% di rimbalzo. Niente easing da cartone animato.
+- **Gli altri temi ricorrenti:**
+  - testo cinetico;
+  - interfacce con un cursore che clicca;
+  - una forma sola che diventa la successiva, senza mai tagliare;
+  - una camera continua che zooma tra scale diverse;
+  - grafici che si disegnano.
+- **Le specifiche lunghe** (una ventina) fissano:
+  - durata, fps e formato;
+  - una palette in esadecimale e tre font;
+  - uno storyboard a tempo;
+  - un "contratto" tecnico: `seek(t)` funzione pura, motion blur a sotto-fotogrammi, l'ultimo fotogramma uguale al primo;
+  - fogli provini per correggersi;
+  - una lista di cose vietate: particelle, glow, glassmorphism, viola neon, dissolvenze incrociate.
+
+Metà di queste cose il kit le faceva già per costruzione: funzione pura di t, motion blur con `--samples`, fogli provini, suono sintetizzato a -14 LUFS. Il resto sono i blocchi qui sotto.
+
+### I blocchi: `app/src/fx`
+
+Si importano da `'@kit/fx'`. Sono tutti funzioni pure del tempo in Canvas2D, tranne `shader`, che è GLSL.
+
+| Blocco | Cosa c'è |
+|---|---|
+| `tl` | `Timeline` con etichette e posizioni alla GSAP (`'<'`, `'-=0.3'`, `'etichetta+=0.5'`). `stagger` dal centro, dai bordi, a caso o su una griglia. `E('power2.out')`, `E('back.out(1.7)')`, `E('cubic-bezier(.16,1,.3,1)')`. `spring` e `springTo`: molle in forma chiusa con il rimbalzo massimo in percentuale, e il cambio di bersaglio a metà corsa. |
+| `beat` | `Grid(120)`: battute e battiti in secondi, `snap`, `pulse` sul battito, `phase`. `shots()` taglia le inquadrature esattamente sulle battute. |
+| `text` | `reveal` lettera per lettera o parola per parola, in sette modi (`rise` da dietro una maschera, `drop`, `blur`, `scale`, `flip`, `slide`, `skew`) con stagger e uscita. `scramble` che si decifra, `typed` con il cursore, `counter` con i numeri all'italiana, `odometer` a rulli. |
+| `path` | `svg()` legge i path SVG, archi compresi; `glyphs()` dà i contorni del testo. `drawOn` li disegna (insieme o in sequenza, con la punta della penna). `morph` passa da una forma all'altra senza torsioni. `circle`, `poly`, `star`, `blob`; `glint`, il riflesso che passa su un logo. |
+| `shared` | `boxAt`: un rettangolo arrotondato che cambia posizione, misura e raggio su molle. `colorAt`, e `swap`: il contenuto esce sfocato prima che entri il nuovo. |
+| `camera` | `track` tra camere, con lo zoom in scala logaritmica (un punto, una finestra, un telefono, una parola). `fit` su un rettangolo, `apply` con la parallasse per profondità, `handheld`, `smash`. |
+| `transition` | `iris`, `shape`, `wipe` (con il filo colorato), `slices`, `blinds`, `tear`, `letters` (la scena dopo si apre dentro le lettere), `push`, `zoom`, `flash`, `cut`, tra due inquadrature qualsiasi. |
+| `ui` | Finestra macOS o browser, telefono, `cursor` con il clic sul battito e l'onda. `toggle`, `slider`, `tabs` con l'indicatore "liquido", `toast`, `palette` (⌘K), `terminal`, `button`. Tutto disegnato qui, nessuna icona di marchi. |
+| `chart` | `bars`, `line` con area, punta e tooltip, `donut`: si disegnano da soli con i numeri che gli passi. Dati inventati, mai. |
+| `particles` | `swarm` che compone una parola o una forma e poi esplode, `burst` di scintille e coriandoli, `dust`. Sono facoltative: molte specifiche le vietano. |
+| `shader` | `ShaderBg`: mesh gradient, aurora, caleidoscopio, retino. Va sotto il livello Canvas2D. |
+
+I blocchi di tempo (`tl`, `beat`) hanno i loro test: `cd app && bun run test`.
+
+Per esempio, un titolo che entra sul secondo battito e una riga che lo segue con 0,2 s di sovrapposizione:
+
+```ts
+import { Timeline, Grid } from '@kit/fx';
+import { reveal } from '@kit/fx/text';
+
+const G = new Grid(120);
+const tl = new Timeline().to('titolo', 0.6, G.at(0, 1), 'expo.out').to('riga', 0.5, '-=0.2');
+// in render():
+reveal(x, t, tl.at('titolo'), 'MOTION', W / 2, 900, 160, F.archivo(125, 900), { from: 'center' });
+reveal(x, t, tl.at('riga'), 'as code', W / 2, 1000, 60, F.mono(500), { mode: 'blur' });
+```
+
+### Il film dimostrativo: `films/showreel`
+
+È la risposta del kit al prompt più copiato della lista: 20 secondi, 9:16, 10 battute a 120 bpm, solo musica.
+- **Struttura:** nove inquadrature, una per blocco, legate da otto transizioni diverse.
+- **Chiusura:** va in loop, perché l'ultimo fotogramma è il primo.
+- **Numeri:** quelli a schermo sono della lista (317 prompt; quanti chiedono showreel, interfacce, molle, camera, testo, circa).
+
+```bash
+cd app && FILM=showreel bun run dev
+uv run --no-project --with numpy python analysis/sfx_mix.py --film showreel     # → out/showreel/mix.wav
+cd app && FILM=showreel bun scripts/render.ts video --workers 1 --samples 1 --fps 30
+```
+
+**Un film senza voce:**
+1. Scrivi `NO_VOICE = True` nel suo `sound.py`. Il mixer usa il file della voce solo per la durata e non abbassa la musica.
+2. Parti da una traccia muta lunga quanto il film, con un `data/lyrics.json` senza righe, e lancia `audio_vo.py`.
+3. Fatto il mix, convertilo in `audio/voiceover.mp3` e rilancia `audio_vo.py`: l'anteprima suona la musica, e l'analisi trova i battiti veri.
+
+### Da un prompt della lista a un film
+
+1. Cerca un video che ti piace: `opus55.py list --cat motion --q "logo reveal"`, poi `show <slug>` e il link all'originale.
+2. `opus55.py adapt <slug> --film nome > out/brief.md` e incolla il brief in Claude Code.
+3. Controlla il foglio provini, renderizza, mixa.
+4. Aggiungi il creator nei crediti.
+
+Se l'avviso dice che il prompt nomina marchi, personaggi o persone reali, il film li sostituisce con nomi, icone e personaggi inventati. Gli asset presi da altri siti non entrano nel progetto.
+
+---
+
+## 11 · Aiuto: problemi e crediti
 
 | Problema | Prova così |
 |---|---|
@@ -773,6 +881,7 @@ Tieni quel file di licenza insieme al progetto. Le nove tavole sono nuove, scrit
 - **Reel «coding»:** il formato di `films/coding` riprende un reel di [@tessa.fairbrook](https://www.instagram.com/tessa.fairbrook). Schede, icone, disegni, testo italiano, voce e suono sono nuovi, scritti in codice per questo kit. Poppins e Instrument Serif sono distribuiti con SIL Open Font License (`app/public/fonts/poppins/OFL.txt`, `app/public/fonts/instrumentserif/OFL.txt`).
 - **Reel «grill»:** il formato di `films/grill` riprende un reel di [@piyush.glitch](https://www.instagram.com/piyush.glitch). Creaturine, scene, pagine, testo italiano, voce e suono sono nuovi, disegnati in codice per questo kit.
 - **Reel «youtube»:** il formato di `films/youtube` riprende un reel di [@ai.nxtlvl](https://www.instagram.com/ai.nxtlvl). Schede, icone, testo italiano, voce e suono sono nuovi, disegnati in codice per questo kit. YouTube e Claude sono marchi dei rispettivi proprietari; le icone del film non sono i loro loghi.
+- **Lista Opus 5.5:** `analysis/opus55.py` scarica [awesome-opus5-5-videos](https://github.com/yihui-dev/awesome-opus5-5-videos) di yihui-dev (MIT) e la tiene fuori da git; ogni prompt resta del suo creator, linkato nella lista. I blocchi `app/src/fx` e `films/showreel` sono scritti per questo kit a partire da ciò che i prompt chiedono, senza codice né materiale dei video originali.
 - **Stili:** l'elenco dei venti stili riprende un reel di [@andremass.ai](https://www.instagram.com/andremass.ai) ("motion design styles you can steal"). Ricette, codice e animazioni di `app/src/styles/` sono nuovi, scritti per questo kit.
 - **Launch film:** struttura, prompt, regole e checklist della sezione 06 sono adattati dalla guida *The 60-second launch film made with Claude* di Saksham Gupta ([@saksham.700x](https://www.instagram.com/saksham.700x)). La guida cita lo skill onetake (licenza PolyForm Noncommercial), di cui qui non c'è codice.
 

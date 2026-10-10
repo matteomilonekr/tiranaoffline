@@ -204,6 +204,9 @@ export class Layer2D {
   }
   clear(color?: string) {
     const c = this.ctx;
+    // a scene that threw mid-draw leaves its save()s and clip() behind; reset() drops them, so one bad frame
+    // can't clip every frame after it (setTransform below puts the backing-store scale back)
+    (c as CanvasRenderingContext2D & { reset?: () => void }).reset?.();
     c.setTransform(1, 0, 0, 1, 0, 0);
     c.globalAlpha = 1;
     c.globalCompositeOperation = 'source-over';

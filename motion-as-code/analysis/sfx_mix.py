@@ -526,9 +526,11 @@ def main():
         for t, name, db, pan in cues:
             print(f"{t:8.3f}  {name:13s} {db:+5.1f} dB  pan {pan:+.2f}")
 
-    # the voice: no rumble under 80 Hz, peaks a little tamed
+    # the voice: no rumble under 80 Hz, peaks a little tamed. A film with NO_VOICE = True in its sound.py (music
+    # and effects only, e.g. a showreel cut to the beat) uses its voiceover file only for its length.
     raw = load_audio(a.voice)
-    voice = compress(highpass(raw, 80.0))
+    no_voice = bool(film and getattr(film, "NO_VOICE", False))
+    voice = np.zeros_like(raw) if no_voice else compress(highpass(raw, 80.0))
     n = len(voice)
     sfx_dir = os.path.join(ROOT, "audio", "sfx")  # (a film's own audio/sfx/<name>.wav wins)
     bank = {}
@@ -558,12 +560,15 @@ def main():
     verb = music.room(bus * SFX_SEND + send) * 10 ** (ROOM_DB / 20)
 
     # ducking: the voice's envelope pulls effects and music down under it
-    env = voice_envelope(voice)
+    env = np.zeros(len(voice)) if no_voice else voice_envelope(voice)
     duck_fx, duck_mu = 10 ** (-DUCK_DB * env / 20)[:, None], 10 ** (-MUSIC_DUCK_DB * env / 20)[:, None]
     fx, mu = (bus + verb) * duck_fx, bed * duck_mu
     mix = voice + fx + mu
-    lv = integrated_lufs(voice)
-    print(f"voice {lv:.1f} LUFS · effects {integrated_lufs(fx) - lv:+.1f} LU" + ("" if a.no_music else f" · music {integrated_lufs(mu) - lv:+.1f} LU") + " (ducked, against the voice)")
+    if no_voice:
+        print("no voice: effects and music only" + ("" if a.no_music else f" · effects {integrated_lufs(fx) - integrated_lufs(mu):+.1f} LU against the music"))
+    else:
+        lv = integrated_lufs(voice)
+        print(f"voice {lv:.1f} LUFS · effects {integrated_lufs(fx) - lv:+.1f} LU" + ("" if a.no_music else f" · music {integrated_lufs(mu) - lv:+.1f} LU") + " (ducked, against the voice)")
 
     # to the target loudness; the limiter takes off a little, so a second pass makes up for it
     gain = 1.0
