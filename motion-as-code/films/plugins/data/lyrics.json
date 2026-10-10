@@ -1,0 +1,1213 @@
+{
+ "source": "films/plugins/audio/voiceover.mp3",
+ "duration": 65.285,
+ "lines": [
+  {
+   "text": "Non fare vibe coding con Claude Code prima di aver installato questi quattro plugin.",
+   "start": 0.26,
+   "end": 4.59,
+   "words": [
+    {
+     "w": "Non",
+     "start": 0.26,
+     "end": 0.44,
+     "conf": 0.963
+    },
+    {
+     "w": "fare",
+     "start": 0.44,
+     "end": 0.7,
+     "conf": 0.994
+    },
+    {
+     "w": "vibe",
+     "start": 0.7,
+     "end": 1.05,
+     "conf": 0.345
+    },
+    {
+     "w": "coding",
+     "start": 1.07,
+     "end": 1.46,
+     "conf": 0.999
+    },
+    {
+     "w": "con",
+     "start": 1.49,
+     "end": 1.69,
+     "conf": 0.993
+    },
+    {
+     "w": "Claude",
+     "start": 1.73,
+     "end": 1.96,
+     "conf": 0.436
+    },
+    {
+     "w": "Code",
+     "start": 1.99,
+     "end": 2.35,
+     "conf": 0.275
+    },
+    {
+     "w": "prima",
+     "start": 2.52,
+     "end": 2.7,
+     "conf": 0.983
+    },
+    {
+     "w": "di",
+     "start": 2.7,
+     "end": 2.78,
+     "conf": 0.998
+    },
+    {
+     "w": "aver",
+     "start": 2.78,
+     "end": 2.98,
+     "conf": 0.991
+    },
+    {
+     "w": "installato",
+     "start": 2.98,
+     "end": 3.53,
+     "conf": 0.953
+    },
+    {
+     "w": "questi",
+     "start": 3.55,
+     "end": 3.83,
+     "conf": 0.958
+    },
+    {
+     "w": "quattro",
+     "start": 3.86,
+     "end": 4.19,
+     "conf": 1.0
+    },
+    {
+     "w": "plugin.",
+     "start": 4.21,
+     "end": 4.59,
+     "conf": 0.988
+    }
+   ]
+  },
+  {
+   "text": "Il primo è Superpowers, quasi trecentomila stelle, e impedisce a Claude di buttarsi subito nel codice.",
+   "start": 5.01,
+   "end": 10.42,
+   "words": [
+    {
+     "w": "Il",
+     "start": 5.01,
+     "end": 5.1,
+     "conf": 0.992
+    },
+    {
+     "w": "primo",
+     "start": 5.1,
+     "end": 5.4,
+     "conf": 0.999
+    },
+    {
+     "w": "è",
+     "start": 5.4,
+     "end": 5.59,
+     "conf": 0.998
+    },
+    {
+     "w": "Superpowers,",
+     "start": 5.73,
+     "end": 6.52,
+     "conf": 0.656
+    },
+    {
+     "w": "quasi",
+     "start": 6.65,
+     "end": 7.01,
+     "conf": 0.959
+    },
+    {
+     "w": "trecentomila",
+     "start": 7.03,
+     "end": 7.54,
+     "conf": 0.969
+    },
+    {
+     "w": "stelle,",
+     "start": 7.54,
+     "end": 7.94,
+     "conf": 0.994
+    },
+    {
+     "w": "e",
+     "start": 8.13,
+     "end": 8.18,
+     "conf": 0.999
+    },
+    {
+     "w": "impedisce",
+     "start": 8.18,
+     "end": 8.58,
+     "conf": 0.971
+    },
+    {
+     "w": "a",
+     "start": 8.58,
+     "end": 8.68,
+     "conf": 0.853
+    },
+    {
+     "w": "Claude",
+     "start": 8.7,
+     "end": 8.96,
+     "conf": 0.747
+    },
+    {
+     "w": "di",
+     "start": 8.96,
+     "end": 9.08,
+     "conf": 1.0
+    },
+    {
+     "w": "buttarsi",
+     "start": 9.08,
+     "end": 9.48,
+     "conf": 0.989
+    },
+    {
+     "w": "subito",
+     "start": 9.48,
+     "end": 9.86,
+     "conf": 0.999
+    },
+    {
+     "w": "nel",
+     "start": 9.86,
+     "end": 10.04,
+     "conf": 0.985
+    },
+    {
+     "w": "codice.",
+     "start": 10.05,
+     "end": 10.42,
+     "conf": 1.0
+    }
+   ]
+  },
+  {
+   "text": "Ti chiede cosa stai costruendo davvero, lo trasforma in una specifica che firmi tu,",
+   "start": 10.66,
+   "end": 14.84,
+   "words": [
+    {
+     "w": "Ti",
+     "start": 10.66,
+     "end": 10.7,
+     "conf": 1.0
+    },
+    {
+     "w": "chiede",
+     "start": 10.7,
+     "end": 10.96,
+     "conf": 0.953
+    },
+    {
+     "w": "cosa",
+     "start": 10.96,
+     "end": 11.24,
+     "conf": 0.992
+    },
+    {
+     "w": "stai",
+     "start": 11.24,
+     "end": 11.51,
+     "conf": 0.896
+    },
+    {
+     "w": "costruendo",
+     "start": 11.52,
+     "end": 11.98,
+     "conf": 0.936
+    },
+    {
+     "w": "davvero,",
+     "start": 11.98,
+     "end": 12.48,
+     "conf": 0.996
+    },
+    {
+     "w": "lo",
+     "start": 12.61,
+     "end": 12.72,
+     "conf": 1.0
+    },
+    {
+     "w": "trasforma",
+     "start": 12.72,
+     "end": 13.18,
+     "conf": 0.98
+    },
+    {
+     "w": "in",
+     "start": 13.18,
+     "end": 13.3,
+     "conf": 0.996
+    },
+    {
+     "w": "una",
+     "start": 13.3,
+     "end": 13.46,
+     "conf": 0.951
+    },
+    {
+     "w": "specifica",
+     "start": 13.46,
+     "end": 14.03,
+     "conf": 0.966
+    },
+    {
+     "w": "che",
+     "start": 14.19,
+     "end": 14.28,
+     "conf": 0.976
+    },
+    {
+     "w": "firmi",
+     "start": 14.28,
+     "end": 14.62,
+     "conf": 1.0
+    },
+    {
+     "w": "tu,",
+     "start": 14.64,
+     "end": 14.84,
+     "conf": 0.99
+    }
+   ]
+  },
+  {
+   "text": "e passa il lavoro a dei subagent che scrivono prima i test: così lavora per ore senza uscire dal piano.",
+   "start": 15.01,
+   "end": 20.54,
+   "words": [
+    {
+     "w": "e",
+     "start": 15.01,
+     "end": 15.12,
+     "conf": 0.999
+    },
+    {
+     "w": "passa",
+     "start": 15.15,
+     "end": 15.34,
+     "conf": 0.991
+    },
+    {
+     "w": "il",
+     "start": 15.34,
+     "end": 15.44,
+     "conf": 0.999
+    },
+    {
+     "w": "lavoro",
+     "start": 15.44,
+     "end": 15.82,
+     "conf": 0.976
+    },
+    {
+     "w": "a",
+     "start": 15.87,
+     "end": 15.92,
+     "conf": 0.999
+    },
+    {
+     "w": "dei",
+     "start": 15.92,
+     "end": 16.12,
+     "conf": 0.874
+    },
+    {
+     "w": "subagent",
+     "start": 16.12,
+     "end": 16.95,
+     "conf": 0.734
+    },
+    {
+     "w": "che",
+     "start": 17.14,
+     "end": 17.2,
+     "conf": 0.998
+    },
+    {
+     "w": "scrivono",
+     "start": 17.2,
+     "end": 17.67,
+     "conf": 0.995
+    },
+    {
+     "w": "prima",
+     "start": 17.69,
+     "end": 17.88,
+     "conf": 0.993
+    },
+    {
+     "w": "i",
+     "start": 17.88,
+     "end": 17.99,
+     "conf": 0.957
+    },
+    {
+     "w": "test:",
+     "start": 18.0,
+     "end": 18.24,
+     "conf": 0.953
+    },
+    {
+     "w": "così",
+     "start": 18.49,
+     "end": 18.72,
+     "conf": 0.987
+    },
+    {
+     "w": "lavora",
+     "start": 18.72,
+     "end": 19.02,
+     "conf": 0.966
+    },
+    {
+     "w": "per",
+     "start": 19.02,
+     "end": 19.16,
+     "conf": 0.983
+    },
+    {
+     "w": "ore",
+     "start": 19.16,
+     "end": 19.42,
+     "conf": 0.939
+    },
+    {
+     "w": "senza",
+     "start": 19.56,
+     "end": 19.84,
+     "conf": 0.99
+    },
+    {
+     "w": "uscire",
+     "start": 19.84,
+     "end": 20.1,
+     "conf": 0.912
+    },
+    {
+     "w": "dal",
+     "start": 20.1,
+     "end": 20.26,
+     "conf": 0.975
+    },
+    {
+     "w": "piano.",
+     "start": 20.29,
+     "end": 20.54,
+     "conf": 0.999
+    }
+   ]
+  },
+  {
+   "text": "Il secondo sono le Karpathy skills: un solo file CLAUDE.md, nato da una lamentela di Andrej Karpathy:",
+   "start": 20.94,
+   "end": 27.03,
+   "words": [
+    {
+     "w": "Il",
+     "start": 20.94,
+     "end": 21.04,
+     "conf": 0.998
+    },
+    {
+     "w": "secondo",
+     "start": 21.04,
+     "end": 21.44,
+     "conf": 0.978
+    },
+    {
+     "w": "sono",
+     "start": 21.44,
+     "end": 21.78,
+     "conf": 0.974
+    },
+    {
+     "w": "le",
+     "start": 21.78,
+     "end": 21.93,
+     "conf": 0.994
+    },
+    {
+     "w": "Karpathy",
+     "start": 21.94,
+     "end": 22.4,
+     "conf": 0.982
+    },
+    {
+     "w": "skills:",
+     "start": 22.4,
+     "end": 22.87,
+     "conf": 0.291
+    },
+    {
+     "w": "un",
+     "start": 23.0,
+     "end": 23.1,
+     "conf": 1.0
+    },
+    {
+     "w": "solo",
+     "start": 23.1,
+     "end": 23.32,
+     "conf": 1.0
+    },
+    {
+     "w": "file",
+     "start": 23.32,
+     "end": 23.68,
+     "conf": 0.991
+    },
+    {
+     "w": "CLAUDE.md,",
+     "start": 23.83,
+     "end": 24.85,
+     "conf": 0.254
+    },
+    {
+     "w": "nato",
+     "start": 24.98,
+     "end": 25.26,
+     "conf": 0.996
+    },
+    {
+     "w": "da",
+     "start": 25.26,
+     "end": 25.38,
+     "conf": 0.997
+    },
+    {
+     "w": "una",
+     "start": 25.38,
+     "end": 25.54,
+     "conf": 0.887
+    },
+    {
+     "w": "lamentela",
+     "start": 25.54,
+     "end": 26.0,
+     "conf": 0.969
+    },
+    {
+     "w": "di",
+     "start": 26.0,
+     "end": 26.18,
+     "conf": 0.998
+    },
+    {
+     "w": "Andrej",
+     "start": 26.18,
+     "end": 26.54,
+     "conf": 0.807
+    },
+    {
+     "w": "Karpathy:",
+     "start": 26.56,
+     "end": 27.03,
+     "conf": 0.998
+    }
+   ]
+  },
+  {
+   "text": "i modelli scrivono mille righe quando ne basterebbero cento.",
+   "start": 27.24,
+   "end": 30.72,
+   "words": [
+    {
+     "w": "i",
+     "start": 27.24,
+     "end": 27.3,
+     "conf": 1.0
+    },
+    {
+     "w": "modelli",
+     "start": 27.3,
+     "end": 27.77,
+     "conf": 1.0
+    },
+    {
+     "w": "scrivono",
+     "start": 27.95,
+     "end": 28.47,
+     "conf": 0.975
+    },
+    {
+     "w": "mille",
+     "start": 28.56,
+     "end": 28.88,
+     "conf": 1.0
+    },
+    {
+     "w": "righe",
+     "start": 28.88,
+     "end": 29.26,
+     "conf": 0.964
+    },
+    {
+     "w": "quando",
+     "start": 29.39,
+     "end": 29.62,
+     "conf": 0.997
+    },
+    {
+     "w": "ne",
+     "start": 29.62,
+     "end": 29.72,
+     "conf": 1.0
+    },
+    {
+     "w": "basterebbero",
+     "start": 29.72,
+     "end": 30.32,
+     "conf": 0.984
+    },
+    {
+     "w": "cento.",
+     "start": 30.34,
+     "end": 30.72,
+     "conf": 1.0
+    }
+   ]
+  },
+  {
+   "text": "Quattro regole: pensa prima di scrivere codice, resta semplice, tocca solo quello che ti chiedono, e dimostra che funziona.",
+   "start": 31.01,
+   "end": 36.81,
+   "words": [
+    {
+     "w": "Quattro",
+     "start": 31.01,
+     "end": 31.3,
+     "conf": 0.988
+    },
+    {
+     "w": "regole:",
+     "start": 31.3,
+     "end": 31.68,
+     "conf": 0.973
+    },
+    {
+     "w": "pensa",
+     "start": 31.82,
+     "end": 32.15,
+     "conf": 0.977
+    },
+    {
+     "w": "prima",
+     "start": 32.17,
+     "end": 32.36,
+     "conf": 0.986
+    },
+    {
+     "w": "di",
+     "start": 32.36,
+     "end": 32.46,
+     "conf": 0.9
+    },
+    {
+     "w": "scrivere",
+     "start": 32.46,
+     "end": 32.83,
+     "conf": 0.928
+    },
+    {
+     "w": "codice,",
+     "start": 32.84,
+     "end": 33.28,
+     "conf": 0.996
+    },
+    {
+     "w": "resta",
+     "start": 33.39,
+     "end": 33.66,
+     "conf": 0.998
+    },
+    {
+     "w": "semplice,",
+     "start": 33.66,
+     "end": 34.2,
+     "conf": 0.979
+    },
+    {
+     "w": "tocca",
+     "start": 34.28,
+     "end": 34.56,
+     "conf": 0.995
+    },
+    {
+     "w": "solo",
+     "start": 34.56,
+     "end": 34.83,
+     "conf": 1.0
+    },
+    {
+     "w": "quello",
+     "start": 34.84,
+     "end": 35.04,
+     "conf": 0.98
+    },
+    {
+     "w": "che",
+     "start": 35.04,
+     "end": 35.17,
+     "conf": 0.977
+    },
+    {
+     "w": "ti",
+     "start": 35.19,
+     "end": 35.24,
+     "conf": 0.985
+    },
+    {
+     "w": "chiedono,",
+     "start": 35.24,
+     "end": 35.64,
+     "conf": 1.0
+    },
+    {
+     "w": "e",
+     "start": 35.75,
+     "end": 35.8,
+     "conf": 0.998
+    },
+    {
+     "w": "dimostra",
+     "start": 35.8,
+     "end": 36.18,
+     "conf": 0.999
+    },
+    {
+     "w": "che",
+     "start": 36.18,
+     "end": 36.3,
+     "conf": 1.0
+    },
+    {
+     "w": "funziona.",
+     "start": 36.3,
+     "end": 36.81,
+     "conf": 0.993
+    }
+   ]
+  },
+  {
+   "text": "Il terzo è i-have-adhd, che impedisce a Claude di seppellire la risposta.",
+   "start": 37.23,
+   "end": 42.35,
+   "words": [
+    {
+     "w": "Il",
+     "start": 37.23,
+     "end": 37.35,
+     "conf": 1.0
+    },
+    {
+     "w": "terzo",
+     "start": 37.4,
+     "end": 37.84,
+     "conf": 0.982
+    },
+    {
+     "w": "è",
+     "start": 38.02,
+     "end": 38.22,
+     "conf": 0.994
+    },
+    {
+     "w": "i-have-adhd,",
+     "start": 38.26,
+     "end": 39.94,
+     "conf": 0.511
+    },
+    {
+     "w": "che",
+     "start": 40.13,
+     "end": 40.2,
+     "conf": 0.764
+    },
+    {
+     "w": "impedisce",
+     "start": 40.2,
+     "end": 40.73,
+     "conf": 0.999
+    },
+    {
+     "w": "a",
+     "start": 40.75,
+     "end": 40.85,
+     "conf": 0.996
+    },
+    {
+     "w": "Claude",
+     "start": 40.89,
+     "end": 41.12,
+     "conf": 0.315
+    },
+    {
+     "w": "di",
+     "start": 41.12,
+     "end": 41.24,
+     "conf": 0.969
+    },
+    {
+     "w": "seppellire",
+     "start": 41.24,
+     "end": 41.76,
+     "conf": 0.988
+    },
+    {
+     "w": "la",
+     "start": 41.76,
+     "end": 41.86,
+     "conf": 1.0
+    },
+    {
+     "w": "risposta.",
+     "start": 41.86,
+     "end": 42.35,
+     "conf": 0.949
+    }
+   ]
+  },
+  {
+   "text": "Niente «ottima domanda», niente «spero ti sia utile».",
+   "start": 42.61,
+   "end": 45.93,
+   "words": [
+    {
+     "w": "Niente",
+     "start": 42.61,
+     "end": 43.06,
+     "conf": 0.986
+    },
+    {
+     "w": "«ottima",
+     "start": 43.2,
+     "end": 43.54,
+     "conf": 0.981
+    },
+    {
+     "w": "domanda»,",
+     "start": 43.54,
+     "end": 43.99,
+     "conf": 0.976
+    },
+    {
+     "w": "niente",
+     "start": 44.14,
+     "end": 44.62,
+     "conf": 0.999
+    },
+    {
+     "w": "«spero",
+     "start": 44.68,
+     "end": 45.14,
+     "conf": 1.0
+    },
+    {
+     "w": "ti",
+     "start": 45.27,
+     "end": 45.32,
+     "conf": 1.0
+    },
+    {
+     "w": "sia",
+     "start": 45.32,
+     "end": 45.58,
+     "conf": 0.944
+    },
+    {
+     "w": "utile».",
+     "start": 45.58,
+     "end": 45.93,
+     "conf": 1.0
+    }
+   ]
+  },
+  {
+   "text": "Prima la prossima azione, passi numerati, e liste di massimo cinque punti.",
+   "start": 46.19,
+   "end": 50.13,
+   "words": [
+    {
+     "w": "Prima",
+     "start": 46.19,
+     "end": 46.42,
+     "conf": 0.982
+    },
+    {
+     "w": "la",
+     "start": 46.42,
+     "end": 46.56,
+     "conf": 0.87
+    },
+    {
+     "w": "prossima",
+     "start": 46.57,
+     "end": 46.9,
+     "conf": 0.832
+    },
+    {
+     "w": "azione,",
+     "start": 46.9,
+     "end": 47.42,
+     "conf": 0.973
+    },
+    {
+     "w": "passi",
+     "start": 47.6,
+     "end": 47.82,
+     "conf": 0.991
+    },
+    {
+     "w": "numerati,",
+     "start": 47.82,
+     "end": 48.37,
+     "conf": 0.984
+    },
+    {
+     "w": "e",
+     "start": 48.54,
+     "end": 48.66,
+     "conf": 0.995
+    },
+    {
+     "w": "liste",
+     "start": 48.66,
+     "end": 48.94,
+     "conf": 0.984
+    },
+    {
+     "w": "di",
+     "start": 48.94,
+     "end": 49.04,
+     "conf": 0.988
+    },
+    {
+     "w": "massimo",
+     "start": 49.04,
+     "end": 49.42,
+     "conf": 0.998
+    },
+    {
+     "w": "cinque",
+     "start": 49.42,
+     "end": 49.77,
+     "conf": 1.0
+    },
+    {
+     "w": "punti.",
+     "start": 49.8,
+     "end": 50.13,
+     "conf": 1.0
+    }
+   ]
+  },
+  {
+   "text": "E infine Claude Octopus: manda lo stesso compito fino a dodici altri modelli, come Codex, Copilot e Grok,",
+   "start": 50.54,
+   "end": 56.42,
+   "words": [
+    {
+     "w": "E",
+     "start": 50.54,
+     "end": 50.62,
+     "conf": 0.988
+    },
+    {
+     "w": "infine",
+     "start": 50.62,
+     "end": 51.0,
+     "conf": 0.999
+    },
+    {
+     "w": "Claude",
+     "start": 51.01,
+     "end": 51.26,
+     "conf": 0.427
+    },
+    {
+     "w": "Octopus:",
+     "start": 51.3,
+     "end": 51.85,
+     "conf": 0.998
+    },
+    {
+     "w": "manda",
+     "start": 51.98,
+     "end": 52.28,
+     "conf": 1.0
+    },
+    {
+     "w": "lo",
+     "start": 52.28,
+     "end": 52.4,
+     "conf": 0.99
+    },
+    {
+     "w": "stesso",
+     "start": 52.4,
+     "end": 52.71,
+     "conf": 0.997
+    },
+    {
+     "w": "compito",
+     "start": 52.72,
+     "end": 53.11,
+     "conf": 0.999
+    },
+    {
+     "w": "fino",
+     "start": 53.24,
+     "end": 53.38,
+     "conf": 0.977
+    },
+    {
+     "w": "a",
+     "start": 53.38,
+     "end": 53.46,
+     "conf": 0.995
+    },
+    {
+     "w": "dodici",
+     "start": 53.46,
+     "end": 53.89,
+     "conf": 0.965
+    },
+    {
+     "w": "altri",
+     "start": 53.91,
+     "end": 54.16,
+     "conf": 0.999
+    },
+    {
+     "w": "modelli,",
+     "start": 54.16,
+     "end": 54.57,
+     "conf": 1.0
+    },
+    {
+     "w": "come",
+     "start": 54.71,
+     "end": 54.88,
+     "conf": 1.0
+    },
+    {
+     "w": "Codex,",
+     "start": 54.91,
+     "end": 55.26,
+     "conf": 0.983
+    },
+    {
+     "w": "Copilot",
+     "start": 55.42,
+     "end": 55.89,
+     "conf": 0.835
+    },
+    {
+     "w": "e",
+     "start": 56.06,
+     "end": 56.1,
+     "conf": 0.997
+    },
+    {
+     "w": "Grok,",
+     "start": 56.1,
+     "end": 56.42,
+     "conf": 0.822
+    }
+   ]
+  },
+  {
+   "text": "e ti segnala ogni punto in cui non sono d'accordo, prima che tu pubblichi.",
+   "start": 56.65,
+   "end": 59.76,
+   "words": [
+    {
+     "w": "e",
+     "start": 56.65,
+     "end": 56.73,
+     "conf": 0.976
+    },
+    {
+     "w": "ti",
+     "start": 56.74,
+     "end": 56.8,
+     "conf": 1.0
+    },
+    {
+     "w": "segnala",
+     "start": 56.8,
+     "end": 57.24,
+     "conf": 0.97
+    },
+    {
+     "w": "ogni",
+     "start": 57.25,
+     "end": 57.46,
+     "conf": 0.868
+    },
+    {
+     "w": "punto",
+     "start": 57.5,
+     "end": 57.72,
+     "conf": 0.948
+    },
+    {
+     "w": "in",
+     "start": 57.72,
+     "end": 57.82,
+     "conf": 0.999
+    },
+    {
+     "w": "cui",
+     "start": 57.82,
+     "end": 58.04,
+     "conf": 0.995
+    },
+    {
+     "w": "non",
+     "start": 58.04,
+     "end": 58.2,
+     "conf": 1.0
+    },
+    {
+     "w": "sono",
+     "start": 58.2,
+     "end": 58.44,
+     "conf": 0.97
+    },
+    {
+     "w": "d'accordo,",
+     "start": 58.44,
+     "end": 58.93,
+     "conf": 0.944
+    },
+    {
+     "w": "prima",
+     "start": 58.94,
+     "end": 59.12,
+     "conf": 0.927
+    },
+    {
+     "w": "che",
+     "start": 59.12,
+     "end": 59.24,
+     "conf": 0.995
+    },
+    {
+     "w": "tu",
+     "start": 59.24,
+     "end": 59.38,
+     "conf": 1.0
+    },
+    {
+     "w": "pubblichi.",
+     "start": 59.39,
+     "end": 59.76,
+     "conf": 0.992
+    }
+   ]
+  },
+  {
+   "text": "Se vuoi provarli tutti, commenta SENIOR e ti mando i link in privato.",
+   "start": 60.17,
+   "end": 64.03,
+   "words": [
+    {
+     "w": "Se",
+     "start": 60.17,
+     "end": 60.3,
+     "conf": 0.999
+    },
+    {
+     "w": "vuoi",
+     "start": 60.3,
+     "end": 60.54,
+     "conf": 1.0
+    },
+    {
+     "w": "provarli",
+     "start": 60.54,
+     "end": 60.97,
+     "conf": 0.989
+    },
+    {
+     "w": "tutti,",
+     "start": 60.98,
+     "end": 61.29,
+     "conf": 1.0
+    },
+    {
+     "w": "commenta",
+     "start": 61.45,
+     "end": 61.84,
+     "conf": 1.0
+    },
+    {
+     "w": "SENIOR",
+     "start": 61.84,
+     "end": 62.27,
+     "conf": 0.897
+    },
+    {
+     "w": "e",
+     "start": 62.46,
+     "end": 62.55,
+     "conf": 0.997
+    },
+    {
+     "w": "ti",
+     "start": 62.58,
+     "end": 62.64,
+     "conf": 0.998
+    },
+    {
+     "w": "mando",
+     "start": 62.64,
+     "end": 63.02,
+     "conf": 0.989
+    },
+    {
+     "w": "i",
+     "start": 63.05,
+     "end": 63.1,
+     "conf": 0.998
+    },
+    {
+     "w": "link",
+     "start": 63.1,
+     "end": 63.36,
+     "conf": 0.963
+    },
+    {
+     "w": "in",
+     "start": 63.5,
+     "end": 63.6,
+     "conf": 0.884
+    },
+    {
+     "w": "privato.",
+     "start": 63.6,
+     "end": 64.03,
+     "conf": 1.0
+    }
+   ]
+  }
+ ]
+}

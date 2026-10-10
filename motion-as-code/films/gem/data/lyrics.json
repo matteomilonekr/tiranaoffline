@@ -1,0 +1,563 @@
+{
+ "source": "films/gem/audio/voiceover.mp3",
+ "duration": 27.954,
+ "lines": [
+  {
+   "text": "La Cina l'ha fatto di nuovo: DeepSeek ha reso pubblico il motore che fa girare la sua intelligenza artificiale.",
+   "start": 0.27,
+   "end": 6.01,
+   "words": [
+    {
+     "w": "La",
+     "start": 0.27,
+     "end": 0.4,
+     "conf": 1.0
+    },
+    {
+     "w": "Cina",
+     "start": 0.41,
+     "end": 0.73,
+     "conf": 0.999
+    },
+    {
+     "w": "l'ha",
+     "start": 0.84,
+     "end": 0.98,
+     "conf": 0.8
+    },
+    {
+     "w": "fatto",
+     "start": 0.98,
+     "end": 1.22,
+     "conf": 0.969
+    },
+    {
+     "w": "di",
+     "start": 1.22,
+     "end": 1.32,
+     "conf": 0.911
+    },
+    {
+     "w": "nuovo:",
+     "start": 1.32,
+     "end": 1.67,
+     "conf": 1.0
+    },
+    {
+     "w": "DeepSeek",
+     "start": 2.0,
+     "end": 2.5,
+     "conf": 0.707
+    },
+    {
+     "w": "ha",
+     "start": 2.65,
+     "end": 2.72,
+     "conf": 0.946
+    },
+    {
+     "w": "reso",
+     "start": 2.72,
+     "end": 3.01,
+     "conf": 0.995
+    },
+    {
+     "w": "pubblico",
+     "start": 3.03,
+     "end": 3.44,
+     "conf": 0.981
+    },
+    {
+     "w": "il",
+     "start": 3.44,
+     "end": 3.54,
+     "conf": 1.0
+    },
+    {
+     "w": "motore",
+     "start": 3.54,
+     "end": 4.04,
+     "conf": 0.964
+    },
+    {
+     "w": "che",
+     "start": 4.1,
+     "end": 4.18,
+     "conf": 0.959
+    },
+    {
+     "w": "fa",
+     "start": 4.18,
+     "end": 4.28,
+     "conf": 0.872
+    },
+    {
+     "w": "girare",
+     "start": 4.28,
+     "end": 4.6,
+     "conf": 0.968
+    },
+    {
+     "w": "la",
+     "start": 4.6,
+     "end": 4.7,
+     "conf": 0.999
+    },
+    {
+     "w": "sua",
+     "start": 4.7,
+     "end": 4.88,
+     "conf": 0.92
+    },
+    {
+     "w": "intelligenza",
+     "start": 4.88,
+     "end": 5.4,
+     "conf": 0.999
+    },
+    {
+     "w": "artificiale.",
+     "start": 5.4,
+     "end": 6.01,
+     "conf": 0.963
+    }
+   ]
+  },
+  {
+   "text": "Si chiama DeepGEMM: è gratis, è open source, ed è proprio il codice con cui DeepSeek addestra e fa girare i suoi modelli.",
+   "start": 6.39,
+   "end": 13.01,
+   "words": [
+    {
+     "w": "Si",
+     "start": 6.39,
+     "end": 6.5,
+     "conf": 0.955
+    },
+    {
+     "w": "chiama",
+     "start": 6.5,
+     "end": 6.99,
+     "conf": 0.964
+    },
+    {
+     "w": "DeepGEMM:",
+     "start": 7.02,
+     "end": 7.7,
+     "conf": 0.429
+    },
+    {
+     "w": "è",
+     "start": 7.74,
+     "end": 7.82,
+     "conf": 0.717
+    },
+    {
+     "w": "gratis,",
+     "start": 7.82,
+     "end": 8.39,
+     "conf": 1.0
+    },
+    {
+     "w": "è",
+     "start": 8.47,
+     "end": 8.6,
+     "conf": 0.022
+    },
+    {
+     "w": "open",
+     "start": 8.62,
+     "end": 8.88,
+     "conf": 1.0
+    },
+    {
+     "w": "source,",
+     "start": 8.88,
+     "end": 9.29,
+     "conf": 0.08
+    },
+    {
+     "w": "ed",
+     "start": 9.4,
+     "end": 9.5,
+     "conf": 0.999
+    },
+    {
+     "w": "è",
+     "start": 9.5,
+     "end": 9.56,
+     "conf": 1.0
+    },
+    {
+     "w": "proprio",
+     "start": 9.56,
+     "end": 9.86,
+     "conf": 0.986
+    },
+    {
+     "w": "il",
+     "start": 9.86,
+     "end": 9.99,
+     "conf": 1.0
+    },
+    {
+     "w": "codice",
+     "start": 10.02,
+     "end": 10.32,
+     "conf": 0.965
+    },
+    {
+     "w": "con",
+     "start": 10.32,
+     "end": 10.46,
+     "conf": 0.894
+    },
+    {
+     "w": "cui",
+     "start": 10.46,
+     "end": 10.66,
+     "conf": 0.997
+    },
+    {
+     "w": "DeepSeek",
+     "start": 10.66,
+     "end": 11.1,
+     "conf": 0.831
+    },
+    {
+     "w": "addestra",
+     "start": 11.16,
+     "end": 11.81,
+     "conf": 0.584
+    },
+    {
+     "w": "e",
+     "start": 11.85,
+     "end": 11.9,
+     "conf": 1.0
+    },
+    {
+     "w": "fa",
+     "start": 11.9,
+     "end": 12.02,
+     "conf": 0.991
+    },
+    {
+     "w": "girare",
+     "start": 12.02,
+     "end": 12.34,
+     "conf": 0.962
+    },
+    {
+     "w": "i",
+     "start": 12.34,
+     "end": 12.4,
+     "conf": 0.996
+    },
+    {
+     "w": "suoi",
+     "start": 12.4,
+     "end": 12.6,
+     "conf": 0.98
+    },
+    {
+     "w": "modelli.",
+     "start": 12.6,
+     "end": 13.01,
+     "conf": 0.97
+    }
+   ]
+  },
+  {
+   "text": "Il bello è che gli stessi computer rispondono a molte più domande al secondo, quindi ogni risposta costa molto meno.",
+   "start": 13.3,
+   "end": 19.15,
+   "words": [
+    {
+     "w": "Il",
+     "start": 13.3,
+     "end": 13.4,
+     "conf": 0.998
+    },
+    {
+     "w": "bello",
+     "start": 13.4,
+     "end": 13.77,
+     "conf": 0.998
+    },
+    {
+     "w": "è",
+     "start": 13.81,
+     "end": 13.92,
+     "conf": 0.999
+    },
+    {
+     "w": "che",
+     "start": 13.94,
+     "end": 14.0,
+     "conf": 1.0
+    },
+    {
+     "w": "gli",
+     "start": 14.0,
+     "end": 14.12,
+     "conf": 0.865
+    },
+    {
+     "w": "stessi",
+     "start": 14.12,
+     "end": 14.47,
+     "conf": 0.982
+    },
+    {
+     "w": "computer",
+     "start": 14.48,
+     "end": 14.95,
+     "conf": 0.992
+    },
+    {
+     "w": "rispondono",
+     "start": 15.06,
+     "end": 15.66,
+     "conf": 0.999
+    },
+    {
+     "w": "a",
+     "start": 15.66,
+     "end": 15.74,
+     "conf": 0.999
+    },
+    {
+     "w": "molte",
+     "start": 15.74,
+     "end": 16.02,
+     "conf": 1.0
+    },
+    {
+     "w": "più",
+     "start": 16.02,
+     "end": 16.16,
+     "conf": 0.997
+    },
+    {
+     "w": "domande",
+     "start": 16.16,
+     "end": 16.48,
+     "conf": 0.999
+    },
+    {
+     "w": "al",
+     "start": 16.48,
+     "end": 16.58,
+     "conf": 0.999
+    },
+    {
+     "w": "secondo,",
+     "start": 16.58,
+     "end": 17.16,
+     "conf": 0.892
+    },
+    {
+     "w": "quindi",
+     "start": 17.21,
+     "end": 17.58,
+     "conf": 0.999
+    },
+    {
+     "w": "ogni",
+     "start": 17.67,
+     "end": 17.86,
+     "conf": 0.998
+    },
+    {
+     "w": "risposta",
+     "start": 17.86,
+     "end": 18.3,
+     "conf": 0.999
+    },
+    {
+     "w": "costa",
+     "start": 18.3,
+     "end": 18.6,
+     "conf": 0.978
+    },
+    {
+     "w": "molto",
+     "start": 18.6,
+     "end": 18.86,
+     "conf": 1.0
+    },
+    {
+     "w": "meno.",
+     "start": 18.86,
+     "end": 19.15,
+     "conf": 1.0
+    }
+   ]
+  },
+  {
+   "text": "Per questo, dove Claude chiede cinquanta dollari per un milione di token, DeepSeek ne chiede meno di quattro.",
+   "start": 19.44,
+   "end": 24.82,
+   "words": [
+    {
+     "w": "Per",
+     "start": 19.44,
+     "end": 19.52,
+     "conf": 1.0
+    },
+    {
+     "w": "questo,",
+     "start": 19.52,
+     "end": 19.84,
+     "conf": 0.998
+    },
+    {
+     "w": "dove",
+     "start": 19.84,
+     "end": 20.08,
+     "conf": 0.996
+    },
+    {
+     "w": "Claude",
+     "start": 20.08,
+     "end": 20.5,
+     "conf": 0.729
+    },
+    {
+     "w": "chiede",
+     "start": 20.55,
+     "end": 20.8,
+     "conf": 0.979
+    },
+    {
+     "w": "cinquanta",
+     "start": 20.8,
+     "end": 21.34,
+     "conf": 0.961
+    },
+    {
+     "w": "dollari",
+     "start": 21.34,
+     "end": 21.74,
+     "conf": 0.998
+    },
+    {
+     "w": "per",
+     "start": 21.74,
+     "end": 21.9,
+     "conf": 0.998
+    },
+    {
+     "w": "un",
+     "start": 21.9,
+     "end": 22.0,
+     "conf": 0.997
+    },
+    {
+     "w": "milione",
+     "start": 22.0,
+     "end": 22.3,
+     "conf": 0.999
+    },
+    {
+     "w": "di",
+     "start": 22.3,
+     "end": 22.42,
+     "conf": 0.996
+    },
+    {
+     "w": "token,",
+     "start": 22.44,
+     "end": 22.82,
+     "conf": 0.413
+    },
+    {
+     "w": "DeepSeek",
+     "start": 22.92,
+     "end": 23.42,
+     "conf": 0.851
+    },
+    {
+     "w": "ne",
+     "start": 23.56,
+     "end": 23.68,
+     "conf": 1.0
+    },
+    {
+     "w": "chiede",
+     "start": 23.68,
+     "end": 23.98,
+     "conf": 0.997
+    },
+    {
+     "w": "meno",
+     "start": 23.98,
+     "end": 24.22,
+     "conf": 0.997
+    },
+    {
+     "w": "di",
+     "start": 24.22,
+     "end": 24.38,
+     "conf": 0.881
+    },
+    {
+     "w": "quattro.",
+     "start": 24.39,
+     "end": 24.82,
+     "conf": 0.98
+    }
+   ]
+  },
+  {
+   "text": "Commenta GEM e ti mando il link.",
+   "start": 25.19,
+   "end": 26.87,
+   "words": [
+    {
+     "w": "Commenta",
+     "start": 25.19,
+     "end": 25.58,
+     "conf": 0.994
+    },
+    {
+     "w": "GEM",
+     "start": 25.58,
+     "end": 25.95,
+     "conf": 0.275
+    },
+    {
+     "w": "e",
+     "start": 26.06,
+     "end": 26.16,
+     "conf": 0.998
+    },
+    {
+     "w": "ti",
+     "start": 26.17,
+     "end": 26.22,
+     "conf": 0.995
+    },
+    {
+     "w": "mando",
+     "start": 26.22,
+     "end": 26.46,
+     "conf": 0.948
+    },
+    {
+     "w": "il",
+     "start": 26.46,
+     "end": 26.56,
+     "conf": 0.974
+    },
+    {
+     "w": "link.",
+     "start": 26.56,
+     "end": 26.87,
+     "conf": 0.988
+    }
+   ]
+  }
+ ]
+}

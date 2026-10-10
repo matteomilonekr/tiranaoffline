@@ -1,0 +1,93 @@
+[
+ {
+  "id": "c00",
+  "seed": 11,
+  "pause": 0.35,
+  "text": "Usa questi 4 plugin se vuoi moltiplicare per cento il tuo vibe coding.",
+  "tts": "Usa questi quattro plàghin, se vuoi moltiplicare per cento il tuo vaib còding."
+ },
+ {
+  "id": "c01",
+  "seed": 11,
+  "pause": 0.1,
+  "text": "Il primo è Ponytail, che ottimizza l'output di Claude Code",
+  "tts": "Il primo è Pòni teil, che ottimizza l'àutput di Clod Code"
+ },
+ {
+  "id": "c02",
+  "seed": 11,
+  "pause": 0.35,
+  "text": "e gli fa scrivere oltre il 50% di codice in meno, senza perdere precisione.",
+  "tts": "e gli fa scrivere oltre il cinquanta per cento di codice in meno, senza perdere precisione."
+ },
+ {
+  "id": "c03",
+  "seed": 11,
+  "pause": 0.1,
+  "text": "Il secondo è OmniRoute, che dà a Claude Code un uso quasi illimitato,",
+  "tts": "Il secondo è Omni rùt, che dà a Clod Code un uso quasi illimitato,"
+ },
+ {
+  "id": "c04",
+  "seed": 11,
+  "pause": 0.1,
+  "text": "passando da solo a più di 300 provider, anche gratis, appena finisci i limiti,",
+  "tts": "passando da solo a più di trecento provàider, anche gratis, appena finisci i limiti,"
+ },
+ {
+  "id": "c05",
+  "seed": 11,
+  "pause": 0.35,
+  "text": "e sulla carta sblocca fino a 1,6 miliardi di token gratis al mese.",
+  "tts": "e sulla carta sblocca fino a uno virgola sei miliardi di tòchen gratis al mese."
+ },
+ {
+  "id": "c06",
+  "seed": 11,
+  "pause": 0.1,
+  "text": "Il terzo è Graphify, che trasforma tutto il tuo codice in un grafo della conoscenza,",
+  "tts": "Il terzo è Gràfifai, che trasforma tutto il tuo codice in un grafo della conoscenza,"
+ },
+ {
+  "id": "c07",
+  "seed": 11,
+  "pause": 0.35,
+  "text": "così il tuo agente non spreca token a rileggere i file ancora e ancora.",
+  "tts": "così il tuo agente non spreca tòchen a rileggere i fàil ancora e ancora."
+ },
+ {
+  "id": "c08",
+  "seed": 11,
+  "pause": 0.1,
+  "text": "E infine c'è Agent Skills,",
+  "tts": "E infine c'è Éjent Schils,"
+ },
+ {
+  "id": "c09",
+  "seed": 21,
+  "pause": 0.1,
+  "text": "un pacchetto di 24 skill firmato da Addy Osmani, con oltre centomila stelle su GitHub,",
+  "tts": "un pacchetto di ventiquattro schil firmato da Àddi Osmàni, con oltre centomila stelle su Ghit Hab,"
+ },
+ {
+  "id": "c10",
+  "seed": 11,
+  "pause": 0.1,
+  "text": "che ti fa programmare come un ingegnere senior,",
+  "tts": "che ti fa programmare come un ingegnere sìnier,"
+ },
+ {
+  "id": "c11",
+  "seed": 11,
+  "pause": 0.35,
+  "text": "attivando da sola la skill giusta per ogni fase: pianificazione, codice, test e pubblicazione.",
+  "tts": "attivando da sola la schil giusta per ogni fase: pianificazione, codice, test e pubblicazione."
+ },
+ {
+  "id": "c12",
+  "seed": 11,
+  "pause": 1.5,
+  "text": "Quindi, se vuoi provarli tutti, commenta CODING e ti mando i link direttamente.",
+  "tts": "Quindi, se vuoi provarli tutti, commenta còding, e ti mando i link direttamente."
+ }
+]

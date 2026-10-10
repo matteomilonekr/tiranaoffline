@@ -1,0 +1,77 @@
+{
+ "size": 1024,
+ "style": "3d render, studio product shot, soft light, centered, isolated on a plain light grey background",
+ "items": [
+  {
+   "name": "brain",
+   "prompt": "a realistic anatomical human brain, soft flesh pink with subtle red veins, detailed folds, side view",
+   "seed": 11
+  },
+  {
+   "name": "sneaker",
+   "prompt": "a white and green leather high-top sneaker without any logo, side view",
+   "seed": 21
+  },
+  {
+   "name": "console",
+   "prompt": "a white wireless video game controller with two thumbsticks, seen from the top at an angle, plain, no logo",
+   "seed": 32
+  },
+  {
+   "name": "phone",
+   "prompt": "the back of a black smartphone with a triple camera, plain back, no logo",
+   "seed": 41
+  },
+  {
+   "name": "cup",
+   "prompt": "a white takeaway paper cup with a red lid and a red stripe, plain, no logo",
+   "seed": 51
+  },
+  {
+   "name": "pegasus",
+   "prompt": "a white marble statue of a pegasus, winged horse rearing up with wings spread wide",
+   "seed": 61
+  },
+  {
+   "name": "hand",
+   "prompt": "a white marble sculpture of a human hand and wrist, the index finger pointing straight up, the other fingers curled into the palm",
+   "seed": 71
+  },
+  {
+   "name": "tv",
+   "prompt": "a retro 1970s television set, warm wooden cabinet, rounded grey glass screen, two round knobs on the right panel, v-shaped rabbit ear antenna on top, four short tapered legs, three-quarter view",
+   "seed": 81
+  },
+  {
+   "name": "eye",
+   "prompt": "a single realistic human eyeball, a glossy white sphere with a brown iris and fine red veins, no eyelids",
+   "seed": 93
+  },
+  {
+   "name": "butterfly",
+   "prompt": "a human hand gently holding a glowing iridescent purple and blue butterfly, warm rim light, pitch black background, cinematic",
+   "style": "cinematic photo, dramatic low key light",
+   "cutout": false,
+   "width": 768,
+   "height": 1152,
+   "seed": 101
+  },
+  {
+   "name": "diamond",
+   "prompt": "a large brilliant cut diamond, sparkling, slight blue tint, floating",
+   "seed": 111
+  },
+  {
+   "name": "column",
+   "prompt": "a white greek marble column, full height, doric capital, front view",
+   "width": 640,
+   "height": 1280,
+   "seed": 121
+  },
+  {
+   "name": "knight",
+   "prompt": "a white glossy chess knight piece, three-quarter view",
+   "seed": 131
+  }
+ ]
+}

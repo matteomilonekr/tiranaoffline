@@ -1,0 +1,368 @@
+{
+ "source": "films/magia/audio/voiceover.mp3",
+ "duration": 22.04,
+ "lines": [
+  {
+   "text": "Ti sei mai chiesto perché certi brand ti restano in testa?",
+   "start": 0.36,
+   "end": 3.22,
+   "words": [
+    {
+     "w": "Ti",
+     "start": 0.36,
+     "end": 0.42,
+     "conf": 1.0
+    },
+    {
+     "w": "sei",
+     "start": 0.42,
+     "end": 0.64,
+     "conf": 0.999
+    },
+    {
+     "w": "mai",
+     "start": 0.64,
+     "end": 0.9,
+     "conf": 0.955
+    },
+    {
+     "w": "chiesto",
+     "start": 0.91,
+     "end": 1.32,
+     "conf": 0.974
+    },
+    {
+     "w": "perché",
+     "start": 1.35,
+     "end": 1.6,
+     "conf": 0.952
+    },
+    {
+     "w": "certi",
+     "start": 1.61,
+     "end": 1.9,
+     "conf": 0.999
+    },
+    {
+     "w": "brand",
+     "start": 1.9,
+     "end": 2.25,
+     "conf": 0.467
+    },
+    {
+     "w": "ti",
+     "start": 2.31,
+     "end": 2.36,
+     "conf": 1.0
+    },
+    {
+     "w": "restano",
+     "start": 2.36,
+     "end": 2.7,
+     "conf": 0.969
+    },
+    {
+     "w": "in",
+     "start": 2.7,
+     "end": 2.78,
+     "conf": 1.0
+    },
+    {
+     "w": "testa?",
+     "start": 2.78,
+     "end": 3.22,
+     "conf": 0.996
+    }
+   ]
+  },
+  {
+   "text": "Non è magia.",
+   "start": 3.62,
+   "end": 4.37,
+   "words": [
+    {
+     "w": "Non",
+     "start": 3.62,
+     "end": 3.8,
+     "conf": 1.0
+    },
+    {
+     "w": "è",
+     "start": 3.8,
+     "end": 3.88,
+     "conf": 0.999
+    },
+    {
+     "w": "magia.",
+     "start": 3.88,
+     "end": 4.37,
+     "conf": 0.991
+    }
+   ]
+  },
+  {
+   "text": "È motion design.",
+   "start": 4.65,
+   "end": 5.8,
+   "words": [
+    {
+     "w": "È",
+     "start": 4.65,
+     "end": 4.74,
+     "conf": 0.01
+    },
+    {
+     "w": "motion",
+     "start": 4.74,
+     "end": 5.24,
+     "conf": 0.282
+    },
+    {
+     "w": "design.",
+     "start": 5.24,
+     "end": 5.8,
+     "conf": 0.322
+    }
+   ]
+  },
+  {
+   "text": "Il motion design dà emozione al tuo messaggio.",
+   "start": 6.24,
+   "end": 8.78,
+   "words": [
+    {
+     "w": "Il",
+     "start": 6.24,
+     "end": 6.36,
+     "conf": 1.0
+    },
+    {
+     "w": "motion",
+     "start": 6.36,
+     "end": 6.82,
+     "conf": 0.29
+    },
+    {
+     "w": "design",
+     "start": 6.82,
+     "end": 7.22,
+     "conf": 0.244
+    },
+    {
+     "w": "dà",
+     "start": 7.22,
+     "end": 7.36,
+     "conf": 0.929
+    },
+    {
+     "w": "emozione",
+     "start": 7.36,
+     "end": 7.94,
+     "conf": 0.986
+    },
+    {
+     "w": "al",
+     "start": 7.94,
+     "end": 8.1,
+     "conf": 1.0
+    },
+    {
+     "w": "tuo",
+     "start": 8.13,
+     "end": 8.24,
+     "conf": 0.985
+    },
+    {
+     "w": "messaggio.",
+     "start": 8.24,
+     "end": 8.78,
+     "conf": 0.995
+    }
+   ]
+  },
+  {
+   "text": "Il testo cinetico cattura l'attenzione in due secondi.",
+   "start": 9.14,
+   "end": 11.88,
+   "words": [
+    {
+     "w": "Il",
+     "start": 9.14,
+     "end": 9.25,
+     "conf": 1.0
+    },
+    {
+     "w": "testo",
+     "start": 9.31,
+     "end": 9.56,
+     "conf": 0.997
+    },
+    {
+     "w": "cinetico",
+     "start": 9.56,
+     "end": 10.14,
+     "conf": 0.992
+    },
+    {
+     "w": "cattura",
+     "start": 10.15,
+     "end": 10.56,
+     "conf": 0.989
+    },
+    {
+     "w": "l'attenzione",
+     "start": 10.56,
+     "end": 11.16,
+     "conf": 0.967
+    },
+    {
+     "w": "in",
+     "start": 11.16,
+     "end": 11.24,
+     "conf": 1.0
+    },
+    {
+     "w": "due",
+     "start": 11.24,
+     "end": 11.42,
+     "conf": 1.0
+    },
+    {
+     "w": "secondi.",
+     "start": 11.42,
+     "end": 11.88,
+     "conf": 0.995
+    }
+   ]
+  },
+  {
+   "text": "Le metafore visive spiegano idee complesse senza una sola parola.",
+   "start": 12.32,
+   "end": 16.14,
+   "words": [
+    {
+     "w": "Le",
+     "start": 12.32,
+     "end": 12.44,
+     "conf": 0.999
+    },
+    {
+     "w": "metafore",
+     "start": 12.44,
+     "end": 12.98,
+     "conf": 0.861
+    },
+    {
+     "w": "visive",
+     "start": 12.98,
+     "end": 13.46,
+     "conf": 0.987
+    },
+    {
+     "w": "spiegano",
+     "start": 13.46,
+     "end": 13.96,
+     "conf": 0.988
+    },
+    {
+     "w": "idee",
+     "start": 13.96,
+     "end": 14.31,
+     "conf": 0.999
+    },
+    {
+     "w": "complesse",
+     "start": 14.33,
+     "end": 14.88,
+     "conf": 0.996
+    },
+    {
+     "w": "senza",
+     "start": 14.88,
+     "end": 15.26,
+     "conf": 0.999
+    },
+    {
+     "w": "una",
+     "start": 15.26,
+     "end": 15.42,
+     "conf": 1.0
+    },
+    {
+     "w": "sola",
+     "start": 15.42,
+     "end": 15.75,
+     "conf": 1.0
+    },
+    {
+     "w": "parola.",
+     "start": 15.78,
+     "end": 16.14,
+     "conf": 0.965
+    }
+   ]
+  },
+  {
+   "text": "Non è decorazione.",
+   "start": 16.45,
+   "end": 17.52,
+   "words": [
+    {
+     "w": "Non",
+     "start": 16.45,
+     "end": 16.66,
+     "conf": 1.0
+    },
+    {
+     "w": "è",
+     "start": 16.66,
+     "end": 16.74,
+     "conf": 0.999
+    },
+    {
+     "w": "decorazione.",
+     "start": 16.74,
+     "end": 17.52,
+     "conf": 0.994
+    }
+   ]
+  },
+  {
+   "text": "È strategia che si muove.",
+   "start": 18.0,
+   "end": 19.28,
+   "words": [
+    {
+     "w": "È",
+     "start": 18.0,
+     "end": 18.08,
+     "conf": 1.0
+    },
+    {
+     "w": "strategia",
+     "start": 18.08,
+     "end": 18.67,
+     "conf": 1.0
+    },
+    {
+     "w": "che",
+     "start": 18.69,
+     "end": 18.76,
+     "conf": 0.965
+    },
+    {
+     "w": "si",
+     "start": 18.76,
+     "end": 18.88,
+     "conf": 0.992
+    },
+    {
+     "w": "muove.",
+     "start": 18.88,
+     "end": 19.28,
+     "conf": 1.0
+    }
+   ]
+  }
+ ]
+}

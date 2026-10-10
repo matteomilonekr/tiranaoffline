@@ -1,0 +1,30 @@
+{
+ "script": [
+  "Claude ora può lavorare a tutto il tuo canale YouTube, ed è completamente gratis.",
+  "Si chiama YouTube Agent Skill,",
+  "e non è una skill sola: sono undici.",
+  "Una scrive i tuoi script con ventuno formule per gli hook,",
+  "una sistema titoli e copertine,",
+  "una prepara i tagli dei tuoi video,",
+  "una scrive le risposte ai commenti,",
+  "e una pianifica tutta la strategia.",
+  "Ma la più pazzesca? La viralità.",
+  "Trova i video più virali della tua nicchia, ti mostra perché hanno funzionato,",
+  "e ti aiuta a rifarli con la tua voce, per il tuo pubblico.",
+  "Basta tirare a indovinare cosa pubblicare.",
+  "E non pubblica niente al posto tuo: scrive lei, carichi tu.",
+  "Il setup richiede dieci secondi:",
+  "apri Claude, incolli un link, fatto.",
+  "Commenta YOUTUBE e ti mando la guida completa in privato."
+ ],
+ "spoken": {
+  "claude": "clod",
+  "youtube": "iutub",
+  "agent": "ejent",
+  "skill": "schil",
+  "script": "script",
+  "hook": "uk",
+  "setup": "setap",
+  "link": "link"
+ }
+}

@@ -1,0 +1,44 @@
+[
+ {
+  "id": "c00",
+  "seed": 11,
+  "pause": 0.35,
+  "text": "Quasi nessuno ci pensa, ma un sito fatto con l'IA si riconosce in un secondo, ed è sempre lo stesso indizio.",
+  "tts": "Quasi nessuno ci pensa, ma un sito fatto con l'i a si riconosce in un secondo, ed è sempre lo stesso indizio."
+ },
+ {
+  "id": "c01",
+  "seed": 11,
+  "pause": 0.3,
+  "text": "Claude ha imparato il design dagli stessi template, così ogni sito esce con gli stessi gradienti viola e riquadri dentro riquadri.",
+  "tts": "Clod ha imparato il disàin dagli stessi tèmpleit, così ogni sito esce con gli stessi gradienti viola e riquadri dentro riquadri."
+ },
+ {
+  "id": "c02",
+  "seed": 11,
+  "pause": 0.3,
+  "text": "Allora qualcuno ha reso open source una skill di design che risolve proprio questo, e ha superato le settantacinquemila stelle.",
+  "tts": "Allora qualcuno ha reso open sors una schil di disàin che risolve proprio questo, e ha superato le settantacinquemila stelle."
+ },
+ {
+  "id": "c03",
+  "seed": 11,
+  "pause": 0.3,
+  "text": "Scrivi un solo comando e Claude ridisegna la tua pagina come un designer vero: spaziature, colori e font giusti.",
+  "tts": "Scrivi un solo comando e Clod ridisegna la tua pagina come un disàiner vero: spaziature, colori e font giusti."
+ },
+ {
+  "id": "c04",
+  "seed": 11,
+  "pause": 0.35,
+  "text": "E corregge da solo i sessantuno classici segnali di design da IA, prima che qualcuno li veda.",
+  "tts": "E corregge da solo i sessantuno classici segnali di disàin da i a, prima che qualcuno li veda."
+ },
+ {
+  "id": "c05",
+  "seed": 11,
+  "pause": 1.4,
+  "text": "Ed è gratis: per il link, commenta POLISH.",
+  "tts": "Ed è gratis: per il link, commenta Pòlish."
+ }
+]

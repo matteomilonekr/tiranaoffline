@@ -1,0 +1,15 @@
+# renders (stills, videos, the SFX mix): regenerable and large
+out/
+
+# the acoustic model made by analysis/export_model.py (~320 MB)
+analysis/models/
+
+# the voice's work files (analysis/tts/voice.py: takes, reference, models' output)
+analysis/tts/work/
+
+# Python leftovers
+__pycache__/
+.venv/
+
+# the frames plate's film strip thumbnails come from `bun scripts/render.ts plates`
+# (committed, so the strip works on a fresh checkout)

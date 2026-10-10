@@ -1,0 +1,684 @@
+{
+ "source": "films/polish/audio/voiceover.mp3",
+ "duration": 34.8,
+ "lines": [
+  {
+   "text": "Quasi nessuno ci pensa, ma un sito fatto con l'IA si riconosce in un secondo, ed è sempre lo stesso indizio.",
+   "start": 0.28,
+   "end": 5.74,
+   "words": [
+    {
+     "w": "Quasi",
+     "start": 0.28,
+     "end": 0.52,
+     "conf": 0.997
+    },
+    {
+     "w": "nessuno",
+     "start": 0.52,
+     "end": 0.84,
+     "conf": 1.0
+    },
+    {
+     "w": "ci",
+     "start": 0.84,
+     "end": 1.0,
+     "conf": 0.992
+    },
+    {
+     "w": "pensa,",
+     "start": 1.01,
+     "end": 1.38,
+     "conf": 0.988
+    },
+    {
+     "w": "ma",
+     "start": 1.5,
+     "end": 1.64,
+     "conf": 0.842
+    },
+    {
+     "w": "un",
+     "start": 1.64,
+     "end": 1.74,
+     "conf": 1.0
+    },
+    {
+     "w": "sito",
+     "start": 1.74,
+     "end": 2.0,
+     "conf": 0.991
+    },
+    {
+     "w": "fatto",
+     "start": 2.0,
+     "end": 2.36,
+     "conf": 0.971
+    },
+    {
+     "w": "con",
+     "start": 2.38,
+     "end": 2.48,
+     "conf": 1.0
+    },
+    {
+     "w": "l'IA",
+     "start": 2.48,
+     "end": 2.76,
+     "conf": 0.52
+    },
+    {
+     "w": "si",
+     "start": 2.92,
+     "end": 3.04,
+     "conf": 1.0
+    },
+    {
+     "w": "riconosce",
+     "start": 3.04,
+     "end": 3.54,
+     "conf": 0.996
+    },
+    {
+     "w": "in",
+     "start": 3.54,
+     "end": 3.64,
+     "conf": 1.0
+    },
+    {
+     "w": "un",
+     "start": 3.64,
+     "end": 3.76,
+     "conf": 1.0
+    },
+    {
+     "w": "secondo,",
+     "start": 3.76,
+     "end": 4.24,
+     "conf": 1.0
+    },
+    {
+     "w": "ed",
+     "start": 4.34,
+     "end": 4.44,
+     "conf": 1.0
+    },
+    {
+     "w": "è",
+     "start": 4.44,
+     "end": 4.54,
+     "conf": 1.0
+    },
+    {
+     "w": "sempre",
+     "start": 4.54,
+     "end": 4.86,
+     "conf": 1.0
+    },
+    {
+     "w": "lo",
+     "start": 4.86,
+     "end": 4.98,
+     "conf": 0.996
+    },
+    {
+     "w": "stesso",
+     "start": 4.98,
+     "end": 5.28,
+     "conf": 0.99
+    },
+    {
+     "w": "indizio.",
+     "start": 5.28,
+     "end": 5.74,
+     "conf": 0.997
+    }
+   ]
+  },
+  {
+   "text": "Claude ha imparato il design dagli stessi template, così ogni sito esce con gli stessi gradienti viola e riquadri dentro riquadri.",
+   "start": 6.08,
+   "end": 12.44,
+   "words": [
+    {
+     "w": "Claude",
+     "start": 6.08,
+     "end": 6.41,
+     "conf": 0.9
+    },
+    {
+     "w": "ha",
+     "start": 6.55,
+     "end": 6.6,
+     "conf": 0.957
+    },
+    {
+     "w": "imparato",
+     "start": 6.6,
+     "end": 7.0,
+     "conf": 0.998
+    },
+    {
+     "w": "il",
+     "start": 7.0,
+     "end": 7.12,
+     "conf": 0.999
+    },
+    {
+     "w": "design",
+     "start": 7.12,
+     "end": 7.48,
+     "conf": 0.139
+    },
+    {
+     "w": "dagli",
+     "start": 7.48,
+     "end": 7.68,
+     "conf": 0.965
+    },
+    {
+     "w": "stessi",
+     "start": 7.68,
+     "end": 8.03,
+     "conf": 0.998
+    },
+    {
+     "w": "template,",
+     "start": 8.05,
+     "end": 8.44,
+     "conf": 0.4
+    },
+    {
+     "w": "così",
+     "start": 8.64,
+     "end": 8.88,
+     "conf": 0.998
+    },
+    {
+     "w": "ogni",
+     "start": 8.88,
+     "end": 9.08,
+     "conf": 0.999
+    },
+    {
+     "w": "sito",
+     "start": 9.08,
+     "end": 9.34,
+     "conf": 1.0
+    },
+    {
+     "w": "esce",
+     "start": 9.34,
+     "end": 9.58,
+     "conf": 0.926
+    },
+    {
+     "w": "con",
+     "start": 9.58,
+     "end": 9.76,
+     "conf": 0.963
+    },
+    {
+     "w": "gli",
+     "start": 9.76,
+     "end": 9.86,
+     "conf": 0.861
+    },
+    {
+     "w": "stessi",
+     "start": 9.86,
+     "end": 10.14,
+     "conf": 0.997
+    },
+    {
+     "w": "gradienti",
+     "start": 10.14,
+     "end": 10.6,
+     "conf": 0.986
+    },
+    {
+     "w": "viola",
+     "start": 10.6,
+     "end": 11.0,
+     "conf": 0.999
+    },
+    {
+     "w": "e",
+     "start": 11.11,
+     "end": 11.16,
+     "conf": 0.995
+    },
+    {
+     "w": "riquadri",
+     "start": 11.16,
+     "end": 11.6,
+     "conf": 0.992
+    },
+    {
+     "w": "dentro",
+     "start": 11.6,
+     "end": 11.94,
+     "conf": 0.989
+    },
+    {
+     "w": "riquadri.",
+     "start": 11.94,
+     "end": 12.44,
+     "conf": 0.864
+    }
+   ]
+  },
+  {
+   "text": "Allora qualcuno ha reso open source una skill di design che risolve proprio questo, e ha superato le settantacinquemila stelle.",
+   "start": 12.73,
+   "end": 19.49,
+   "words": [
+    {
+     "w": "Allora",
+     "start": 12.73,
+     "end": 13.11,
+     "conf": 0.991
+    },
+    {
+     "w": "qualcuno",
+     "start": 13.12,
+     "end": 13.5,
+     "conf": 0.998
+    },
+    {
+     "w": "ha",
+     "start": 13.5,
+     "end": 13.62,
+     "conf": 0.89
+    },
+    {
+     "w": "reso",
+     "start": 13.62,
+     "end": 13.92,
+     "conf": 0.993
+    },
+    {
+     "w": "open",
+     "start": 14.01,
+     "end": 14.26,
+     "conf": 0.999
+    },
+    {
+     "w": "source",
+     "start": 14.26,
+     "end": 14.74,
+     "conf": 0.112
+    },
+    {
+     "w": "una",
+     "start": 14.79,
+     "end": 14.96,
+     "conf": 0.971
+    },
+    {
+     "w": "skill",
+     "start": 14.96,
+     "end": 15.22,
+     "conf": 0.252
+    },
+    {
+     "w": "di",
+     "start": 15.22,
+     "end": 15.34,
+     "conf": 0.993
+    },
+    {
+     "w": "design",
+     "start": 15.34,
+     "end": 15.85,
+     "conf": 0.141
+    },
+    {
+     "w": "che",
+     "start": 15.97,
+     "end": 16.04,
+     "conf": 0.795
+    },
+    {
+     "w": "risolve",
+     "start": 16.04,
+     "end": 16.49,
+     "conf": 1.0
+    },
+    {
+     "w": "proprio",
+     "start": 16.51,
+     "end": 16.79,
+     "conf": 0.996
+    },
+    {
+     "w": "questo,",
+     "start": 16.8,
+     "end": 17.16,
+     "conf": 0.932
+    },
+    {
+     "w": "e",
+     "start": 17.27,
+     "end": 17.32,
+     "conf": 0.999
+    },
+    {
+     "w": "ha",
+     "start": 17.32,
+     "end": 17.44,
+     "conf": 0.939
+    },
+    {
+     "w": "superato",
+     "start": 17.44,
+     "end": 18.04,
+     "conf": 1.0
+    },
+    {
+     "w": "le",
+     "start": 18.11,
+     "end": 18.22,
+     "conf": 0.923
+    },
+    {
+     "w": "settantacinquemila",
+     "start": 18.22,
+     "end": 19.12,
+     "conf": 0.975
+    },
+    {
+     "w": "stelle.",
+     "start": 19.12,
+     "end": 19.49,
+     "conf": 1.0
+    }
+   ]
+  },
+  {
+   "text": "Scrivi un solo comando e Claude ridisegna la tua pagina come un designer vero: spaziature, colori e font giusti.",
+   "start": 19.8,
+   "end": 26.11,
+   "words": [
+    {
+     "w": "Scrivi",
+     "start": 19.8,
+     "end": 20.24,
+     "conf": 0.999
+    },
+    {
+     "w": "un",
+     "start": 20.32,
+     "end": 20.46,
+     "conf": 1.0
+    },
+    {
+     "w": "solo",
+     "start": 20.46,
+     "end": 20.75,
+     "conf": 0.992
+    },
+    {
+     "w": "comando",
+     "start": 20.77,
+     "end": 21.26,
+     "conf": 0.976
+    },
+    {
+     "w": "e",
+     "start": 21.31,
+     "end": 21.41,
+     "conf": 0.892
+    },
+    {
+     "w": "Claude",
+     "start": 21.45,
+     "end": 21.7,
+     "conf": 0.87
+    },
+    {
+     "w": "ridisegna",
+     "start": 21.7,
+     "end": 22.16,
+     "conf": 0.957
+    },
+    {
+     "w": "la",
+     "start": 22.16,
+     "end": 22.29,
+     "conf": 0.999
+    },
+    {
+     "w": "tua",
+     "start": 22.31,
+     "end": 22.48,
+     "conf": 0.986
+    },
+    {
+     "w": "pagina",
+     "start": 22.51,
+     "end": 22.93,
+     "conf": 0.966
+    },
+    {
+     "w": "come",
+     "start": 23.03,
+     "end": 23.18,
+     "conf": 0.948
+    },
+    {
+     "w": "un",
+     "start": 23.18,
+     "end": 23.26,
+     "conf": 0.945
+    },
+    {
+     "w": "designer",
+     "start": 23.26,
+     "end": 23.7,
+     "conf": 0.278
+    },
+    {
+     "w": "vero:",
+     "start": 23.7,
+     "end": 24.01,
+     "conf": 0.999
+    },
+    {
+     "w": "spaziature,",
+     "start": 24.12,
+     "end": 24.77,
+     "conf": 0.968
+    },
+    {
+     "w": "colori",
+     "start": 24.89,
+     "end": 25.25,
+     "conf": 0.999
+    },
+    {
+     "w": "e",
+     "start": 25.36,
+     "end": 25.42,
+     "conf": 1.0
+    },
+    {
+     "w": "font",
+     "start": 25.42,
+     "end": 25.68,
+     "conf": 0.999
+    },
+    {
+     "w": "giusti.",
+     "start": 25.7,
+     "end": 26.11,
+     "conf": 0.999
+    }
+   ]
+  },
+  {
+   "text": "E corregge da solo i sessantuno classici segnali di design da IA, prima che qualcuno li veda.",
+   "start": 26.39,
+   "end": 31.12,
+   "words": [
+    {
+     "w": "E",
+     "start": 26.39,
+     "end": 26.48,
+     "conf": 0.999
+    },
+    {
+     "w": "corregge",
+     "start": 26.49,
+     "end": 26.88,
+     "conf": 0.999
+    },
+    {
+     "w": "da",
+     "start": 26.88,
+     "end": 27.02,
+     "conf": 1.0
+    },
+    {
+     "w": "solo",
+     "start": 27.02,
+     "end": 27.26,
+     "conf": 0.999
+    },
+    {
+     "w": "i",
+     "start": 27.26,
+     "end": 27.34,
+     "conf": 0.994
+    },
+    {
+     "w": "sessantuno",
+     "start": 27.34,
+     "end": 27.86,
+     "conf": 0.999
+    },
+    {
+     "w": "classici",
+     "start": 27.87,
+     "end": 28.24,
+     "conf": 0.953
+    },
+    {
+     "w": "segnali",
+     "start": 28.24,
+     "end": 28.73,
+     "conf": 0.965
+    },
+    {
+     "w": "di",
+     "start": 28.83,
+     "end": 28.94,
+     "conf": 0.971
+    },
+    {
+     "w": "design",
+     "start": 28.94,
+     "end": 29.34,
+     "conf": 0.18
+    },
+    {
+     "w": "da",
+     "start": 29.34,
+     "end": 29.46,
+     "conf": 0.993
+    },
+    {
+     "w": "IA,",
+     "start": 29.46,
+     "end": 29.76,
+     "conf": 0.925
+    },
+    {
+     "w": "prima",
+     "start": 29.9,
+     "end": 30.14,
+     "conf": 1.0
+    },
+    {
+     "w": "che",
+     "start": 30.15,
+     "end": 30.27,
+     "conf": 0.867
+    },
+    {
+     "w": "qualcuno",
+     "start": 30.3,
+     "end": 30.72,
+     "conf": 1.0
+    },
+    {
+     "w": "li",
+     "start": 30.72,
+     "end": 30.84,
+     "conf": 0.866
+    },
+    {
+     "w": "veda.",
+     "start": 30.84,
+     "end": 31.12,
+     "conf": 1.0
+    }
+   ]
+  },
+  {
+   "text": "Ed è gratis: per il link, commenta POLISH.",
+   "start": 31.46,
+   "end": 33.69,
+   "words": [
+    {
+     "w": "Ed",
+     "start": 31.46,
+     "end": 31.56,
+     "conf": 0.999
+    },
+    {
+     "w": "è",
+     "start": 31.56,
+     "end": 31.64,
+     "conf": 0.999
+    },
+    {
+     "w": "gratis:",
+     "start": 31.64,
+     "end": 32.19,
+     "conf": 1.0
+    },
+    {
+     "w": "per",
+     "start": 32.31,
+     "end": 32.4,
+     "conf": 1.0
+    },
+    {
+     "w": "il",
+     "start": 32.4,
+     "end": 32.5,
+     "conf": 0.997
+    },
+    {
+     "w": "link,",
+     "start": 32.5,
+     "end": 32.82,
+     "conf": 0.999
+    },
+    {
+     "w": "commenta",
+     "start": 32.94,
+     "end": 33.28,
+     "conf": 0.97
+    },
+    {
+     "w": "POLISH.",
+     "start": 33.28,
+     "end": 33.69,
+     "conf": 0.815
+    }
+   ]
+  }
+ ]
+}
