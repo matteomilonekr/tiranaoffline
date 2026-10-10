@@ -5,7 +5,7 @@
 
 import * as THREE from 'three';
 import { meridianProfile } from './layout.js';
-import { MatrixWorld } from './matrix3d.js';
+import { MatrixWorld, textSprite } from './matrix3d.js';
 
 const CARD_VERT = /* glsl */ `
 varying vec2 vUv;
@@ -128,8 +128,8 @@ export class FunnelGraphScene {
   setData(layout, artwork) {
     this._clear();
     this.layout = layout;
-    if (this.mode === 'matrix') {
-      // Back from the matrix: the funnel's own framing, not the matrix's zoom.
+    if (this.mode !== 'funnel') {
+      // Back from the matrix or the map: the funnel's own framing, not their zoom.
       this.userZoom = 1;
       this._pitchTouched = false;
     }
@@ -237,6 +237,64 @@ export class FunnelGraphScene {
     this._applyViewGoal(entering);
   }
 
+  /**
+   * The similarity map: cards where the similarity map put them, each framed in its
+   * family's colour, a faint link to its nearest look-alikes, the families' names over them.
+   * @param {{cards:Array, links:Array<[number, number, number]>, families:Array<{key:string, label:string, color:string}>}} cloud
+   */
+  setCloud(cloud, artwork) {
+    const entering = this.mode !== 'cloud';
+    this._clear();
+    this.layout = null;
+    this.mode = 'cloud';
+    this.colors = Object.fromEntries(cloud.families.map((f) => [f.key, f.color]));
+    for (const card of cloud.cards) this._addCard(card, artwork.get(card.stack.id), this.colors[card.group]);
+
+    // Links: each card to its two nearest look-alikes, brighter the more alike.
+    const pos = [];
+    const col = [];
+    for (const [i, j, sim] of cloud.links) {
+      const a = cloud.cards[i];
+      const b = cloud.cards[j];
+      const c = new THREE.Color(a.group === b.group ? this.colors[a.group] : '#8a877f');
+      const alpha = Math.max(0.06, Math.min(0.5, (sim - 0.5) * 1.1));
+      pos.push(a.x, a.y, a.z, b.x, b.y, b.z);
+      col.push(c.r, c.g, c.b, alpha, c.r, c.g, c.b, alpha);
+    }
+    const geo = new THREE.BufferGeometry();
+    geo.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
+    geo.setAttribute('color', new THREE.Float32BufferAttribute(col, 4));
+    this.links = new THREE.LineSegments(geo, new THREE.LineBasicMaterial({ vertexColors: true, transparent: true, depthWrite: false }));
+    this.links.renderOrder = 1;
+    this.world.add(this.links);
+
+    // Each family's centre and reach, and its name just above it.
+    this.families = cloud.families.map((f) => {
+      const members = cloud.cards.filter((c) => c.group === f.key);
+      const center = new THREE.Vector3();
+      for (const c of members) center.add(new THREE.Vector3(c.x, c.y, c.z));
+      center.divideScalar(Math.max(1, members.length));
+      let r = 0.8;
+      for (const c of members) r = Math.max(r, center.distanceTo(new THREE.Vector3(c.x, c.y, c.z)) + c.h / 2);
+      const label = textSprite(`${f.label} · ${members.length}`, { size: 0.3, color: f.color, weight: 650, order: 6 });
+      // The name sits just over the family's highest card.
+      const top = Math.max(...members.map((c) => c.y + c.h / 2), center.y);
+      label.position.set(center.x, top + 0.4, center.z);
+      this.world.add(label);
+      return { key: f.key, center, r, label };
+    });
+    // Framed on where most cards are: a lone outlier may sit outside the first view.
+    const radii = cloud.cards.map((c) => Math.hypot(c.x, c.y, c.z) + c.h / 2).sort((a, b) => a - b);
+    this.reach = Math.max(1, radii[Math.floor((radii.length - 1) * 0.94)] || 1);
+    if (entering) {
+      this.userZoom = 1;
+      this._pitchTouched = false;
+      this.goal.pitch = this.view.pitch = 0.22;
+      this.appearStart = performance.now();
+    }
+    this._applyViewGoal(entering);
+  }
+
   /** The matrix's lines moved: planes, quadrants and card frames follow. */
   setMatrixLines(lines) {
     const mw = this.matrixWorld;
@@ -309,6 +367,8 @@ export class FunnelGraphScene {
       this.matrixWorld.dispose();
       this.matrixWorld = null;
     }
+    this.families = [];
+    this.links = null;
     for (const obj of [...this.world.children]) {
       this.world.remove(obj);
       if (obj.geometry && obj.geometry !== this.plane) obj.geometry.dispose();
@@ -349,7 +409,7 @@ export class FunnelGraphScene {
     this.matrixWorld?.setFocus(null);
     const home = this.mode === 'matrix' ? 0.26 : 0.55;
     this.goal.yaw = this.view.yaw - (((this.view.yaw - home) % (Math.PI * 2)) + Math.PI * 2) % (Math.PI * 2);
-    this.goal.pitch = this.mode === 'matrix' ? 0.12 : 0.3;
+    this.goal.pitch = this.mode === 'matrix' ? 0.12 : this.mode === 'cloud' ? 0.22 : 0.3;
     this.swayT = 0;
     this._applyViewGoal(false);
   }
@@ -374,6 +434,18 @@ export class FunnelGraphScene {
   }
 
   _applyViewGoal(instant) {
+    if (this.mode === 'cloud') {
+      const fam = this.focusKey ? this.families.find((f) => f.key === this.focusKey) : null;
+      const center = fam ? fam.center : new THREE.Vector3();
+      const r = fam ? Math.max(2.2, fam.r) : this.reach;
+      this.goal.dist = (this._fitDistance(r, r) + r * 0.25) * this.userZoom;
+      this.goal.tx = center.x;
+      this.goal.ty = center.y;
+      this.goal.tz = center.z;
+      if (!this._pitchTouched) this.goal.pitch = 0.22;
+      if (instant) Object.assign(this.view, this.goal);
+      return;
+    }
     if (this.mode === 'matrix' && this.matrixWorld) {
       const f = this.matrixWorld.frame(this.focusKey);
       // The frame is measured on the box's front face, half its depth nearer than its centre.
@@ -466,7 +538,7 @@ export class FunnelGraphScene {
     };
 
     c.addEventListener('contextmenu', (e) => {
-      if (this.mode === 'matrix') e.preventDefault();
+      if (this.mode !== 'funnel') e.preventDefault();
     });
 
     c.addEventListener('pointerdown', (e) => {
@@ -477,7 +549,7 @@ export class FunnelGraphScene {
         downAt = { x: e.clientX, y: e.clientY };
         moved = 0;
         // In the matrix: a line's plane or tag drags that line; right button or Shift pans.
-        panning = this.mode === 'matrix' && (e.button === 2 || e.shiftKey);
+        panning = this.mode !== 'funnel' && (e.button === 2 || e.shiftKey);
         if (this.mode === 'matrix' && !panning && !this._pick()) {
           const handle = this._pickHandle();
           if (handle) {
@@ -516,7 +588,7 @@ export class FunnelGraphScene {
         const d = Math.hypot(a.x - b.x, a.y - b.y);
         if (pinchStart > 0) this._zoomTo(pinchZoom * (pinchStart / Math.max(1, d)));
         // Two fingers moving together pan the matrix.
-        if (this.mode === 'matrix') this._pan(dx / 2, dy / 2);
+        if (this.mode !== 'funnel') this._pan(dx / 2, dy / 2);
         moved += 10;
         return;
       }
@@ -531,7 +603,8 @@ export class FunnelGraphScene {
         c.classList.add('dragging');
         this.goal.yaw -= dx * 0.0055;
         this.view.yaw -= dx * 0.0055;
-        this.goal.pitch = Math.max(this.mode === 'matrix' ? -0.35 : -0.15, Math.min(this.mode === 'matrix' ? 1.2 : 0.95, this.goal.pitch + dy * 0.0035));
+        const [lo, hi] = this.mode === 'matrix' ? [-0.35, 1.2] : this.mode === 'cloud' ? [-1.2, 1.3] : [-0.15, 0.95];
+        this.goal.pitch = Math.max(lo, Math.min(hi, this.goal.pitch + dy * 0.0035));
         if (Math.abs(dy) > 0) this._pitchTouched = true;
         this._interacted();
       }
@@ -573,14 +646,19 @@ export class FunnelGraphScene {
         const factor = Math.exp(e.deltaY * (e.ctrlKey ? 0.01 : 0.0012));
         const before = this.userZoom;
         this._zoomTo(this.userZoom * factor);
-        // In the matrix the zoom heads for the point under the cursor.
-        if (this.mode === 'matrix') {
+        // In the matrix and the map the zoom heads for the point under the cursor: on the
+        // matrix's front plane, or on the plane through the map's centre facing the camera.
+        if (this.mode !== 'funnel') {
           this.raycaster.setFromCamera(this.pointer, this.camera);
-          const p = this.raycaster.ray.intersectPlane(this._zPlane || (this._zPlane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0)), this._tmpV);
+          const plane = new THREE.Plane();
+          if (this.mode === 'matrix') plane.set(new THREE.Vector3(0, 0, 1), 0);
+          else plane.setFromNormalAndCoplanarPoint(this.camera.getWorldDirection(new THREE.Vector3()), new THREE.Vector3(this.goal.tx, this.goal.ty, this.goal.tz));
+          const p = this.raycaster.ray.intersectPlane(plane, this._tmpV);
           if (p) {
             const k = 1 - this.userZoom / before;
             this.goal.tx += (p.x - this.goal.tx) * k;
             this.goal.ty += (p.y - this.goal.ty) * k;
+            this.goal.tz += (p.z - this.goal.tz) * k;
             this._clampTarget();
           }
         }
@@ -593,7 +671,7 @@ export class FunnelGraphScene {
   _zoomTo(z) {
     const before = this.userZoom;
     // The matrix holds many small cards: it zooms in further.
-    this.userZoom = Math.max(this.mode === 'matrix' ? 0.12 : 0.35, Math.min(2.2, z));
+    this.userZoom = Math.max(this.mode === 'matrix' ? 0.12 : this.mode === 'cloud' ? 0.15 : 0.35, Math.min(2.2, z));
     this.goal.dist *= this.userZoom / before;
   }
 
@@ -612,12 +690,19 @@ export class FunnelGraphScene {
   }
 
   _clampTarget() {
-    if (!this.matrixWorld) return;
-    const { W, H, D } = this.matrixWorld.box;
+    let lo;
+    let hi;
+    if (this.mode === 'matrix' && this.matrixWorld) {
+      const { W, H, D } = this.matrixWorld.box;
+      [lo, hi] = [[-W / 2 - 1, -0.5, -D / 2], [W / 2 + 1, H + 0.5, D / 2]];
+    } else if (this.mode === 'cloud') {
+      const r = this.reach || 1;
+      [lo, hi] = [[-r, -r, -r], [r, r, r]];
+    } else return;
     for (const t of [this.goal, this.view]) {
-      t.tx = Math.max(-W / 2 - 1, Math.min(W / 2 + 1, t.tx));
-      t.ty = Math.max(-0.5, Math.min(H + 0.5, t.ty));
-      t.tz = Math.max(-D / 2, Math.min(D / 2, t.tz));
+      t.tx = Math.max(lo[0], Math.min(hi[0], t.tx));
+      t.ty = Math.max(lo[1], Math.min(hi[1], t.ty));
+      t.tz = Math.max(lo[2], Math.min(hi[2], t.tz));
     }
   }
 
@@ -733,7 +818,8 @@ export class FunnelGraphScene {
       let opacity;
       if (!this.focusKey) {
         const camDist = this._tmpV.set(card.x, card.y, card.z).distanceTo(this.camera.position);
-        blur = Math.max(0, Math.min(matrix ? 0.3 : 0.7, (Math.abs(camDist - focusDist) / (focusDist * (matrix ? 0.6 : 0.42))) - 0.2));
+        const soft = this.mode !== 'funnel';
+        blur = Math.max(0, Math.min(soft ? 0.3 : 0.7, (Math.abs(camDist - focusDist) / (focusDist * (soft ? 0.6 : 0.42))) - 0.2));
         dim = 0;
         opacity = 0.97;
       } else if (inGroup) {
@@ -780,6 +866,10 @@ export class FunnelGraphScene {
       r.glow.material.uniforms.uOpacity.value = r.glowOpacity * 0.85;
       r.glow.visible = r.glowOpacity > 0.01;
     }
+
+    // The map: a family in focus keeps its name bright; the links fade behind it.
+    for (const f of this.families || []) f.label.material.opacity = damp(f.label.material.opacity, !this.focusKey || this.focusKey === f.key ? 1 : 0.25, 5, dt);
+    if (this.links) this.links.material.opacity = damp(this.links.material.opacity, this.focusKey ? 0.45 : 1, 5, dt);
 
     this.renderer.render(this.scene, this.camera);
     this.hooks.onFrame?.(this);

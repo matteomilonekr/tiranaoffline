@@ -2,7 +2,8 @@
 // model building, and wiring between the 3D scene and the DOM overlays.
 
 import { FunnelGraphScene } from './scene.js';
-import { buildModel, groupStacks, placementHints, DEFAULT_SETTINGS, ARRANGEMENTS } from './model.js';
+import { buildModel, groupStacks, placementHints, summarize, DEFAULT_SETTINGS, ARRANGEMENTS, GROUP_COLORS } from './model.js';
+import { similarityMap, familyName, separate, SIM_MODES } from './similarity.js';
 import { computeLayout } from './layout.js';
 import { computeSignature } from './phash.js';
 import { buildCardCanvases, placeholderCanvas } from './textures.js';
@@ -82,6 +83,8 @@ const state = {
   details: new Map(),
   loadId: 0,
   failedImages: 0,
+  simMode: SIM_MODES.includes(store.get('simMode', 'all')) ? store.get('simMode', 'all') : 'all',
+  similarity: new Map(),
 };
 
 let scene = null;
@@ -271,6 +274,7 @@ function handleError(err) {
 
 async function rebuildModel() {
   state.model = buildModel(state.snapshot, { signatures: state.signatures, settings: state.settings });
+  state.similarity = new Map();
   await rebuildView();
 }
 
@@ -311,7 +315,11 @@ async function rebuildView() {
   const isMatrix = state.arrangement === 'matrix';
   document.body.classList.toggle('matrix-mode', isMatrix);
   $('matrix').hidden = !isMatrix;
+  const isSim = state.arrangement === 'similarity';
+  document.body.classList.toggle('sim-mode', isSim);
+  $('sim-panel').hidden = !isSim;
   if (isMatrix) return showMatrix();
+  if (isSim) return showSimilarity();
   state.groups = groupStacks(model, state.arrangement);
   if (state.focus && !state.groups.some((g) => g.key === state.focus && g.count > 0)) state.focus = null;
   const layout = computeLayout(state.groups, {
@@ -385,6 +393,74 @@ async function showMatrix() {
   ui.setEmpty(model.stacks.length === 0);
 }
 
+/** The similarity map for a mode, worked out once per model. */
+function similarityFor(mode = state.simMode) {
+  if (!state.similarity.has(mode)) state.similarity.set(mode, similarityMap(state.model.stacks, state.signatures, { mode, radius: 7 }));
+  return state.similarity.get(mode);
+}
+
+/**
+ * Creative similarity in 3D: alike creatives close, different ones apart, in families named
+ * by what most of their spend shares. The legend lists the families; one picked is zoomed to.
+ */
+async function showSimilarity() {
+  const model = state.model;
+  ui.setLoading(t('load.building'));
+  await nextFrame();
+  const map = similarityFor();
+  const fams = Array.from({ length: map.families }, (_, f) => model.stacks.filter((_, i) => map.family[i] === f));
+  const order = fams.map((stacks, f) => ({ f, spend: stacks.reduce((t, s) => t + s.metrics.spend, 0) })).sort((a, b) => b.spend - a.spend);
+  const keyOf = new Map(order.map((o, rank) => [o.f, 'f' + rank]));
+  state.groups = order.map((o, rank) =>
+    summarize({ key: 'f' + rank, label: familyName(fams[o.f], t('sim.mixed')), labelKey: null, color: GROUP_COLORS[rank % GROUP_COLORS.length], stacks: fams[o.f] }),
+  );
+  if (state.focus && !state.groups.some((g) => g.key === state.focus)) state.focus = null;
+  const maxSpend = Math.max(1, ...model.stacks.map((s) => s.metrics.spend));
+  const cards = model.stacks.map((stack, i) => {
+    const h = 0.55 + 0.9 * Math.sqrt(stack.metrics.spend / maxSpend);
+    const aspect = Math.max(0.56, Math.min(1.5, stack.rep.creative?.aspect || 0.8));
+    return { stack, x: 0, y: 0, z: 0, w: h * aspect, h, group: keyOf.get(map.family[i]) };
+  });
+  // Neighbours stay neighbours, but no card hides another.
+  const P = Float64Array.from(map.positions);
+  separate(P, cards.map((c) => Math.max(c.w, c.h) / 2));
+  cards.forEach((c, i) => Object.assign(c, { x: P[i * 3], y: P[i * 3 + 1], z: P[i * 3 + 2] }));
+  const artwork = await buildArtwork(model.stacks.map((stack) => ({ stack, h: 1 })));
+  scene?.setCloud({ cards, links: map.links, families: state.groups.map((g) => ({ key: g.key, label: g.label, color: g.color })) }, artwork);
+  scene?.setFocus(state.focus);
+  scene?.setSelected(state.selected);
+  ui.buildRingLabels([], pickGroup);
+  renderSimPanel();
+  renderOverlays();
+  updateInsets();
+  ui.setEmpty(model.stacks.length === 0);
+}
+
+/** The similarity's mode: all of it, the look alone, or the message alone. */
+function renderSimPanel() {
+  const panel = $('sim-panel');
+  const buttons = SIM_MODES.map((mode) =>
+    ui.h('button', {
+      type: 'button',
+      'aria-pressed': String(state.simMode === mode),
+      text: t('sim.mode.' + mode),
+      onclick: async () => {
+        if (state.simMode === mode) return;
+        state.simMode = mode;
+        store.set('simMode', mode);
+        state.focus = null;
+        closeDrawer();
+        await showSimilarity();
+        ui.setLoading(null);
+      },
+    }),
+  );
+  panel.replaceChildren(
+    ui.h('div', { class: 'sim-row-top' }, ui.h('span', { class: 'mx-label', text: t('sim.label') }), ui.h('div', { class: 'segmented', role: 'group', 'aria-label': t('sim.label') }, ...buttons)),
+    ui.h('p', { class: 'mx-hint', text: t('sim.hint.' + state.simMode) }),
+  );
+}
+
 /** A quadrant pressed again, Esc or the pill: back to the whole matrix. */
 function clearQuadrant() {
   if (state.arrangement === 'matrix' && matrix && state.focus) matrix.showOnly(state.focus);
@@ -399,6 +475,11 @@ function updateInsets() {
   if (!scene) return;
   const stage = $('stage').getBoundingClientRect();
   const drawer = !$('detail').hidden && stage.width > 900 ? Math.min(460, stage.width) : 0;
+  if (state.arrangement === 'similarity') {
+    const panel = $('sim-panel').getBoundingClientRect();
+    scene.setInsets({ top: Math.max(0, panel.bottom - stage.top + 4), right: drawer, bottom: 0 });
+    return;
+  }
   if (state.arrangement !== 'matrix') {
     scene.setInsets({ top: 0, right: drawer, bottom: 0 });
     return;
@@ -423,6 +504,17 @@ function updateInsets() {
     bottom,
   });
   $('stage').style.setProperty('--mx-bottom', Math.max(0, bottom - 40) + 'px');
+}
+
+/** What the tooltip adds in the matrix (the quadrant) and the similarity map (the family). */
+function tooltipExtra(card) {
+  if (!card) return null;
+  if (state.arrangement === 'matrix') return { text: `${t('mx.q.' + card.group)} · ${t('mx.do.' + card.group)}`, color: QUADRANT_COLORS[card.group] };
+  if (state.arrangement === 'similarity') {
+    const g = state.groups.find((x) => x.key === card.group);
+    return g ? { text: g.label, color: g.color } : null;
+  }
+  return null;
 }
 
 function renderOverlays() {
@@ -472,6 +564,8 @@ function selectCard(card) {
 function openDetail(stack, group) {
   state.selected = stack.id;
   scene?.setSelected(state.selected);
+  const index = state.model.stacks.indexOf(stack);
+  const similar = index >= 0 && state.model.stacks.length > 1 ? similarityFor().neighbors[index].slice(0, 4).map((nb) => ({ stack: state.model.stacks[nb.index], sim: nb.sim })) : [];
   renderDetail($('detail'), {
     stack,
     group,
@@ -480,6 +574,8 @@ function openDetail(stack, group) {
     preview: previewFor,
     loadDetail: detailFor,
     onClose: closeDrawer,
+    similar,
+    onPick: (other) => openDetail(other, null),
   });
   updateInsets();
 }
@@ -578,7 +674,7 @@ function openAccountMenu() {
 }
 
 function openArrangeMenu() {
-  const item = (a) => ({ label: t('arr.' + a), sub: a === 'matrix' ? t('arr.matrixSub') : undefined, checked: state.arrangement === a, onSelect: () => setArrangement(a) });
+  const item = (a) => ({ label: t('arr.' + a), sub: a === 'matrix' || a === 'similarity' ? t(`arr.${a}Sub`) : undefined, checked: state.arrangement === a, onSelect: () => setArrangement(a) });
   const some = (list) => list.filter((a) => ARRANGEMENTS.includes(a)).map(item);
   const detected = some(['format', 'angle', 'persona', 'creator', 'hook']);
   const campaign = some(['campaign']);
@@ -589,7 +685,7 @@ function openArrangeMenu() {
       item('funnel'),
       ...(detected.length ? [{ separator: true }, { heading: t('arrange.detected') }, ...detected] : []),
       ...(campaign.length ? [{ separator: true }, ...campaign] : []),
-      ...(ARRANGEMENTS.includes('matrix') ? [{ separator: true }, { heading: t('arrange.performance') }, item('matrix')] : []),
+      ...(ARRANGEMENTS.includes('matrix') || ARRANGEMENTS.includes('similarity') ? [{ separator: true }, { heading: t('arrange.performance') }, ...some(['similarity', 'matrix'])] : []),
     ],
     { align: 'right' },
   );
@@ -689,6 +785,8 @@ function applyLanguage(code) {
     matrix = null;
     if (state.arrangement === 'matrix' && state.model) showMatrix().then(() => ui.setLoading(null));
   }
+  // Family names are written in the language too.
+  if (state.arrangement === 'similarity' && state.model) showSimilarity().then(() => ui.setLoading(null));
 }
 
 function updateControlLabels() {
@@ -728,6 +826,7 @@ function bindChrome() {
   });
   new ResizeObserver(() => updateInsets()).observe($('stage'));
   new ResizeObserver(() => updateInsets()).observe($('matrix'));
+  new ResizeObserver(() => updateInsets()).observe($('sim-panel'));
   const legend = $('legend');
   $('legend-toggle').addEventListener('click', () => {
     const collapsed = legend.classList.toggle('collapsed');
@@ -770,7 +869,7 @@ async function boot() {
   try {
     scene = new FunnelGraphScene($('scene'), {
       onHover: (card, pos) =>
-        ui.showTooltip(card, pos, currency(), $('stage'), state.arrangement === 'matrix' && card ? { text: `${t('mx.q.' + card.group)} · ${t('mx.do.' + card.group)}`, color: QUADRANT_COLORS[card.group] } : null),
+        ui.showTooltip(card, pos, currency(), $('stage'), tooltipExtra(card)),
       onSelect: selectCard,
       onLines: (th, commit) => matrix?.setThresholds(th, commit),
       onFrame: (s) => ui.positionRingLabels(s.projectRings(), state.focus, $('stage')),
@@ -809,7 +908,7 @@ window.__funnelGraph = {
   },
   DEMO_ACCOUNT,
   select(stackId) {
-    if (state.arrangement === 'matrix') {
+    if (state.arrangement === 'matrix' || state.arrangement === 'similarity') {
       const stack = state.model?.stacks.find((s) => s.id === stackId) || state.model?.stacks[0];
       if (stack) openDetail(stack, null);
       return;

@@ -24,6 +24,7 @@ public/js/model.js
 public/js/naming.js
 public/js/phash.js
 public/js/scene.js
+public/js/similarity.js
 public/js/stacks.js
 public/js/textures.js
 public/js/ui.js

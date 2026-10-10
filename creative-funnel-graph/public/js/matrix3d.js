@@ -14,7 +14,7 @@ export const TALL_BOX = { W: 9, H: 12, D: 4.5 };
 export const LANES = ['top', 'middle', 'bottom', 'reactivation'];
 
 /** A text label as a sprite; `set(text)` redraws it. Anchored left, centre or right. */
-function textSprite(text, { size = 0.34, color = '#bcb9b1', weight = 500, bg = null, align = 'center', order = 0.5 } = {}) {
+export function textSprite(text, { size = 0.34, color = '#bcb9b1', weight = 500, bg = null, align = 'center', order = 0.5 } = {}) {
   const canvas = document.createElement('canvas');
   const ctx = canvas.getContext('2d');
   const tex = new THREE.CanvasTexture(canvas);

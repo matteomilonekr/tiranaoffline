@@ -60,7 +60,8 @@ const RETENTION_LABELS = ['0s', '1s', '2s', '3s', '4s', '5s', '6s', '7s', '8s', 
 /**
  * @param {HTMLElement} drawer
  * @param {{stack:Object, group:Object|null, model:Object, live:boolean, preview:(ad:Object, width:number)=>Promise<HTMLElement>,
- *          loadDetail:(ads:Object[])=>Promise<Object>, onClose:Function}} ctx
+ *          loadDetail:(ads:Object[])=>Promise<Object>, onClose:Function,
+ *          similar?:Array<{stack:Object, sim:number}>, onPick?:(stack:Object)=>void}} ctx
  */
 export function renderDetail(drawer, ctx) {
   const { stack, model } = ctx;
@@ -120,6 +121,26 @@ export function renderDetail(drawer, ctx) {
   if (isVideo) kpis.push(kpi(t('kpi.hookRate'), fmt.percent(m.hookRate, 1)), kpi(t('kpi.holdRate'), fmt.percent(m.holdRate, 1)));
   // Pick a column count the tiles fill exactly: 8 tiles in fours, 10 in fives.
   body.appendChild(h('div', { class: 'kpis' + (kpis.length % 5 === 0 ? ' kpis-5' : '') }, ...kpis));
+
+  // The most alike creatives, by the similarity the map uses.
+  if (ctx.similar?.length) {
+    const rows = ctx.similar.map(({ stack: other, sim }) => {
+      const thumb = h('span', { class: 'sim-thumb' });
+      ctx.preview(other.rep, 72).then((node) => node && thumb.appendChild(node));
+      return h(
+        'li',
+        {},
+        h(
+          'button',
+          { type: 'button', class: 'sim-row', onclick: () => ctx.onPick?.(other) },
+          thumb,
+          h('span', { class: 'al-name' }, other.rep.name || other.rep.id, h('span', { class: 'al-sub', text: `${fmt.money(other.metrics.spend, currency)} · ROAS ${fmt.roas(other.metrics.roas)}` })),
+          h('span', { class: 'sim-score', text: t('d.simScore', { n: Math.round(sim * 100) }) }),
+        ),
+      );
+    });
+    body.appendChild(section(t('d.similar'), t('d.similarSub'), h('ul', { class: 'ad-list sim-list' }, ...rows)));
+  }
 
   // Daily + placements + video arrive async.
   const dailySlot = h('div', {}, h('div', { class: 'skeleton' }));
