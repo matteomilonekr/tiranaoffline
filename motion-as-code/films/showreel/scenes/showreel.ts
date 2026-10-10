@@ -101,7 +101,7 @@ export default class Showreel extends Scene {
   open(x: CanvasRenderingContext2D, lt: number, t: number) {
     x.fillStyle = INK; x.fillRect(0, 0, W, H);
     const fam = F.archivo(125, 900);
-    reveal(x, t, 0.12, 'MOTION', W / 2, 900, 158, fam, { mode: 'rise', from: 'center', each: 0.045, dur: 0.55, color: PAPER });
+    reveal(x, t, 0.0, 'MOTION', W / 2, 900, 158, fam, { mode: 'rise', from: 'center', each: 0.045, dur: 0.55, color: PAPER });
     const s = scramble('AS CODE', t, 1.0, 0.45, { rate: 30 });
     x.font = font(F.mono(500), 70); x.textAlign = 'center'; x.fillStyle = HOT; x.fillText(s, W / 2, 1020);
     // a rule that grows a step on each beat
@@ -113,9 +113,10 @@ export default class Showreel extends Scene {
 
   draw(x: CanvasRenderingContext2D, lt: number) {
     x.fillStyle = '#121318'; x.fillRect(0, 0, W, H);
-    reveal(x, lt, 0.05, 'disegnata, non incollata', W / 2, 640, 44, F.instrument(true), { mode: 'blur', by: 'word', each: 0.06, color: '#c9c7c0' });
-    const u = tw(lt, 0.05, 1.05, 'power2.inOut');
-    const head = drawOn(x, this.word, u, { order: 'sequence', color: PAPER, width: 3.5, fill: HOT, fillFrom: 0.8 });
+    // never empty after the cut (qc.py): the caption is already there and the pen starts during the transition
+    reveal(x, lt, -0.3, 'disegnata, non incollata', W / 2, 640, 44, F.instrument(true), { mode: 'blur', by: 'word', each: 0.04, color: '#c9c7c0' });
+    const u = tw(lt, -0.15, 1.2, 'power1.inOut');
+    const head = drawOn(x, this.word, u, { order: 'sequence', color: PAPER, width: 5, fill: HOT, fillFrom: 0.8 });
     if (head && u < 1) { x.beginPath(); x.arc(head.x, head.y, 9, 0, TAU); x.fillStyle = SUN; x.fill(); }
     glint(x, this.word, tw(lt, 1.15, 0.6, 'power1.inOut'), { color: 'rgba(255,240,200,0.9)' });
     drawOn(x, this.underline, tw(lt, 1.0, 0.45, 'power3.out'), { color: SUN, width: 9 });

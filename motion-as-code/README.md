@@ -170,6 +170,43 @@ Prende `out/motion-as-code_sfx.mp4` e scrive `out/motion-as-code_9x16.mp4` (1080
 
 `--video` e `--out` scelgono i file; serve solo Python 3 e un ffmpeg con libass.
 
+### 7. Controllo finale prima di consegnare
+
+```sh
+uv run --no-project --with numpy --with pillow python analysis/qc.py out/showreel_sfx.mp4 --film showreel --sec 20
+```
+
+Controlla il file finito, quello con il suono, e scrive `out/<film>/qc/`:
+- `report.md`: cosa passa e cosa no, con i secondi;
+- `sheet.jpg`: un fotogramma al secondo;
+- `board.jpg`: ogni taglio e ogni transizione, da 0,3 s prima a 0,3 s dopo.
+
+Esce con errore se qualcosa non va.
+
+| Controllo | Cosa vuole |
+|---|---|
+| `format-*` | la misura del film (1080×1920 o 1920×1080), fps costanti, H.264 + AAC in yuv420p, la durata entro il 5% di `--sec` |
+| `loudness` | -14 LUFS integrati (±1) e un picco vero non oltre -1 dBTP |
+| `no-flat-frames` | niente nero, bianco o un colore solo per più di 0,1 s: lo schermo non resta mai vuoto. Avvisa anche dei lampi più brevi. |
+| `no-freeze` | niente che stia fermo per più di 2 s. Il confronto si fa con la grana sfocata via, perché la grana del post cambia a ogni fotogramma e un'inquadratura bloccata sotto la grana resta bloccata. |
+
+Un momento voluto (lo stacco dal nero dell'apertura, un flash su un taglio, il cartello finale che resta) va in `films/<film>/qc.json`, così non conta come errore:
+
+```json
+{ "allow": [[17.95, 18.25, "il flash bianco sul taglio dell'outro"]] }
+```
+
+Con `--allow 17.8-18.4` lo fai una volta sola, da riga di comando.
+
+Quello che un programma non vede lo guardi tu, sul foglio e sulla lavagna dei tagli:
+- **Testo dentro i margini:** almeno il 5% dai bordi, mai tagliato, mai sopra un altro testo per sbaglio.
+- **Testo leggibile:** contrasto di almeno 4,5:1 con quello che ha dietro, e a schermo abbastanza a lungo da leggerlo due volte (circa parole ÷ 3 + 1 secondi).
+- **Parole giuste:** nomi, numeri e grafia controllati sulle fonti. Niente che le fonti non dicano.
+- **Sincrono:** ogni parola chiave arriva con la sua immagine entro 2 fotogrammi; i colpi della musica cadono sui tagli.
+- **Ogni fotogramma ha senso:** nessun mezzo secondo vuoto dopo un taglio, nessuna transizione che passa da un fotogramma rotto.
+
+Quando trovi un errore nuovo, aggiungilo a questa lista: diventa una regola del tuo studio per i prossimi video.
+
 ---
 
 ## 04 · Riferimento: come si incastra il progetto
@@ -881,6 +918,7 @@ Tieni quel file di licenza insieme al progetto. Le nove tavole sono nuove, scrit
 - **Reel «coding»:** il formato di `films/coding` riprende un reel di [@tessa.fairbrook](https://www.instagram.com/tessa.fairbrook). Schede, icone, disegni, testo italiano, voce e suono sono nuovi, scritti in codice per questo kit. Poppins e Instrument Serif sono distribuiti con SIL Open Font License (`app/public/fonts/poppins/OFL.txt`, `app/public/fonts/instrumentserif/OFL.txt`).
 - **Reel «grill»:** il formato di `films/grill` riprende un reel di [@piyush.glitch](https://www.instagram.com/piyush.glitch). Creaturine, scene, pagine, testo italiano, voce e suono sono nuovi, disegnati in codice per questo kit.
 - **Reel «youtube»:** il formato di `films/youtube` riprende un reel di [@ai.nxtlvl](https://www.instagram.com/ai.nxtlvl). Schede, icone, testo italiano, voce e suono sono nuovi, disegnati in codice per questo kit. YouTube e Claude sono marchi dei rispettivi proprietari; le icone del film non sono i loro loghi.
+- **Controlli finali:** l'idea dei controlli che un video deve passare prima della consegna (formato, loudness, niente fotogrammi vuoti o fermi, un foglio da guardare, ogni transizione vista da vicino) viene da [Mortiflix](https://github.com/GTKottman/mortiflix-oss) di GTKottman (AGPL-3.0). `analysis/qc.py` è scritto per questo kit e non contiene codice di Mortiflix.
 - **Lista Opus 5.5:** `analysis/opus55.py` scarica [awesome-opus5-5-videos](https://github.com/yihui-dev/awesome-opus5-5-videos) di yihui-dev (MIT) e la tiene fuori da git; ogni prompt resta del suo creator, linkato nella lista. I blocchi `app/src/fx` e `films/showreel` sono scritti per questo kit a partire da ciò che i prompt chiedono, senza codice né materiale dei video originali.
 - **Stili:** l'elenco dei venti stili riprende un reel di [@andremass.ai](https://www.instagram.com/andremass.ai) ("motion design styles you can steal"). Ricette, codice e animazioni di `app/src/styles/` sono nuovi, scritti per questo kit.
 - **Launch film:** struttura, prompt, regole e checklist della sezione 06 sono adattati dalla guida *The 60-second launch film made with Claude* di Saksham Gupta ([@saksham.700x](https://www.instagram.com/saksham.700x)). La guida cita lo skill onetake (licenza PolyForm Noncommercial), di cui qui non c'è codice.
