@@ -41,7 +41,7 @@ Restano fuori dal repository `out/` (i render), `app/node_modules/` (lo ricrea l
 **Requisiti.**
 
 - **bun** ([bun.sh](https://bun.sh)): installa i pacchetti ed esegue gli script.
-- **Google Chrome**: il renderer lo pilota in modalità headless per disegnare i fotogrammi. Va bene anche un altro Chromium, vedi [Problemi](#11--aiuto-problemi-e-crediti).
+- **Google Chrome**: il renderer lo pilota in modalità headless per disegnare i fotogrammi. Va bene anche un altro Chromium, vedi [Problemi](#12--aiuto-problemi-e-crediti).
 - **ffmpeg** con libx264: trasforma i fotogrammi in MP4 e mixa il suono.
 - **Python + [uv](https://docs.astral.sh/uv/)**: serve solo per allineare una voce nuova, rifare il mix degli effetti o generare una voce demo. I comandi qui sotto usano `uv run …`; se hai installato uv con pip, scrivi `python -m uv run …`.
 
@@ -53,7 +53,7 @@ bun install
 bunx vite
 ```
 
-Apri `http://localhost:5173` e premi spazio per far partire il video insieme alla voce. Se più avanti il render non trova Chrome, vedi [Problemi](#11--aiuto-problemi-e-crediti).
+Apri `http://localhost:5173` e premi spazio per far partire il video insieme alla voce. Se più avanti il render non trova Chrome, vedi [Problemi](#12--aiuto-problemi-e-crediti).
 
 ---
 
@@ -104,7 +104,7 @@ bun run render
 | `--samples 4` | Bozza più veloce: nei movimenti rapidi si vedono copie a scatti. |
 | `--samples auto` | Più sotto-fotogrammi dove il movimento è veloce (default dello script). |
 | `--scale 2` | 4K, 3840×2160. |
-| `--workers 1` | Un solo Chrome alla volta (default 2). Usalo su una macchina senza GPU, vedi [Problemi](#11--aiuto-problemi-e-crediti). |
+| `--workers 1` | Un solo Chrome alla volta (default 2). Usalo su una macchina senza GPU, vedi [Problemi](#12--aiuto-problemi-e-crediti). |
 | `--from 50 --to 57` | Solo un intervallo, in secondi. |
 | `--fps 30` | 30 fotogrammi al secondo invece di 60: metà del tempo, lo standard dei film di lancio. |
 
@@ -886,7 +886,60 @@ Se l'avviso dice che il prompt nomina marchi, personaggi o persone reali, il fil
 
 ---
 
-## 11 · Aiuto: problemi e crediti
+## 11 · motionmaxxing: la skill installata nel progetto
+
+[motionmaxxing](https://github.com/Tejashmakwana/motionmaxxing) di Tejas Makwana (Apache-2.0) è una skill di Claude Code per film di lancio, promo di prodotto, brand sting e tipografia cinetica. Funziona in quattro passi:
+1. trova un'idea che solo quel marchio può avere;
+2. le costruisce un mondo (fondo, luce, profondità);
+3. anima con curve misurate fotogramma per fotogramma su 53 animazioni professionali;
+4. controlla il render con i suoi script, invece di dire che è venuto bene.
+
+Costruisce in HTML con GSAP e renderizza con il suo `render.mjs` (Chrome + ffmpeg): è una catena diversa da quella del kit, e le due convivono.
+
+È installata nella cartella `.claude/skills/motionmaxxing/` del repository, quindi Claude Code la carica quando apri il progetto. Chiedi una motion graphic, oppure scrivi `/motionmaxxing`. Provenienza, versione e aggiornamento sono in `.claude/skills/README.md`.
+
+Le servono Node 22+, Python 3.9+, ffmpeg e Chrome; con `ELEVENLABS_API_KEY` scrive e registra anche voce e musica.
+
+Nelle sessioni cloud Chrome parte solo senza sandbox:
+
+```sh
+export CHROME_PATH="$PWD/.claude/chrome-cloud.sh"
+```
+
+Per averla in tutti i progetti sul tuo Mac:
+
+```sh
+git clone https://github.com/Tejashmakwana/motionmaxxing ~/motionmaxxing && bash ~/motionmaxxing/install.sh
+```
+
+**Quando usare l'una o l'altro:**
+- **motionmaxxing:** un film di marca partendo da un sito (colori, font, logo, testi veri), con il suo metodo e i suoi controlli.
+- **Il kit:** i reel guidati dalla voce, i cloni di un formato, gli stili e i blocchi `fx`.
+
+I suoi controlli funzionano anche sui video del kit:
+
+```sh
+python3 ../.claude/skills/motionmaxxing/scripts/look.py out/showreel_sfx.mp4 --out out/showreel/look --expect 20 --expect-audio
+```
+
+`look.py` misura tre cose:
+- **le soglie:**
+  - G0, il render c'è;
+  - G2, niente più di 3 fotogrammi piatti di fila;
+  - G3, il cartello finale dura al massimo 1,4 s e l'ultima inquadratura al massimo il 25% del film;
+- **il movimento**, confrontato con quello dei film fatti a mano;
+- **i tagli**, quanti cadono su un attacco del suono.
+
+Sullo showreel:
+- G0, G2 e G3 passano;
+- il movimento sta dentro la fascia dei film fatti a mano (4,7 su una mediana di 6,8);
+- 2 tagli su 10 cadono entro 80 ms da un colpo del suono, dove i professionisti arrivano al 35% circa. Diversi tagli arrivano circa 100 ms dopo il battito, perché le transizioni hanno il centro subito dopo il taglio.
+
+La sua lista "da non consegnare mai" vieta etichette negli angoli, contatori, titoli scritti lettera per lettera con il cursore e un colore piatto diverso per ogni scena. Alcuni cloni del kit le usano perché le usano gli originali. Per un film tuo, quella lista conviene seguirla.
+
+---
+
+## 12 · Aiuto: problemi e crediti
 
 | Problema | Prova così |
 |---|---|
@@ -918,6 +971,7 @@ Tieni quel file di licenza insieme al progetto. Le nove tavole sono nuove, scrit
 - **Reel «coding»:** il formato di `films/coding` riprende un reel di [@tessa.fairbrook](https://www.instagram.com/tessa.fairbrook). Schede, icone, disegni, testo italiano, voce e suono sono nuovi, scritti in codice per questo kit. Poppins e Instrument Serif sono distribuiti con SIL Open Font License (`app/public/fonts/poppins/OFL.txt`, `app/public/fonts/instrumentserif/OFL.txt`).
 - **Reel «grill»:** il formato di `films/grill` riprende un reel di [@piyush.glitch](https://www.instagram.com/piyush.glitch). Creaturine, scene, pagine, testo italiano, voce e suono sono nuovi, disegnati in codice per questo kit.
 - **Reel «youtube»:** il formato di `films/youtube` riprende un reel di [@ai.nxtlvl](https://www.instagram.com/ai.nxtlvl). Schede, icone, testo italiano, voce e suono sono nuovi, disegnati in codice per questo kit. YouTube e Claude sono marchi dei rispettivi proprietari; le icone del film non sono i loro loghi.
+- **motionmaxxing:** la skill in `.claude/skills/motionmaxxing/` è di Tejas Makwana ([Tejashmakwana/motionmaxxing](https://github.com/Tejashmakwana/motionmaxxing)), licenza Apache-2.0, copiata così com'è con il suo LICENSE e il suo NOTICE. GSAP, three.js e i font che porta con sé restano sotto le loro licenze.
 - **Controlli finali:** l'idea dei controlli che un video deve passare prima della consegna (formato, loudness, niente fotogrammi vuoti o fermi, un foglio da guardare, ogni transizione vista da vicino) viene da [Mortiflix](https://github.com/GTKottman/mortiflix-oss) di GTKottman (AGPL-3.0). `analysis/qc.py` è scritto per questo kit e non contiene codice di Mortiflix.
 - **Lista Opus 5.5:** `analysis/opus55.py` scarica [awesome-opus5-5-videos](https://github.com/yihui-dev/awesome-opus5-5-videos) di yihui-dev (MIT) e la tiene fuori da git; ogni prompt resta del suo creator, linkato nella lista. I blocchi `app/src/fx` e `films/showreel` sono scritti per questo kit a partire da ciò che i prompt chiedono, senza codice né materiale dei video originali.
 - **Stili:** l'elenco dei venti stili riprende un reel di [@andremass.ai](https://www.instagram.com/andremass.ai) ("motion design styles you can steal"). Ricette, codice e animazioni di `app/src/styles/` sono nuovi, scritti per questo kit.

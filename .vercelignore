@@ -23,3 +23,6 @@ api/paypal/order-details.js
 
 # Motion as Code: il kit video non fa parte del sito
 motion-as-code
+
+# Skill e configurazione di Claude Code: non fanno parte del sito
+.claude
