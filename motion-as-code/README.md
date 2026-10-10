@@ -585,16 +585,17 @@ cd app && FILM=plugins bun scripts/render.ts video --workers 1 --samples 1 --fps
 cd out && ffmpeg -i plugins.mp4 -i plugins/mix.wav -map 0:v -map 1:a -c:v copy -c:a aac -b:a 320k -shortest plugins_sfx.mp4
 ```
 
-Nel kit ci sono otto film:
+Nel kit ci sono nove film:
 - `films/plugins`, descritto qui sotto;
 - `films/styles`, il reel dei 21 stili (sezione 09);
 - `films/gem` e `films/polish`, due reel nel formato "paper night";
 - `films/coding`, altri quattro plugin su una pagina bianca con le schede scure;
 - `films/grill`, le skill di Matt Pocock su uno schermo diviso, con creaturine in pixel art sopra;
 - `films/youtube`, le undici skill per un canale YouTube, su carta crema con capitoli corallo e scuri;
-- `films/showreel`, lo showreel dei blocchi `fx`, solo musica, tagliato sulla griglia a 120 bpm.
+- `films/showreel`, lo showreel dei blocchi `fx`, solo musica, tagliato sulla griglia a 120 bpm;
+- `films/salpa`, lo spot di un marchio inventato, un film 16:9 dentro il 9:16, senza voce.
 
-`gem`, `polish`, `coding`, `grill` e `youtube` sono descritti in fondo a questa sezione, `showreel` nella sezione 10.
+`gem`, `polish`, `coding`, `grill`, `youtube` e `salpa` sono descritti in fondo a questa sezione, `showreel` nella sezione 10.
 
 ### Il reel dei plugin (`films/plugins`)
 
@@ -714,6 +715,26 @@ Rispetto all'originale, il testo segue quello che dice il README del repository 
 - **Le 21 formule per gli hook:** sono un numero del repository, non verificato.
 
 Scegli tu il link da mandare in DM.
+
+### Lo spot «salpa» (`films/salpa`)
+
+Uno spot di 20 secondi che segue, inquadratura per inquadratura, un reel di @louis_rlee: la pubblicità di un marchio che non esiste, fatta tutta in codice, immagine e suono. Il marchio qui è **Salpa** ("prende il mare": va con la vela del logo e con l'idea del lancio). Una tavola sola, `scenes/salpa.ts`.
+
+- **Il formato:** un film 16:9 nel mezzo del 9:16, sotto una riga di testo fissa ("Questo spot l'ha scritto Claude, in codice"). Il film si disegna in uno spazio 1920×1080 e si scala alla larghezza del fotogramma.
+- **Le inquadrature:**
+  1. il problema ("Ti serve una campagna di lancio." → "Smetti di farla a mano.");
+  2. due linee che si incrociano e aprono un campo, dove si scrive "Lancia il mio brand in 24 ore.";
+  3. il cursore che clicca invio, e una frustata sfocata verso il primo lavoro;
+  4. i testi su un fondo arancio, con il codice che si scrive e gli archi che girano;
+  5. i visual su un fondo blu, con quattro schede che arrivano grandi e si posano, e il picco che sale;
+  6. la programmazione, con l'albero dei canali e la tuffata nell'anello;
+  7. l'anello che diventa il caricamento;
+  8. il caricamento che diventa la vela nel nome "Salpa", con otto nodi collegati intorno;
+  9. "Dall'idea al lancio. Con Salpa AI.", il logo grande e la chiusura al nero.
+- **Il marchio:** la vela su uno scafo, in un gradiente corallo → viola → blu, è disegnata qui come le icone dei nodi, i testi delle schede e il codice.
+- **Il suono:** niente voce e niente ritmo da seguire (`NO_VOICE = True`). Ogni taglio e ogni cosa che arriva ha il suo suono (colpi, fruscii, clic, tasti) sopra un tappeto basso; 107 effetti da `films/salpa/sound.py`.
+
+Del marchio dell'originale non c'è niente: nome, logo e testi sono nuovi.
 
 ---
 
@@ -973,6 +994,7 @@ Tieni quel file di licenza insieme al progetto. Le nove tavole sono nuove, scrit
 - **Reel «youtube»:** il formato di `films/youtube` riprende un reel di [@ai.nxtlvl](https://www.instagram.com/ai.nxtlvl). Schede, icone, testo italiano, voce e suono sono nuovi, disegnati in codice per questo kit. YouTube e Claude sono marchi dei rispettivi proprietari; le icone del film non sono i loro loghi.
 - **motionmaxxing:** la skill in `.claude/skills/motionmaxxing/` è di Tejas Makwana ([Tejashmakwana/motionmaxxing](https://github.com/Tejashmakwana/motionmaxxing)), licenza Apache-2.0, copiata così com'è con il suo LICENSE e il suo NOTICE. GSAP, three.js e i font che porta con sé restano sotto le loro licenze.
 - **Controlli finali:** l'idea dei controlli che un video deve passare prima della consegna (formato, loudness, niente fotogrammi vuoti o fermi, un foglio da guardare, ogni transizione vista da vicino) viene da [Mortiflix](https://github.com/GTKottman/mortiflix-oss) di GTKottman (AGPL-3.0). `analysis/qc.py` è scritto per questo kit e non contiene codice di Mortiflix.
+- **Spot «salpa»:** il formato di `films/salpa` riprende un reel di [@louis_rlee](https://www.instagram.com/louis_rlee). Il marchio Salpa è inventato; logo, icone, testi, codice a schermo e suono sono nuovi, scritti in codice per questo kit, e il marchio dell'originale non c'è.
 - **Lista Opus 5.5:** `analysis/opus55.py` scarica [awesome-opus5-5-videos](https://github.com/yihui-dev/awesome-opus5-5-videos) di yihui-dev (MIT) e la tiene fuori da git; ogni prompt resta del suo creator, linkato nella lista. I blocchi `app/src/fx` e `films/showreel` sono scritti per questo kit a partire da ciò che i prompt chiedono, senza codice né materiale dei video originali.
 - **Stili:** l'elenco dei venti stili riprende un reel di [@andremass.ai](https://www.instagram.com/andremass.ai) ("motion design styles you can steal"). Ricette, codice e animazioni di `app/src/styles/` sono nuovi, scritti per questo kit.
 - **Launch film:** struttura, prompt, regole e checklist della sezione 06 sono adattati dalla guida *The 60-second launch film made with Claude* di Saksham Gupta ([@saksham.700x](https://www.instagram.com/saksham.700x)). La guida cita lo skill onetake (licenza PolyForm Noncommercial), di cui qui non c'è codice.

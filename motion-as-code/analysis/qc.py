@@ -187,9 +187,13 @@ def main():
     # picture: flat frames and freezes, on small grey frames
     w, h = (SW, SH) if H_ >= W_ else (SH, SW)
     F = frames(a.video, w, h)
-    std = F.reshape(len(F), -1).std(axis=1)
-    mean = F.reshape(len(F), -1).mean(axis=1)
-    diff = np.concatenate([[1.0], np.abs(np.diff(F, axis=0)).reshape(len(F) - 1, -1).mean(axis=1)])
+    # only the part of the frame that ever changes counts: a letterboxed film or a fixed caption above it would
+    # otherwise dilute every measure (a spinner in a 16:9 band of a 9:16 frame is a few pixels of the whole)
+    act = (F.max(axis=0) - F.min(axis=0)) > 0.03
+    area = float(act.mean())
+    A = F[:, act] if area > 0.05 else F.reshape(len(F), -1)
+    std, mean = A.std(axis=1), A.mean(axis=1)
+    diff = np.concatenate([[1.0], np.abs(np.diff(A, axis=0)).mean(axis=1)])
     flat = std < FLAT_STD
     spans = runs(flat, fps, FLAT_MAX + 1e-6)
     bad = [s for s in spans if not allowed(s, allow)]
@@ -201,7 +205,7 @@ def main():
         check("short-flat-frames", False, f"{len(short)} lampi brevi (≤ 0,1 s): voluti?", [f"{s[0]:.2f}–{s[1]:.2f} s ({kinds(s)})" for s in short], warn=True)
     # (frame against frame a second earlier, not the one before: a slow push-in changes little per frame but adds up)
     k = max(1, int(round(FREEZE_K * fps)))
-    dk = np.concatenate([np.ones(k), np.abs(F[k:] - F[:-k]).reshape(len(F) - k, -1).mean(axis=1)])
+    dk = np.concatenate([np.ones(k), np.abs(A[k:] - A[:-k]).mean(axis=1)])
     fz = [[s0 - FREEZE_K, s1] for s0, s1 in runs(dk < FREEZE_DIFF, fps, max(1 / fps, FREEZE_MAX - FREEZE_K))]
     fz = [s for s in fz if not allowed(s, allow)]
     check("no-freeze", not fz, f"niente fermo per più di {FREEZE_MAX:g} s" if not fz else f"{len(fz)} tratti fermi", [f"{s[0]:.2f}–{s[1]:.2f} s" for s in fz])
@@ -224,6 +228,7 @@ def main():
     fails = [c for c in checks if c["result"] == "fail"]
     mark = {"pass": "✓", "warn": "!", "fail": "✗"}
     lines = [f"# QC · {os.path.basename(a.video)}", "", f"{W_}×{H_}, {fps:g} fps, {dur:.2f} s · {len(merged)} tagli trovati · "
+             + (f"area che cambia: {area:.0%} del fotogramma (bande o scritte fisse escluse dalle misure) · " if area < 0.9 else "")
              + ("**tutto a posto**" if not fails else f"**{len(fails)} da sistemare**"), "", "| | Controllo | Esito |", "|---|---|---|"]
     for c in checks:
         lines.append(f"| {mark[c['result']]} | `{c['id']}` | {c['what']}{'<br>' + '<br>'.join(c['where']) if c['where'] else ''} |")
@@ -234,6 +239,8 @@ def main():
     json.dump({"video": a.video, "duration": dur, "fps": fps, "size": [W_, H_], "cuts": merged, "checks": checks}, open(os.path.join(out, "report.json"), "w"), indent=1, ensure_ascii=False)
     for c in checks:
         print(f" {mark[c['result']]} {c['id']:<18} {c['what']}" + "".join(f"\n      {w_}" for w_ in c["where"]))
+    if area < 0.9:
+        print(f"   (measured on the {area:.0%} of the frame that changes: bands and fixed captions left out)")
     print(f"{len(merged)} cuts · wrote {os.path.relpath(out, ROOT)}/report.md, sheet.jpg, board.jpg")
     sys.exit(1 if fails else 0)
 
