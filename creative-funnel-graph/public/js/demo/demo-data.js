@@ -9,6 +9,14 @@ import { addDays, dayKey, daysBetween } from '../format.js';
 
 export const DEMO_ACCOUNT = { id: 'demo', name: 'Demo brand', currency: 'USD', timezone: 'America/New_York' };
 
+/**
+ * The brands this module holds, for the brand menu. One here, named by the app's own
+ * strings; a hosted page built with real brands lists each with its name, the day its ads
+ * were read and whether its spend is simulated.
+ * @type {Array<{key:string, name?:string, read?:string, ads?:number, simulated?:boolean}>}
+ */
+export const DEMO_BRANDS = [{ key: 'demo' }];
+
 const PRODUCTS = [
   { key: 'serum', name: 'Dark Spot Serum', short: 'DarkSpot', shape: 'dropper' },
   { key: 'neck', name: 'Firming Neck Cream', short: 'NeckCream', shape: 'jar' },
@@ -174,7 +182,7 @@ function retentionCurve(rand, quality) {
 }
 
 /**
- * Builds the demo snapshot for a date range.
+ * Builds the demo snapshot for a date range (and a brand, for modules that hold several).
  * @param {{since:string, until:string}} range
  */
 export function buildDemoSnapshot(range) {

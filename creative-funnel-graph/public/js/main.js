@@ -7,7 +7,7 @@ import { similarityMap, familyName, separate, SIM_MODES } from './similarity.js'
 import { computeLayout } from './layout.js';
 import { computeSignature } from './phash.js';
 import { buildCardCanvases, placeholderCanvas } from './textures.js';
-import { buildDemoSnapshot, buildDemoDetail, DEMO_ACCOUNT } from './demo/demo-data.js';
+import { buildDemoSnapshot, buildDemoDetail, DEMO_ACCOUNT, DEMO_BRANDS } from './demo/demo-data.js';
 import { paintCreative } from './demo/painter.js';
 import { api, isStatic } from './api.js';
 import { bitsToHex, hexToBits } from './stacks.js';
@@ -65,10 +65,14 @@ export function rangeForPreset(preset, today = new Date()) {
   }
 }
 
+// Brands that ship with the page: ids 'demo' when there is one, 'demo:<key>' when several.
+const demoId = (b) => (DEMO_BRANDS.length > 1 ? 'demo:' + b.key : 'demo');
+const isDemoId = (id) => DEMO_BRANDS.some((b) => demoId(b) === id);
+
 const state = {
   staticPage: isStatic(),
   status: null,
-  accountId: 'demo',
+  accountId: demoId(DEMO_BRANDS[0]),
   preset: 'last_14d',
   range: null,
   arrangement: 'funnel',
@@ -92,12 +96,24 @@ let matrix = null;
 
 // ---------- helpers ----------
 
-const isDemo = () => state.accountId === 'demo';
+const isDemo = () => isDemoId(state.accountId);
+const demoBrand = () => DEMO_BRANDS.find((b) => demoId(b) === state.accountId) || DEMO_BRANDS[0];
+
+/** A shipped brand's name in the menu and the chip: its own, else the demo's. */
+function demoLabel(b) {
+  if (!b.name) return t('account.demo');
+  return b.simulated ? `${b.name} · ${t('acc.simulated')}` : b.name;
+}
+
+function demoSub(b) {
+  if (!b.read) return t('acc.demoSub');
+  return t('acc.read', { date: fmt.shortDate(b.read), ads: fmt.integer(b.ads || 0) });
+}
 const currency = () => state.model?.account?.currency || state.snapshot?.account?.currency || 'USD';
 const nextFrame = () => new Promise((r) => requestAnimationFrame(() => r()));
 
 function accountName() {
-  if (isDemo()) return t('account.demo');
+  if (isDemo()) return demoLabel(demoBrand());
   const acc = state.status?.accounts?.find((a) => a.id === state.accountId);
   return acc?.name || state.accountId;
 }
@@ -233,7 +249,7 @@ async function load({ refresh = false } = {}) {
   try {
     let snapshot;
     if (isDemo()) {
-      snapshot = buildDemoSnapshot(state.range);
+      snapshot = buildDemoSnapshot(state.range, demoBrand().key);
     } else {
       snapshot = await api.snapshot({ account: state.accountId, since: state.range.since, until: state.range.until, refresh });
     }
@@ -253,7 +269,7 @@ async function load({ refresh = false } = {}) {
     handleError(err);
     if (!isDemo()) {
       // Fall back to the demo so the view is never empty.
-      state.accountId = 'demo';
+      state.accountId = demoId(DEMO_BRANDS[0]);
       renderHeader();
       return load();
     }
@@ -660,8 +676,12 @@ function openDateMenu() {
 }
 
 function openAccountMenu() {
-  const items = [{ heading: t('acc.title') }, { label: t('account.demo'), sub: t('acc.demoSub'), checked: isDemo(), onSelect: () => switchAccount('demo') }];
+  const items = [
+    { heading: DEMO_BRANDS.length > 1 ? t('acc.brands') : t('acc.title') },
+    ...DEMO_BRANDS.map((b) => ({ label: demoLabel(b), sub: demoSub(b), checked: state.accountId === demoId(b), onSelect: () => switchAccount(demoId(b)) })),
+  ];
   const accounts = state.status?.accounts || [];
+  if (accounts.length && DEMO_BRANDS.length > 1) items.push({ separator: true }, { heading: t('acc.title') });
   for (const a of accounts) {
     items.push({ label: a.name || a.id, sub: `${a.id} · ${a.currency || ''}`, checked: state.accountId === a.id, onSelect: () => switchAccount(a.id) });
   }
@@ -705,7 +725,7 @@ function switchAccount(id) {
   if (id === state.accountId) return;
   state.accountId = id;
   store.set('account', id);
-  if (id !== 'demo') api.saveConfig({ defaultAccount: id }).catch(() => {});
+  if (!isDemoId(id)) api.saveConfig({ defaultAccount: id }).catch(() => {});
   renderHeader();
   load();
 }
@@ -732,8 +752,8 @@ async function disconnect() {
     handleError(err);
   }
   state.status = { ...(state.status || {}), connected: false, accounts: [], user: null };
-  state.accountId = 'demo';
-  store.set('account', 'demo');
+  state.accountId = demoId(DEMO_BRANDS[0]);
+  store.set('account', state.accountId);
   ui.toast(t('toast.disconnected'));
   renderHeader();
   load();
@@ -881,6 +901,10 @@ async function boot() {
   }
   updateControlLabels();
 
+  // The brand last looked at, when it ships with the page.
+  const savedAccount = store.get('account', null);
+  if (isDemoId(savedAccount)) state.accountId = savedAccount;
+
   if (!state.staticPage) {
     try {
       state.status = await api.status();
@@ -888,7 +912,7 @@ async function boot() {
       if (state.status?.connected) {
         const ids = (state.status.accounts || []).map((a) => a.id);
         const saved = store.get('account', null);
-        state.accountId = ids.includes(saved) ? saved : saved === 'demo' ? 'demo' : state.status.defaultAccount && ids.includes(state.status.defaultAccount) ? state.status.defaultAccount : ids[0] || 'demo';
+        state.accountId = ids.includes(saved) ? saved : isDemoId(saved) ? saved : state.status.defaultAccount && ids.includes(state.status.defaultAccount) ? state.status.defaultAccount : ids[0] || demoId(DEMO_BRANDS[0]);
       }
     } catch (err) {
       handleError(err);
