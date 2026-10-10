@@ -585,7 +585,7 @@ cd app && FILM=plugins bun scripts/render.ts video --workers 1 --samples 1 --fps
 cd out && ffmpeg -i plugins.mp4 -i plugins/mix.wav -map 0:v -map 1:a -c:v copy -c:a aac -b:a 320k -shortest plugins_sfx.mp4
 ```
 
-Nel kit ci sono nove film:
+Nel kit ci sono undici film:
 - `films/plugins`, descritto qui sotto;
 - `films/styles`, il reel dei 21 stili (sezione 09);
 - `films/gem` e `films/polish`, due reel nel formato "paper night";
@@ -593,9 +593,11 @@ Nel kit ci sono nove film:
 - `films/grill`, le skill di Matt Pocock su uno schermo diviso, con creaturine in pixel art sopra;
 - `films/youtube`, le undici skill per un canale YouTube, su carta crema con capitoli corallo e scuri;
 - `films/showreel`, lo showreel dei blocchi `fx`, solo musica, tagliato sulla griglia a 120 bpm;
-- `films/salpa`, lo spot di un marchio inventato, un film 16:9 dentro il 9:16, senza voce.
+- `films/salpa`, lo spot di un marchio inventato, un film 16:9 dentro il 9:16, senza voce;
+- `films/lista`, una lista di cose da fare che diventa un'abitudine di lettura: UI motion senza parole;
+- `films/magia`, cosa fa il motion design per un brand, con oggetti generati su questa macchina e tipografia cinetica.
 
-`gem`, `polish`, `coding`, `grill`, `youtube` e `salpa` sono descritti in fondo a questa sezione, `showreel` nella sezione 10.
+`gem`, `polish`, `coding`, `grill`, `youtube`, `salpa`, `lista` e `magia` sono descritti in fondo a questa sezione, `showreel` nella sezione 10.
 
 ### Il reel dei plugin (`films/plugins`)
 
@@ -735,6 +737,44 @@ Uno spot di 20 secondi che segue, inquadratura per inquadratura, un reel di @lou
 - **Il suono:** niente voce e niente ritmo da seguire (`NO_VOICE = True`). Ogni taglio e ogni cosa che arriva ha il suo suono (colpi, fruscii, clic, tasti) sopra un tappeto basso; 107 effetti da `films/salpa/sound.py`.
 
 Del marchio dell'originale non c'è niente: nome, logo e testi sono nuovi.
+
+### La lista «lista» (`films/lista`)
+
+Undici secondi di UI motion che seguono, inquadratura per inquadratura, un reel di @vitalyframes, senza voce e senza testo da leggere oltre all'interfaccia. Una tavola sola, `scenes/lista.ts`, e una forma sola che porta tutto il film (`fx/shared`): cambia misura, raggio e colore sulle molle, e il contenuto le cambia dentro sotto una sfocatura.
+
+- **Le inquadrature:**
+  1. una cartella di vetro smerigliato si apre e ne sale una nota, il titolo "Cose da fare oggi" si scrive;
+  2. una mano disegnata va e viene (indica, fa il segno della pace), tocca la nota e la tira fuori, la cartella cade sfocata;
+  3. la lista: "Finire il video", "Allenamento schiena", "Fare la spesa" si spuntano una alla volta, con l'evidenziatore giallo sulle parole; "Leggere 20 pagine" resta da fare;
+  4. la mano prende la nota, il fondo diventa nero e la nota diventa il pulsante "Iniziamo", che il puntatore preme;
+  5. il pulsante diventa il widget della lettura (il quarto punto della lista), che si allarga su un fondo chiaro, cresce con la settimana da riempire e gira su se stesso fino a diventare l'icona di un'app.
+- **Il formato:** l'originale è quadrato. Qui il suo spazio 720×720 si ingrandisce di 1,9 volte al centro del 9:16; i fondi sono tinte piatte e riempiono tutto il fotogramma.
+- **Disegnati qui:** cartella, nota, mano, puntatore, widget, icona e libro. Il libro, *Un passo al giorno* di Anna Riva, è inventato; l'icona è un libro chiuso con un segnalibro, non quella di un'app esistente.
+- **Il suono:** 58 effetti (clic, tasti, fruscii, spunte, evidenziatore, interruttore, ogni trasformazione) sopra una base che cambia con il fondo (`NO_VOICE = True`), da `films/lista/sound.py`.
+
+### Il reel «magia» (`films/magia`)
+
+Un reel di circa 22 secondi che segue, inquadratura per inquadratura, un reel di @wecreate (animazione di @zennn.aep): sei frasi su cosa fa il motion design per un brand, con tredici inquadrature tagliate sulle parole. Una tavola sola, `scenes/magia.ts`.
+
+- **Il testo:** "Ti sei mai chiesto perché certi brand ti restano in testa? Non è magia. È motion design. Il motion design dà emozione al tuo messaggio. Il testo cinetico cattura l'attenzione in due secondi. Le metafore visive spiegano idee complesse senza una sola parola. Non è decorazione. È strategia che si muove." Voce sintetica italiana (Qwen3-TTS), come negli altri film.
+- **Le immagini sono generate:** gli oggetti (un cervello, quattro prodotti senza marchio, un pegaso e una mano di marmo, un televisore anni '70, un occhio, una farfalla in una mano, un diamante, una colonna, un cavallo degli scacchi) li fa `analysis/imagegen.py` su questa macchina, e li scontorna. Tutto il resto (tipografia, fondi, pavimenti, pannelli, luce) è disegnato in codice.
+- **Le inquadrature:** il cervello in un'orbita sotto "TI SEI MAI CHIESTO?"; i prodotti su piastrelle verdi e "CERTI BRAND"; il cervello che cade su "Ti restano in testa?"; il pegaso sul verde scuro e "Magia" al neon; la mano che sale a toccare "Design"; il televisore sul pavimento verde; la barra rossa e "Emozione al tuo messaggio"; "Testo" che si stringe mentre la barra lo attraversa; l'occhio che rotola sulla scheda verde; la farfalla nel pannello nero; "PAROLA" con il suo riflesso; il diamante sulla colonna sotto "DECORAZIONE"; il cavallo che si muove a L. Chiude un cartello nero con il nome.
+- **Il suono:** un colpo o un fruscio su ogni taglio, un suono per ogni cosa che arriva, una base scura sotto il verde e più spinta sul resto, da `films/magia/sound.py`.
+- **Font:** Great Vibes (corsivo calligrafico) e Caveat (scrittura a mano) sono nuovi nel kit, `F.script()` e `F.hand()`.
+
+#### Generare le immagini: `analysis/imagegen.py`
+
+```sh
+uv run --no-project --with torch --with diffusers --with transformers --with accelerate --with peft \
+    --with "rembg[cpu]" --with pillow python analysis/imagegen.py --film magia            # tutte
+uv run ... python analysis/imagegen.py --film magia eye --count 3                          # tre varianti dell'occhio
+```
+
+- **Cosa legge:** `films/<nome>/images.json`, con lo stile comune e una voce per immagine (nome, prompt, seed, misura, se va scontornata).
+- **Cosa scrive:** `films/<nome>/images/<nome>.png`, scontornata su fondo trasparente, che la tavola carica da `images/` (il server di sviluppo e il render la servono come `audio/` e `data/`). I file grezzi restano in `out/<film>/images/`; con `--count` le varianti finiscono lì, numerate col seed, e il seed scelto si scrive nel json.
+- **Il modello:** [SSD-1B](https://huggingface.co/segmind/SSD-1B) di Segmind (Apache-2.0), un SDXL distillato, con [LCM-LoRA](https://huggingface.co/latent-consistency/lcm-lora-ssd-1b) (OpenRAIL++) per fare un'immagine in 4 passi. Scontorno: rembg con isnet-general-use (Apache-2.0).
+- **I tempi:** su una CPU a 4 core, 40–50 secondi per un'immagine 1024×1024. La prima volta scarica circa 4,7 GB. Gira in bfloat16, che dimezza la memoria; con `IMAGEGEN_DTYPE=float32` va in precisione piena, se c'è RAM.
+- **Le regole:** nessun prompt chiede un marchio, un logo o una persona reale, e il negativo li esclude. Un'immagine venuta male si rifà con altre varianti, non si ritocca.
 
 ---
 
@@ -994,6 +1034,8 @@ Tieni quel file di licenza insieme al progetto. Le nove tavole sono nuove, scrit
 - **Reel «youtube»:** il formato di `films/youtube` riprende un reel di [@ai.nxtlvl](https://www.instagram.com/ai.nxtlvl). Schede, icone, testo italiano, voce e suono sono nuovi, disegnati in codice per questo kit. YouTube e Claude sono marchi dei rispettivi proprietari; le icone del film non sono i loro loghi.
 - **motionmaxxing:** la skill in `.claude/skills/motionmaxxing/` è di Tejas Makwana ([Tejashmakwana/motionmaxxing](https://github.com/Tejashmakwana/motionmaxxing)), licenza Apache-2.0, copiata così com'è con il suo LICENSE e il suo NOTICE. GSAP, three.js e i font che porta con sé restano sotto le loro licenze.
 - **Controlli finali:** l'idea dei controlli che un video deve passare prima della consegna (formato, loudness, niente fotogrammi vuoti o fermi, un foglio da guardare, ogni transizione vista da vicino) viene da [Mortiflix](https://github.com/GTKottman/mortiflix-oss) di GTKottman (AGPL-3.0). `analysis/qc.py` è scritto per questo kit e non contiene codice di Mortiflix.
+- **Lista «lista»:** il formato di `films/lista` riprende un reel di [@vitalyframes](https://www.instagram.com/vitalyframes). Cartella, nota, mano, widget, icona e libro (inventato) sono nuovi, disegnati in codice per questo kit; il libro e l'icona dell'originale non ci sono.
+- **Reel «magia»:** il formato di `films/magia` riprende un reel di [@wecreate](https://www.instagram.com/wecreate) (animazione di @zennn.aep). Testo italiano, voce, tipografia, fondi e suono sono nuovi; le immagini sono generate in locale con SSD-1B (Segmind, Apache-2.0) e LCM-LoRA (OpenRAIL++), senza marchi. Great Vibes e Caveat sono distribuiti con SIL Open Font License (`app/public/fonts/greatvibes/OFL.txt`, `app/public/fonts/caveat/OFL.txt`).
 - **Spot «salpa»:** il formato di `films/salpa` riprende un reel di [@louis_rlee](https://www.instagram.com/louis_rlee). Il marchio Salpa è inventato; logo, icone, testi, codice a schermo e suono sono nuovi, scritti in codice per questo kit, e il marchio dell'originale non c'è.
 - **Lista Opus 5.5:** `analysis/opus55.py` scarica [awesome-opus5-5-videos](https://github.com/yihui-dev/awesome-opus5-5-videos) di yihui-dev (MIT) e la tiene fuori da git; ogni prompt resta del suo creator, linkato nella lista. I blocchi `app/src/fx` e `films/showreel` sono scritti per questo kit a partire da ciò che i prompt chiedono, senza codice né materiale dei video originali.
 - **Stili:** l'elenco dei venti stili riprende un reel di [@andremass.ai](https://www.instagram.com/andremass.ai) ("motion design styles you can steal"). Ricette, codice e animazioni di `app/src/styles/` sono nuovi, scritti per questo kit.

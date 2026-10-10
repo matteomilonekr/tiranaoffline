@@ -10,10 +10,11 @@ if (FILM && !existsSync(filmDir)) throw new Error(`no such film: films/${FILM}`)
 // the film's format: '16x9' (1920x1080, the default) or '9x16' (1080x1920), from films/<name>/film.json
 const filmJson = path.join(filmDir, 'film.json');
 const FORMAT: string = (FILM && existsSync(filmJson) ? JSON.parse(readFileSync(filmJson, 'utf8')).format : null) ?? '16x9';
-// audio/ and data/ come from the film; out/ is shared, out/<film>/ for a film (?mix=1 plays out/mix.wav)
+// audio/, data/ and images/ come from the film; out/ is shared, out/<film>/ for a film (?mix=1 plays out/mix.wav)
 const assetDirs: Record<string, string> = {
   audio: path.join(filmDir, 'audio'),
   data: path.join(filmDir, 'data'),
+  images: path.join(filmDir, 'images'),
   out: FILM ? path.join(repoRoot, 'out', FILM) : path.join(repoRoot, 'out'),
 };
 
@@ -33,7 +34,7 @@ function repoAssets(): Plugin {
     },
     writeBundle(options) {
       if (!options.dir) return;
-      for (const dir of ['audio', 'data']) {
+      for (const dir of ['audio', 'data', 'images']) {
         if (existsSync(assetDirs[dir]!)) cpSync(assetDirs[dir]!, path.join(options.dir, dir), { recursive: true });
       }
     },

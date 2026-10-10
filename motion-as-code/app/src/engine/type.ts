@@ -31,6 +31,9 @@ for (const [n, f] of [['500', 'Medium'], ['600', 'SemiBold'], ['700', 'Bold']] a
   DEFS.push({ family: `Poppins-${n}`, file: `poppins/Poppins-${f}.ttf` });
 DEFS.push({ family: 'Instrument-400', file: 'instrumentserif/InstrumentSerif-Regular.ttf' });
 DEFS.push({ family: 'InstrumentItalic-400', file: 'instrumentserif/InstrumentSerif-Italic.ttf' });
+// Great Vibes (a calligraphic script) and Caveat (handwriting), for films/magia
+DEFS.push({ family: 'GreatVibes-400', file: 'greatvibes/GreatVibes-Regular.ttf' });
+DEFS.push({ family: 'Caveat-400', file: 'caveat/Caveat.ttf' });
 
 /** Convenience family names. */
 export const F = {
@@ -65,6 +68,14 @@ export const F = {
   /** Instrument Serif, upright or italic. */
   instrument(italic = true): string {
     return italic ? 'InstrumentItalic-400' : 'Instrument-400';
+  },
+  /** Great Vibes, a calligraphic script. */
+  script(): string {
+    return 'GreatVibes-400';
+  },
+  /** Caveat, handwriting. */
+  hand(): string {
+    return 'Caveat-400';
   },
 };
 

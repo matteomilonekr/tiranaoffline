@@ -1,0 +1,17 @@
+{
+ "script": [
+  "Ti sei mai chiesto perché certi brand ti restano in testa?",
+  "Non è magia.",
+  "È motion design.",
+  "Il motion design dà emozione al tuo messaggio.",
+  "Il testo cinetico cattura l'attenzione in due secondi.",
+  "Le metafore visive spiegano idee complesse senza una sola parola.",
+  "Non è decorazione.",
+  "È strategia che si muove."
+ ],
+ "spoken": {
+  "brand": "brend",
+  "motion": "moscion",
+  "design": "disain"
+ }
+}
