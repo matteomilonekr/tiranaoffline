@@ -114,6 +114,26 @@ export function buildLeadSlackMessage(registration, registrationId) {
   return slackMessage(title, fields);
 }
 
+// Slack accetta al massimo 10 campi per sezione: le righe oltre la decima vanno in un blocco di testo.
+export function buildCallApplicationSlackMessage(rows) {
+  const qualified = !String(rows?.[0]?.[1] || "").startsWith("NON");
+  const title = qualified ? "🟢 Nuova candidatura call qualificata" : "⚪️ Candidatura call non idonea";
+  const fields = rows.slice(0, 10);
+  const extra = rows.slice(10);
+  const message = slackMessage(title, fields);
+  if (extra.length) {
+    message.blocks.push({
+      type: "section",
+      text: {
+        type: "mrkdwn",
+        text: extra.map(([label, value]) => `*${label}*\n${escapeSlackMrkdwn(value)}`).join("\n\n"),
+      },
+    });
+    message.text = fallbackText(title, rows);
+  }
+  return message;
+}
+
 export function buildTicketSlackMessage(order, customer, shareUrl) {
   const free = isFreeTicket(order);
   const title = free

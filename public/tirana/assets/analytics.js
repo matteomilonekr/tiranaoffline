@@ -426,6 +426,43 @@
     return Promise.race([dispatching, limit]);
   }
 
+  // Eventi del call funnel: non hanno un piano a catalogo, quindi niente coda commerce.
+  function trackFunnelStep(googleEvent, metaEvent, options = {}) {
+    const eventId = /^[A-Za-z0-9._:-]{8,160}$/.test(String(options.eventId || ''))
+      ? String(options.eventId)
+      : randomId();
+    if (wasSent('funnel', metaEvent, eventId)) return Promise.resolve(false);
+    const contentName = String(options.contentName || 'AI OS Strategy Call').slice(0, 120);
+    const segment = String(options.segment || '').slice(0, 40);
+    const sends = [];
+    if (consent?.analytics) {
+      sends.push(loadGoogle().then((ready) => {
+        if (!ready) return false;
+        window.gtag('event', googleEvent, {
+          event_id: eventId + '.' + googleEvent,
+          content_name: contentName,
+          business_segment: segment || undefined,
+          transport_type: 'beacon'
+        });
+        return true;
+      }));
+    }
+    if (consent?.marketing) {
+      sends.push(loadMeta().then((ready) => {
+        if (!ready) return false;
+        window.fbq('track', metaEvent, {
+          content_name: contentName,
+          content_category: segment || undefined
+        }, { eventID: eventId + '.' + metaEvent });
+        return true;
+      }));
+    }
+    if (!sends.length) return Promise.resolve(false);
+    markSent('funnel', metaEvent, eventId);
+    const limit = new Promise((resolve) => window.setTimeout(() => resolve(true), NAVIGATION_WAIT_LIMIT));
+    return Promise.race([Promise.all(sends).then(() => true), limit]);
+  }
+
   function saveConsent(nextConsent) {
     consent = {
       analytics: Boolean(nextConsent.analytics),
@@ -521,6 +558,8 @@
       { paymentType }
     ),
     trackCompleteRegistration: (plan) => trackCommerce('sign_up', 'CompleteRegistration', plan),
+    trackLead: (options) => trackFunnelStep('generate_lead', 'Lead', options),
+    trackSchedule: (options) => trackFunnelStep('book_appointment', 'Schedule', options),
     trackPurchase: (plan, transactionId, eventId) => trackCommerce('purchase', 'Purchase', plan, {
       paymentType: 'stripe',
       transactionId,
